@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d08e71e700ce1643bc8200c53357f8a, type: 3}
+  m_Name: Game Settings
+  m_EditorClassIdentifier: 
+  EnemySpawnSettings:
+  - {fileID: 11400000, guid: 458e4e0fdc851e548baa82bb4a42f742, type: 2}
+  UpgradeSettings: {fileID: 11400000, guid: 2beb3d7ce10244647a0c893696928a4b, type: 2}
+  TowerView: {fileID: 2561317839851661327, guid: 04d700718b1fdb34fb6021c5be5332e7, type: 3}
+  ProjectileView: {fileID: -6287025677217260571, guid: 1ec97e3ef12c87446829b12708c5b747, type: 3}
+  DynamiteView: {fileID: 1913065458034170199, guid: 4f5262d842b3b764eb79fc3e9fd92e91, type: 3}
+  TowerStartingAttackDamage: 2
+  TowerStartingAttackCooldown: 1
+  TowerStartingAttackTargets: 1
+  TowerStartingTargetingRange: 2
+  BaseMaxHealth: 50
+  BaseHealthRegeneration: 0
+  EnemySpawnRadius: 9.8
+  InitialEnemySpawnDelay: 4
