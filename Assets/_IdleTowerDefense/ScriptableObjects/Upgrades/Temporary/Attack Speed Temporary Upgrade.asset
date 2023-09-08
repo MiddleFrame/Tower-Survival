@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Title: Attack Speed
   maxUpgradeCount: 25
-  costUpgradeMultiplier: 3
+  costUpgradeMultiplier: 100
   window: 0
   AttackSpeedMultiplier: 0.1

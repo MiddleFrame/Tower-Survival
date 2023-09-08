@@ -4,7 +4,6 @@ MVP:
 Asshole upgrade
 menu ui
 Buy game speed in iap
-Game settings
 rewarded ads
 In app purchase
 Some grades

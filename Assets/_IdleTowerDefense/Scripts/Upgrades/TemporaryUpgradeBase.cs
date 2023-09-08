@@ -9,7 +9,7 @@ public class TemporaryUpgradeBase : ScriptableObject
 
     public int maxUpgradeCount;
 
-    public int costUpgradeMultiplier;
+    public float costUpgradeMultiplier;
 
     public int window;
     protected float value
@@ -27,7 +27,7 @@ public class TemporaryUpgradeBase : ScriptableObject
     public KeyValuePair<CurrencyTypes, int> GetCost()
     {
         return new KeyValuePair<CurrencyTypes, int>(
-            CurrencyTypes.Exp, (TemporaryUpgradeManager.Instance.TemporaryUpgradeCounts[Title] + 1)*costUpgradeMultiplier
+            CurrencyTypes.Exp, (int)((TemporaryUpgradeManager.Instance.TemporaryUpgradeCounts[Title] + 1)*costUpgradeMultiplier)
         );
     }
 

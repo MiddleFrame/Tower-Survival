@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Title: Max target
   maxUpgradeCount: 7
-  costUpgradeMultiplier: 4
+  costUpgradeMultiplier: 1000
   window: 0

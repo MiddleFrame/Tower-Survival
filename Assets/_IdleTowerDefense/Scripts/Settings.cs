@@ -14,7 +14,7 @@ public class Settings : MonoBehaviour
     [SerializeField]
     private AudioSource _musicSource;
     [SerializeField]
-    private AudioSource _soundSource;
+    private AudioSource[] _soundSource;
 
     public static bool isDamageShow=true;
 
@@ -38,7 +38,10 @@ public class Settings : MonoBehaviour
     }  
     private void ChangeSoundVolume(float volume)
     {
-        _soundSource.volume = volume;
+        foreach (var source in _soundSource)
+        {
+            source.volume = volume;
+        }
     }
 
     public void OpenDiscord()

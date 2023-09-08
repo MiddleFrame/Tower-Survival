@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2128048090a23524880cf1131d9ceb39, type: 3}
   m_Name: Atack Damage
   m_EditorClassIdentifier: 
-  Title: Atack Damage
+  Title: Attack Damage
   baseCost: 1
-  upgradeCostExponent: 1.1
-  maxUpgradeCount: 279
+  upgradeCostExponent: 1.2
+  maxUpgradeCount: 1000

@@ -23,6 +23,9 @@ public class GameManager : Singleton<GameManager>
 
     public LoseMenu _menu;
 
+    [SerializeField]
+    private GameObject _setting;
+
     public static int tier = 0;
     private void Awake()
     {
@@ -99,6 +102,17 @@ public class GameManager : Singleton<GameManager>
         ES3.Save(SaveKeys.Gold, Currency[CurrencyTypes.Gold]);
     }
 
+    public void OpenSetting()
+    {
+        _setting.SetActive(true);
+        Paused = true;
+    }
+    public void CloseSetting()
+    {
+        _setting.SetActive(false);
+        Paused = false;
+    }
+    
     public static void LoadData()
     {     
         List<CurrencyTypes> currencies = ((CurrencyTypes[]) Enum.GetValues(typeof(CurrencyTypes))).ToList();

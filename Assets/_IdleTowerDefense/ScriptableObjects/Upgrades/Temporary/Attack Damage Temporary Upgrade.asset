@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Title: Attack Damage
   maxUpgradeCount: 1000
-  costUpgradeMultiplier: 1
+  costUpgradeMultiplier: 6
   window: 0

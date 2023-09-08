@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff068dad0af547d4c801ea00061873f7, type: 3}
-  m_Name: Health Regeneration Temporary Upgrade
+  m_Script: {fileID: 11500000, guid: 2128048090a23524880cf1131d9ceb39, type: 3}
+  m_Name: Max target
   m_EditorClassIdentifier: 
-  Title: Regeneration
-  maxUpgradeCount: 1000
-  costUpgradeMultiplier: 6
-  window: 1
-  HealthRegenerationPerUpgrade: 0.5
+  Title: Max target
+  baseCost: 1
+  upgradeCostExponent: 2
+  maxUpgradeCount: 7
