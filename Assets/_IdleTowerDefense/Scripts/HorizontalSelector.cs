@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Managers;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
@@ -33,6 +34,8 @@ public class HorizontalSelector : MonoBehaviour
     private Animator _selectorAnimator;
     private string _newItemTitle;
 
+    public static bool rewardedSpeed;
+    
     [System.Serializable]
     public class Item
     {
@@ -43,8 +46,17 @@ public class HorizontalSelector : MonoBehaviour
     private void Start()
     {
         CreateNewItem("0x",new [] {(UnityAction) (()=>GameManager.Instance.SetGameSpeed(0))});
-        CreateNewItem("1x",new [] {(UnityAction) (()=>GameManager.Instance.SetGameSpeed(1))});
-        CreateNewItem("1.5x",new [] {(UnityAction) (()=>GameManager.Instance.SetGameSpeed(1.5f))});
+        float maxSpeed=1;
+        if (rewardedSpeed)
+            maxSpeed += 1;
+        if (InAppInitializer.isBuyGameSpeed)
+            maxSpeed += 1;
+        for (float speed = 0; speed < maxSpeed; speed+=0.5f)
+        {
+            var speed1 = speed;
+            CreateNewItem($"{speed:N1}x",new [] {(UnityAction) (()=>GameManager.Instance.SetGameSpeed(speed1))});
+        }
+
         _selectorAnimator = gameObject.GetComponent<Animator>();
         _label = transform.Find("Text").GetComponent<TextMeshProUGUI>();
 

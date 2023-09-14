@@ -72,7 +72,7 @@ public class EnemyDamageSystem : IEcsPreInitSystem, IEcsRunSystem
         // Init components
         projectile.Damage = enemyDamage.Damage;
         projectile.OnDamageDealt += (damage, enemyTransform) =>
-            UltimateTextDamageManager.Instance.Add(damage.ToString(), enemyTransform,"tower");
+            UltimateTextDamageManager.Instance.Add(damage.ToString("N0"), enemyTransform,"tower");
         projectileMovement.StopRadius = 0;
 
         projectilePosition = ((Vector2) positionPool.Get(enemy));

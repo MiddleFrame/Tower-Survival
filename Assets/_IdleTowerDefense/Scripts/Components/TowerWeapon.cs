@@ -30,10 +30,10 @@ public struct TowerWeapon
 
     private void InitDamage(float baseDamage)
     {
+        Debug.Log("Init damage");
         BaseAttackDamage = baseDamage;
-        AttackDamageMultiplier = 1;
-        AttackDamageAdditions = 0;
-        RecalculateAttackDamage(0);
+        AttackDamageMultiplier = 1.1f;
+        AttackDamageAdditions = 1;
     }
 
     public float RecalculateAttackDamage(int grades)

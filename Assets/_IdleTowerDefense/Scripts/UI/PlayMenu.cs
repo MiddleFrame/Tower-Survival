@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -30,9 +29,10 @@ public class PlayMenu : MonoBehaviour
 
    private int[] _records;
 
-   private int _currentTier;
+   private static int _currentTier;
    private void Awake()
    {
+      HorizontalSelector.rewardedSpeed = false;
       _records = new int[9];
       for (int i = 0; i < 9; i++)
       {
@@ -45,7 +45,7 @@ public class PlayMenu : MonoBehaviour
       ChangeTier(0);
    }
 
-   public void Play()
+   public static void Play()
    {
       GameManager.tier = _currentTier;
       SceneManager.LoadScene("Game");
@@ -60,13 +60,29 @@ public class PlayMenu : MonoBehaviour
       _enemyKilled.text = "High score - "+_records[tier];
       _damageMultiplier.text = "Enemy damage - "+_data.gameSettings.EnemySpawnSettings[tier].EnemyDamageMultiplier;
       _healthMultiplier.text = "Enemy health - "+_data.gameSettings.EnemySpawnSettings[tier].EnemyHealthMultiplier;
-      _spawnMultiplier.text = "Enemy spawn delay - "+_data.gameSettings.EnemySpawnSettings[tier].EnemySpawnDelayMultiplier;
+      _spawnMultiplier.text = "Enemy start spawn delay - "+_data.gameSettings.EnemySpawnSettings[tier].stages[0].enemySpawnRate;
       _enemyList.text = "";
       foreach (var enemy in _data.gameSettings.EnemySpawnSettings[tier]._enemyList.EnemySpawns)
       {
          _enemyList.text += enemy.name + '\n';
       }
    }
-   
+
+   public void ShowAd()
+   {
+      AddManager.ShowRewarded(0);
+   }
+
+   public void NextTier()
+   {
+      if(_records[_currentTier]>=_data.gameSettings.EnemySpawnSettings[_currentTier].RecordToOpen)
+         ChangeTier(_currentTier+1);
+   }
+
+   public void PrevTier()
+   {
+      if(_currentTier>0)
+         ChangeTier(_currentTier-1);
+   }
    
 }

@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468c369c98607094cbdcf1daebcd90af, type: 3}
+  m_Name: Tier 3
+  m_EditorClassIdentifier: 
+  EnemySpawnDelayMultiplier: 0.93
+  EnemyHealthMultiplier: 1.05
+  EnemyDamageMultiplier: 1.05
+  OreMultiplier: 2
+  RecordToOpen: 1000
+  _enemyList:
+    EnemySpawns:
+    - {fileID: 2420183176402899973, guid: 57aebfda2cf49994f8c1f723ffb0d64a, type: 3}
+    - {fileID: 2420183176402899973, guid: d5852692113af6e4fba76cc0a3ae10c5, type: 3}
+    - {fileID: 2420183176402899973, guid: e1f836796fa256446a37bfa72efd25f1, type: 3}
+  _enemyListChanceStages:
+  - enemiesKilledToStartStage: 0
+    _enemyChances:
+    - 1
+    - 0
+    - 0
+  _stats:
+  - movementSpeed: 5
+    startingHealth: 10
+    damage: 1
+    damageCooldown: 1
+  - movementSpeed: 5
+    startingHealth: 10
+    damage: 1
+    damageCooldown: 1
+  - movementSpeed: 5
+    startingHealth: 10
+    damage: 1
+    damageCooldown: 1

@@ -66,7 +66,7 @@ public class TowerFiringSystem : IEcsPreInitSystem, IEcsRunSystem
                 projectileView.transform.LookAt2D((Vector2)positionPool.Get(towerTargetSelector.CurrentTargets[i]),LookType.Right);
                 // Init components
                 projectile.Damage = towerWeapon.AttackDamage;
-                projectile.OnDamageDealt += (damage, enemyTransform) => UltimateTextDamageManager.Instance.Add(damage.ToString(), enemyTransform);
+                projectile.OnDamageDealt += (damage, enemyTransform) => UltimateTextDamageManager.Instance.Add(damage.ToString("N0"), enemyTransform);
                 projectilePosition = ((Vector2)positionPool.Get(towerTargetSelector.CurrentTargets[i])).normalized * 0.05f;
                 projectileMovement.Velocity = ((Vector2)positionPool.Get(towerTargetSelector.CurrentTargets[i])).normalized * projectileView.MovementSpeed;
                 projectileMovement.StopRadius = 0;

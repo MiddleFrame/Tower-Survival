@@ -41,6 +41,7 @@ public class MaxTargetTemporaryUpgrade : TemporaryUpgradeBase
         foreach (int entity in towerTargetSelectorFilter)
         {
             ref TowerTargetSelector towerWeapon = ref targetSelectorPool.Get(entity);
+            towerWeapon.MaxTargets = 1+PersistentUpgradeManager.PersistentUpgradeCounts[Title];
             value = towerWeapon.MaxTargets;
         }
     }

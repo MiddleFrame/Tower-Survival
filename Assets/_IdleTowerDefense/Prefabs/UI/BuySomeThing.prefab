@@ -165,6 +165,7 @@ GameObject:
   - component: {fileID: 5192478283587731285}
   - component: {fileID: 1927392323042968877}
   - component: {fileID: 1652001289594098804}
+  - component: {fileID: 7557497610373299347}
   m_Layer: 5
   m_Name: Buy
   m_TagString: Untagged
@@ -275,6 +276,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7557497610373299347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6246529641986654970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fad88e459dfc77c4dbcbaff69c5e05a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSFX: {fileID: 0}
+  enableClickSound: 1
+  checkForInteraction: 1
 --- !u!1 &6698820127225680593
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,6 +302,7 @@ GameObject:
   - component: {fileID: 882110645612708780}
   - component: {fileID: 1126084600342330437}
   - component: {fileID: 3258448016417716316}
+  - component: {fileID: -2043495974209321308}
   m_Layer: 5
   m_Name: BuySomeThing
   m_TagString: Untagged
@@ -354,6 +371,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-2043495974209321308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6698820127225680593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8516ab83c4c2546821952528720e76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _price: {fileID: 6170397886209325384}
+  _storeId: 
+  action:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8298041300280315964
 GameObject:
   m_ObjectHideFlags: 0

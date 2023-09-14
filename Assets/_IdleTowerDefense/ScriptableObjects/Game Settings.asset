@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemySpawnSettings:
   - {fileID: 11400000, guid: 458e4e0fdc851e548baa82bb4a42f742, type: 2}
+  - {fileID: 11400000, guid: 0122391e0b0e36441a1634896c0f0f16, type: 2}
+  - {fileID: 11400000, guid: 34a7f14cbc0fbf34889d3ae643571840, type: 2}
+  - {fileID: 11400000, guid: 6156d12a184f56546a4f139effa903bc, type: 2}
   UpgradeSettings: {fileID: 11400000, guid: 2beb3d7ce10244647a0c893696928a4b, type: 2}
   TowerView: {fileID: 2561317839851661327, guid: 04d700718b1fdb34fb6021c5be5332e7, type: 3}
   ProjectileView: {fileID: -6287025677217260571, guid: 1ec97e3ef12c87446829b12708c5b747, type: 3}
@@ -24,5 +27,5 @@ MonoBehaviour:
   TowerStartingTargetingRange: 2
   BaseMaxHealth: 50
   BaseHealthRegeneration: 0
-  EnemySpawnRadius: 9.8
+  EnemySpawnRadius: 7.4
   InitialEnemySpawnDelay: 4

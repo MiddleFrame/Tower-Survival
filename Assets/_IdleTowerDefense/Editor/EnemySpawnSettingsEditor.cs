@@ -10,8 +10,8 @@ public class EnemySpawnSettingsEditor : Editor
         EnemySpawnSettings settings = (EnemySpawnSettings)target;
         if (GUILayout.Button("Normalize"))
         {
-            settings._enemyListChanceStages[0].enemiesKilledToStartStage = 0;
-            foreach (var chance in settings._enemyListChanceStages)
+            settings.stages[0].enemiesKilledToStartStage = 0;
+            foreach (var chance in settings.stages)
             {
                 chance.NormalizeEntries();
             }

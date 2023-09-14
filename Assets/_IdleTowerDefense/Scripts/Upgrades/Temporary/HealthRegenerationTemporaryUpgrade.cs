@@ -39,6 +39,7 @@ public class HealthRegenerationTemporaryUpgrade : TemporaryUpgradeBase
         foreach (int entity in healthFilter)
         {
             ref Health towerHealth = ref healthPool.Get(entity);
+            towerHealth.HealthRegenerationAdditions += HealthRegenerationPerUpgrade*PersistentUpgradeManager.PersistentUpgradeCounts[Title];
             value = towerHealth.RecalculateHealthRegeneration();
         }
     }

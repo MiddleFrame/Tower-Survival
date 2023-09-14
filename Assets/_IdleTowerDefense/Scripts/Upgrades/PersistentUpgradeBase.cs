@@ -9,6 +9,7 @@ public class PersistentUpgradeBase : ScriptableObject
     [Header("Upgrade Specific Values")]
     [SerializeField] private float baseCost = 1;
     [SerializeField] private float upgradeCostExponent = 1.1f;
+    [SerializeField] private float upgradeCostAdditional = 1f;
     
     public int maxUpgradeCount;  
     public void Init() {}
@@ -16,14 +17,14 @@ public class PersistentUpgradeBase : ScriptableObject
 
     public int GetCost()
     {
-        int upgradeCount = PersistentUpgradeManager.Instance.PersistentUpgradeCounts[Title];
-        return (int)(baseCost * Mathf.Pow(upgradeCostExponent, upgradeCount));
+        int upgradeCount = PersistentUpgradeManager.PersistentUpgradeCounts[Title];
+        return (int)(baseCost * Mathf.Pow(upgradeCostExponent, upgradeCount) + upgradeCostAdditional*upgradeCount);
     }
 
     public StatusItem CanUpgrade()
     {
-        return PersistentUpgradeManager.Instance.PersistentUpgradeCounts[Title] == maxUpgradeCount? StatusItem.Completed :
-            PersistentUpgradeManager.Instance.RemainingOre >= GetCost()?StatusItem.None:StatusItem.Locked;
+        return PersistentUpgradeManager.PersistentUpgradeCounts[Title] == maxUpgradeCount? StatusItem.Completed :
+            GameManager.Currency[CurrencyTypes.Ore] >= GetCost()?StatusItem.None:StatusItem.Locked;
     }
 
 }

@@ -42,6 +42,8 @@ public class TowerRangeTemporaryUpgrade : TemporaryUpgradeBase
         foreach (int entity in _towerTargetSelectorFilter)
         {
             ref TowerTargetSelector towerWeapon = ref targetSelectorPool.Get(entity);
+            towerWeapon.TargetingRange += PersistentUpgradeManager.PersistentUpgradeCounts[Title] * RangePerUpgrade;
+            TemporaryUpgradeManager.Instance.UpdateEnemySpawnRange(towerWeapon.TargetingRange);
             value = towerWeapon.TargetingRange;
         }
     }

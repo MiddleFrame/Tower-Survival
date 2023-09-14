@@ -14,7 +14,6 @@ public class UpgradeSettings : ScriptableObject
     {
         foreach (var upgrade in TemporaryUpgrades)
         {
-            TemporaryUpgradeManager.Instance.TemporaryUpgradeCounts[upgrade.Title]= PersistentUpgradeManager.Instance.PersistentUpgradeCounts[upgrade.Title];
             upgrade.Init();
         }
     }

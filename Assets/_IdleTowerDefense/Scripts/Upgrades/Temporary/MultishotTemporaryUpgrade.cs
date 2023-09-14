@@ -43,6 +43,7 @@ public class MultishotTemporaryUpgrade : TemporaryUpgradeBase
         foreach (int entity in _towerTargetSelectorFilter)
         {
             ref TowerTargetSelector towerWeapon = ref targetSelectorPool.Get(entity);
+            towerWeapon.MultiShotChange += PersistentUpgradeManager.PersistentUpgradeCounts[Title] * percentPerUpgrade;
             value = towerWeapon.MultiShotChange;
         }
     }

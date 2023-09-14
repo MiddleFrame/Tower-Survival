@@ -54,14 +54,13 @@ public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
             temporaryUpgradeButton.targetTemporaryUpgrade = gameSettings.UpgradeSettings.TemporaryUpgrades[i];
 
             temporaryUpgradeButton.titleObj.text = gameSettings.UpgradeSettings.TemporaryUpgrades[i].Title.ToUpper();
-            
             temporaryUpgradeButton.targetTemporaryUpgrade.onUpgrade +=
-                x => temporaryUpgradeButton.currentValue.text = "Value: "+x ;
+                x => temporaryUpgradeButton.currentValue.text = "Value: "+x.ToString("N1");
             temporaryUpgradeButton.targetTemporaryUpgrade.onUpgrade += _ =>
                 temporaryUpgradeButton.cost.text =
                     temporaryUpgradeButton.targetTemporaryUpgrade.GetCost().Value +" exp";
+            
             temporaryUpgradeButton.targetTemporaryUpgrade.UpdateStartValue();
-            // ScriptableObject handles upgrading itself
 
             temporaryUpgradeButton.Button.onClick.AddListener(
                 () =>

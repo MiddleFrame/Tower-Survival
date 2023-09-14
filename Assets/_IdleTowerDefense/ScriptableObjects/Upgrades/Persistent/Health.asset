@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Health
   m_EditorClassIdentifier: 
   Title: Health
-  baseCost: 1
+  baseCost: 5
   upgradeCostExponent: 1.2
+  upgradeCostAdditional: 2
   maxUpgradeCount: 1000

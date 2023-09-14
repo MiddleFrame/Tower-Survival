@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PersistentUpgradeManager : Singleton<PersistentUpgradeManager>
+public class PersistentUpgradeManager : MonoBehaviour
 {
-    public Dictionary<string, int> PersistentUpgradeCounts = new();
+    public static Dictionary<string, int> PersistentUpgradeCounts = new();
     public GameSettings GameSettings;
 
     [SerializeField]
@@ -45,19 +45,22 @@ public class PersistentUpgradeManager : Singleton<PersistentUpgradeManager>
             _buttons.Add(currentButton);
             currentButton.TargetUpgrade = upgrade;
             currentButton.TitleText.text = upgrade.Title;
-            currentButton.CostText.text = $"{upgrade.GetCost():N1}";
+            currentButton.CostText.text = $"{upgrade.GetCost():N0}";
             currentButton.UpgradeAmountText.text = $"LEVEL: {PersistentUpgradeCounts[upgrade.Title].ToString()}";
             currentButton.Button.onClick.AddListener(
                 () =>
                 {
-                    RemainingOre -= upgrade.GetCost();
+                    GameManager.Currency.SubtractValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Ore, upgrade.GetCost()));
                     PersistentUpgradeCounts[upgrade.Title]++;
-                    ES3.Save(SaveKeys.Ore, RemainingOre);
+                    ES3.Save(SaveKeys.Ore, GameManager.Currency[CurrencyTypes.Ore]);
                     ES3.Save(SaveKeys.PersistentUpgradeCounts, PersistentUpgradeCounts);
-                    currentButton.CostText.text = $"{upgrade.GetCost():N1}";
+                    currentButton.CostText.text = $"{upgrade.GetCost():N0}";
                     currentButton.UpgradeAmountText.text =
                         $"LEVEL: {PersistentUpgradeCounts[upgrade.Title].ToString()}";
-                    currentButton.UpdateButtonInteractable(upgrade.CanUpgrade());
+                    foreach (var button in _buttons)
+                    {
+                        button.UpdateButtonInteractable(button.TargetUpgrade.CanUpgrade());
+                    }
                 }
             );
             currentButton.UpdateButtonInteractable(upgrade.CanUpgrade());

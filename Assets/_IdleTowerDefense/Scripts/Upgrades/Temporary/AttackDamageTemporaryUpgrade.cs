@@ -25,8 +25,7 @@ public class AttackDamageTemporaryUpgrade : TemporaryUpgradeBase
         foreach (int entity in _weaponFilter)
         {
             ref TowerWeapon towerWeapon = ref weaponPool.Get(entity);
-            towerWeapon.AttackDamageAdditions += 1;
-            value = towerWeapon.RecalculateAttackDamage(TemporaryUpgradeManager.Instance.TemporaryUpgradeCounts[Title]);
+            value = towerWeapon.RecalculateAttackDamage(TemporaryUpgradeManager.Instance.TemporaryUpgradeCounts[Title]+PersistentUpgradeManager.PersistentUpgradeCounts[Title]);
         }
     }
 
@@ -36,7 +35,7 @@ public class AttackDamageTemporaryUpgrade : TemporaryUpgradeBase
         foreach (int entity in _weaponFilter)
         {
             ref TowerWeapon towerWeapon = ref weaponPool.Get(entity);
-            value = towerWeapon.RecalculateAttackDamage(TemporaryUpgradeManager.Instance.TemporaryUpgradeCounts[Title]);
+            value = towerWeapon.RecalculateAttackDamage(TemporaryUpgradeManager.Instance.TemporaryUpgradeCounts[Title]+PersistentUpgradeManager.PersistentUpgradeCounts[Title]);
         }
     }
 }

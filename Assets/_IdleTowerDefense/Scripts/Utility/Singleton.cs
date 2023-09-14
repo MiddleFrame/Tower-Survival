@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 
@@ -5,6 +6,8 @@ using System.Collections;
 public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T _instance = null;
+
+  
 
     /// <summary>
     /// gets the instance of this Singleton

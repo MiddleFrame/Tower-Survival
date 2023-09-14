@@ -26,5 +26,4 @@ public class GameSettings : ScriptableObject
     [Header("Misc"),HideInInspector]
     public float EnemySpawnRadius = 6;
 
-    public float InitialEnemySpawnDelay = 0.5f;
 }

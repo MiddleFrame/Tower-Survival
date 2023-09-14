@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Leopotam.EcsLite;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,7 +17,7 @@ public class GameManager : Singleton<GameManager>
 {
     public EcsWorld World;
     public static Dictionary<CurrencyTypes, int> Currency = new Dictionary<CurrencyTypes, int>();
-    public static Dictionary<CurrencyTypes, Action> currencyActions = new Dictionary<CurrencyTypes, Action>();
+    public static Dictionary<CurrencyTypes, TMP_Text> currencyText = new Dictionary<CurrencyTypes, TMP_Text>();
     public int EnemiesKilled = 0;
     public int EarnedOre = 0;
     public bool Paused = false;
@@ -33,9 +34,8 @@ public class GameManager : Singleton<GameManager>
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 60;
         // Init Currency dictionary
-   
-
-        LoadData();
+        
+        Currency[CurrencyTypes.Exp] = 0;
     }
 
     public void SetGameSpeed(float newSpeed)
@@ -68,6 +68,13 @@ public class GameManager : Singleton<GameManager>
         }
 
         _menu.OpenLoseMenu(isNewHighScore, EnemiesKilled, EarnedOre, 0);
+    }
+
+    public void OnRewardx2()
+    {
+        _menu.OpenLoseMenu(false, EnemiesKilled, EarnedOre*2, 0); 
+        Currency.AddValues(
+            new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Ore, GameManager.Instance.EarnedOre));
     }
 
     public void ReloadGame()
@@ -105,21 +112,21 @@ public class GameManager : Singleton<GameManager>
     public void OpenSetting()
     {
         _setting.SetActive(true);
-        Paused = true;
+        Time.timeScale = 0;
     }
     public void CloseSetting()
     {
         _setting.SetActive(false);
-        Paused = false;
+        Time.timeScale = 1;
     }
     
     public static void LoadData()
     {     
+        if(Currency.Count>0) return;
         List<CurrencyTypes> currencies = ((CurrencyTypes[]) Enum.GetValues(typeof(CurrencyTypes))).ToList();
         foreach (CurrencyTypes currency in currencies)
         {
             Currency.Add(currency, 0);
-            currencyActions.Add(currency, null);
         }
         Currency[CurrencyTypes.Gold] = ES3.Load(SaveKeys.Gold, 0);
         Currency[CurrencyTypes.Ore] = ES3.Load(SaveKeys.Ore, 0);

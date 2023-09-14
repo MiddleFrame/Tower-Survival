@@ -11,6 +11,10 @@ public class LoseMenu : MonoBehaviour
 
     [SerializeField]
     private GameObject _highScore;
+
+    [SerializeField]
+    private GameObject x2Button;
+    
     [SerializeField]
     private TextMeshProUGUI _enemyKilled;
     [SerializeField]
@@ -39,6 +43,14 @@ public class LoseMenu : MonoBehaviour
     {
         _animator.Play($"Close");
     }
+
+    public void Getx2()
+    {
+        AddManager.ShowRewarded(1);
+        x2Button.SetActive(false);
+    }
+
+   
 
     private void EnableHighScore(bool isNewHighScore)
     {

@@ -25,19 +25,19 @@ MonoBehaviour:
   _enemyListChanceStages:
   - enemiesKilledToStartStage: 0
     _enemyChances:
-    - 0.72674423
-    - 0.27325583
+    - 1
+    - 0
     - 0
   _stats:
-  - movementSpeed: 2
-    startingHealth: 100
-    damage: 10
+  - movementSpeed: 5
+    startingHealth: 10
+    damage: 1
     damageCooldown: 1
-  - movementSpeed: 1
-    startingHealth: 1000
-    damage: 5
+  - movementSpeed: 5
+    startingHealth: 10
+    damage: 1
     damageCooldown: 1
-  - movementSpeed: 2
-    startingHealth: 80
-    damage: 20
+  - movementSpeed: 5
+    startingHealth: 10
+    damage: 1
     damageCooldown: 1

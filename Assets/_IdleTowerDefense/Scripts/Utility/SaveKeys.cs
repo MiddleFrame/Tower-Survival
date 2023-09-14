@@ -5,7 +5,8 @@ using UnityEngine;
 public static class SaveKeys
 {
     public const string EnemiesKilled = "EnemiesKilled";
-    public const string Audio = "Audio";
+    public const string Sound = "Sound";
+    public const string Music = "Music";
     public const string Ore = "Ore";
     public const string DamageShow = "DamageShow";
     public const string OreMine = "OreMine";

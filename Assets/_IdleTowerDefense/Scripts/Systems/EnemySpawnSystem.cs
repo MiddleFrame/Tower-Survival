@@ -27,8 +27,8 @@ public class EnemySpawnSystem : IEcsPreInitSystem, IEcsRunSystem, IEcsInitSystem
         _stage = 0;
         _sharedData = systems.GetShared<SharedData>();
         _world = systems.GetWorld();
-        _enemySpawnDelay = _sharedData.Settings.InitialEnemySpawnDelay;
         _spawnSettings = _sharedData.Settings.EnemySpawnSettings[0];
+        _enemySpawnDelay = _spawnSettings.stages[_stage].enemySpawnRate;
     }
 
     public void Init(EcsSystems systems)
@@ -49,23 +49,18 @@ public class EnemySpawnSystem : IEcsPreInitSystem, IEcsRunSystem, IEcsInitSystem
         }
 
         // Reduce delay to increase spawn speed, increase health multiplier
-        _enemySpawnDelay *= _spawnSettings.EnemySpawnDelayMultiplier;
+        _enemySpawnDelay = _spawnSettings.stages[_stage].enemySpawnRate;
         _enemyHealthMultiplier *= _spawnSettings.EnemyHealthMultiplier;
         _enemyDamageMultiplier *= _spawnSettings.EnemyDamageMultiplier;
-        // Spawn multiple enemies if delay gets too low, because floating point errors occur quickly
-        if (_enemySpawnDelay <= _sharedData.Settings.InitialEnemySpawnDelay / 2.0f)
-        {
-            _spawnCount++;
-            _enemySpawnDelay = _sharedData.Settings.InitialEnemySpawnDelay;
-        }
+        _spawnCount = _spawnSettings.stages[_stage].enemySpawnCount;
 
         _spawnTimeRemaining = _enemySpawnDelay;
     }
 
     private void UpdateEnemyChange()
     {
-        if (_stage + 1 >= _spawnSettings._enemyListChanceStages.Length) return;
-        if (_enemySpawned >= _spawnSettings._enemyListChanceStages[_stage + 1].enemiesKilledToStartStage)
+        if (_stage + 1 >= _spawnSettings.stages.Length) return;
+        if (_enemySpawned >= _spawnSettings.stages[_stage + 1].enemiesKilledToStartStage)
             _stage++;
     }
 

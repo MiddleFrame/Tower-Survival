@@ -33,7 +33,7 @@ public class TemporaryUpgradeBase : ScriptableObject
 
     public StatusItem CanUpgrade()
     {
-        return TemporaryUpgradeManager.Instance.TemporaryUpgradeCounts[Title] == maxUpgradeCount? StatusItem.Completed 
+        return (TemporaryUpgradeManager.Instance.TemporaryUpgradeCounts[Title]+PersistentUpgradeManager.PersistentUpgradeCounts[Title]) == maxUpgradeCount? StatusItem.Completed 
             : GameManager.Currency.HasAtLeast(GetCost())?StatusItem.None:StatusItem.Locked;
     }
 

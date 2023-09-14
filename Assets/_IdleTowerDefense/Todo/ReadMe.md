@@ -1,14 +1,11 @@
 ToDo:
 
 MVP:
-Asshole upgrade
-menu ui
-Buy game speed in iap
-rewarded ads
-In app purchase
 Some grades
 Some enemies
-Add tier 2 3 4
+Add tier 1 2 3 4
+lock  Attack Skills
+change game map
 
 Complete:
 Add LAB

@@ -29,7 +29,7 @@ public class AttackSpeedTemporaryUpgrade : TemporaryUpgradeBase
         {
             ref TowerWeapon towerWeapon = ref weaponPool.Get(entity);
             towerWeapon.AttackCooldownMultiplier -= AttackSpeedMultiplier;
-            value = towerWeapon.RecalculateAttackCooldown(TemporaryUpgradeManager.Instance.TemporaryUpgradeCounts[Title]);
+            value = towerWeapon.RecalculateAttackCooldown(TemporaryUpgradeManager.Instance.TemporaryUpgradeCounts[Title]+PersistentUpgradeManager.PersistentUpgradeCounts[Title]);
         }
     }
 
@@ -39,7 +39,7 @@ public class AttackSpeedTemporaryUpgrade : TemporaryUpgradeBase
         foreach (int entity in weaponFilter)
         {
             ref TowerWeapon towerWeapon = ref weaponPool.Get(entity);
-            value = towerWeapon.RecalculateAttackCooldown(TemporaryUpgradeManager.Instance.TemporaryUpgradeCounts[Title]);
+            value = towerWeapon.RecalculateAttackCooldown(TemporaryUpgradeManager.Instance.TemporaryUpgradeCounts[Title]+PersistentUpgradeManager.PersistentUpgradeCounts[Title]);
         }
     }
     

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Regeneration
   m_EditorClassIdentifier: 
   Title: Regeneration
-  baseCost: 1
+  baseCost: 10
   upgradeCostExponent: 1.2
+  upgradeCostAdditional: 2
   maxUpgradeCount: 1000

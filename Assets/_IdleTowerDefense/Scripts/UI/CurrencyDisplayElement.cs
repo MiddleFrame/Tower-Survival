@@ -1,11 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CurrencyDisplayElement : MonoBehaviour
 {
-    public Image Icon;
     public TextMeshProUGUI TextObject;
+    public CurrencyTypes currencyType;
+
+    private void Start()
+    {
+        TextObject.text = GameManager.Currency[currencyType].ToString("N0");
+        GameManager.currencyText[currencyType] = TextObject;
+    }
 }

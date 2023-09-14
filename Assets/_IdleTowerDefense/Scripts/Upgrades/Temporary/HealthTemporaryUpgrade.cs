@@ -40,6 +40,7 @@ public class HealthTemporaryUpgrade : TemporaryUpgradeBase
         foreach (int entity in healthFilter)
         {
             ref Health towerHealth = ref healthPool.Get(entity);
+            towerHealth.MaxHealthAdditions += HealthPerUpgrade*PersistentUpgradeManager.PersistentUpgradeCounts[Title];
             value =towerHealth.RecalculateMaxHealth();
         }
     }

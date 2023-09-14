@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Attack Speed
   m_EditorClassIdentifier: 
   Title: Attack Speed
-  baseCost: 1
+  baseCost: 10
   upgradeCostExponent: 1.5
+  upgradeCostAdditional: 2
   maxUpgradeCount: 25

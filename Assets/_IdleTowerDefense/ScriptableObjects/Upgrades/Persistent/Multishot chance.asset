@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Multishot chance
   m_EditorClassIdentifier: 
   Title: Multishot chance
-  baseCost: 1
+  baseCost: 20
   upgradeCostExponent: 1.4
+  upgradeCostAdditional: 2
   maxUpgradeCount: 50

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Max target
   m_EditorClassIdentifier: 
   Title: Max target
-  baseCost: 1
+  baseCost: 100
   upgradeCostExponent: 2
+  upgradeCostAdditional: 2
   maxUpgradeCount: 7
