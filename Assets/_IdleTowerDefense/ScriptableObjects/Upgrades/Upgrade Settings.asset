@@ -28,3 +28,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3d32318f75e50a343877c01d406cfd0e, type: 2}
   - {fileID: 11400000, guid: bec36eb76eff958419c7ed46a018b345, type: 2}
   - {fileID: 11400000, guid: 2a76c50f5356911419037e75508ca7fa, type: 2}
+  NextGrades:
+  - cost: 1400000096000000a0860100
+  - cost: 32000000a0860100
+  - cost: 64000000a0860100

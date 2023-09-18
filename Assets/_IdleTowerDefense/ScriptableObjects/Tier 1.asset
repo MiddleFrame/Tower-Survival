@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468c369c98607094cbdcf1daebcd90af, type: 3}
   m_Name: Tier 1
   m_EditorClassIdentifier: 
-  EnemyHealthMultiplier: 1.01
-  EnemyDamageMultiplier: 1.01
-  OreMultiplier: 1
+  EnemyHealthMultiplier: 1.02
+  EnemyDamageMultiplier: 1.05
+  OreMultiplier: 6
   RecordToOpen: 0
   _enemyList:
     EnemySpawns:
@@ -23,27 +23,57 @@ MonoBehaviour:
     - {fileID: 2420183176402899973, guid: e1f836796fa256446a37bfa72efd25f1, type: 3}
   stages:
   - enemiesKilledToStartStage: 0
-    enemySpawnRate: 1
+    enemySpawnRate: 2
+    enemySpawnCount: 1
     _enemyChances:
     - 1
     - 0
     - 0
-  - enemiesKilledToStartStage: 0
-    enemySpawnRate: 1
+  - enemiesKilledToStartStage: 20
+    enemySpawnRate: 1.5
+    enemySpawnCount: 1
     _enemyChances:
     - 1
     - 0
     - 0
+  - enemiesKilledToStartStage: 50
+    enemySpawnRate: 1
+    enemySpawnCount: 1
+    _enemyChances:
+    - 0.8865248
+    - 0.11347518
+    - 0
+  - enemiesKilledToStartStage: 100
+    enemySpawnRate: 1
+    enemySpawnCount: 2
+    _enemyChances:
+    - 0.6574622
+    - 0.34253782
+    - 0
+  - enemiesKilledToStartStage: 300
+    enemySpawnRate: 0.75
+    enemySpawnCount: 2
+    _enemyChances:
+    - 0.46008548
+    - 0.23970456
+    - 0.30020994
+  - enemiesKilledToStartStage: 1000
+    enemySpawnRate: 0.5
+    enemySpawnCount: 2
+    _enemyChances:
+    - 0.28682107
+    - 0.3640704
+    - 0.34910858
   _stats:
-  - movementSpeed: 2
+  - movementSpeed: 0.5
     startingHealth: 1
     damage: 1
     damageCooldown: 1
-  - movementSpeed: 4
-    startingHealth: 3
+  - movementSpeed: 0.25
+    startingHealth: 5
     damage: 2
     damageCooldown: 1
-  - movementSpeed: 2
+  - movementSpeed: 0.5
     startingHealth: 1
     damage: 1
     damageCooldown: 1

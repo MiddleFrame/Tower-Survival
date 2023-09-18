@@ -17,6 +17,9 @@ public class EnemySpawnSystem : IEcsPreInitSystem, IEcsRunSystem, IEcsInitSystem
     private int _enemySpawned ;
     private int _stage;
 
+    public static float expMultiplier=1;
+    private static float expPerKillMultiply=1;
+    
     private EnemySpawnSettings _spawnSettings;
     private EcsFilter _towerTargetSelectorFilter;
 
@@ -27,13 +30,15 @@ public class EnemySpawnSystem : IEcsPreInitSystem, IEcsRunSystem, IEcsInitSystem
         _stage = 0;
         _sharedData = systems.GetShared<SharedData>();
         _world = systems.GetWorld();
-        _spawnSettings = _sharedData.Settings.EnemySpawnSettings[0];
+        _spawnSettings = _sharedData.Settings.EnemySpawnSettings[GameManager.tier];
         _enemySpawnDelay = _spawnSettings.stages[_stage].enemySpawnRate;
     }
 
     public void Init(EcsSystems systems)
     {
         _towerTargetSelectorFilter = GameManager.Instance.World.Filter<Tower>().Inc<TowerTargetSelector>().End();
+        expMultiplier = 1;
+        expPerKillMultiply = 1;
     }
 
     public void Run(EcsSystems systems)
@@ -98,13 +103,13 @@ public class EnemySpawnSystem : IEcsPreInitSystem, IEcsRunSystem, IEcsInitSystem
         // Setup View
 
 
-        var enemyBaseStats = _sharedData.Settings.EnemySpawnSettings[0]._stats[(int) enemyView.enemyNumber];
+        var enemyBaseStats = _sharedData.Settings.EnemySpawnSettings[GameManager.tier]._stats[(int) enemyView.enemyNumber];
 
         // Init Components
         position = randomPosition;
         movement.Velocity = -randomPosition.normalized * enemyBaseStats.movementSpeed;
-
-        int orePrice = isOreEnemy ? 1 : 0; 
+        expPerKillMultiply *= 1.01f;
+        int orePrice = isOreEnemy ? (int)_sharedData.Settings.EnemySpawnSettings[GameManager.tier].OreMultiplier : 0; 
         
         health.InitStartValues(
             enemyBaseStats.startingHealth, 
@@ -126,14 +131,14 @@ public class EnemySpawnSystem : IEcsPreInitSystem, IEcsRunSystem, IEcsInitSystem
             enemyBaseStats.damageCooldown,
             enemyView.Hit,
             (damage, enemyTransform) =>
-                UltimateTextDamageManager.Instance.Add(damage.ToString(), enemyTransform, "tower"));
+                UltimateTextDamageManager.Instance.Add(damage.ToString("N0"), enemyTransform, "tower"));
 
         movement.StopRadius = enemyDamage.isRangeDamage ? targetSelector.TargetingRange : MELEE_DEFAULT_RANGE;
 
         currencyDrop.Drops = new Dictionary<CurrencyTypes, int>
         {
             {
-                CurrencyTypes.Exp, 1
+                CurrencyTypes.Exp, (int)(expMultiplier*expPerKillMultiply)
             },
             {
                 CurrencyTypes.Ore, orePrice

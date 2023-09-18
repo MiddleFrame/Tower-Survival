@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Guirao.UltimateTextDamage
@@ -16,6 +15,8 @@ namespace Guirao.UltimateTextDamage
     {
         public Canvas canvas;
 
+        public GameObject dropPrefab;
+        public Transform _uI;
         public bool convertToCamera = true;
         public Camera theCamera;
         public static UltimateTextDamageManager Instance;

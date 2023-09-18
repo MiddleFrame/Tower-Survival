@@ -6,7 +6,7 @@ public class InitData : MonoBehaviour
     public static SharedData sharedData;
     void Awake()
     {
-        GameManager.LoadData();
+        GameManager.LoadData(gameSettings.currencies);
          sharedData = new SharedData();
         sharedData.InitDefaultValues(gameSettings);
     }

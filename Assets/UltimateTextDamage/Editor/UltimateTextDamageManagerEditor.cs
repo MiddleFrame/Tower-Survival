@@ -10,6 +10,8 @@ namespace Guirao.UltimateTextDamage
         private ReorderableList list;
 
         private SerializedProperty pCam;
+        private SerializedProperty prefab;
+        private SerializedProperty UI;
         private SerializedProperty pConvertToCamera;
         private SerializedProperty pAutoFaceCameraWorldSpace;
         private SerializedProperty pCanvas;
@@ -25,6 +27,8 @@ namespace Guirao.UltimateTextDamage
         {
             list = new ReorderableList( serializedObject , serializedObject.FindProperty( "textTypes" ) , true , true , true , true );
             pCam = serializedObject.FindProperty( "theCamera" );
+            prefab = serializedObject.FindProperty( "dropPrefab" );
+            UI = serializedObject.FindProperty( "_uI" );
             pCanvas = serializedObject.FindProperty( "canvas" );
             pConvertToCamera = serializedObject.FindProperty( "convertToCamera" );
             pOverlap = serializedObject.FindProperty( "overlaping" );
@@ -110,6 +114,8 @@ namespace Guirao.UltimateTextDamage
 
             GUI.color = Color.white;
             EditorGUILayout.Space( );
+            EditorGUILayout.PropertyField( prefab );
+            EditorGUILayout.PropertyField( UI );
             EditorGUILayout.Space( );
             EditorGUILayout.LabelField( new GUIContent( "Parameters" ) , EditorStyles.boldLabel );
             EditorGUILayout.HelpBox( "Activate follow for the text damage to always follow their target.\n(NOTE: Needs restart if parameter changed at runtime )" , MessageType.None );

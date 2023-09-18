@@ -8,7 +8,7 @@ public class EnemySpawnSettings : ScriptableObject
     public float EnemyHealthMultiplier = 1.01f;
     public float EnemyDamageMultiplier = 1.01f;
 
-    public float OreMultiplier;
+    public float OreMultiplier=6;
     public int RecordToOpen;
     public EnemyList _enemyList;
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
 {
@@ -12,30 +13,34 @@ public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
     private TemporaryUpgradeButton temporaryUpgradeButtonPrefab;
 
     [SerializeField]
-    private Transform attackContainer;
+    private RectTransform attackContainer;
     [SerializeField]
-    private Transform defenceContainer;
+    private RectTransform defenceContainer;
     [SerializeField]
-    private Transform utilityContainer;
+    private RectTransform utilityContainer;
 
+    [SerializeField]
+    private UnityEngine.UI.ScrollRect _scrollView;
 
     [SerializeField]
     private float autoUpgradeInterval = 0.5f;
 
     // String = Upgrade.Title, int = upgrade level
-    public Dictionary<string, int> TemporaryUpgradeCounts = new Dictionary<string, int>();
-    public bool MenuOpen => menuOpen;
-    private bool menuOpen = false;
-    private bool autoUpgrading = false;
-    private float autoUpgradeTimeRemaining = 0;
+    public Dictionary<string, int> TemporaryUpgradeCounts = new();
+    public bool MenuOpen { get; private set; }
+
+    private bool _autoUpgrading;
+    private float _autoUpgradeTimeRemaining;
     private Camera _camera;
 
     private void Awake()
     {
         _camera = Camera.main;
         gameSettings.UpgradeSettings.InitTemporaryUpgrades();
-        for (int i = 0; i < gameSettings.UpgradeSettings.TemporaryUpgrades.Count; i++)
+        int[] stages =  ES3.Load(SaveKeys.Stage, new int[3]);
+        /*for (int i = 0; i < gameSettings.UpgradeSettings.TemporaryUpgrades.Count; i++)
         {
+            if (gameSettings.UpgradeSettings.TemporaryUpgrades[i].openingStage > stages[gameSettings.UpgradeSettings.TemporaryUpgrades[i].window ]) continue;
             // Capture i to avoid closure issues
             int index = i;
 
@@ -72,17 +77,57 @@ public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
                     }
                 }
             );
+        }*/
+        foreach (var upgrade in gameSettings.UpgradeSettings.TemporaryUpgrades.Where(upgrade => upgrade.openingStage <= stages[upgrade.window ]))
+        {
+
+            TemporaryUpgradeCounts.Add(upgrade.Title, 0);
+
+            Transform buttonContainer = upgrade.window switch
+            {
+                0 => attackContainer,
+                1 => defenceContainer,
+                2 => utilityContainer,
+                _ => attackContainer
+            };
+            // Setup UpgradeButton values
+            TemporaryUpgradeButton temporaryUpgradeButton = Instantiate(temporaryUpgradeButtonPrefab, buttonContainer);
+            temporaryUpgradeButton.targetTemporaryUpgrade = upgrade;
+
+            temporaryUpgradeButton.titleObj.text = upgrade.Title.ToUpper();
+            temporaryUpgradeButton.targetTemporaryUpgrade.onUpgrade +=
+                x => temporaryUpgradeButton.currentValue.text = "Value: "+x.ToString("N1");
+            temporaryUpgradeButton.targetTemporaryUpgrade.onUpgrade += _ =>
+                temporaryUpgradeButton.cost.text =
+                    temporaryUpgradeButton.targetTemporaryUpgrade.GetCost().Value +" exp";
+            
+            temporaryUpgradeButton.targetTemporaryUpgrade.UpdateStartValue();
+
+            temporaryUpgradeButton.Button.onClick.AddListener(
+                () =>
+                {
+                    if (upgrade.CanUpgrade() ==
+                        StatusItem.None)
+                    {
+                        upgrade.Upgrade();
+                    }
+                }
+            );
         }
+
+       
+           
+        
     }
 
  
 
     private void Update()
     {
-        autoUpgradeTimeRemaining -= Time.deltaTime;
-        if (autoUpgrading && autoUpgradeTimeRemaining <= 0)
+        _autoUpgradeTimeRemaining -= Time.deltaTime;
+        if (_autoUpgrading && _autoUpgradeTimeRemaining <= 0)
         {
-            autoUpgradeTimeRemaining = autoUpgradeInterval;
+            _autoUpgradeTimeRemaining = autoUpgradeInterval;
             foreach (TemporaryUpgradeBase upgrade in gameSettings.UpgradeSettings.TemporaryUpgrades.Where(upgrade =>
                          upgrade.CanUpgrade() == StatusItem.None))
             {
@@ -94,18 +139,21 @@ public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
 
     public void OpenAttackMenu()
     {
+        _scrollView.content = attackContainer;
         attackContainer.gameObject.SetActive(true);
         defenceContainer.gameObject.SetActive(false);
         utilityContainer.gameObject.SetActive(false);
     }
     public void OpenDefenceMenu()
     {
+        _scrollView.content = defenceContainer;
         attackContainer.gameObject.SetActive(false);
         defenceContainer.gameObject.SetActive(true);
         utilityContainer.gameObject.SetActive(false);
     }
     public void OpenUtilityMenu()
     {
+        _scrollView.content = utilityContainer;
         attackContainer.gameObject.SetActive(false);
         defenceContainer.gameObject.SetActive(false);
         utilityContainer.gameObject.SetActive(true);
@@ -120,7 +168,7 @@ public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
     {
         StartCoroutine(value ? nameof(ApproachCamera) : nameof(PullBackCamera));
 
-        menuOpen = value;
+        MenuOpen = value;
     }
 
     private IEnumerator PullBackCamera()
@@ -160,7 +208,7 @@ public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
 
     public void ToggleAutoUpgrade(bool inputValue)
     {
-        autoUpgrading = inputValue;
-        Debug.Log($"{nameof(TemporaryUpgradeManager)}.{nameof(ToggleAutoUpgrade)}() - AutoUpgrading: {autoUpgrading}");
+        _autoUpgrading = inputValue;
+        Debug.Log($"{nameof(TemporaryUpgradeManager)}.{nameof(ToggleAutoUpgrade)}() - AutoUpgrading: {_autoUpgrading}");
     }
 }

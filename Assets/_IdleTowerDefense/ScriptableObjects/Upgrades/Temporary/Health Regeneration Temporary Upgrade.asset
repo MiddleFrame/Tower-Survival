@@ -16,4 +16,5 @@ MonoBehaviour:
   maxUpgradeCount: 1000
   costUpgradeMultiplier: 6
   window: 1
+  openingStage: 1
   HealthRegenerationPerUpgrade: 0.5

@@ -12,6 +12,7 @@ public class TemporaryUpgradeBase : ScriptableObject
     public float costUpgradeMultiplier;
 
     public int window;
+    public int openingStage;
     protected float value
     {
         set => onUpgrade?.Invoke(value);

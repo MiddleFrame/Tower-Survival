@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using UnityEngine;
 using Yodo1.MAS;
 
@@ -26,7 +27,6 @@ public class AddManager : MonoBehaviour
         Yodo1U3dMas.SetCCPA(true);
         Yodo1U3dMas.SetGDPR(true);
         Yodo1U3dMas.SetCOPPA(false);
-        Yodo1U3dMas.InitializeMasSdk();
         Yodo1U3dMasCallback.OnSdkInitializedEvent += (success, error) =>
         {
             Debug.Log("[Yodo1 Mas] OnSdkInitializedEvent, success:" + success + ", error: " + error.ToString());
@@ -41,28 +41,31 @@ public class AddManager : MonoBehaviour
                 Debug.Log("[Yodo1 Mas] The initialization has failed");
             }
         };
+        Yodo1U3dMas.InitializeMasSdk();
     }
 
     private static int rewardId;
 
-    public static void ShowRewarded(int rewardId)
+    public static void ShowRewarded(int rewardID)
     {
+        if (InAppInitializer.isRemoveAds) OnRewardAdEarnedEvent(rewardID);
         bool isLoaded = Yodo1U3dRewardAd.GetInstance().IsLoaded();
-        AddManager.rewardId = rewardId;
+        rewardId = rewardID;
         if (isLoaded) Yodo1U3dRewardAd.GetInstance().ShowAd();
         else
         {
-            instance.StartCoroutine(TryShowReward());
+            instance.StartCoroutine(TryShowReward(rewardID));
         }
     }
 
-    private static IEnumerator TryShowReward()
+    private static IEnumerator TryShowReward(int rewardID)
     {
+        Debug.Log("Try to load add");
         for (int i = 0; i < 3; i++)
         {
             Yodo1U3dRewardAd.GetInstance().LoadAd();
-            yield return new WaitForSeconds(1f);
-            ShowRewarded(rewardId);
+            yield return new WaitForSeconds(1f); rewardId = rewardID;
+            if (Yodo1U3dRewardAd.GetInstance().IsLoaded()) Yodo1U3dRewardAd.GetInstance().ShowAd();
         }
     }
 
@@ -101,8 +104,26 @@ public class AddManager : MonoBehaviour
     private void OnRewardAdEarnedEvent(Yodo1U3dRewardAd ad)
     {
         Debug.Log("[Yodo1 Mas] OnRewardAdEarnedEvent event received");
+        Debug.Log("Reward id "+rewardId);
         // Add your reward code here
         switch (rewardId)
+        {
+            case 0:
+                HorizontalSelector.rewardedSpeed = true;
+                PlayMenu.Play();
+                break;
+            case 1:
+                GameManager.Instance.OnRewardx2();
+                break;
+        }
+    }
+    
+    private static void OnRewardAdEarnedEvent(int ad)
+    {
+        Debug.Log("[Yodo1 Mas] OnRewardAdEarnedEvent event received");
+        Debug.Log("Reward id "+rewardId);
+        // Add your reward code here
+        switch (ad)
         {
             case 0:
                 HorizontalSelector.rewardedSpeed = true;

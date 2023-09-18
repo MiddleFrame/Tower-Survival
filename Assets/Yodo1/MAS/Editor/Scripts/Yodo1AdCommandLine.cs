@@ -31,7 +31,6 @@ namespace Yodo1.MAS
     /// <summary>
     /// A helper class to run command line tools.
     ///
-    /// TODO: Currently only supports shell (Linux). Add support for Windows machines.
     /// </summary>
     public class Yodo1AdCommandLine
     {

@@ -6,6 +6,10 @@ public class PersistentUpgradeBase : ScriptableObject
     [Header("Base Values")]
     public string Title = "Default Title";
 
+    public int openingStage;
+
+    public int window;
+    
     [Header("Upgrade Specific Values")]
     [SerializeField] private float baseCost = 1;
     [SerializeField] private float upgradeCostExponent = 1.1f;
@@ -24,7 +28,7 @@ public class PersistentUpgradeBase : ScriptableObject
     public StatusItem CanUpgrade()
     {
         return PersistentUpgradeManager.PersistentUpgradeCounts[Title] == maxUpgradeCount? StatusItem.Completed :
-            GameManager.Currency[CurrencyTypes.Ore] >= GetCost()?StatusItem.None:StatusItem.Locked;
+            GameManager.Currency[CurrencyTypes.Ore].value >= GetCost()?StatusItem.None:StatusItem.Locked;
     }
 
 }

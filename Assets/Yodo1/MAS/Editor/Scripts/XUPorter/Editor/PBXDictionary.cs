@@ -48,7 +48,6 @@ namespace UnityEditor.XCodeEditor
 		/// I find this handy. return our fields as comma-separated values
 		/// </summary>
 		public string ToCSV() {
-		// TODO use a char sep argument to allow specifying separator
 			string ret = string.Empty;
 			foreach (KeyValuePair<string, object> item in this) {
 				ret += "<";

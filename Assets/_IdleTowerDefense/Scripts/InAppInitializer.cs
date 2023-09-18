@@ -120,6 +120,7 @@ namespace Managers
         public void BuyStartedPack()
         {
             GameManager.Currency.AddValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, 1000));
+            AddSpeed();
         }
 
         public void BuyBigGold()

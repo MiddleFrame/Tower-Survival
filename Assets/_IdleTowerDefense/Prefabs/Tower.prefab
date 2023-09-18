@@ -47,12 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5fec0e497a31f41a7a01c2929e7ae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseMaxHealth: 50
-  BaseHealthRegeneration: 0
-  BaseAttackDamage: 10
-  BaseAttackCooldown: 1
-  BaseMaxTargets: 1
-  BaseTargetingRange: 2
   RadiusRenderer: {fileID: 8403903296476473551}
   shootingSound: {fileID: 8300000, guid: 28657b9a57ac57347804d4d07e8f4b12, type: 3}
 --- !u!58 &3587481748366666788
@@ -143,7 +137,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Positions:
   - {x: 5, y: 0, z: 0}
   - {x: 4.9845867, y: 0.39229548, z: 0}

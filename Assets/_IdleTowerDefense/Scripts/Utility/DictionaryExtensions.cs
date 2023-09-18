@@ -6,7 +6,7 @@ using UnityEngine;
 
 public static class DictionaryExtensions
 {
-    public static bool HasAtLeast(this Dictionary<CurrencyTypes, int> lhs, KeyValuePair<CurrencyTypes, int> rhs)
+    public static bool HasAtLeast(this Dictionary<CurrencyTypes, Currency> lhs, KeyValuePair<CurrencyTypes, int> rhs)
     {
         if (!lhs.ContainsKey(rhs.Key))
         {
@@ -14,7 +14,7 @@ public static class DictionaryExtensions
         }
 
 
-        if (lhs[rhs.Key] < rhs.Value)
+        if (lhs[rhs.Key].value < rhs.Value)
         {
             return false;
         }
@@ -23,16 +23,16 @@ public static class DictionaryExtensions
         return true;
     }
 
-    public static void SubtractValues(this Dictionary<CurrencyTypes, int> lhs, KeyValuePair<CurrencyTypes, int> rhs)
+    public static void SubtractValues(this Dictionary<CurrencyTypes, Currency> lhs, KeyValuePair<CurrencyTypes, int> rhs)
     {
-        GameManager.currencyText[rhs.Key].StartCoroutine(SmoothNumber( lhs[rhs.Key], lhs[rhs.Key] - rhs.Value, 0.2f, GameManager.currencyText[rhs.Key]));
-        lhs[rhs.Key] -= rhs.Value;
+        GameManager.currencyText[rhs.Key].StartCoroutine(SmoothNumber( lhs[rhs.Key].value, lhs[rhs.Key].value - rhs.Value, 0.2f, GameManager.currencyText[rhs.Key]));
+        lhs[rhs.Key].value -= rhs.Value;
     }
 
-    public static void AddValues(this Dictionary<CurrencyTypes, int> lhs, KeyValuePair<CurrencyTypes, int> rhs)
+    public static void AddValues(this Dictionary<CurrencyTypes, Currency> lhs, KeyValuePair<CurrencyTypes, int> rhs)
     {
-        GameManager.currencyText[rhs.Key].StartCoroutine(SmoothNumber( lhs[rhs.Key], lhs[rhs.Key] + rhs.Value, 0.2f, GameManager.currencyText[rhs.Key]));
-        lhs[rhs.Key] += rhs.Value;
+        GameManager.currencyText[rhs.Key].StartCoroutine(SmoothNumber( lhs[rhs.Key].value, lhs[rhs.Key].value + rhs.Value, 0.2f, GameManager.currencyText[rhs.Key]));
+        lhs[rhs.Key].value += rhs.Value;
     }
 
 

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   androidSettings:
     AppKey: JPGC95wV5m
-    AdmobAppID: ca-app-pub-5580537606944457~3838391472
+    AdmobAppID: ca-app-pub-5580537606944457~4465578836
     BundleID: 
     GooglePlayStore: 1
     ChineseAndroidStores: 0

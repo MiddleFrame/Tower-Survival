@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Atack Damage
   m_EditorClassIdentifier: 
   Title: Attack Damage
-  baseCost: 4
+  baseCost: 24
   upgradeCostExponent: 1.2
-  upgradeCostAdditional: 2
+  upgradeCostAdditional: 15
   maxUpgradeCount: 1000

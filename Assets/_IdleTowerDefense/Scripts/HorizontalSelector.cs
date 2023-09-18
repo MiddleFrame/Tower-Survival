@@ -7,17 +7,13 @@ using TMPro;
 public class HorizontalSelector : MonoBehaviour
 {
     [Header("Settings")]
-    public int defaultIndex;
+    private const int DEFAULT_INDEX = 1;
 
-    public bool invokeAtStart;
     public bool invertAnimation;
     public bool loopSelection;
 
     [HideInInspector]
     public int index;
-
-    [Header("Saving")]
-    public bool saveValue;
 
     public string selectorTag = "Default";
 
@@ -51,7 +47,7 @@ public class HorizontalSelector : MonoBehaviour
             maxSpeed += 1;
         if (InAppInitializer.isBuyGameSpeed)
             maxSpeed += 1;
-        for (float speed = 0; speed < maxSpeed; speed+=0.5f)
+        for (float speed = 1; speed <= maxSpeed; speed+=0.5f)
         {
             var speed1 = speed;
             CreateNewItem($"{speed:N1}x",new [] {(UnityAction) (()=>GameManager.Instance.SetGameSpeed(speed1))});
@@ -60,21 +56,16 @@ public class HorizontalSelector : MonoBehaviour
         _selectorAnimator = gameObject.GetComponent<Animator>();
         _label = transform.Find("Text").GetComponent<TextMeshProUGUI>();
 
-        if (saveValue)
-        {
-            defaultIndex = PlayerPrefs.GetInt(selectorTag + "HSelectorValue", defaultIndex);
-        }
-        _label.text = itemList[defaultIndex].itemTitle;
-        index = defaultIndex;
+      
+        _label.text = itemList[DEFAULT_INDEX].itemTitle;
+        index = DEFAULT_INDEX;
 
         if (enableIndicators)
             UpdateUI();
         else
             Destroy(indicatorParent);
 
-
-        if (invokeAtStart)
-            itemList[index].onValueChanged.Invoke();
+        itemList[index].onValueChanged.Invoke();
     }
 
     public void PreviousClick()
@@ -140,11 +131,8 @@ public class HorizontalSelector : MonoBehaviour
         if (isNext)
             _selectorAnimator.Play(invertAnimation ? "Previous" : "Forward");
         else
-
             _selectorAnimator.Play(invertAnimation ? "Forward" : "Previous");
 
-        if (saveValue)
-            PlayerPrefs.SetInt(selectorTag + "HSelectorValue", index);
 
 
         if (enableIndicators)

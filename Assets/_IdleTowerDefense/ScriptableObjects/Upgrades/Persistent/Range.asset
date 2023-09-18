@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Range
   m_EditorClassIdentifier: 
   Title: Range
-  baseCost: 30
+  openingStage: 1
+  window: 0
+  baseCost: 180
   upgradeCostExponent: 1.3
-  upgradeCostAdditional: 2
+  upgradeCostAdditional: 20
   maxUpgradeCount: 80

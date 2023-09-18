@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Regeneration
   m_EditorClassIdentifier: 
   Title: Regeneration
-  baseCost: 10
+  openingStage: 1
+  window: 1
+  baseCost: 50
   upgradeCostExponent: 1.2
-  upgradeCostAdditional: 2
+  upgradeCostAdditional: 20
   maxUpgradeCount: 1000

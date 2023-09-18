@@ -9,6 +9,7 @@ public class UpgradeSettings : ScriptableObject
 {
     public List<TemporaryUpgradeBase> TemporaryUpgrades = new List<TemporaryUpgradeBase>();
     public List<PersistentUpgradeBase> PersistentUpgrades = new List<PersistentUpgradeBase>();
+    public List<NextGrade> NextGrades = new List<NextGrade>();
 
     public void InitTemporaryUpgrades()
     {

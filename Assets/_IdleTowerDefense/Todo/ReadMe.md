@@ -1,11 +1,8 @@
 ToDo:
 
 MVP:
-Some grades
 Some enemies
-Add tier 1 2 3 4
-lock  Attack Skills
-change game map
+Check Reward on not main scenes
 
 Complete:
 Add LAB

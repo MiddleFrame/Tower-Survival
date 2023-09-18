@@ -2,10 +2,10 @@ using Leopotam.EcsLite;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Tower Range Upgrade", menuName = "Idle Tower Defense/Temporary Upgrades/Tower Range")]
-public class TowerRangeTemporaryUpgrade : TemporaryUpgradeBase
+public class ExpPerKill : TemporaryUpgradeBase
 {
     [Header("Upgrade Specific Values")]
-    public float RangePerUpgrade;
+    public float rangePerGrade;
 
 
     private EcsFilter _towerTargetSelectorFilter;
@@ -29,7 +29,7 @@ public class TowerRangeTemporaryUpgrade : TemporaryUpgradeBase
         foreach (int entity in _towerTargetSelectorFilter)
         {
             ref TowerTargetSelector towerWeapon = ref targetSelectorPool.Get(entity);
-            towerWeapon.TargetingRange += RangePerUpgrade;
+            towerWeapon.TargetingRange += rangePerGrade;
             value = towerWeapon.TargetingRange;
             TemporaryUpgradeManager.Instance.UpdateEnemySpawnRange(towerWeapon.TargetingRange);
         }
@@ -42,7 +42,7 @@ public class TowerRangeTemporaryUpgrade : TemporaryUpgradeBase
         foreach (int entity in _towerTargetSelectorFilter)
         {
             ref TowerTargetSelector towerWeapon = ref targetSelectorPool.Get(entity);
-            towerWeapon.TargetingRange += PersistentUpgradeManager.PersistentUpgradeCounts[Title] * RangePerUpgrade;
+            towerWeapon.TargetingRange += PersistentUpgradeManager.PersistentUpgradeCounts[Title] * rangePerGrade;
             TemporaryUpgradeManager.Instance.UpdateEnemySpawnRange(towerWeapon.TargetingRange);
             value = towerWeapon.TargetingRange;
         }

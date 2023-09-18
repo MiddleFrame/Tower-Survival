@@ -16,4 +16,5 @@ MonoBehaviour:
   maxUpgradeCount: 50
   costUpgradeMultiplier: 200
   window: 0
+  openingStage: 2
   percentPerUpgrade: 0.005

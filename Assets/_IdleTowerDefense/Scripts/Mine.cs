@@ -131,8 +131,8 @@ public class Mine : MonoBehaviour
         _ore = 0;
         _gold = 0;
         _earned.text = $"Now available <color=yellow>{_gold} gold</color> and <color=#727272>{_ore} ore</color>";
-        ES3.Save(SaveKeys.Ore, GameManager.Currency[CurrencyTypes.Ore]);
-        ES3.Save(SaveKeys.Gold, GameManager.Currency[CurrencyTypes.Gold]);
+        ES3.Save(SaveKeys.Ore, GameManager.Currency[CurrencyTypes.Ore].value);
+        ES3.Save(SaveKeys.Gold, GameManager.Currency[CurrencyTypes.Gold].value);
     }
 
 

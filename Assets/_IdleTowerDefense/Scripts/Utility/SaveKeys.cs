@@ -8,6 +8,7 @@ public static class SaveKeys
     public const string Sound = "Sound";
     public const string Music = "Music";
     public const string Ore = "Ore";
+    public const string Stage = "Stages";
     public const string DamageShow = "DamageShow";
     public const string OreMine = "OreMine";
     public const string Mine = "Mine";
