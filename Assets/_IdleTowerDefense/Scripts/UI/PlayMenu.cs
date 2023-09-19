@@ -26,6 +26,8 @@ public class PlayMenu : MonoBehaviour
    
    [SerializeField]
    private InitData _data;
+   [SerializeField]
+   private GameObject _loadingAnim;
 
    private int[] _records;
 
@@ -38,6 +40,8 @@ public class PlayMenu : MonoBehaviour
       {
          _records[i] = ES3.Load(SaveKeys.EnemiesKilled + "_" + i,0);
       }
+      if (Yodo1.MAS.Yodo1U3dRewardAd.GetInstance().IsLoaded()) _loadingAnim.SetActive(false);
+         
    }
 
    void OnEnable()

@@ -9,6 +9,9 @@ public class AddManager : MonoBehaviour
 {
     private static AddManager instance;
 
+    [SerializeField]
+    private GameObject _loadingAnim;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -64,7 +67,8 @@ public class AddManager : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             Yodo1U3dRewardAd.GetInstance().LoadAd();
-            yield return new WaitForSeconds(1f); rewardId = rewardID;
+            yield return new WaitForSeconds(1f);
+            rewardId = rewardID;
             if (Yodo1U3dRewardAd.GetInstance().IsLoaded()) Yodo1U3dRewardAd.GetInstance().ShowAd();
         }
     }
@@ -83,6 +87,8 @@ public class AddManager : MonoBehaviour
 
     private void OnRewardAdLoadedEvent(Yodo1U3dRewardAd ad)
     {
+        if (_loadingAnim != null)
+            _loadingAnim.SetActive(false);
         Debug.Log("[Yodo1 Mas] OnRewardAdLoadedEvent event received");
     }
 
@@ -104,7 +110,7 @@ public class AddManager : MonoBehaviour
     private void OnRewardAdEarnedEvent(Yodo1U3dRewardAd ad)
     {
         Debug.Log("[Yodo1 Mas] OnRewardAdEarnedEvent event received");
-        Debug.Log("Reward id "+rewardId);
+        Debug.Log("Reward id " + rewardId);
         // Add your reward code here
         switch (rewardId)
         {
@@ -117,11 +123,11 @@ public class AddManager : MonoBehaviour
                 break;
         }
     }
-    
+
     private static void OnRewardAdEarnedEvent(int ad)
     {
         Debug.Log("[Yodo1 Mas] OnRewardAdEarnedEvent event received");
-        Debug.Log("Reward id "+rewardId);
+        Debug.Log("Reward id " + rewardId);
         // Add your reward code here
         switch (ad)
         {
