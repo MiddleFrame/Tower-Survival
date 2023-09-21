@@ -9,7 +9,8 @@ public class EnemyView : MonoBehaviour
     {
         Basic=0,
         Tank=1,
-        Dynamite=2
+        Dynamite=2,
+        Barrel=3
     }
 
     [SerializeField]

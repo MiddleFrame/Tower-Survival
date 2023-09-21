@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2128048090a23524880cf1131d9ceb39, type: 3}
+  m_Name: OrePerKill
+  m_EditorClassIdentifier: 
+  Title: OrePerKill
+  openingStage: 1
+  window: 2
+  baseCost: 50
+  upgradeCostExponent: 1.2
+  upgradeCostAdditional: 20
+  maxUpgradeCount: 100

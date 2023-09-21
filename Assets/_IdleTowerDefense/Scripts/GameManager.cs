@@ -117,7 +117,6 @@ public class GameManager : Singleton<GameManager>
     public void CloseSetting()
     {
         _setting.SetActive(false);
-        Time.timeScale = 1;
     }
     
     public static void LoadData(List<Currency> currencies)

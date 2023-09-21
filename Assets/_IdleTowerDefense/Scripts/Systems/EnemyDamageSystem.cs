@@ -85,15 +85,8 @@ public class EnemyDamageSystem : IEcsPreInitSystem, IEcsRunSystem
 
     private void TakeMeleeDamage(ref Health towerHealth, EnemyDamage enemyDamage)
     {
-        towerHealth.CurrentHealth -= enemyDamage.Damage;
-        if (towerHealth.CurrentHealth <= 0)
-        {
-            towerHealth.CurrentHealth = 0;
-            towerHealth.OnKilled?.Invoke();
-        }
-
         enemyDamage.OnStartAttack?.Invoke();
+        towerHealth.OnDamaged?.Invoke(enemyDamage.Damage);
         enemyDamage.OnDamageDealt?.Invoke(enemyDamage.Damage, _sharedData.TowerView.transform);
-        towerHealth.OnDamaged?.Invoke();
     }
 }

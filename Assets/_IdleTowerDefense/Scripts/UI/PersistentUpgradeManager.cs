@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using DG.Tweening;
 using UnityEngine;
 
 public class PersistentUpgradeManager : MonoBehaviour
@@ -26,7 +25,6 @@ public class PersistentUpgradeManager : MonoBehaviour
     private UnityEngine.UI.ScrollRect _scrollView;
 
     private readonly List<PersistentUpgradeButton> _buttons = new();
-    private List<NextGradeWindow> _nextGrades = new();
 
     private void Start()
     {
@@ -94,6 +92,7 @@ public class PersistentUpgradeManager : MonoBehaviour
 
     private void CreateNewWindow(int window, int[] stages)
     {
+        if (GameSettings.UpgradeSettings.NextGrades[window].cost.Length <= stages[window]) return;
         Transform buttonContainer = window switch
         {
             0 => attackContainer,
@@ -110,6 +109,7 @@ public class PersistentUpgradeManager : MonoBehaviour
             if(GameManager.Currency[CurrencyTypes.Gold].value < GameSettings.UpgradeSettings.NextGrades[window].cost[stages[window]]) return;
             GameManager.Currency.SubtractValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold,
                 GameSettings.UpgradeSettings.NextGrades[window].cost[stages[window]]));
+            ES3.Save(SaveKeys.Gold, GameManager.Currency[CurrencyTypes.Gold].value);
             stages[window]++;
             ES3.Save(SaveKeys.Stage, stages);
             

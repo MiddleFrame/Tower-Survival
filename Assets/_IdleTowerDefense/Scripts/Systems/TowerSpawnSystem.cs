@@ -46,8 +46,11 @@ public class TowerSpawnSystem : IEcsPreInitSystem, IEcsInitSystem
             _sharedData.Settings.BaseMaxHealth,
             1,
             _sharedData.Settings.BaseHealthRegeneration,
-            () => towerView.transform.DOPunchPosition(Random.insideUnitCircle / 100f, 0.1f, 3)
-                .OnComplete(() => towerView.transform.position = Vector3.zero),
+            _ =>
+            {
+                towerView.transform.DOPunchPosition(Random.insideUnitCircle / 100f, 0.1f, 3)
+                    .OnComplete(() => towerView.transform.position = Vector3.zero);
+            },
             () => GameManager.Instance.OnTowerKilled()
         );
         // Health Regeneration
@@ -63,4 +66,5 @@ public class TowerSpawnSystem : IEcsPreInitSystem, IEcsInitSystem
         _healthBar.PackedEntity = packedEntity;
         _sharedData.TowerView = towerView;
     }
+    
 }

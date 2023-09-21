@@ -18,6 +18,7 @@ public class EnemySpawnSystem : IEcsPreInitSystem, IEcsRunSystem, IEcsInitSystem
     private int _stage;
 
     public static float expMultiplier=1;
+    public static float oreMultiplier=1;
     private static float expPerKillMultiply=1;
     
     private EnemySpawnSettings _spawnSettings;
@@ -38,6 +39,7 @@ public class EnemySpawnSystem : IEcsPreInitSystem, IEcsRunSystem, IEcsInitSystem
     {
         _towerTargetSelectorFilter = GameManager.Instance.World.Filter<Tower>().Inc<TowerTargetSelector>().End();
         expMultiplier = 1;
+        oreMultiplier = 1;
         expPerKillMultiply = 1;
     }
 
@@ -131,7 +133,10 @@ public class EnemySpawnSystem : IEcsPreInitSystem, IEcsRunSystem, IEcsInitSystem
             enemyBaseStats.damageCooldown,
             enemyView.Hit,
             (damage, enemyTransform) =>
-                UltimateTextDamageManager.Instance.Add(damage.ToString("N0"), enemyTransform, "tower"));
+            {
+                UltimateTextDamageManager.Instance.Add(damage.ToString("N0"), enemyTransform, "tower");
+                if (enemyView.enemyNumber == EnemyView.EnemyType.Barrel) GameObject.Destroy(enemyView.gameObject,0.5f);
+            });
 
         movement.StopRadius = enemyDamage.isRangeDamage ? targetSelector.TargetingRange : MELEE_DEFAULT_RANGE;
 
@@ -141,7 +146,7 @@ public class EnemySpawnSystem : IEcsPreInitSystem, IEcsRunSystem, IEcsInitSystem
                 CurrencyTypes.Exp, (int)(expMultiplier*expPerKillMultiply)
             },
             {
-                CurrencyTypes.Ore, orePrice
+                CurrencyTypes.Ore, (int)(orePrice*oreMultiplier)
             }
         };
 

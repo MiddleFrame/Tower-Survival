@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!1 &3938781522497842036
+--- !u!1 &1934577572483800885
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,8 +93,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2755948243979080245}
-  - component: {fileID: 3180629163825854124}
+  - component: {fileID: 5676541359088272132}
+  - component: {fileID: 7306763919272594325}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -102,28 +102,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2755948243979080245
+--- !u!4 &5676541359088272132
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3938781522497842036}
+  m_GameObject: {fileID: 1934577572483800885}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: 0.139, z: 0.05}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.122, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7767767252100353308}
-  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
---- !u!212 &3180629163825854124
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &7306763919272594325
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3938781522497842036}
+  m_GameObject: {fileID: 1934577572483800885}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -158,12 +158,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 421762760, guid: ea301e6274ad13e4c9bd883f9343ebf6, type: 3}
+  m_Sprite: {fileID: 1382605665, guid: 8fa075dda0895fc48950fd53e0c87119, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.7}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 7168876289237999846}
   - component: {fileID: 7378688037824356041}
   m_Layer: 0
-  m_Name: Basic Enemy
+  m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -287,7 +287,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3159224298994980264}
-  - {fileID: 2755948243979080245}
+  - {fileID: 5676541359088272132}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2420183176402899973
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1374273605779650090}
   _animator: {fileID: 7378688037824356041}
-  model: {fileID: 3938781522497842036}
+  model: {fileID: 7918579136678062904}
   deadAnim: {fileID: 5525115552690463809, guid: 72f082927d03ee0418bc767f5c1d07b9, type: 3}
   enemyNumber: 0
 --- !u!50 &-9166989117302009329
@@ -379,7 +379,7 @@ Animator:
   m_GameObject: {fileID: 7918579136678062904}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6819cd53b1c690c43974e7d692113cd2, type: 2}
+  m_Controller: {fileID: 22100000, guid: bd40b441ba48c4e42a07b642ae5bf647, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -26,34 +26,34 @@ MonoBehaviour:
     enemySpawnRate: 1
     enemySpawnCount: 2
     _enemyChances:
-    - 0.36283186
-    - 0.6371681
+    - 0.03505155
+    - 0.9649485
     - 0
   - enemiesKilledToStartStage: 100
     enemySpawnRate: 0.6
     enemySpawnCount: 2
     _enemyChances:
-    - 0.2486853
-    - 0.43671563
-    - 0.31459904
+    - 0.01572091
+    - 0.57213056
+    - 0.41214857
   - enemiesKilledToStartStage: 300
     enemySpawnRate: 0.8
     enemySpawnCount: 3
     _enemyChances:
-    - 0.2486853
-    - 0.43671563
-    - 0.31459904
+    - 0.078497306
+    - 0.5356406
+    - 0.3858621
   - enemiesKilledToStartStage: 1000
     enemySpawnRate: 0.6
     enemySpawnCount: 3
     _enemyChances:
-    - 0.2486853
-    - 0.43671563
-    - 0.31459904
+    - 0.13073942
+    - 0.5052739
+    - 0.3639867
   _stats:
   - movementSpeed: 0.5
     startingHealth: 100
-    damage: 200
+    damage: 2000
     damageCooldown: 1
   - movementSpeed: 0.25
     startingHealth: 500

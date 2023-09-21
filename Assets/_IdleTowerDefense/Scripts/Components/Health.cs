@@ -15,17 +15,30 @@ public struct Health
     public float HealthRegenerationAdditions;
     public float CurrentHealthRegeneration;
 
-    public Action OnDamaged;
+    public Action<float> OnDamaged;
     public Action OnKilled;
 
-    public void InitStartValues(float baseHealth, float healthMultiplier,float baseRegen, Action onDamaged, Action onKilled)
+    public void InitStartValues(float baseHealth, float healthMultiplier, float baseRegen, Action<float> onDamaged,
+        Action onKilled)
     {
-        InitHealth(baseHealth,healthMultiplier);
+        InitHealth(baseHealth, healthMultiplier);
         InitRegeneration(baseRegen);
         OnKilled += onKilled;
         OnDamaged += onDamaged;
+        OnDamaged += GetDamage;
+        
     }
 
+    private void GetDamage(float damage)
+    {
+        CurrentHealth -= damage;
+        if (CurrentHealth <= 0)
+        {
+            CurrentHealth = 0;
+            OnKilled?.Invoke();
+        }
+    }
+    
     private void InitRegeneration(float baseRegen)
     {
         BaseHealthRegeneration = baseRegen;

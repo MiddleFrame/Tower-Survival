@@ -66,11 +66,11 @@ public class Mine : MonoBehaviour
             _gold = ES3.Load(SaveKeys.GoldMine, 0);
             _ore = ES3.Load(SaveKeys.OreMine, 0);
             _lastView = ES3.Load(SaveKeys.LastView, DateTime.Now);
-            _gold = _gold + Calculate(5 * _grades.capacity) > 100 * _grades.capacity
-                ? 100 * _grades.capacity
-                : _gold + Calculate(5 * _grades.capacity);
-            _ore = (_ore + Calculate(100 * _grades.capacity) > 1000 * _grades.capacity)
-                ? (1000 * _grades.capacity)
+            _gold = (_gold + Calculate(5 * _grades.capacity) > 20 * _grades.limit)
+                ? 20 * _grades.limit
+                : (_gold + Calculate(5 * _grades.capacity));
+            _ore = (_ore + Calculate(100 * _grades.capacity) > 1000 * _grades.limit)
+                ? (1000 * _grades.limit)
                 : (_ore + Calculate(100 * _grades.capacity));
             OpenMine();
 
@@ -95,10 +95,11 @@ public class Mine : MonoBehaviour
 
     public void BuyMine()
     {
-        int ore = ES3.Load(SaveKeys.Ore, 0);
+        int ore = GameManager.Currency[CurrencyTypes.Ore].value;
         if (ore < _costMine) return;
-        ES3.Save(SaveKeys.Ore, ore - _costMine);
+        GameManager.Currency.SubtractValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Ore, _costMine));
         ES3.Save(SaveKeys.Mine, true);
+        ES3.Save(SaveKeys.Ore, GameManager.Currency[CurrencyTypes.Ore].value);
         OnEnable();
     }
 
@@ -107,8 +108,11 @@ public class Mine : MonoBehaviour
         int gold = ES3.Load(SaveKeys.Gold, 0);
         if (gold < _costGrade * _grades.capacity) return;
         _grades.capacity++;
+        ES3.Save(SaveKeys.MineGrades, _grades);
         UpdateGradeText();
-        ES3.Save(SaveKeys.Gold, gold - _costGrade * _grades.capacity);
+        GameManager.Currency.SubtractValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, _costGrade * _grades.capacity));
+        ES3.Save(SaveKeys.Gold, GameManager.Currency[CurrencyTypes.Gold].value);
+ 
         StopCoroutine(_coroutineGold);
         StopCoroutine(_coroutineOre);
         _coroutineGold = StartCoroutine(AddGold());
@@ -120,8 +124,10 @@ public class Mine : MonoBehaviour
         int gold = ES3.Load(SaveKeys.Gold, 0);
         if (gold < _costGradeLimit * _grades.limit) return;
         _grades.limit++;
+        ES3.Save(SaveKeys.MineGrades, _grades);
         UpdateLimitText();
-        ES3.Save(SaveKeys.Gold, gold - _costGradeLimit * _grades.limit);
+        GameManager.Currency.SubtractValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, _costGradeLimit * _grades.limit));
+        ES3.Save(SaveKeys.Gold, GameManager.Currency[CurrencyTypes.Gold].value);
     }
 
     public void CollectMine()

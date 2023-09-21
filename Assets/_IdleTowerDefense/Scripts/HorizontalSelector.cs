@@ -68,6 +68,12 @@ public class HorizontalSelector : MonoBehaviour
         itemList[index].onValueChanged.Invoke();
     }
 
+    public void CloseSetting()
+    {
+        
+        itemList[index].onValueChanged.Invoke();
+    }
+
     public void PreviousClick()
     {
         if (index == 0)

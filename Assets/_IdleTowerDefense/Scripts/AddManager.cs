@@ -12,6 +12,8 @@ public class AddManager : MonoBehaviour
     [SerializeField]
     private GameObject _loadingAnim;
 
+    private int age;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -27,7 +29,7 @@ public class AddManager : MonoBehaviour
     void Start()
     {
         Yodo1U3dRewardAd.GetInstance().autoDelayIfLoadFail = true;
-        Yodo1U3dMas.SetCCPA(true);
+        Yodo1U3dMas.SetCCPA(false);
         Yodo1U3dMas.SetGDPR(true);
         Yodo1U3dMas.SetCOPPA(false);
         Yodo1U3dMasCallback.OnSdkInitializedEvent += (success, error) =>

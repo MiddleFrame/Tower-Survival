@@ -1,11 +1,11 @@
 using Leopotam.EcsLite;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Tower Range Upgrade", menuName = "Idle Tower Defense/Temporary Upgrades/ExpPerKill")]
-public class TowerRangeTemporaryUpgrade : TemporaryUpgradeBase
+[CreateAssetMenu(fileName = "New Tower Range Upgrade", menuName = "Idle Tower Defense/Temporary Upgrades/OrePerKill")]
+public class OrePerKill : TemporaryUpgradeBase
 {
     [Header("Upgrade Specific Values")]
-    public float expPerUpgrade;
+    public float orePerUpgrade;
 
 
     private EcsFilter _towerTargetSelectorFilter;
@@ -20,14 +20,14 @@ public class TowerRangeTemporaryUpgrade : TemporaryUpgradeBase
         // Handle upgrade
 
 
-        EnemySpawnSystem.expMultiplier += expPerUpgrade;
-        value = expPerUpgrade;
+        EnemySpawnSystem.oreMultiplier += orePerUpgrade;
+        value = orePerUpgrade;
     }
 
     public override void UpdateStartValue()
     {
         // Handle upgrade
-        EnemySpawnSystem.expMultiplier += PersistentUpgradeManager.PersistentUpgradeCounts[Title] * expPerUpgrade;
-        value = expPerUpgrade;
+        EnemySpawnSystem.oreMultiplier += PersistentUpgradeManager.PersistentUpgradeCounts[Title] * orePerUpgrade;
+        value = orePerUpgrade;
     }
 }
