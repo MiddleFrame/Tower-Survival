@@ -42,7 +42,12 @@ public class PersistentUpgradeManager : MonoBehaviour
         }
 
         // Load saved upgrade counts and Scrap count
-        PersistentUpgradeCounts = ES3.Load(SaveKeys.PersistentUpgradeCounts, defaultValues);
+        PersistentUpgradeCounts = ES3.Load(SaveKeys.PersistentUpgradeCounts, defaultValues); 
+        foreach (var upgrade in GameSettings.UpgradeSettings.PersistentUpgrades)
+        {
+            if(PersistentUpgradeCounts.ContainsKey(upgrade.Title)) continue;
+            PersistentUpgradeCounts.Add(upgrade.Title,0);
+        }
     }
 
     private void InitMenu()
