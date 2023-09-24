@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PersistentUpgradeManager : MonoBehaviour
@@ -35,17 +36,12 @@ public class PersistentUpgradeManager : MonoBehaviour
     private void InitSaveData()
     {
         // Init default empty dictionary
-        Dictionary<string, int> defaultValues = new Dictionary<string, int>();
-        foreach (var upgrade in GameSettings.UpgradeSettings.PersistentUpgrades)
-        {
-            defaultValues.Add(upgrade.Title, 0);
-        }
+        var defaultValues = GameSettings.UpgradeSettings.PersistentUpgrades.ToDictionary(upgrade => upgrade.Title, _ => 0);
 
         // Load saved upgrade counts and Scrap count
         PersistentUpgradeCounts = ES3.Load(SaveKeys.PersistentUpgradeCounts, defaultValues); 
-        foreach (var upgrade in GameSettings.UpgradeSettings.PersistentUpgrades)
+        foreach (var upgrade in GameSettings.UpgradeSettings.PersistentUpgrades.Where(upgrade => !PersistentUpgradeCounts.ContainsKey(upgrade.Title)))
         {
-            if(PersistentUpgradeCounts.ContainsKey(upgrade.Title)) continue;
             PersistentUpgradeCounts.Add(upgrade.Title,0);
         }
     }

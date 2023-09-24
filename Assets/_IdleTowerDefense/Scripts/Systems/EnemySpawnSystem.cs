@@ -111,7 +111,7 @@ public class EnemySpawnSystem : IEcsPreInitSystem, IEcsRunSystem, IEcsInitSystem
         position = randomPosition;
         movement.Velocity = -randomPosition.normalized * enemyBaseStats.movementSpeed;
         expPerKillMultiply *= 1.01f;
-        int orePrice = isOreEnemy ? (int)_sharedData.Settings.EnemySpawnSettings[GameManager.tier].OreMultiplier : 0; 
+        int orePrice = isOreEnemy ? (int)(_sharedData.Settings.EnemySpawnSettings[GameManager.tier].OreMultiplier*oreMultiplier) : 0; 
         
         health.InitStartValues(
             enemyBaseStats.startingHealth, 
@@ -146,7 +146,7 @@ public class EnemySpawnSystem : IEcsPreInitSystem, IEcsRunSystem, IEcsInitSystem
                 CurrencyTypes.Exp, (int)(expMultiplier*expPerKillMultiply)
             },
             {
-                CurrencyTypes.Ore, (int)(orePrice*oreMultiplier)
+                CurrencyTypes.Ore, orePrice
             }
         };
 

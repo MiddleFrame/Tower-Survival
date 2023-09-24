@@ -1,9 +1,5 @@
-using System;
 using Leopotam.EcsLite;
 using UnityEngine;
-using System.Linq;
-using Guirao.UltimateTextDamage;
-using Random = UnityEngine.Random;
 
 public class ProjectileView : MonoBehaviour
 {
@@ -55,9 +51,14 @@ public class ProjectileView : MonoBehaviour
                 foreach (int tower in _towerFilter)
                 {
                     ref Health towerHealth = ref healthPool.Get(tower);
-
+                    towerHealth.CurrentHealth -= Damage;
+                    if (towerHealth.CurrentHealth <= 0)
+                    {
+                        towerHealth.CurrentHealth = 0;
+                        towerHealth.OnKilled?.Invoke();
+                    }
                     projectile.OnDamageDealt?.Invoke(Damage, towerView.transform);
-                    towerHealth.OnDamaged?.Invoke(Damage);
+                    towerHealth.OnDamaged?.Invoke();
                 }
                 
                 EcsPool<Destroy> destroyPool = world.GetPool<Destroy>();
@@ -80,13 +81,15 @@ public class ProjectileView : MonoBehaviour
                 ref Health enemyHealth = ref healthPool.Get(unpackedEnemy);
                 ref Projectile projectile = ref projectilePool.Get(unpackedProjectile);
 
-                enemyHealth.OnDamaged?.Invoke(projectile.Damage);
+                enemyHealth.CurrentHealth -= projectile.Damage;
+                enemyHealth.OnDamaged?.Invoke();
 
                 projectile.OnDamageDealt?.Invoke(projectile.Damage, other.transform);
 
                 // Check enemy health and mark for deletion if necessary
                 if (enemyHealth.CurrentHealth <= 0 && !destroyPool.Has(unpackedEnemy))
-                {
+                { 
+                    enemyHealth.OnKilled?.Invoke();
                     destroyPool.Add(unpackedEnemy);
 
                     // Delayed destroy to work around damage numbers not working when destroyed immediately

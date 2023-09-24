@@ -95704,10 +95704,10 @@ MonoBehaviour:
   m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 103.25729, y: 150}
+  m_CellSize: {x: 231.51459, y: 200}
   m_Spacing: {x: 25, y: 25}
   m_Constraint: 1
-  m_ConstraintCount: 2
+  m_ConstraintCount: 1
 --- !u!222 &227743589
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -99946,10 +99946,10 @@ MonoBehaviour:
   m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 103.25729, y: 150}
+  m_CellSize: {x: 231.51459, y: 200}
   m_Spacing: {x: 25, y: 25}
   m_Constraint: 1
-  m_ConstraintCount: 2
+  m_ConstraintCount: 1
 --- !u!222 &1056006344
 CanvasRenderer:
   m_ObjectHideFlags: 0

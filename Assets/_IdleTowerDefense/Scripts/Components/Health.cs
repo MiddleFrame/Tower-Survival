@@ -1,11 +1,14 @@
 using System;
+using UnityEngine;
 
 public struct Health
 {
     // Health
     public float BaseMaxHealth;
     public float MaxHealth;
+
     public float CurrentHealth;
+
     public float MaxHealthMultiplier;
     public float MaxHealthAdditions;
 
@@ -15,29 +18,18 @@ public struct Health
     public float HealthRegenerationAdditions;
     public float CurrentHealthRegeneration;
 
-    public Action<float> OnDamaged;
+    public Action OnDamaged;
     public Action OnKilled;
 
-    public void InitStartValues(float baseHealth, float healthMultiplier, float baseRegen, Action<float> onDamaged,
+    public void InitStartValues(float baseHealth, float healthMultiplier, float baseRegen, Action onDamaged,
         Action onKilled)
     {
         InitHealth(baseHealth, healthMultiplier);
         InitRegeneration(baseRegen);
         OnKilled += onKilled;
         OnDamaged += onDamaged;
-        OnDamaged += GetDamage;
-        
     }
 
-    private void GetDamage(float damage)
-    {
-        CurrentHealth -= damage;
-        if (CurrentHealth <= 0)
-        {
-            CurrentHealth = 0;
-            OnKilled?.Invoke();
-        }
-    }
     
     private void InitRegeneration(float baseRegen)
     {

@@ -15,15 +15,14 @@ public class TowerUpgradeLoadingSystem : IEcsPreInitSystem, IEcsInitSystem
         sharedData = systems.GetShared<SharedData>();
         world = systems.GetWorld();
 
-        // Init default empty dictionary
-        Dictionary<string, int> defaultValues = new Dictionary<string, int>();
-        foreach (var upgrade in sharedData.Settings.UpgradeSettings.PersistentUpgrades)
-        {
-            defaultValues.Add(upgrade.Title, 0);
-        }
+        var defaultValues = sharedData.Settings.UpgradeSettings.PersistentUpgrades.ToDictionary(upgrade => upgrade.Title, _ => 0);
 
-        // Load saved upgrade counts
-        persistentUpgradeCounts = ES3.Load(SaveKeys.PersistentUpgradeCounts, defaultValues);
+        // Load saved upgrade counts and Scrap count
+        persistentUpgradeCounts = ES3.Load(SaveKeys.PersistentUpgradeCounts, defaultValues); 
+        foreach (var upgrade in sharedData.Settings.UpgradeSettings.PersistentUpgrades.Where(upgrade => !persistentUpgradeCounts.ContainsKey(upgrade.Title)))
+        {
+            persistentUpgradeCounts.Add(upgrade.Title,0);
+        }
     }
 
     public void Init(EcsSystems systems)

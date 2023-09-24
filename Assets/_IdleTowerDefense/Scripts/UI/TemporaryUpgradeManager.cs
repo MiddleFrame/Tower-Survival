@@ -38,46 +38,7 @@ public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
         _camera = Camera.main;
         gameSettings.UpgradeSettings.InitTemporaryUpgrades();
         int[] stages =  ES3.Load(SaveKeys.Stage, new int[3]);
-        /*for (int i = 0; i < gameSettings.UpgradeSettings.TemporaryUpgrades.Count; i++)
-        {
-            if (gameSettings.UpgradeSettings.TemporaryUpgrades[i].openingStage > stages[gameSettings.UpgradeSettings.TemporaryUpgrades[i].window ]) continue;
-            // Capture i to avoid closure issues
-            int index = i;
-
-            // Init dictionary element for the upgrade
-            TemporaryUpgradeCounts.Add(gameSettings.UpgradeSettings.TemporaryUpgrades[i].Title, 0);
-
-            Transform buttonContainer = gameSettings.UpgradeSettings.TemporaryUpgrades[i].window switch
-            {
-                0 => attackContainer,
-                1 => defenceContainer,
-                2 => utilityContainer,
-                _ => attackContainer
-            };
-            // Setup UpgradeButton values
-            TemporaryUpgradeButton temporaryUpgradeButton = Instantiate(temporaryUpgradeButtonPrefab, buttonContainer);
-            temporaryUpgradeButton.targetTemporaryUpgrade = gameSettings.UpgradeSettings.TemporaryUpgrades[i];
-
-            temporaryUpgradeButton.titleObj.text = gameSettings.UpgradeSettings.TemporaryUpgrades[i].Title.ToUpper();
-            temporaryUpgradeButton.targetTemporaryUpgrade.onUpgrade +=
-                x => temporaryUpgradeButton.currentValue.text = "Value: "+x.ToString("N1");
-            temporaryUpgradeButton.targetTemporaryUpgrade.onUpgrade += _ =>
-                temporaryUpgradeButton.cost.text =
-                    temporaryUpgradeButton.targetTemporaryUpgrade.GetCost().Value +" exp";
-            
-            temporaryUpgradeButton.targetTemporaryUpgrade.UpdateStartValue();
-
-            temporaryUpgradeButton.Button.onClick.AddListener(
-                () =>
-                {
-                    if (gameSettings.UpgradeSettings.TemporaryUpgrades[index].CanUpgrade() ==
-                        StatusItem.None)
-                    {
-                        gameSettings.UpgradeSettings.TemporaryUpgrades[index].Upgrade();
-                    }
-                }
-            );
-        }*/
+        
         foreach (var upgrade in gameSettings.UpgradeSettings.TemporaryUpgrades.Where(upgrade => upgrade.openingStage <= stages[upgrade.window ]))
         {
 
@@ -115,9 +76,6 @@ public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
             );
         }
 
-       
-           
-        
     }
 
  

@@ -10,7 +10,7 @@ public struct EnemyDamage
     public Action<float, Transform> OnDamageDealt;
     public Action OnStartAttack;
 
-    public void InitStartValues(bool isRange, float baseDamage, float damageMultiplier, float cooldown, Action onAttack, Action<float, Transform> onDamageDealt)
+    public void InitStartValues(bool isRange, float baseDamage, float damageMultiplier, float cooldown, Action  onAttack, Action<float, Transform> onDamageDealt)
     {
         isRangeDamage = isRange; 
         Damage = baseDamage*damageMultiplier;
