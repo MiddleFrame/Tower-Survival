@@ -14,7 +14,7 @@ public class MultishotTemporaryUpgrade : TemporaryUpgradeBase
 
     public override void Init()
     {
-        _towerTargetSelectorFilter = GameManager.Instance.World.Filter<Tower>()
+        _towerTargetSelectorFilter = DataController.Instance.World.Filter<Tower>()
             .Inc<TowerTargetSelector>()
             .End();
     }
@@ -24,11 +24,11 @@ public class MultishotTemporaryUpgrade : TemporaryUpgradeBase
     public override void Upgrade()
     {
         // Handle cost
-        GameManager.Currency.SubtractValues(GetCost());
+        DataController.Currency.SubtractValues(GetCost());
         TemporaryUpgradeManager.Instance.TemporaryUpgradeCounts[Title] += 1;
 
         // Handle upgrade
-        EcsPool<TowerTargetSelector> targetSelectorPool = GameManager.Instance.World.GetPool<TowerTargetSelector>();
+        EcsPool<TowerTargetSelector> targetSelectorPool = DataController.Instance.World.GetPool<TowerTargetSelector>();
         foreach (int entity in _towerTargetSelectorFilter)
         {
             ref TowerTargetSelector towerWeapon = ref targetSelectorPool.Get(entity);
@@ -39,7 +39,7 @@ public class MultishotTemporaryUpgrade : TemporaryUpgradeBase
     public override void UpdateStartValue()
     {
         // Handle upgrade
-        EcsPool<TowerTargetSelector> targetSelectorPool = GameManager.Instance.World.GetPool<TowerTargetSelector>();
+        EcsPool<TowerTargetSelector> targetSelectorPool = DataController.Instance.World.GetPool<TowerTargetSelector>();
         foreach (int entity in _towerTargetSelectorFilter)
         {
             ref TowerTargetSelector towerWeapon = ref targetSelectorPool.Get(entity);

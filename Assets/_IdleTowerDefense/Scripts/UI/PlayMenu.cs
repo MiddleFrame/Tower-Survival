@@ -51,7 +51,7 @@ public class PlayMenu : MonoBehaviour
 
    public static void Play()
    {
-      GameManager.tier = _currentTier;
+      DataController.tier = _currentTier;
       SceneManager.LoadScene("Game");
    }
    

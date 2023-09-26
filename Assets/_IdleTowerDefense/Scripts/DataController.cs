@@ -13,7 +13,7 @@ public enum CurrencyTypes
     Gold
 }
 
-public class GameManager : Singleton<GameManager>
+public class DataController : Singleton<DataController>
 {
     public EcsWorld World;
     public static Dictionary<CurrencyTypes, Currency> Currency = new Dictionary<CurrencyTypes, Currency>();
@@ -51,7 +51,6 @@ public class GameManager : Singleton<GameManager>
         var views = new List<Component>();
         views.AddRange(FindObjectsOfType<ProjectileView>());
         views.AddRange(FindObjectsOfType<EnemyView>());
-        views.Add(FindObjectOfType<TowerView>());
 
         foreach (Component view in views)
         {
@@ -74,7 +73,7 @@ public class GameManager : Singleton<GameManager>
     {
         _menu.OpenLoseMenu(false, EnemiesKilled, EarnedOre*2, 0); 
         Currency.AddValues(
-            new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Ore, GameManager.Instance.EarnedOre));
+            new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Ore, DataController.Instance.EarnedOre));
     }
 
     public void ReloadGame()

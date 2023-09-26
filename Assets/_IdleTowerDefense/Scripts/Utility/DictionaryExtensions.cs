@@ -25,13 +25,13 @@ public static class DictionaryExtensions
 
     public static void SubtractValues(this Dictionary<CurrencyTypes, Currency> lhs, KeyValuePair<CurrencyTypes, int> rhs)
     {
-        GameManager.currencyText[rhs.Key].StartCoroutine(SmoothNumber( lhs[rhs.Key].value, lhs[rhs.Key].value - rhs.Value, 0.2f, GameManager.currencyText[rhs.Key]));
+        DataController.currencyText[rhs.Key].StartCoroutine(SmoothNumber( lhs[rhs.Key].value, lhs[rhs.Key].value - rhs.Value, 0.2f, DataController.currencyText[rhs.Key]));
         lhs[rhs.Key].value -= rhs.Value;
     }
 
     public static void AddValues(this Dictionary<CurrencyTypes, Currency> lhs, KeyValuePair<CurrencyTypes, int> rhs)
     {
-        GameManager.currencyText[rhs.Key].StartCoroutine(SmoothNumber( lhs[rhs.Key].value, lhs[rhs.Key].value + rhs.Value, 0.2f, GameManager.currencyText[rhs.Key]));
+        DataController.currencyText[rhs.Key].StartCoroutine(SmoothNumber( lhs[rhs.Key].value, lhs[rhs.Key].value + rhs.Value, 0.2f, DataController.currencyText[rhs.Key]));
         lhs[rhs.Key].value += rhs.Value;
     }
 

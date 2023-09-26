@@ -7,47 +7,35 @@ public class ProjectileView : MonoBehaviour
     public float Damage = 1;
     public float MaxLifetime = 10;
 
-    public EcsPackedEntity packedEntity;
+    public int packedEntity;
     public EcsWorld world;
-    private EcsFilter _destroyFilter;
     private EcsFilter _towerFilter;
 
     [SerializeField]
     private bool isEnemyProjectile;
 
+    private EcsPool<Destroy> _destroyPool;
     private void Start()
     {
-        _destroyFilter = world.Filter<Destroy>()
-            .End();
         
         _towerFilter = world.Filter<Tower>()
             .Inc<Health>()
             .End();
+        _destroyPool = world.GetPool<Destroy>();
         Destroy(gameObject, MaxLifetime);
-    }
-
-    private void Update()
-    {
-        if (packedEntity.Unpack(world, out int unpackedEntity))
-        {
-            EcsPool<Position> positionPool = world.GetPool<Position>();
-            ref Position position = ref positionPool.Get(unpackedEntity);
-            transform.position = new Vector3(position.x, position.y, 0);
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (isEnemyProjectile)
         {
-            if (other.TryGetComponent(out TowerView towerView)&&
-                packedEntity.Unpack(world, out int unpackedProjectile))
+            if (other.tag.Equals("Tower"))
             {
                 EcsPool<Projectile> projectilePool = world.GetPool<Projectile>();
                 
                 EcsPool<Health> healthPool = world.GetPool<Health>();
                 
-                ref Projectile projectile = ref projectilePool.Get(unpackedProjectile);
+                ref Projectile projectile = ref projectilePool.Get(packedEntity);
                 foreach (int tower in _towerFilter)
                 {
                     ref Health towerHealth = ref healthPool.Get(tower);
@@ -57,14 +45,14 @@ public class ProjectileView : MonoBehaviour
                         towerHealth.CurrentHealth = 0;
                         towerHealth.OnKilled?.Invoke();
                     }
-                    projectile.OnDamageDealt?.Invoke(Damage, towerView.transform);
+                    projectile.OnDamageDealt?.Invoke(Damage, other.transform);
                     towerHealth.OnDamaged?.Invoke();
                 }
                 
                 EcsPool<Destroy> destroyPool = world.GetPool<Destroy>();
-                if (!destroyPool.Has(unpackedProjectile))
+                if (!destroyPool.Has(packedEntity))
                 {
-                    destroyPool.Add(unpackedProjectile);
+                    destroyPool.Add(packedEntity);
                     Destroy(gameObject);
                 }
 
@@ -72,14 +60,13 @@ public class ProjectileView : MonoBehaviour
         }
         else if (other.TryGetComponent(out EnemyView enemyView))
         {
-            if (enemyView.PackedEntity.Unpack(world, out int unpackedEnemy) &&
-                packedEntity.Unpack(world, out int unpackedProjectile))
+            if (enemyView.PackedEntity.Unpack(world, out int unpackedEnemy))
             {
                 EcsPool<Destroy> destroyPool = world.GetPool<Destroy>();
                 EcsPool<Health> healthPool = world.GetPool<Health>();
                 EcsPool<Projectile> projectilePool = world.GetPool<Projectile>();
                 ref Health enemyHealth = ref healthPool.Get(unpackedEnemy);
-                ref Projectile projectile = ref projectilePool.Get(unpackedProjectile);
+                ref Projectile projectile = ref projectilePool.Get(packedEntity);
 
                 enemyHealth.CurrentHealth -= projectile.Damage;
                 enemyHealth.OnDamaged?.Invoke();
@@ -93,14 +80,15 @@ public class ProjectileView : MonoBehaviour
                     destroyPool.Add(unpackedEnemy);
 
                     // Delayed destroy to work around damage numbers not working when destroyed immediately
-                    other.gameObject.SetActive(false);
-                    Destroy(other.gameObject, 0.1f);
+                    GameObject o;
+                    (o = other.gameObject).SetActive(false);
+                    Destroy(o, 0.1f);
                 }
 
                 // Mark projectile for deletion if not already
-                if (!destroyPool.Has(unpackedProjectile))
+                if (!destroyPool.Has(packedEntity))
                 {
-                    destroyPool.Add(unpackedProjectile);
+                    destroyPool.Add(packedEntity);
                     Destroy(gameObject);
                 }
             }
@@ -109,15 +97,9 @@ public class ProjectileView : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (!packedEntity.Unpack(world, out int unpackedProjectile))
-            return;
-
-        EcsPool<Destroy> destroyPool = world.GetPool<Destroy>();
-
-
-        if (!destroyPool.Has(unpackedProjectile))
+        if (!_destroyPool.Has(packedEntity))
         {
-            destroyPool.Add(unpackedProjectile);
+            _destroyPool.Add(packedEntity);
         }
     }
 }

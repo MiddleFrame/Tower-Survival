@@ -13,7 +13,7 @@ public class GameSettings : ScriptableObject
     public UpgradeSettings UpgradeSettings;
 
     [Header("Prefabs")]
-    public TowerView TowerView;
+    public GameObject tower;
 
     public ProjectileView ProjectileView;
     public ProjectileView DynamiteView;
@@ -30,4 +30,5 @@ public class GameSettings : ScriptableObject
     [Header("Misc"),HideInInspector]
     public float EnemySpawnRadius = 6;
 
+    public AudioClip shootingSound;
 }

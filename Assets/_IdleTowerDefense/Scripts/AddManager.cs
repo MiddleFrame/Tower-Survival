@@ -53,7 +53,9 @@ public class AddManager : MonoBehaviour
 
     public static void ShowRewarded(int rewardID)
     {
-        if (InAppInitializer.isRemoveAds) OnRewardAdEarnedEvent(rewardID);
+        if (InAppInitializer.isRemoveAds) {OnRewardAdEarnedEvent(rewardID);
+            return;
+        }
         bool isLoaded = Yodo1U3dRewardAd.GetInstance().IsLoaded();
         rewardId = rewardID;
         if (isLoaded) Yodo1U3dRewardAd.GetInstance().ShowAd();
@@ -121,7 +123,7 @@ public class AddManager : MonoBehaviour
                 PlayMenu.Play();
                 break;
             case 1:
-                GameManager.Instance.OnRewardx2();
+                DataController.Instance.OnRewardx2();
                 break;
         }
     }
@@ -138,7 +140,7 @@ public class AddManager : MonoBehaviour
                 PlayMenu.Play();
                 break;
             case 1:
-                GameManager.Instance.OnRewardx2();
+                DataController.Instance.OnRewardx2();
                 break;
         }
     }

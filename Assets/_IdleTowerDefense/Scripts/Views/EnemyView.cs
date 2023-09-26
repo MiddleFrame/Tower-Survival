@@ -13,8 +13,7 @@ public class EnemyView : MonoBehaviour
         Barrel=3
     }
 
-    [SerializeField]
-    private SpriteRenderer healthBar;
+    public SpriteRenderer healthBar;
 
     [SerializeField]
     private Animator _animator;
@@ -30,8 +29,12 @@ public class EnemyView : MonoBehaviour
 
     public EnemyType enemyNumber;
 
+    private static EcsPool<Position> positionPool;
+    private static EcsPool<Health> healthPool;
     private void Start()
     {
+        positionPool ??= World.GetPool<Position>();
+        healthPool ??= World.GetPool<Health>();
         if (!(transform.position.x > 0)) return;
         var scale = model.transform.localScale;
         model.transform.localScale = new Vector3(-scale.x, scale.y,
@@ -48,22 +51,6 @@ public class EnemyView : MonoBehaviour
             _animator.SetTrigger("Hit");
     }
 
-    private void Update()
-    {
-        if (PackedEntity.Unpack(World, out int unpackedEntity))
-        {
-            EcsPool<Position> positionPool = World.GetPool<Position>();
-            EcsPool<Health> healthPool = World.GetPool<Health>();
-            ref Position position = ref positionPool.Get(unpackedEntity);
-            ref Health health = ref healthPool.Get(unpackedEntity);
-
-            // Update position
-            transform.position = new Vector3(position.x, position.y, 0);
-
-            // Update HealthBar
-            healthBar.size = new Vector2(1, health.CurrentHealth / health.MaxHealth);
-        }
-    }
 
     private void OnDestroy()
     {

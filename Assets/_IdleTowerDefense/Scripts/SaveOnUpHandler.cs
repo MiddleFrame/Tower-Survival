@@ -15,7 +15,7 @@ public class SaveOnUpHandler : MonoBehaviour, IPointerUpHandler
         {
             EndDrag(SliderValue);
         }
-    }
+    } 
 }
 
 public delegate void EndSliderDragEventHandler (float val);

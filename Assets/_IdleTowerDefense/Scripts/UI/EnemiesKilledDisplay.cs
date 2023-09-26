@@ -16,6 +16,6 @@ public class EnemiesKilledDisplay : MonoBehaviour
         if (timeSinceLastUpdate > 0) return;
 
         timeSinceLastUpdate = updateInterval;
-        textObject.text = $"Enemies Killed: {GameManager.Instance.EnemiesKilled}";
+        textObject.text = $"Enemies Killed: {DataController.Instance.EnemiesKilled}";
     }
 }

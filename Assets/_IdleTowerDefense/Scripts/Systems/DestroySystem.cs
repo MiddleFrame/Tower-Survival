@@ -1,36 +1,34 @@
 using Guirao.UltimateTextDamage;
 using Leopotam.EcsLite;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class DestroySystem : IEcsPreInitSystem, IEcsRunSystem
+public class DestroySystem : IEcsInitSystem, IEcsRunSystem
 {
-    private EcsWorld world;
-    private EcsFilter destroyFilter;
-
-
-    public void PreInit(EcsSystems systems)
+    private EcsWorld _world;
+    private EcsFilter _destroyFilter;
+    private EcsPool<CurrencyDrop> _currencyDropPool;
+    private EcsPool<Position> _positionPool;
+    public void Init(IEcsSystems systems)
     {
-        world = systems.GetWorld();
-        destroyFilter = world.Filter<Destroy>().End();
+        _world = systems.GetWorld();
+        _destroyFilter = _world.Filter<Destroy>().Inc<Position>().End();
+        _currencyDropPool = _world.GetPool<CurrencyDrop>();
+        _positionPool = _world.GetPool<Position>();
     }
 
-    public void Run(EcsSystems systems)
+    public void Run(IEcsSystems systems)
     {
-        EcsPool<CurrencyDrop> currencyDropPool = world.GetPool<CurrencyDrop>();
-        EcsPool<Position> positionPool = world.GetPool<Position>();
-
-        foreach (int destroyedEntity in destroyFilter)
+        foreach (int destroyedEntity in _destroyFilter)
         {
-            if (currencyDropPool.Has(destroyedEntity))
+            if (_currencyDropPool.Has(destroyedEntity))
             {
-                ref CurrencyDrop currencyDrop = ref currencyDropPool.Get(destroyedEntity);
-                ref Position enemyPosition = ref positionPool.Get(destroyedEntity);
+                ref CurrencyDrop currencyDrop = ref _currencyDropPool.Get(destroyedEntity);
+                ref Position enemyPosition = ref _positionPool.Get(destroyedEntity);
 
                 // Add currency
                 foreach (var drop in currencyDrop.Drops)
                 {
-                    GameManager.Currency.AddValues(drop);
+                    DataController.Currency.AddValues(drop);
                 }
 
 
@@ -41,8 +39,7 @@ public class DestroySystem : IEcsPreInitSystem, IEcsRunSystem
                 obj.position =(Vector2) enemyPosition;     
                 obj.localScale = Vector3.one;
             }
-
-            world.DelEntity(destroyedEntity);
+            _world.DelEntity(destroyedEntity);
         }
     }
 }

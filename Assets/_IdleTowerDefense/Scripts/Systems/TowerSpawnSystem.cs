@@ -1,6 +1,7 @@
 using DG.Tweening;
 using Leopotam.EcsLite;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TowerSpawnSystem : IEcsPreInitSystem, IEcsInitSystem
 {
@@ -9,25 +10,27 @@ public class TowerSpawnSystem : IEcsPreInitSystem, IEcsInitSystem
 
     private readonly Vector3 _spawnTowerPoint;
 
-    private readonly HealthBar _healthBar;
+    private readonly Image _healthBar;
+    private readonly Slider _healthBarValue;
 
-    public TowerSpawnSystem(Transform spawnTowerPoint, HealthBar healthBar)
+    
+    public TowerSpawnSystem(Transform spawnTowerPoint, Image healthBar,Slider healthBarValue)
     {
         _spawnTowerPoint = spawnTowerPoint.position;
         _healthBar = healthBar;
+        _healthBarValue = healthBarValue;
     }
 
-    public void PreInit(EcsSystems systems)
+    public void PreInit(IEcsSystems systems)
     {
         _sharedData = systems.GetShared<SharedData>();
         _world = systems.GetWorld();
     }
 
-    public void Init(EcsSystems systems)
+    public void Init(IEcsSystems systems)
     {
         // Create Entity, add components
         int entity = _world.NewEntity();
-        EcsPackedEntity packedEntity = _world.PackEntity(entity);
         EcsPool<Tower> towerPool = _world.GetPool<Tower>();
         EcsPool<TowerWeapon> towerWeaponPool = _world.GetPool<TowerWeapon>();
         EcsPool<TowerTargetSelector> towerTargetingPool = _world.GetPool<TowerTargetSelector>();
@@ -37,19 +40,21 @@ public class TowerSpawnSystem : IEcsPreInitSystem, IEcsInitSystem
         ref TowerTargetSelector towerTargetSelector = ref towerTargetingPool.Add(entity);
         ref Health towerHealth = ref healthPool.Add(entity);
 
+        towerHealth.healthBar = _healthBarValue;
         // Setup View
-        TowerView towerView =
-            GameObject.Instantiate(_sharedData.Settings.TowerView, _spawnTowerPoint, Quaternion.identity);
+        GameObject tower =
+            GameObject.Instantiate(_sharedData.Settings.tower, _spawnTowerPoint, Quaternion.identity);
 
         // Init components
         towerHealth.InitStartValues(
             _sharedData.Settings.BaseMaxHealth,
             1,
             _sharedData.Settings.BaseHealthRegeneration,
+            _healthBar,
             () =>
-                towerView.transform.DOPunchPosition(Random.insideUnitCircle / 100f, 0.1f, 3)
-                    .OnComplete(() => towerView.transform.position = Vector3.zero),
-            () => GameManager.Instance.OnTowerKilled()
+                tower.transform.DOPunchPosition(Random.insideUnitCircle / 100f, 0.1f, 3)
+                    .OnComplete(() => tower.transform.position = Vector3.zero),
+            () => DataController.Instance.OnTowerKilled()
         );
         // Health Regeneration
 
@@ -57,11 +62,6 @@ public class TowerSpawnSystem : IEcsPreInitSystem, IEcsInitSystem
             _sharedData.Settings.TowerStartingAttackDamage);
 
         towerTargetSelector.InitStartValues(_sharedData.Settings.TowerStartingTargetingRange);
-
-
-        // Init View
-        towerView.PackedEntity = packedEntity;
-        _healthBar.PackedEntity = packedEntity;
-        _sharedData.TowerView = towerView;
+        _sharedData.Settings.tower = tower;
     }
 }

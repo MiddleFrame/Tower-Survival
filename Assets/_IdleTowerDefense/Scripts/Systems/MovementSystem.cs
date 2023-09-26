@@ -6,7 +6,7 @@ public class MovementSystem : IEcsPreInitSystem, IEcsRunSystem
     private EcsWorld world;
     private EcsFilter enemyFilter;
 
-    public void PreInit(EcsSystems systems)
+    public void PreInit(IEcsSystems systems)
     {
         world = systems.GetWorld();
         enemyFilter = world.Filter<Position>()
@@ -14,7 +14,7 @@ public class MovementSystem : IEcsPreInitSystem, IEcsRunSystem
             .End();
     }
 
-    public void Run(EcsSystems systems)
+    public void Run(IEcsSystems systems)
     {
         EcsPool<Position> positionPool = world.GetPool<Position>();
         EcsPool<Movement> movementPool = world.GetPool<Movement>();
@@ -30,6 +30,7 @@ public class MovementSystem : IEcsPreInitSystem, IEcsRunSystem
                 movement.Stopped = false;
                 var newPosition = position + Time.deltaTime * movement.Velocity;
                 position = newPosition;
+                movement.transform.position = new Vector3(position.x, position.y, 0);
             }
             else
             {

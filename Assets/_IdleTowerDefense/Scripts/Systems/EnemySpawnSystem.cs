@@ -25,25 +25,41 @@ public class EnemySpawnSystem : IEcsPreInitSystem, IEcsRunSystem, IEcsInitSystem
     private EcsFilter _towerTargetSelectorFilter;
 
     private const float MELEE_DEFAULT_RANGE=0.8f;
-
-    public void PreInit(EcsSystems systems)
+    private EcsPool<Enemy> _enemyPool;
+    private EcsPool<Position> _positionPool;
+    private EcsPool<Movement> _movementPool;
+    private EcsPool<Health> _healthPool;
+    private EcsPool<CurrencyDrop> _currencyDropPool;
+    private EcsPool<EnemyDamage> _meleeDamagePool;
+    private EcsPool<TowerTargetSelector> _targetSelectorPool;
+    
+    public void PreInit(IEcsSystems systems)
     {
         _stage = 0;
         _sharedData = systems.GetShared<SharedData>();
         _world = systems.GetWorld();
-        _spawnSettings = _sharedData.Settings.EnemySpawnSettings[GameManager.tier];
+        _spawnSettings = _sharedData.Settings.EnemySpawnSettings[DataController.tier];
         _enemySpawnDelay = _spawnSettings.stages[_stage].enemySpawnRate;
     }
 
-    public void Init(EcsSystems systems)
+    public void Init(IEcsSystems systems)
     {
-        _towerTargetSelectorFilter = GameManager.Instance.World.Filter<Tower>().Inc<TowerTargetSelector>().End();
+        _towerTargetSelectorFilter = _world.Filter<Tower>().Inc<TowerTargetSelector>().End();
         expMultiplier = 1;
         oreMultiplier = 1;
         expPerKillMultiply = 1;
+        
+        _enemyPool = _world.GetPool<Enemy>();
+        _positionPool = _world.GetPool<Position>();
+        _movementPool = _world.GetPool<Movement>();
+        _healthPool = _world.GetPool<Health>();
+        _currencyDropPool = _world.GetPool<CurrencyDrop>();
+        _meleeDamagePool = _world.GetPool<EnemyDamage>();
+
+        _targetSelectorPool = _world.GetPool<TowerTargetSelector>();
     }
 
-    public void Run(EcsSystems systems)
+    public void Run(IEcsSystems systems)
     {
         _spawnTimeRemaining -= Time.deltaTime;
         if (!(_spawnTimeRemaining <= 0))
@@ -84,44 +100,37 @@ public class EnemySpawnSystem : IEcsPreInitSystem, IEcsRunSystem, IEcsInitSystem
 
         int entity = _world.NewEntity();
         EcsPackedEntity packedEntity = _world.PackEntity(entity);
-        EcsPool<Enemy> enemyPool = _world.GetPool<Enemy>();
-        EcsPool<Position> positionPool = _world.GetPool<Position>();
-        EcsPool<Movement> movementPool = _world.GetPool<Movement>();
-        EcsPool<Health> healthPool = _world.GetPool<Health>();
-        EcsPool<CurrencyDrop> currencyDropPool = _world.GetPool<CurrencyDrop>();
-        EcsPool<EnemyDamage> meleeDamagePool = _world.GetPool<EnemyDamage>();
 
-        EcsPool<TowerTargetSelector> targetSelectorPool = GameManager.Instance.World.GetPool<TowerTargetSelector>();
-
-        enemyPool.Add(entity);
-        ref Position position = ref positionPool.Add(entity);
-        ref Movement movement = ref movementPool.Add(entity);
-        ref Health health = ref healthPool.Add(entity);
-        ref CurrencyDrop currencyDrop = ref currencyDropPool.Add(entity);
-        ref EnemyDamage enemyDamage = ref meleeDamagePool.Add(entity);
+        _enemyPool.Add(entity);
+        ref Position position = ref _positionPool.Add(entity);
+        ref Movement movement = ref _movementPool.Add(entity);
+        ref Health health = ref _healthPool.Add(entity);
+        ref CurrencyDrop currencyDrop = ref _currencyDropPool.Add(entity);
+        ref EnemyDamage enemyDamage = ref _meleeDamagePool.Add(entity);
         ref TowerTargetSelector targetSelector =
-            ref targetSelectorPool.Get(_towerTargetSelectorFilter.GetRawEntities()[0]);
+            ref _targetSelectorPool.Get(_towerTargetSelectorFilter.GetRawEntities()[0]);
 
         // Setup View
+        movement.transform = enemyView.transform;
 
-
-        var enemyBaseStats = _sharedData.Settings.EnemySpawnSettings[GameManager.tier]._stats[(int) enemyView.enemyNumber];
+        var enemyBaseStats = _sharedData.Settings.EnemySpawnSettings[DataController.tier]._stats[(int) enemyView.enemyNumber];
 
         // Init Components
         position = randomPosition;
         movement.Velocity = -randomPosition.normalized * enemyBaseStats.movementSpeed;
         expPerKillMultiply *= 1.01f;
-        int orePrice = isOreEnemy ? (int)(_sharedData.Settings.EnemySpawnSettings[GameManager.tier].OreMultiplier*oreMultiplier) : 0; 
+        int orePrice = isOreEnemy ? (int)(_sharedData.Settings.EnemySpawnSettings[DataController.tier].OreMultiplier*oreMultiplier) : 0; 
         
         health.InitStartValues(
             enemyBaseStats.startingHealth, 
             _enemyHealthMultiplier,
             0,
+            enemyView.healthBar,
             null,
             () =>
             {
-                GameManager.Instance.EnemiesKilled++;
-                GameManager.Instance.EarnedOre+=orePrice;
+                DataController.Instance.EnemiesKilled++;
+                DataController.Instance.EarnedOre+=orePrice;
             }
         );
 

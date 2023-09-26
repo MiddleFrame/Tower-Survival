@@ -35,7 +35,7 @@ public class TemporaryUpgradeBase : ScriptableObject
     public StatusItem CanUpgrade()
     {
         return (TemporaryUpgradeManager.Instance.TemporaryUpgradeCounts[Title]+PersistentUpgradeManager.PersistentUpgradeCounts[Title]) == maxUpgradeCount? StatusItem.Completed 
-            : GameManager.Currency.HasAtLeast(GetCost())?StatusItem.None:StatusItem.Locked;
+            : DataController.Currency.HasAtLeast(GetCost())?StatusItem.None:StatusItem.Locked;
     }
 
     public virtual void Upgrade()

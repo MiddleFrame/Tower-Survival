@@ -13,7 +13,7 @@ public class HealthTemporaryUpgrade : TemporaryUpgradeBase
 
     public override void Init()
     {
-        healthFilter = GameManager.Instance.World.Filter<Tower>().Inc<Health>().End();
+        healthFilter = DataController.Instance.World.Filter<Tower>().Inc<Health>().End();
     }
 
  
@@ -21,11 +21,11 @@ public class HealthTemporaryUpgrade : TemporaryUpgradeBase
     public override void Upgrade()
     {
         // Handle cost
-        GameManager.Currency.SubtractValues(GetCost());
+        DataController.Currency.SubtractValues(GetCost());
         TemporaryUpgradeManager.Instance.TemporaryUpgradeCounts[Title] += 1;
 
         // Handle Upgrade
-        EcsPool<Health> healthPool = GameManager.Instance.World.GetPool<Health>();
+        EcsPool<Health> healthPool = DataController.Instance.World.GetPool<Health>();
         foreach (int entity in healthFilter)
         {
             ref Health towerHealth = ref healthPool.Get(entity);
@@ -36,7 +36,7 @@ public class HealthTemporaryUpgrade : TemporaryUpgradeBase
     
     public override void UpdateStartValue()
     {
-        EcsPool<Health> healthPool = GameManager.Instance.World.GetPool<Health>();
+        EcsPool<Health> healthPool = DataController.Instance.World.GetPool<Health>();
         foreach (int entity in healthFilter)
         {
             ref Health towerHealth = ref healthPool.Get(entity);

@@ -2,14 +2,18 @@ using Guirao.UltimateTextDamage;
 using Leopotam.EcsLite;
 using UnityEngine;
 
-public class EnemyDamageSystem : IEcsPreInitSystem, IEcsRunSystem
+public class EnemyDamageSystem : IEcsInitSystem, IEcsRunSystem
 {
     private EcsWorld _world;
     private EcsFilter _enemyFilter;
     private EcsFilter _towerFilter;
     private SharedData _sharedData;
-
-    public void PreInit(EcsSystems systems)
+    private EcsPool<Health> healthPool;
+    private EcsPool<EnemyDamage> meleeDamagePool;
+    private EcsPool<Movement> movementPool;
+    private EcsPool<Projectile> projectilePool;
+    private EcsPool<Position> positionPool;
+    public void Init(IEcsSystems systems)
     {
         _sharedData = systems.GetShared<SharedData>();
         _world = systems.GetWorld();
@@ -21,13 +25,16 @@ public class EnemyDamageSystem : IEcsPreInitSystem, IEcsRunSystem
         _towerFilter = _world.Filter<Tower>()
             .Inc<Health>()
             .End();
+        
+        healthPool = _world.GetPool<Health>();
+        meleeDamagePool = _world.GetPool<EnemyDamage>();
+        movementPool= _world.GetPool<Movement>();
+        projectilePool = _world.GetPool<Projectile>();
+        positionPool = _world.GetPool<Position>();
     }
 
-    public void Run(EcsSystems systems)
+    public void Run(IEcsSystems systems)
     {
-        EcsPool<Health> healthPool = _world.GetPool<Health>();
-        EcsPool<EnemyDamage> meleeDamagePool = _world.GetPool<EnemyDamage>();
-        EcsPool<Movement> movementPool = _world.GetPool<Movement>();
 
         foreach (int tower in _towerFilter)
         {
@@ -59,9 +66,7 @@ public class EnemyDamageSystem : IEcsPreInitSystem, IEcsRunSystem
     private void Attack(int enemy, EnemyDamage enemyDamage, EcsPool<Movement> movement)
     {
         int projectileEntity = _world.NewEntity();
-        EcsPackedEntity packedProjectileEntity = _world.PackEntity(projectileEntity);
-        EcsPool<Projectile> projectilePool = _world.GetPool<Projectile>();
-        EcsPool<Position> positionPool = _world.GetPool<Position>();
+
         ref Projectile projectile = ref projectilePool.Add(projectileEntity);
         ref Movement projectileMovement = ref movement.Add(projectileEntity);
         ref Position projectilePosition = ref positionPool.Add(projectileEntity);
@@ -75,11 +80,12 @@ public class EnemyDamageSystem : IEcsPreInitSystem, IEcsRunSystem
             UltimateTextDamageManager.Instance.Add(damage.ToString("N0"), enemyTransform,"tower");
         projectileMovement.StopRadius = 0;
 
-        projectilePosition = ((Vector2) positionPool.Get(enemy));
+        projectileMovement.transform = projectileView.transform;
+        projectilePosition =  positionPool.Get(enemy);
         projectileMovement.Velocity = ((Vector2) positionPool.Get(enemy)).normalized * -projectileView.MovementSpeed;
         // Init View
-        projectileView.transform.position = (Vector2)projectilePosition;
-        projectileView.packedEntity = packedProjectileEntity;
+        //projectileView.transform.position = (Vector2)projectilePosition;
+        projectileView.packedEntity = projectileEntity;
         projectileView.world = _world;
     }
 
@@ -92,7 +98,7 @@ public class EnemyDamageSystem : IEcsPreInitSystem, IEcsRunSystem
             towerHealth.OnKilled?.Invoke();
         }
         enemyDamage.OnStartAttack?.Invoke();
-        enemyDamage.OnDamageDealt?.Invoke(enemyDamage.Damage, _sharedData.TowerView.transform);
+        enemyDamage.OnDamageDealt?.Invoke(enemyDamage.Damage, _sharedData.Settings.tower.transform);
         towerHealth.OnDamaged?.Invoke();
     }
 }

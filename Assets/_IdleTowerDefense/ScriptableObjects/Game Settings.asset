@@ -28,7 +28,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8a24a0c5046a80e4a87d35cf0ca9d8a8, type: 2}
   - {fileID: 11400000, guid: 8127ff662aa37954090bf6ed4bda54a2, type: 2}
   UpgradeSettings: {fileID: 11400000, guid: 2beb3d7ce10244647a0c893696928a4b, type: 2}
-  TowerView: {fileID: 2561317839851661327, guid: 04d700718b1fdb34fb6021c5be5332e7, type: 3}
+  tower: {fileID: 2203159105387169487, guid: 04d700718b1fdb34fb6021c5be5332e7, type: 3}
   ProjectileView: {fileID: -6287025677217260571, guid: 1ec97e3ef12c87446829b12708c5b747, type: 3}
   DynamiteView: {fileID: 1913065458034170199, guid: 4f5262d842b3b764eb79fc3e9fd92e91, type: 3}
   TowerStartingAttackDamage: 1
@@ -38,3 +38,4 @@ MonoBehaviour:
   BaseMaxHealth: 50
   BaseHealthRegeneration: 0
   EnemySpawnRadius: 7.4
+  shootingSound: {fileID: 8300000, guid: 28657b9a57ac57347804d4d07e8f4b12, type: 3}

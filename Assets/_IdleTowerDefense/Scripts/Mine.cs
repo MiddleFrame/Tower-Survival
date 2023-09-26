@@ -95,11 +95,11 @@ public class Mine : MonoBehaviour
 
     public void BuyMine()
     {
-        int ore = GameManager.Currency[CurrencyTypes.Ore].value;
+        int ore = DataController.Currency[CurrencyTypes.Ore].value;
         if (ore < _costMine) return;
-        GameManager.Currency.SubtractValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Ore, _costMine));
+        DataController.Currency.SubtractValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Ore, _costMine));
         ES3.Save(SaveKeys.Mine, true);
-        ES3.Save(SaveKeys.Ore, GameManager.Currency[CurrencyTypes.Ore].value);
+        ES3.Save(SaveKeys.Ore, DataController.Currency[CurrencyTypes.Ore].value);
         OnEnable();
     }
 
@@ -110,8 +110,8 @@ public class Mine : MonoBehaviour
         _grades.capacity++;
         ES3.Save(SaveKeys.MineGrades, _grades);
         UpdateGradeText();
-        GameManager.Currency.SubtractValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, _costGrade * _grades.capacity));
-        ES3.Save(SaveKeys.Gold, GameManager.Currency[CurrencyTypes.Gold].value);
+        DataController.Currency.SubtractValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, _costGrade * _grades.capacity));
+        ES3.Save(SaveKeys.Gold, DataController.Currency[CurrencyTypes.Gold].value);
  
         StopCoroutine(_coroutineGold);
         StopCoroutine(_coroutineOre);
@@ -126,19 +126,19 @@ public class Mine : MonoBehaviour
         _grades.limit++;
         ES3.Save(SaveKeys.MineGrades, _grades);
         UpdateLimitText();
-        GameManager.Currency.SubtractValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, _costGradeLimit * _grades.limit));
-        ES3.Save(SaveKeys.Gold, GameManager.Currency[CurrencyTypes.Gold].value);
+        DataController.Currency.SubtractValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, _costGradeLimit * _grades.limit));
+        ES3.Save(SaveKeys.Gold, DataController.Currency[CurrencyTypes.Gold].value);
     }
 
     public void CollectMine()
     {
-        GameManager.Currency.AddValues(new KeyValuePair<CurrencyTypes,int>(CurrencyTypes.Gold,_gold));
-        GameManager.Currency.AddValues(new KeyValuePair<CurrencyTypes,int>(CurrencyTypes.Ore,_ore));
+        DataController.Currency.AddValues(new KeyValuePair<CurrencyTypes,int>(CurrencyTypes.Gold,_gold));
+        DataController.Currency.AddValues(new KeyValuePair<CurrencyTypes,int>(CurrencyTypes.Ore,_ore));
         _ore = 0;
         _gold = 0;
         _earned.text = $"Now available <color=yellow>{_gold} gold</color> and <color=#727272>{_ore} ore</color>";
-        ES3.Save(SaveKeys.Ore, GameManager.Currency[CurrencyTypes.Ore].value);
-        ES3.Save(SaveKeys.Gold, GameManager.Currency[CurrencyTypes.Gold].value);
+        ES3.Save(SaveKeys.Ore, DataController.Currency[CurrencyTypes.Ore].value);
+        ES3.Save(SaveKeys.Gold, DataController.Currency[CurrencyTypes.Gold].value);
     }
 
 

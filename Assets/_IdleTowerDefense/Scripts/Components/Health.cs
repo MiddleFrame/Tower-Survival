@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public struct Health
 {
@@ -21,9 +22,12 @@ public struct Health
     public Action OnDamaged;
     public Action OnKilled;
 
-    public void InitStartValues(float baseHealth, float healthMultiplier, float baseRegen, Action onDamaged,
+    public Slider healthBar;
+    public Component healthImage;
+    public void InitStartValues(float baseHealth, float healthMultiplier, float baseRegen,Component health, Action onDamaged,
         Action onKilled)
     {
+        healthImage = health;
         InitHealth(baseHealth, healthMultiplier);
         InitRegeneration(baseRegen);
         OnKilled += onKilled;

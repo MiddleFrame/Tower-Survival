@@ -8,14 +8,14 @@ public class HealthRegenerationSystem : IEcsPreInitSystem, IEcsRunSystem
     private EcsWorld world;
     private EcsFilter healthFilter;
 
-    public void PreInit(EcsSystems systems)
+    public void PreInit(IEcsSystems systems)
     {
         world = systems.GetWorld();
         healthFilter = world.Filter<Health>().End();
     }
 
 
-    public void Run(EcsSystems systems)
+    public void Run(IEcsSystems systems)
     {
         EcsPool<Health> healthPool = world.GetPool<Health>();
         

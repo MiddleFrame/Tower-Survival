@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public struct TowerTargetSelector
 {
@@ -7,6 +8,7 @@ public struct TowerTargetSelector
     public float MultiShotChange;
     public List<int> CurrentTargets;
 
+    public LineRenderer radiusRenderer;
     public void InitStartValues(float baseRange)
     {
         TargetingRange = baseRange;

@@ -68,10 +68,10 @@ public class PersistentUpgradeManager : MonoBehaviour
             currentButton.Button.onClick.AddListener(
                 () =>
                 {
-                    GameManager.Currency.SubtractValues(
+                    DataController.Currency.SubtractValues(
                         new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Ore, upgrade.GetCost()));
                     PersistentUpgradeCounts[upgrade.Title]++;
-                    ES3.Save(SaveKeys.Ore, GameManager.Currency[CurrencyTypes.Ore].value);
+                    ES3.Save(SaveKeys.Ore, DataController.Currency[CurrencyTypes.Ore].value);
                     ES3.Save(SaveKeys.PersistentUpgradeCounts, PersistentUpgradeCounts);
                     currentButton.CostText.text = $"{upgrade.GetCost():N0}";
                     currentButton.UpgradeAmountText.text =
@@ -107,10 +107,10 @@ public class PersistentUpgradeManager : MonoBehaviour
 
         instantiate.button.onClick.AddListener(() =>
         {
-            if(GameManager.Currency[CurrencyTypes.Gold].value < GameSettings.UpgradeSettings.NextGrades[window].cost[stages[window]]) return;
-            GameManager.Currency.SubtractValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold,
+            if(DataController.Currency[CurrencyTypes.Gold].value < GameSettings.UpgradeSettings.NextGrades[window].cost[stages[window]]) return;
+            DataController.Currency.SubtractValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold,
                 GameSettings.UpgradeSettings.NextGrades[window].cost[stages[window]]));
-            ES3.Save(SaveKeys.Gold, GameManager.Currency[CurrencyTypes.Gold].value);
+            ES3.Save(SaveKeys.Gold, DataController.Currency[CurrencyTypes.Gold].value);
             stages[window]++;
             ES3.Save(SaveKeys.Stage, stages);
             
@@ -135,10 +135,10 @@ public class PersistentUpgradeManager : MonoBehaviour
                 currentButton.Button.onClick.AddListener(
                     () =>
                     {
-                        GameManager.Currency.SubtractValues(
+                        DataController.Currency.SubtractValues(
                             new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Ore, upgrade.GetCost()));
                         PersistentUpgradeCounts[upgrade.Title]++;
-                        ES3.Save(SaveKeys.Ore, GameManager.Currency[CurrencyTypes.Ore].value);
+                        ES3.Save(SaveKeys.Ore, DataController.Currency[CurrencyTypes.Ore].value);
                         ES3.Save(SaveKeys.PersistentUpgradeCounts, PersistentUpgradeCounts);
                         currentButton.CostText.text = $"{upgrade.GetCost():N0}";
                         currentButton.UpgradeAmountText.text =

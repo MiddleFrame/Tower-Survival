@@ -1,6 +1,6 @@
 using Leopotam.EcsLite;
-using Nomnom.EcsLiteDebugger;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class World : MonoBehaviour
 {
@@ -8,45 +8,48 @@ public class World : MonoBehaviour
 
     [SerializeField]
     private Transform _spawnTowerPoint;
-    [SerializeField]
-    private HealthBar _healthBar;
 
     [SerializeField]
+    private Image _healthBar;
+    [SerializeField]
+    private Slider _healthBarValue;
+    [SerializeField]
     private AudioSource _wordSound;
-    public EcsWorld _world;
-    EcsSystems _systems;
+
+    private EcsWorld _world;
+    private IEcsSystems _systems;
 
     void Awake()
     {
 
         _world = new EcsWorld();
-        GameManager.Instance.World = _world;
+        DataController.Instance.World = _world;
 
         SharedData sharedData = InitData.sharedData;
         
-        _systems = new EcsSystems(_world, sharedData).Add(new TowerSpawnSystem(_spawnTowerPoint,_healthBar))
+        _systems = new EcsSystems(_world, sharedData).Add(new TowerSpawnSystem(_spawnTowerPoint,_healthBar,_healthBarValue))
             .Add(new TowerUpgradeLoadingSystem())
+            .Add(new HealthBarUISystem())
             .Add(new TowerTargetingSystem())
-            .Add(new TowerFiringSystem(sharedData.Settings.TowerView.shootingSound,_wordSound))
+            .Add(new TowerFiringSystem(sharedData.Settings.shootingSound,_wordSound))
             .Add(new EnemySpawnSystem())
             .Add(new EnemyDamageSystem())
             .Add(new HealthRegenerationSystem())
             .Add(new DestroySystem())
             .Add(new DestroySystem())
-            .Add(new WorldDebugSystem("Main World"))
             .Add(new MovementSystem());
 
         Init();
     }
 
-    public void Init()
+    private void Init()
     {
         _systems.Init();
     }
 
     void Update()
     {
-        if (!GameManager.Instance.Paused)
+        if (!DataController.Instance.Paused)
         {
             _systems?.Run();
         }
@@ -54,7 +57,13 @@ public class World : MonoBehaviour
 
     void OnDestroy()
     {
-        _world?.Destroy();
-        _systems?.Destroy();
+        if (_systems != null) {
+            _systems.Destroy ();
+            _systems = null;
+        }
+        if (_world != null) {
+            _world.Destroy ();
+            _world = null;
+        }
     }
 }

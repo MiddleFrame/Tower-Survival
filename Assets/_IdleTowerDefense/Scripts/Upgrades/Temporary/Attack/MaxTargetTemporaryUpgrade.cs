@@ -12,7 +12,7 @@ public class MaxTargetTemporaryUpgrade : TemporaryUpgradeBase
 
     public override void Init()
     {
-        towerTargetSelectorFilter = GameManager.Instance.World.Filter<Tower>()
+        towerTargetSelectorFilter = DataController.Instance.World.Filter<Tower>()
             .Inc<TowerTargetSelector>()
             .End();
     }
@@ -22,11 +22,11 @@ public class MaxTargetTemporaryUpgrade : TemporaryUpgradeBase
     public override void Upgrade()
     {
         // Handle cost
-        GameManager.Currency.SubtractValues(GetCost());
+        DataController.Currency.SubtractValues(GetCost());
         TemporaryUpgradeManager.Instance.TemporaryUpgradeCounts[Title] += 1;
 
         // Handle upgrade
-        EcsPool<TowerTargetSelector> targetSelectorPool = GameManager.Instance.World.GetPool<TowerTargetSelector>();
+        EcsPool<TowerTargetSelector> targetSelectorPool = DataController.Instance.World.GetPool<TowerTargetSelector>();
         foreach (int entity in towerTargetSelectorFilter)
         {
             ref TowerTargetSelector towerWeapon = ref targetSelectorPool.Get(entity);
@@ -37,7 +37,7 @@ public class MaxTargetTemporaryUpgrade : TemporaryUpgradeBase
     public override void UpdateStartValue()
     {
         // Handle upgrade
-        EcsPool<TowerTargetSelector> targetSelectorPool = GameManager.Instance.World.GetPool<TowerTargetSelector>();
+        EcsPool<TowerTargetSelector> targetSelectorPool = DataController.Instance.World.GetPool<TowerTargetSelector>();
         foreach (int entity in towerTargetSelectorFilter)
         {
             ref TowerTargetSelector towerWeapon = ref targetSelectorPool.Get(entity);

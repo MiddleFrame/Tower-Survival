@@ -22,15 +22,11 @@ public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
     [SerializeField]
     private UnityEngine.UI.ScrollRect _scrollView;
 
-    [SerializeField]
-    private float autoUpgradeInterval = 0.5f;
 
     // String = Upgrade.Title, int = upgrade level
     public Dictionary<string, int> TemporaryUpgradeCounts = new();
     public bool MenuOpen { get; private set; }
 
-    private bool _autoUpgrading;
-    private float _autoUpgradeTimeRemaining;
     private Camera _camera;
 
     private void Awake()
@@ -76,23 +72,6 @@ public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
             );
         }
 
-    }
-
- 
-
-    private void Update()
-    {
-        _autoUpgradeTimeRemaining -= Time.deltaTime;
-        if (_autoUpgrading && _autoUpgradeTimeRemaining <= 0)
-        {
-            _autoUpgradeTimeRemaining = autoUpgradeInterval;
-            foreach (TemporaryUpgradeBase upgrade in gameSettings.UpgradeSettings.TemporaryUpgrades.Where(upgrade =>
-                         upgrade.CanUpgrade() == StatusItem.None))
-            {
-                upgrade.Upgrade();
-                Debug.Log($"{nameof(TemporaryUpgradeManager)}.{nameof(Update)}() - Upgrading {upgrade.Title}");
-            }
-        }
     }
 
     public void OpenAttackMenu()
@@ -164,9 +143,4 @@ public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
         }
     }
 
-    public void ToggleAutoUpgrade(bool inputValue)
-    {
-        _autoUpgrading = inputValue;
-        Debug.Log($"{nameof(TemporaryUpgradeManager)}.{nameof(ToggleAutoUpgrade)}() - AutoUpgrading: {_autoUpgrading}");
-    }
 }

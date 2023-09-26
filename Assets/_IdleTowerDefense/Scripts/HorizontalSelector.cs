@@ -41,7 +41,7 @@ public class HorizontalSelector : MonoBehaviour
 
     private void Start()
     {
-        CreateNewItem("0x",new [] {(UnityAction) (()=>GameManager.Instance.SetGameSpeed(0))});
+        CreateNewItem("0x",new [] {(UnityAction) (()=>DataController.Instance.SetGameSpeed(0))});
         float maxSpeed=1;
         if (rewardedSpeed)
             maxSpeed += 1;
@@ -50,7 +50,7 @@ public class HorizontalSelector : MonoBehaviour
         for (float speed = 1; speed <= maxSpeed; speed+=0.5f)
         {
             var speed1 = speed;
-            CreateNewItem($"{speed:N1}x",new [] {(UnityAction) (()=>GameManager.Instance.SetGameSpeed(speed1))});
+            CreateNewItem($"{speed:N1}x",new [] {(UnityAction) (()=>DataController.Instance.SetGameSpeed(speed1))});
         }
 
         _selectorAnimator = gameObject.GetComponent<Animator>();

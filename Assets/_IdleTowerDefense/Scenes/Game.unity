@@ -95704,7 +95704,7 @@ MonoBehaviour:
   m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 231.51459, y: 200}
+  m_CellSize: {x: 68.82744, y: 200}
   m_Spacing: {x: 25, y: 25}
   m_Constraint: 1
   m_ConstraintCount: 1
@@ -96310,7 +96310,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnTowerPoint: {fileID: 1684226389}
-  _healthBar: {fileID: 1393644424}
+  _healthBar: {fileID: 914295348}
+  _healthBarValue: {fileID: 1393644423}
   _wordSound: {fileID: 1779539886}
 --- !u!4 &291625697
 Transform:
@@ -97423,7 +97424,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 38.7
+  m_fontSize: 29.7
   m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -99946,7 +99947,7 @@ MonoBehaviour:
   m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 231.51459, y: 200}
+  m_CellSize: {x: 68.82744, y: 200}
   m_Spacing: {x: 25, y: 25}
   m_Constraint: 1
   m_ConstraintCount: 1
@@ -102545,7 +102546,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1393644422}
   - component: {fileID: 1393644423}
-  - component: {fileID: 1393644424}
   m_Layer: 5
   m_Name: healthBar
   m_TagString: Untagged
@@ -102626,20 +102626,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1393644424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1393644421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83b787dd8ae5db24bab0f4e535127087, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _healthBar: {fileID: 1393644423}
-  _healthImage: {fileID: 914295348}
 --- !u!1001 &1397520208
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -108442,8 +108428,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3870791217936152767}
   m_HandleRect: {fileID: 3980316766642674857}
   m_Direction: 2
-  m_Value: 1.0000076
-  m_Size: 0.5485709
+  m_Value: 1.0000092
+  m_Size: 0.54857063
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -109171,7 +109157,7 @@ MonoBehaviour:
   m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 231.51459, y: 200}
+  m_CellSize: {x: 68.82744, y: 200}
   m_Spacing: {x: 25, y: 25}
   m_Constraint: 1
   m_ConstraintCount: 1

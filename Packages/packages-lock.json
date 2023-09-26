@@ -1,18 +1,11 @@
 {
   "dependencies": {
-    "com.leoecscommunity.ecslite": {
-      "version": "https://github.com/LeoECSCommunity/ecslite.git",
+    "com.leopotam.ecslite": {
+      "version": "https://github.com/Leopotam/ecslite.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "50426caebffc4aec7a6a9c71b9c9bdd579aa45a1"
-    },
-    "com.nomnom.ecslite-debugger": {
-      "version": "https://github.com/nomnomab/EcsLiteDebugger.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "959f58348d7daf10534c435fb059b25b12433713"
+      "hash": "8e714f2caf4450757637f1d31001d0961f66288d"
     },
     "com.unity.2d.animation": {
       "version": "9.0.3",

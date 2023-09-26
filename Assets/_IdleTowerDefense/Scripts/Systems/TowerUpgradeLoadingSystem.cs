@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Leopotam.EcsLite;
-using UnityEngine;
 
 public class TowerUpgradeLoadingSystem : IEcsPreInitSystem, IEcsInitSystem
 {
@@ -10,7 +8,7 @@ public class TowerUpgradeLoadingSystem : IEcsPreInitSystem, IEcsInitSystem
     private SharedData sharedData;
     private Dictionary<string, int> persistentUpgradeCounts = new Dictionary<string, int>();
 
-    public void PreInit(EcsSystems systems)
+    public void PreInit(IEcsSystems systems)
     {
         sharedData = systems.GetShared<SharedData>();
         world = systems.GetWorld();
@@ -25,14 +23,11 @@ public class TowerUpgradeLoadingSystem : IEcsPreInitSystem, IEcsInitSystem
         }
     }
 
-    public void Init(EcsSystems systems)
+    public void Init(IEcsSystems systems)
     {
         foreach (PersistentUpgradeBase upgrade in sharedData.Settings.UpgradeSettings.PersistentUpgrades)
         {
             upgrade.Init();
-            if (persistentUpgradeCounts[upgrade.Title] == 0)
-                continue;
-
         }
     }
 }

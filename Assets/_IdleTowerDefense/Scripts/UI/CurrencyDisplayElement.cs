@@ -8,7 +8,7 @@ public class CurrencyDisplayElement : MonoBehaviour
 
     private void Start()
     {
-        TextObject.text = GameManager.Currency[currencyType].value.ToString("N0");
-        GameManager.currencyText[currencyType] = TextObject;
+        TextObject.text = DataController.Currency[currencyType].value.ToString("N0");
+        DataController.currencyText[currencyType] = TextObject;
     }
 }

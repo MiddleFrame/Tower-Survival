@@ -11,7 +11,7 @@ public class AttackSpeedTemporaryUpgrade : TemporaryUpgradeBase
 
     public override void Init()
     {
-        weaponFilter = GameManager.Instance.World.Filter<TowerWeapon>().End();
+        weaponFilter = DataController.Instance.World.Filter<TowerWeapon>().End();
     }
 
   
@@ -20,11 +20,11 @@ public class AttackSpeedTemporaryUpgrade : TemporaryUpgradeBase
     public override void Upgrade()
     {
         // Handle cost
-        GameManager.Currency.SubtractValues(GetCost());
+        DataController.Currency.SubtractValues(GetCost());
         TemporaryUpgradeManager.Instance.TemporaryUpgradeCounts[Title] += 1;
 
         // Handle upgrade
-        EcsPool<TowerWeapon> weaponPool = GameManager.Instance.World.GetPool<TowerWeapon>();
+        EcsPool<TowerWeapon> weaponPool = DataController.Instance.World.GetPool<TowerWeapon>();
         foreach (int entity in weaponFilter)
         {
             ref TowerWeapon towerWeapon = ref weaponPool.Get(entity);
@@ -35,7 +35,7 @@ public class AttackSpeedTemporaryUpgrade : TemporaryUpgradeBase
 
     public override void UpdateStartValue()
     {
-        EcsPool<TowerWeapon> weaponPool = GameManager.Instance.World.GetPool<TowerWeapon>();
+        EcsPool<TowerWeapon> weaponPool = DataController.Instance.World.GetPool<TowerWeapon>();
         foreach (int entity in weaponFilter)
         {
             ref TowerWeapon towerWeapon = ref weaponPool.Get(entity);

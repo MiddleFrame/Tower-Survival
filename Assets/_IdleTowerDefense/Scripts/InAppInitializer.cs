@@ -119,23 +119,23 @@ namespace Managers
 
         public void BuyStartedPack()
         {
-            GameManager.Currency.AddValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, 1000));
+            DataController.Currency.AddValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, 1000));
             AddSpeed();
         }
 
         public void BuyBigGold()
         {
-            GameManager.Currency.AddValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, 5000));
+            DataController.Currency.AddValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, 5000));
         }
 
         public void BuyMediumGold()
         {
-            GameManager.Currency.AddValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, 2000));
+            DataController.Currency.AddValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, 2000));
         }
 
         public void BuySmallGold()
         {
-            GameManager.Currency.AddValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, 500));
+            DataController.Currency.AddValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, 500));
         }
 
         private static bool CheckBuyState(string id)

@@ -14,7 +14,7 @@ public class OrePerKill : TemporaryUpgradeBase
     public override void Upgrade()
     {
         // Handle cost
-        GameManager.Currency.SubtractValues(GetCost());
+        DataController.Currency.SubtractValues(GetCost());
         TemporaryUpgradeManager.Instance.TemporaryUpgradeCounts[Title] += 1;
 
         // Handle upgrade

@@ -85,7 +85,7 @@ public class Settings : MonoBehaviour
     {
         if (promo.ToUpper() == "GOLD10" && !ES3.Load("Promo1", false))
         {
-            GameManager.Currency.AddValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, 10));
+            DataController.Currency.AddValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, 10));
             ES3.Save("Promo1", true);
         }
     }
