@@ -17,4 +17,4 @@ MonoBehaviour:
   costUpgradeMultiplier: 100
   window: 0
   openingStage: 1
-  AttackSpeedMultiplier: 0.1
+  AttackSpeedMultiplier: 0.06

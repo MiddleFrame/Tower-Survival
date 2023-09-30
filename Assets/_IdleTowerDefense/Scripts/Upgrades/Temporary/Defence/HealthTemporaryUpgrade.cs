@@ -10,10 +10,10 @@ public class HealthTemporaryUpgrade : TemporaryUpgradeBase
     public float HealthPerUpgrade = 10;
 
     private EcsFilter healthFilter;
-
-    public override void Init()
-    {
-        healthFilter = DataController.Instance.World.Filter<Tower>().Inc<Health>().End();
+    private EcsWorld _world;
+    public override void Init(IEcsSystems system)
+    { _world = system.GetWorld();
+        healthFilter = _world.Filter<Tower>().Inc<Health>().End();
     }
 
  
@@ -25,7 +25,7 @@ public class HealthTemporaryUpgrade : TemporaryUpgradeBase
         TemporaryUpgradeManager.Instance.TemporaryUpgradeCounts[Title] += 1;
 
         // Handle Upgrade
-        EcsPool<Health> healthPool = DataController.Instance.World.GetPool<Health>();
+        EcsPool<Health> healthPool = _world.GetPool<Health>();
         foreach (int entity in healthFilter)
         {
             ref Health towerHealth = ref healthPool.Get(entity);
@@ -36,7 +36,7 @@ public class HealthTemporaryUpgrade : TemporaryUpgradeBase
     
     public override void UpdateStartValue()
     {
-        EcsPool<Health> healthPool = DataController.Instance.World.GetPool<Health>();
+        EcsPool<Health> healthPool = _world.GetPool<Health>();
         foreach (int entity in healthFilter)
         {
             ref Health towerHealth = ref healthPool.Get(entity);

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Game Settings
   m_EditorClassIdentifier: 
   currencies:
-  - value: 0
+  - value: 4
     type: 0
     sprite: {fileID: 21300000, guid: 5f07913d1f861f94f98de88f382f24be, type: 3}
-  - value: 1116
+  - value: 1572
     type: 1
     sprite: {fileID: 21300000, guid: 70d3e6673155a39438547c5e68ad368a, type: 3}
   - value: 100
@@ -33,9 +33,9 @@ MonoBehaviour:
   DynamiteView: {fileID: 1913065458034170199, guid: 4f5262d842b3b764eb79fc3e9fd92e91, type: 3}
   TowerStartingAttackDamage: 1
   TowerStartingAttackCooldown: 2
-  TowerStartingAttackTargets: 1
+  TowerStartingAttackTargets: 2
   TowerStartingTargetingRange: 2
   BaseMaxHealth: 50
   BaseHealthRegeneration: 0
-  EnemySpawnRadius: 7.4
+  EnemySpawnRadius: 3.8
   shootingSound: {fileID: 8300000, guid: 28657b9a57ac57347804d4d07e8f4b12, type: 3}

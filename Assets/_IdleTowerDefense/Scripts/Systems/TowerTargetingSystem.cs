@@ -28,7 +28,6 @@ public class TowerTargetingSystem : IEcsInitSystem, IEcsRunSystem
         towerTargetSelectorPool = world.GetPool<TowerTargetSelector>();
         towerWeaponPool = world.GetPool<TowerWeapon>();
         enemyPositionPool = world.GetPool<Position>();
-        TemporaryUpgradeManager.Instance.UpdateEnemySpawnRange(_targetingRange);
     }
 
 

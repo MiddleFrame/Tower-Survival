@@ -17,13 +17,13 @@ public class World : MonoBehaviour
     private AudioSource _wordSound;
 
     private EcsWorld _world;
+    public IEcsSystems System => _systems;
     private IEcsSystems _systems;
 
     void Awake()
     {
 
         _world = new EcsWorld();
-        DataController.Instance.World = _world;
 
         SharedData sharedData = InitData.sharedData;
         

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Leopotam.EcsLite;
 using UnityEngine;
 
 public class TemporaryUpgradeBase : ScriptableObject
@@ -21,7 +22,7 @@ public class TemporaryUpgradeBase : ScriptableObject
 
     public Action<float> onUpgrade;
     
-    public virtual void Init()
+    public virtual void Init(IEcsSystems system)
     {
     }
 

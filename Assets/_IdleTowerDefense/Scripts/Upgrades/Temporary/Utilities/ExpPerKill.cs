@@ -8,8 +8,6 @@ public class ExpPerKill : TemporaryUpgradeBase
     public float expPerUpgrade;
 
 
-    private EcsFilter _towerTargetSelectorFilter;
-
 
     public override void Upgrade()
     {
@@ -21,13 +19,13 @@ public class ExpPerKill : TemporaryUpgradeBase
 
 
         EnemySpawnSystem.expMultiplier += expPerUpgrade;
-        value = expPerUpgrade;
+        value = EnemySpawnSystem.expMultiplier;
     }
 
     public override void UpdateStartValue()
     {
         // Handle upgrade
         EnemySpawnSystem.expMultiplier += PersistentUpgradeManager.PersistentUpgradeCounts[Title] * expPerUpgrade;
-        value = expPerUpgrade;
+        value = EnemySpawnSystem.expMultiplier;
     }
 }

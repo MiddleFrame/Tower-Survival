@@ -7,10 +7,11 @@ public class AttackDamageTemporaryUpgrade : TemporaryUpgradeBase
 {
     [Header("Upgrade Specific Values")]
     private EcsFilter _weaponFilter;
-
-    public override void Init()
+    private EcsWorld _world;
+    public override void Init(IEcsSystems system)
     {
-        _weaponFilter = DataController.Instance.World.Filter<TowerWeapon>().End();
+        _world = system.GetWorld();
+        _weaponFilter = _world.Filter<TowerWeapon>().End();
     }
     
 
@@ -21,7 +22,7 @@ public class AttackDamageTemporaryUpgrade : TemporaryUpgradeBase
         TemporaryUpgradeManager.Instance.TemporaryUpgradeCounts[Title] += 1;
 
         // Handle upgrade
-        EcsPool<TowerWeapon> weaponPool = DataController.Instance.World.GetPool<TowerWeapon>();
+        EcsPool<TowerWeapon> weaponPool = _world.GetPool<TowerWeapon>();
         foreach (int entity in _weaponFilter)
         {
             ref TowerWeapon towerWeapon = ref weaponPool.Get(entity);
@@ -31,7 +32,7 @@ public class AttackDamageTemporaryUpgrade : TemporaryUpgradeBase
 
     public override void UpdateStartValue()
     {
-        EcsPool<TowerWeapon> weaponPool = DataController.Instance.World.GetPool<TowerWeapon>();
+        EcsPool<TowerWeapon> weaponPool =_world.GetPool<TowerWeapon>();
         foreach (int entity in _weaponFilter)
         {
             ref TowerWeapon towerWeapon = ref weaponPool.Get(entity);

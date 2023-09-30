@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666f52d98c10d444caae1971a21e979f, type: 3}
   m_Name: OrePerKill
   m_EditorClassIdentifier: 
-  Title: OrePerKill
+  Title: Ore Per Kill
   maxUpgradeCount: 100
   costUpgradeMultiplier: 1.03
   window: 2

@@ -11,10 +11,10 @@ public class MultishotTemporaryUpgrade : TemporaryUpgradeBase
     private EcsFilter _towerTargetSelectorFilter;
 
     public float percentPerUpgrade;
-
-    public override void Init()
-    {
-        _towerTargetSelectorFilter = DataController.Instance.World.Filter<Tower>()
+    private EcsWorld _world;
+    public override void Init(IEcsSystems system)
+    { _world = system.GetWorld();
+        _towerTargetSelectorFilter = _world.Filter<Tower>()
             .Inc<TowerTargetSelector>()
             .End();
     }
@@ -28,7 +28,7 @@ public class MultishotTemporaryUpgrade : TemporaryUpgradeBase
         TemporaryUpgradeManager.Instance.TemporaryUpgradeCounts[Title] += 1;
 
         // Handle upgrade
-        EcsPool<TowerTargetSelector> targetSelectorPool = DataController.Instance.World.GetPool<TowerTargetSelector>();
+        EcsPool<TowerTargetSelector> targetSelectorPool = _world.GetPool<TowerTargetSelector>();
         foreach (int entity in _towerTargetSelectorFilter)
         {
             ref TowerTargetSelector towerWeapon = ref targetSelectorPool.Get(entity);
@@ -39,7 +39,7 @@ public class MultishotTemporaryUpgrade : TemporaryUpgradeBase
     public override void UpdateStartValue()
     {
         // Handle upgrade
-        EcsPool<TowerTargetSelector> targetSelectorPool = DataController.Instance.World.GetPool<TowerTargetSelector>();
+        EcsPool<TowerTargetSelector> targetSelectorPool = _world.GetPool<TowerTargetSelector>();
         foreach (int entity in _towerTargetSelectorFilter)
         {
             ref TowerTargetSelector towerWeapon = ref targetSelectorPool.Get(entity);

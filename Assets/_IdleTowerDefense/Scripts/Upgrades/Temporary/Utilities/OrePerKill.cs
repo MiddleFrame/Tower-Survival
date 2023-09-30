@@ -8,8 +8,6 @@ public class OrePerKill : TemporaryUpgradeBase
     public float orePerUpgrade;
 
 
-    private EcsFilter _towerTargetSelectorFilter;
-
 
     public override void Upgrade()
     {
@@ -21,13 +19,13 @@ public class OrePerKill : TemporaryUpgradeBase
 
 
         EnemySpawnSystem.oreMultiplier += orePerUpgrade;
-        value = orePerUpgrade;
+        value = EnemySpawnSystem.oreMultiplier;
     }
 
     public override void UpdateStartValue()
     {
         // Handle upgrade
         EnemySpawnSystem.oreMultiplier += PersistentUpgradeManager.PersistentUpgradeCounts[Title] * orePerUpgrade;
-        value = orePerUpgrade;
+        value = EnemySpawnSystem.oreMultiplier;
     }
 }

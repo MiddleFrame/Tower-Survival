@@ -8,11 +8,11 @@ public class MaxTargetTemporaryUpgrade : TemporaryUpgradeBase
 {
     [Header("Upgrade Specific Values")]
     
-    private EcsFilter towerTargetSelectorFilter;
-
-    public override void Init()
-    {
-        towerTargetSelectorFilter = DataController.Instance.World.Filter<Tower>()
+    private EcsFilter _towerTargetSelectorFilter;
+    private EcsWorld _world;
+    public override void Init(IEcsSystems system)
+    { _world = system.GetWorld();
+        _towerTargetSelectorFilter = _world.Filter<Tower>()
             .Inc<TowerTargetSelector>()
             .End();
     }
@@ -26,8 +26,8 @@ public class MaxTargetTemporaryUpgrade : TemporaryUpgradeBase
         TemporaryUpgradeManager.Instance.TemporaryUpgradeCounts[Title] += 1;
 
         // Handle upgrade
-        EcsPool<TowerTargetSelector> targetSelectorPool = DataController.Instance.World.GetPool<TowerTargetSelector>();
-        foreach (int entity in towerTargetSelectorFilter)
+        EcsPool<TowerTargetSelector> targetSelectorPool = _world.GetPool<TowerTargetSelector>();
+        foreach (int entity in _towerTargetSelectorFilter)
         {
             ref TowerTargetSelector towerWeapon = ref targetSelectorPool.Get(entity);
             towerWeapon.MaxTargets += 1;
@@ -37,11 +37,11 @@ public class MaxTargetTemporaryUpgrade : TemporaryUpgradeBase
     public override void UpdateStartValue()
     {
         // Handle upgrade
-        EcsPool<TowerTargetSelector> targetSelectorPool = DataController.Instance.World.GetPool<TowerTargetSelector>();
-        foreach (int entity in towerTargetSelectorFilter)
+        EcsPool<TowerTargetSelector> targetSelectorPool = _world.GetPool<TowerTargetSelector>();
+        foreach (int entity in _towerTargetSelectorFilter)
         {
             ref TowerTargetSelector towerWeapon = ref targetSelectorPool.Get(entity);
-            towerWeapon.MaxTargets = 1+PersistentUpgradeManager.PersistentUpgradeCounts[Title];
+            towerWeapon.MaxTargets +=PersistentUpgradeManager.PersistentUpgradeCounts[Title];
             value = towerWeapon.MaxTargets;
         }
     }

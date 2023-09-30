@@ -98,7 +98,7 @@ public class EnemyDamageSystem : IEcsInitSystem, IEcsRunSystem
             towerHealth.OnKilled?.Invoke();
         }
         enemyDamage.OnStartAttack?.Invoke();
-        enemyDamage.OnDamageDealt?.Invoke(enemyDamage.Damage, _sharedData.Settings.tower.transform);
+        enemyDamage.OnDamageDealt?.Invoke(enemyDamage.Damage, _sharedData.towerView.transform);
         towerHealth.OnDamaged?.Invoke();
     }
 }

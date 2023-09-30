@@ -22,6 +22,8 @@ public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
     [SerializeField]
     private UnityEngine.UI.ScrollRect _scrollView;
 
+    [SerializeField]
+    private World _world;
 
     // String = Upgrade.Title, int = upgrade level
     public Dictionary<string, int> TemporaryUpgradeCounts = new();
@@ -29,10 +31,11 @@ public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
 
     private Camera _camera;
 
-    private void Awake()
+    private void Start()
     {
+        Debug.Log("Temporary Init");
         _camera = Camera.main;
-        gameSettings.UpgradeSettings.InitTemporaryUpgrades();
+        gameSettings.UpgradeSettings.InitTemporaryUpgrades(_world.System);
         int[] stages =  ES3.Load(SaveKeys.Stage, new int[3]);
         
         foreach (var upgrade in gameSettings.UpgradeSettings.TemporaryUpgrades.Where(upgrade => upgrade.openingStage <= stages[upgrade.window ]))
@@ -53,10 +56,10 @@ public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
 
             temporaryUpgradeButton.titleObj.text = upgrade.Title.ToUpper();
             temporaryUpgradeButton.targetTemporaryUpgrade.onUpgrade +=
-                x => temporaryUpgradeButton.currentValue.text = "Value: "+x.ToString("N1");
+                x => temporaryUpgradeButton.currentValue.text = "Value: "+x.ToString("N2");
             temporaryUpgradeButton.targetTemporaryUpgrade.onUpgrade += _ =>
                 temporaryUpgradeButton.cost.text =
-                    temporaryUpgradeButton.targetTemporaryUpgrade.GetCost().Value +" exp";
+                    temporaryUpgradeButton.targetTemporaryUpgrade.GetCost().Value +" ore";
             
             temporaryUpgradeButton.targetTemporaryUpgrade.UpdateStartValue();
 

@@ -15,7 +15,6 @@ public enum CurrencyTypes
 
 public class DataController : Singleton<DataController>
 {
-    public EcsWorld World;
     public static Dictionary<CurrencyTypes, Currency> Currency = new Dictionary<CurrencyTypes, Currency>();
     public static Dictionary<CurrencyTypes, TMP_Text> currencyText = new Dictionary<CurrencyTypes, TMP_Text>();
     public int EnemiesKilled;

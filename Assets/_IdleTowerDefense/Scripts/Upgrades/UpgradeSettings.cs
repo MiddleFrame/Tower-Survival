@@ -11,11 +11,11 @@ public class UpgradeSettings : ScriptableObject
     public List<PersistentUpgradeBase> PersistentUpgrades = new List<PersistentUpgradeBase>();
     public List<NextGrade> NextGrades = new List<NextGrade>();
 
-    public void InitTemporaryUpgrades()
+    public void InitTemporaryUpgrades(IEcsSystems system)
     {
         foreach (var upgrade in TemporaryUpgrades)
         {
-            upgrade.Init();
+            upgrade.Init(system);
         }
     }
 }

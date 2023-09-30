@@ -58,10 +58,12 @@ public class TowerSpawnSystem : IEcsPreInitSystem, IEcsInitSystem
         );
         // Health Regeneration
 
+        Debug.Log("Init tower start values");
         towerWeapon.InitStartValues(_sharedData.Settings.TowerStartingAttackCooldown,
             _sharedData.Settings.TowerStartingAttackDamage);
 
         towerTargetSelector.InitStartValues(_sharedData.Settings.TowerStartingTargetingRange);
-        _sharedData.Settings.tower = tower;
+        towerTargetSelector.radiusRenderer = tower.GetComponentInChildren<LineRenderer>();
+        _sharedData.towerView = tower;
     }
 }

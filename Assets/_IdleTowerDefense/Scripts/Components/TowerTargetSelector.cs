@@ -12,7 +12,7 @@ public struct TowerTargetSelector
     public void InitStartValues(float baseRange)
     {
         TargetingRange = baseRange;
-        MaxTargets = 1;
+        MaxTargets = InitData.sharedData.Settings.TowerStartingAttackTargets;
         MultiShotChange = 0;
 
     }

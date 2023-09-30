@@ -86,7 +86,14 @@ public class Settings : MonoBehaviour
         if (promo.ToUpper() == "GOLD10" && !ES3.Load("Promo1", false))
         {
             DataController.Currency.AddValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, 10));
+            ES3.Save(SaveKeys.Gold, DataController.Currency[CurrencyTypes.Gold]);
             ES3.Save("Promo1", true);
+        }
+        if (promo.ToUpper() == "BIGGOLDBUG" && !ES3.Load("Promo2", false))
+        {
+            DataController.Currency.AddValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, 5000));
+            ES3.Save(SaveKeys.Gold, DataController.Currency[CurrencyTypes.Gold]);
+            ES3.Save("Promo2", true);
         }
     }
 }

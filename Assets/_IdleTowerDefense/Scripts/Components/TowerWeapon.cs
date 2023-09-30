@@ -11,7 +11,6 @@ public struct TowerWeapon
     // AttackCooldown
     public float BaseAttackCooldown;
     public float AttackCooldown;
-    public float AttackCooldownMultiplier;
     public float AttackCooldownRemaining;
 
     public void InitStartValues(float baseCooldown, float baseDamage)
@@ -24,8 +23,7 @@ public struct TowerWeapon
     private void InitCooldown(float baseCooldown)
     {
         BaseAttackCooldown = baseCooldown;
-        AttackCooldownMultiplier = 1;
-        RecalculateAttackCooldown(0);
+        RecalculateAttackCooldown(0,0);
     }
 
     private void InitDamage(float baseDamage)
@@ -42,9 +40,9 @@ public struct TowerWeapon
         return AttackDamage;
     }
 
-    public float RecalculateAttackCooldown(int grades)
+    public float RecalculateAttackCooldown(int grades, float multiplier)
     {
-        AttackCooldown = BaseAttackCooldown * Mathf.Pow(AttackCooldownMultiplier, grades);
-        return AttackCooldown;
+        return BaseAttackCooldown - grades*multiplier;
+       
     }
 }

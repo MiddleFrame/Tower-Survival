@@ -126,16 +126,17 @@ namespace Managers
         public void BuyBigGold()
         {
             DataController.Currency.AddValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, 5000));
+            ES3.Save(SaveKeys.Gold, DataController.Currency[CurrencyTypes.Gold]);
         }
 
         public void BuyMediumGold()
         {
-            DataController.Currency.AddValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, 2000));
+            DataController.Currency.AddValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, 2000));    ES3.Save(SaveKeys.Gold, DataController.Currency[CurrencyTypes.Gold]);
         }
 
         public void BuySmallGold()
         {
-            DataController.Currency.AddValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, 500));
+            DataController.Currency.AddValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, 500));    ES3.Save(SaveKeys.Gold, DataController.Currency[CurrencyTypes.Gold]);
         }
 
         private static bool CheckBuyState(string id)
