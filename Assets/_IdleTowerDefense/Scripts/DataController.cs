@@ -1,7 +1,5 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Leopotam.EcsLite;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -25,11 +23,21 @@ public class DataController : Singleton<DataController>
 
     [SerializeField]
     private GameObject _setting;
+    
+    [Header("Lose Flow")]
+    [SerializeField] private float _towerDeathSlowMotionScale = 0.2f;
+    [SerializeField] private float _loseMenuDelay = 0.85f;
 
     public static int tier = 0;
+    public static bool IsGameplayEnding { get; private set; }
+    private bool _towerDeathSequenceStarted;
+
     private void Awake()
     {
         Paused = false;
+        IsGameplayEnding = false;
+        _towerDeathSequenceStarted = false;
+        Time.timeScale = 1f;
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 60;
         // Init Currency dictionary
@@ -44,19 +52,24 @@ public class DataController : Singleton<DataController>
 
     public void OnTowerKilled()
     {
+        if (_towerDeathSequenceStarted)
+            return;
+
+        StartCoroutine(TowerDeathSequence());
+    }
+
+    private IEnumerator TowerDeathSequence()
+    {
+        _towerDeathSequenceStarted = true;
+        IsGameplayEnding = true;
+        //TODO tower animation
+        Time.timeScale = Mathf.Clamp(_towerDeathSlowMotionScale, 0.01f, 1f);
+        yield return new WaitForSecondsRealtime(Mathf.Max(0f, _loseMenuDelay));
+
         Paused = true;
+        CleanupGameplayViews();
+        Time.timeScale = 1f;
 
-        // Cleanup all views
-        var views = new List<Component>();
-        views.AddRange(FindObjectsOfType<ProjectileView>());
-        views.AddRange(FindObjectsOfType<EnemyView>());
-
-        foreach (Component view in views)
-        {
-            Destroy(view.gameObject);
-        }
-
-        // Check for new high score and save if necessary
         bool isNewHighScore = false;
         int highScore = ES3.Load(SaveKeys.EnemiesKilled+"_"+tier,0);
         if (highScore < EnemiesKilled)
@@ -68,6 +81,29 @@ public class DataController : Singleton<DataController>
         _menu.OpenLoseMenu(isNewHighScore, EnemiesKilled, EarnedOre, 0);
     }
 
+    private void CleanupGameplayViews()
+    {
+        GameplayViewPools pools = InitData.sharedData?.ViewPools;
+
+        foreach (var projectile in ProjectileView.GetActiveViewsSnapshot())
+        {
+            if (projectile != null)
+            {
+                if (pools != null) pools.Release(projectile);
+                else Destroy(projectile.gameObject);
+            }
+        }
+
+        foreach (var enemy in EnemyView.GetActiveViewsSnapshot())
+        {
+            if (enemy != null)
+            {
+                if (pools != null) pools.Release(enemy);
+                else Destroy(enemy.gameObject);
+            }
+        }
+    }
+
     public void OnRewardx2()
     {
         _menu.OpenLoseMenu(false, EnemiesKilled, EarnedOre*2, 0); 
@@ -77,20 +113,34 @@ public class DataController : Singleton<DataController>
 
     public void ReloadGame()
     {
+        IsGameplayEnding = false;
+        _towerDeathSequenceStarted = false;
         SaveGame();
 
         Currency[CurrencyTypes.Exp].value = 0;
         EnemiesKilled = 0;
         EarnedOre = 0;
         _menu.Close();
-        SceneManager.LoadScene("Game");
+
+        if (SceneTransitionController.Instance != null)
+            SceneTransitionController.Instance.LoadScene("Game");
+        else
+            SceneManager.LoadScene("Game");
+
         Paused = false;
     }
 
     public void ExitToMainMenu()
     {
+        IsGameplayEnding = true;
+        Paused = true;
         Time.timeScale = 1;
-        SceneManager.LoadScene("Menu");
+
+        if (SceneTransitionController.Instance != null)
+            SceneTransitionController.Instance.LoadScene("Menu");
+        else
+            SceneManager.LoadScene("Menu");
+
         SaveGame();
     }
 

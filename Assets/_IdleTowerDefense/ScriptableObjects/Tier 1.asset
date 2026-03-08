@@ -66,7 +66,7 @@ MonoBehaviour:
     - 0.34910858
   _stats:
   - movementSpeed: 0.5
-    startingHealth: 1
+    startingHealth: 0.9
     damage: 1
     damageCooldown: 1
   - movementSpeed: 0.25

@@ -60,7 +60,6 @@ public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
             temporaryUpgradeButton.targetTemporaryUpgrade.onUpgrade += _ =>
                 temporaryUpgradeButton.cost.text =
                     temporaryUpgradeButton.targetTemporaryUpgrade.GetCost().Value +" ore";
-            
             temporaryUpgradeButton.targetTemporaryUpgrade.UpdateStartValue();
 
             temporaryUpgradeButton.Button.onClick.AddListener(
@@ -102,7 +101,7 @@ public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
     public void UpdateEnemySpawnRange(float radius)
     {
         gameSettings.EnemySpawnRadius = radius * 1.2f + 5f;
-        _camera!.orthographicSize = radius * 1.2f + 5;
+        _camera!.orthographicSize = radius * 1.2f + 5f;
     }
     public void SetMenuOpen(bool value)
     {

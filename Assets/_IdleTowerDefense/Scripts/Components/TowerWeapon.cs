@@ -23,15 +23,15 @@ public struct TowerWeapon
     private void InitCooldown(float baseCooldown)
     {
         BaseAttackCooldown = baseCooldown;
-        RecalculateAttackCooldown(0,0);
+        AttackCooldown=RecalculateAttackCooldown(0,0);
     }
 
     private void InitDamage(float baseDamage)
     {
         Debug.Log("Init damage");
         BaseAttackDamage = baseDamage;
-        AttackDamageMultiplier = 1.1f;
-        AttackDamageAdditions = 1;
+        AttackDamageMultiplier = 1.15f;
+        AttackDamageAdditions = 0.6f;
     }
 
     public float RecalculateAttackDamage(int grades)

@@ -29,6 +29,9 @@ public class TowerFiringSystem : IEcsInitSystem, IEcsRunSystem
 
     public void Run(IEcsSystems systems)
     {
+        if (DataController.IsGameplayEnding)
+            return;
+
         EcsPool<TowerTargetSelector> towerTargetSelectorPool = _world.GetPool<TowerTargetSelector>();
         EcsPool<TowerWeapon> towerWeaponPool = _world.GetPool<TowerWeapon>();
 
@@ -61,19 +64,21 @@ public class TowerFiringSystem : IEcsInitSystem, IEcsRunSystem
 
 
                 // Setup View
-                ProjectileView projectileView = GameObject.Instantiate(_sharedData.Settings.ProjectileView);
+                ProjectileView projectileView = _sharedData.ViewPools != null
+                    ? _sharedData.ViewPools.Spawn(_sharedData.Settings.ProjectileView, Vector3.zero, Quaternion.identity)
+                    : GameObject.Instantiate(_sharedData.Settings.ProjectileView);
                 projectileView.transform.LookAt2D((Vector2)positionPool.Get(towerTargetSelector.CurrentTargets[i]),LookType.Right);
                 // Init components
                 projectile.Damage = towerWeapon.AttackDamage;
+                projectile.IsConsumed = false;
+                projectile.view = projectileView;
                 projectile.OnDamageDealt += (damage, enemyTransform) => UltimateTextDamageManager.Instance.Add(damage.ToString("N0"), enemyTransform);
                 projectilePosition = ((Vector2)positionPool.Get(towerTargetSelector.CurrentTargets[i])).normalized * 0.05f;
                 projectileMovement.Velocity = ((Vector2)positionPool.Get(towerTargetSelector.CurrentTargets[i])).normalized * projectileView.MovementSpeed;
                 projectileMovement.StopRadius = 0;
                 projectileMovement.transform = projectileView.transform;
                 // Init View
-                projectileView.packedEntity = projectileEntity;
-               // projectileView.transform.position = (Vector2)projectilePosition;
-                projectileView.world = _world;
+                projectileView.Configure(_world, projectileEntity);
             }
         }
     }

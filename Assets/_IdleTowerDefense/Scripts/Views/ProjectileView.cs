@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Leopotam.EcsLite;
 using UnityEngine;
 
@@ -14,92 +16,135 @@ public class ProjectileView : MonoBehaviour
     [SerializeField]
     private bool isEnemyProjectile;
 
+    private Collider2D _collider;
+    private Renderer[] _renderers;
     private EcsPool<Destroy> _destroyPool;
-    private void Start()
+    private float _lifetimeRemaining;
+
+    private static readonly HashSet<ProjectileView> ActiveViews = new HashSet<ProjectileView>();
+
+    public static ProjectileView[] GetActiveViewsSnapshot()
     {
-        
-        _towerFilter = world.Filter<Tower>()
-            .Inc<Health>()
-            .End();
+        return ActiveViews.ToArray();
+    }
+
+    private void Awake()
+    {
+        _collider = GetComponent<Collider2D>();
+        _renderers = GetComponentsInChildren<Renderer>(true);
+    }
+
+    private void OnEnable()
+    {
+        ActiveViews.Add(this);
+    }
+
+    private void OnDisable()
+    {
+        ActiveViews.Remove(this);
+    }
+
+    public void Configure(EcsWorld ecsWorld, int entity)
+    {
+        world = ecsWorld;
+        packedEntity = entity;
         _destroyPool = world.GetPool<Destroy>();
-        Destroy(gameObject, MaxLifetime);
+        _towerFilter = world.Filter<Tower>().Inc<Health>().End();
+        _lifetimeRemaining = MaxLifetime;
+
+        if (_collider != null)
+            _collider.enabled = true;
+
+        for (int i = 0; i < _renderers.Length; i++)
+            _renderers[i].enabled = true;
+    }
+
+    private void Update()
+    {
+        if (world == null || DataController.IsGameplayEnding)
+            return;
+
+        _lifetimeRemaining -= Time.deltaTime;
+        if (_lifetimeRemaining <= 0f)
+            MarkForDestroy();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (world == null || DataController.IsGameplayEnding)
+            return;
+
+        EcsPool<Projectile> projectilePool = world.GetPool<Projectile>();
+        ref Projectile projectile = ref projectilePool.Get(packedEntity);
+        if (projectile.IsConsumed)
+            return;
+
+        projectile.IsConsumed = true;
+
         if (isEnemyProjectile)
         {
-            if (other.tag.Equals("Tower"))
+            if (!other.CompareTag("Tower"))
             {
-                EcsPool<Projectile> projectilePool = world.GetPool<Projectile>();
-                
-                EcsPool<Health> healthPool = world.GetPool<Health>();
-                
-                ref Projectile projectile = ref projectilePool.Get(packedEntity);
-                foreach (int tower in _towerFilter)
-                {
-                    ref Health towerHealth = ref healthPool.Get(tower);
-                    towerHealth.CurrentHealth -= Damage;
-                    if (towerHealth.CurrentHealth <= 0)
-                    {
-                        towerHealth.CurrentHealth = 0;
-                        towerHealth.OnKilled?.Invoke();
-                    }
-                    projectile.OnDamageDealt?.Invoke(Damage, other.transform);
-                    towerHealth.OnDamaged?.Invoke();
-                }
-                
-                EcsPool<Destroy> destroyPool = world.GetPool<Destroy>();
-                if (!destroyPool.Has(packedEntity))
-                {
-                    destroyPool.Add(packedEntity);
-                    Destroy(gameObject);
-                }
-
+                projectile.IsConsumed = false;
+                return;
             }
-        }
-        else if (other.TryGetComponent(out EnemyView enemyView))
-        {
-            if (enemyView.PackedEntity.Unpack(world, out int unpackedEnemy))
-            {
-                EcsPool<Destroy> destroyPool = world.GetPool<Destroy>();
-                EcsPool<Health> healthPool = world.GetPool<Health>();
-                EcsPool<Projectile> projectilePool = world.GetPool<Projectile>();
-                ref Health enemyHealth = ref healthPool.Get(unpackedEnemy);
-                ref Projectile projectile = ref projectilePool.Get(packedEntity);
 
-                enemyHealth.CurrentHealth -= projectile.Damage;
-                enemyHealth.OnDamaged?.Invoke();
+            EcsPool<Health> healthPool = world.GetPool<Health>();
+            foreach (int tower in _towerFilter)
+            {
+                ref Health towerHealth = ref healthPool.Get(tower);
+                towerHealth.CurrentHealth -= projectile.Damage;
+                if (towerHealth.CurrentHealth <= 0)
+                {
+                    towerHealth.CurrentHealth = 0;
+                    towerHealth.OnKilled?.Invoke();
+                }
 
                 projectile.OnDamageDealt?.Invoke(projectile.Damage, other.transform);
-
-                // Check enemy health and mark for deletion if necessary
-                if (enemyHealth.CurrentHealth <= 0 && !destroyPool.Has(unpackedEnemy))
-                { 
-                    enemyHealth.OnKilled?.Invoke();
-                    destroyPool.Add(unpackedEnemy);
-
-                    // Delayed destroy to work around damage numbers not working when destroyed immediately
-                    GameObject o;
-                    (o = other.gameObject).SetActive(false);
-                    Destroy(o, 0.1f);
-                }
-
-                // Mark projectile for deletion if not already
-                if (!destroyPool.Has(packedEntity))
-                {
-                    destroyPool.Add(packedEntity);
-                    Destroy(gameObject);
-                }
+                towerHealth.OnDamaged?.Invoke();
             }
+
+            MarkForDestroy();
+            return;
         }
+
+        if (other.TryGetComponent(out EnemyView enemyView))
+        {
+            int unpackedEnemy = enemyView.enemyEntity;
+            EcsPool<Health> healthPool = world.GetPool<Health>();
+            ref Health enemyHealth = ref healthPool.Get(unpackedEnemy);
+
+            enemyHealth.CurrentHealth -= projectile.Damage;
+            enemyHealth.OnDamaged?.Invoke();
+            projectile.OnDamageDealt?.Invoke(projectile.Damage, other.transform);
+
+            if (enemyHealth.CurrentHealth <= 0)
+            {
+                enemyHealth.OnKilled?.Invoke();
+                enemyView.SpawnDeathVfx();
+                if (!_destroyPool.Has(unpackedEnemy))
+                    _destroyPool.Add(unpackedEnemy);
+            }
+
+            MarkForDestroy();
+            return;
+        }
+
+        projectile.IsConsumed = false;
     }
 
-    private void OnDestroy()
+    private void MarkForDestroy()
     {
+        if (world == null || _destroyPool == null)
+            return;
+
         if (!_destroyPool.Has(packedEntity))
-        {
             _destroyPool.Add(packedEntity);
-        }
+
+        if (_collider != null)
+            _collider.enabled = false;
+
+        for (int i = 0; i < _renderers.Length; i++)
+            _renderers[i].enabled = false;
     }
 }

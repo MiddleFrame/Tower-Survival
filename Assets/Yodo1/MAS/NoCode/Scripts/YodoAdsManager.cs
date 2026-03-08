@@ -58,7 +58,11 @@ public class YodoAdsManager : MonoBehaviour
 
     private void Awake()
     {
+#if UNITY_2023_2_OR_NEWER
+        if (FindObjectsByType<YodoAdsManager>(FindObjectsSortMode.None).Length > 1)
+#else
         if (FindObjectsOfType<YodoAdsManager>().Length > 1)
+#endif
         {
             Destroy(gameObject);
         }
@@ -68,21 +72,10 @@ public class YodoAdsManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
-#if UNITY_EDITOR
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }    
-#endif
     private void Start()
     {
         Yodo1U3dMasCallback.OnSdkInitializedEvent += (success, error) =>
         {
-            Debug.Log(Yodo1U3dMas.TAG + "NoCode OnSdkInitializedEvent, success:" + success + ", error: " + error.ToString());
             if (success)
             {
                 Debug.Log(Yodo1U3dMas.TAG + "NoCode The initialization has succeeded");
@@ -92,7 +85,7 @@ public class YodoAdsManager : MonoBehaviour
             else
             {
                 OnSDKInitializationFailed.Invoke();
-                Debug.Log(Yodo1U3dMas.TAG + "NoCode The initialization has failed");
+                Debug.Log(Yodo1U3dMas.TAG + "NoCode The initialization has failed with error: " + error.ToString());
             }
         };
 
@@ -142,23 +135,4 @@ public class YodoAdsManager : MonoBehaviour
             //Yodo1U3dMas.SetAutoPauseGame(autoPauseGame);
         }
     }
-#if UNITY_EDITOR
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        EventSystem sceneEventSystem = FindObjectOfType<EventSystem>();
-        if (GameObject.Find("Yodo1AdCanvas") == null)
-        {
-            Yodo1EditorAds.AdHolder = Instantiate(Resources.Load("SampleAds/AdHolder") as GameObject);
-            Yodo1EditorAds.AdHolder.name = "Yodo1AdCanvas";
-            Yodo1EditorAds.AdHolderCanvas = Yodo1EditorAds.AdHolder.transform.GetChild(0).GetComponent<Canvas>();
-            Yodo1EditorAds.AdHolderCanvas.sortingOrder = Yodo1EditorAds.HighestOrderCanvas();
-        }
-        if (sceneEventSystem == null)
-        {
-            var eventSystem = new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
-        }
-        Yodo1EditorAds.InitializeAds();
-
-    }
-#endif
 }

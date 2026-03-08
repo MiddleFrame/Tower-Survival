@@ -29,11 +29,14 @@ public class PlayMenu : MonoBehaviour
    [SerializeField]
    private GameObject _loadingAnim;
 
+   private static PlayMenu instance;
+
    private int[] _records;
 
    private static int _currentTier;
    private void Awake()
    {
+      instance = this;
       HorizontalSelector.rewardedSpeed = false;
       _records = new int[9];
       for (int i = 0; i < 9; i++)
@@ -52,7 +55,21 @@ public class PlayMenu : MonoBehaviour
    public static void Play()
    {
       DataController.tier = _currentTier;
+      instance.gameObject.SetActive(false);
+      instance.LoadScene();
+      
+   }
+
+   private void LoadScene()
+   {
+      if (SceneTransitionController.Instance != null)
+      {
+         SceneTransitionController.Instance.LoadScene("Game");
+         return;
+      }
+
       SceneManager.LoadScene("Game");
+      
    }
    
    private void ChangeTier(int tier)

@@ -9,8 +9,10 @@ namespace Yodo1.MAS
         }
 
         public string name;
+        public string displayName;
         public string version;
         public float size;
+        public int status;
         public string repoUrl;
         public int[] supported;
         public string dependency;
@@ -18,6 +20,7 @@ namespace Yodo1.MAS
         public string admanagerAdapterDependency;
         public string applovinAdapterDependency;
         public string ironsourceAdapterDependency;
-
+        public string tobidAdapterDependency;
+        public string toponAdapterDependency;
     }
 }

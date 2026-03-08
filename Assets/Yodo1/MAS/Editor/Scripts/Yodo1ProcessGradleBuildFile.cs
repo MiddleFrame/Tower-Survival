@@ -32,7 +32,7 @@ namespace Yodo1.MAS
         private static readonly Regex TokenApiKey = new Regex(".*apiKey.*");
         private static readonly Regex TokenAppLovinPlugin = new Regex(".*apply plugin:.+?(?=applovin-quality-service).*");
 
-#if UNITY_2022_2_OR_NEWER
+#if UNITY_2021_3_OR_NEWER || UNITY_2022_2_OR_NEWER
         private const string PluginsMatcher = "plugins";
         private const string PluginManagementMatcher = "pluginManagement";
         private const string DependencyResolutionManagementMatcher = "dependencyResolutionManagement";
@@ -41,7 +41,7 @@ namespace Yodo1.MAS
 
         private const string BuildScriptMatcher = "buildscript";
         private const string QualityServiceMavenRepo = "maven { url 'https://artifacts.applovin.com/android'; content { includeGroupByRegex 'com.applovin.*' } }";
-        private const string QualityServiceDependencyClassPath = "classpath 'com.applovin.quality:AppLovinQualityServiceGradlePlugin:3.+'";
+        private const string QualityServiceDependencyClassPath = "classpath 'com.applovin.quality:AppLovinQualityServiceGradlePlugin:5.+'";
         private const string QualityServiceApplyPlugin = "apply plugin: 'applovin-quality-service'";
         private const string QualityServicePlugin = "applovin {";
         private const string QualityServiceApiKey = "    apiKey '{0}'";
@@ -49,7 +49,7 @@ namespace Yodo1.MAS
         private const string QualityServiceNoRegexMavenRepo = "maven { url 'https://artifacts.applovin.com/android' }";
 
         // Legacy plugin detection variables
-        private const string QualityServiceDependencyClassPathV3 = "classpath 'com.applovin.quality:AppLovinQualityServiceGradlePlugin:3.+'";
+        private const string QualityServiceDependencyClassPathV3 = "classpath 'com.applovin.quality:AppLovinQualityServiceGradlePlugin:5.+'";
         private static readonly Regex TokenSafeDkLegacyApplyPlugin = new Regex(".*apply plugin:.+?(?=safedk).*");
         private const string SafeDkLegacyPlugin = "safedk {";
         private const string SafeDkLegacyMavenRepo = "http://download.safedk.com";
@@ -104,7 +104,7 @@ namespace Yodo1.MAS
                 Console.WriteLine(exception);
             }
         }
-#if UNITY_2022_2_OR_NEWER
+#if UNITY_2021_3_OR_NEWER || UNITY_2022_2_OR_NEWER
         /// <summary>
         /// Adds AppLovin Quality Service plugin DSL element to the project's root build.gradle file. 
         /// </summary>
@@ -296,7 +296,7 @@ namespace Yodo1.MAS
 
             if (!mavenRepoAdded)
             {
-                Debug.LogError(Yodo1U3dMas.TAG + "Failed to add MAS dependencyResolution maven repo to settings gradle file.");
+                //Debug.LogError(Yodo1U3dMas.TAG + "Failed to add MAS dependencyResolution maven repo to settings gradle file.");
                 return false;
             }
 
@@ -347,42 +347,6 @@ namespace Yodo1.MAS
         }
 #endif
 
-        protected static bool isAdReviewFuntionEnable()
-        {
-            bool adReview = false;
-            string dependencyFilePath = Path.Combine("Assets/Yodo1/MAS/Editor/Dependencies", "Yodo1MasAndroidDependencies.xml");
-
-            XmlReaderSettings settings = new XmlReaderSettings();
-            settings.IgnoreComments = true;//忽略文档里面的注释
-            XmlReader reader = XmlReader.Create(dependencyFilePath, settings);
-
-            XmlDocument xmlReadDoc = new XmlDocument();
-            xmlReadDoc.Load(dependencyFilePath);
-            XmlNode dependenciesRead = xmlReadDoc.SelectSingleNode("dependencies");
-            XmlNode androidPackagesRead = dependenciesRead.SelectSingleNode("androidPackages");
-            XmlNodeList nodeList = androidPackagesRead.SelectNodes("androidPackage");
-            if(nodeList != null && nodeList.Count > 0)
-            {
-                try
-                {
-                    foreach (XmlNode node in nodeList)
-                    {
-                        string specStr = ((XmlElement)node).GetAttribute("spec").ToString();
-                        if (!string.IsNullOrEmpty(specStr) && specStr.Contains("com.yodo1.mas.mediation:applovin"))
-                        {
-                            adReview = true;
-                            throw new Exception();
-                        }
-                    }
-                } catch(Exception e)
-                {
-                    Debug.Log(e);
-                }
-            }
-            reader.Close();
-
-            return adReview;
-        }
 
 #if UNITY_2019_3_OR_NEWER
         /// <summary>
@@ -703,7 +667,7 @@ namespace Yodo1.MAS
 
         private static string GetFormattedBuildScriptLine(string buildScriptLine)
         {
-#if UNITY_2022_2_OR_NEWER
+#if UNITY_2021_3_OR_NEWER || UNITY_2022_2_OR_NEWER
             return "        "
 #elif UNITY_2019_3_OR_NEWER
             return "            "

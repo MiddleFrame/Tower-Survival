@@ -14,7 +14,7 @@ public class IntegrationManager : EditorWindow
     int platformTabSelected = 0;
     int prevPlatformTabSelected = 0;
     private const float editorWindowMinWidth = 600f;
-    private const float editorWindowMinLength = 750f;
+    private const float editorWindowMinLength = 950f;
     private const float networkFieldMinWidth = 100f;
     private const float versionFieldMinWidth = 190f;
     private const float actionFieldWidth = 60f;
@@ -26,13 +26,15 @@ public class IntegrationManager : EditorWindow
 
     Yodo1AdNetworkConfig adNetworkConfig;
 
-    List<Yodo1AdNetwork> androidStandard;
-    List<Yodo1AdNetwork> iosStandard;
+    Yodo1AdNetwork[] android;
+    Yodo1AdNetwork[] ios;
 
     Yodo1AdNetworkConfigCacheData androidCachedData;
     Yodo1AdNetworkConfigCacheData iosCachedData;
     float SDKSize = 0f;
     private static string PackageName = string.Empty;
+
+    private static bool importPackageCompleted = false;
 
     static IntegrationManager()
     {
@@ -42,18 +44,45 @@ public class IntegrationManager : EditorWindow
     {
         if (packagename.Contains("Rivendell"))
         {
-            Yodo1AdNetworkManager.GetInstance().InitAdNetworkConfig();
-            Yodo1AdNetworkManager.GetInstance().CheckDependenciesFileByCachedAdNetworks();
+#if UNITY_ANDROID
+            if (!Yodo1AdUtils.IsGooglePlayVersion())
+            {
+                return;
+            }
+#endif
+            UpdateAdNetworkAndDependencies();
+            importPackageCompleted = true;
         }
     }
 
-    [MenuItem("Yodo1/MAS/Integration Manager", false,100)]
+    public static void UpdateAdNetworkAndDependencies()
+    {
+#if UNITY_ANDROID
+        if (!Yodo1AdUtils.IsGooglePlayVersion())
+        {
+            return;
+        }
+#endif
+        Yodo1AdNetworkManager.GetInstance().InitAdNetworkConfig();
+        Yodo1AdNetworkManager.GetInstance().CheckDependenciesFileByCachedAdNetworks();
+    }
+
+    [MenuItem("Yodo1/MAS/Integration Manager", false, 100)]
     static void Init()
     {
-        IntegrationManager window = (IntegrationManager)EditorWindow.GetWindow(typeof(IntegrationManager),true,"Yodo1 Integration Manager");
-        window.minSize = new Vector2(editorWindowMinWidth,editorWindowMinLength);
+        IntegrationManager window = (IntegrationManager)EditorWindow.GetWindow(typeof(IntegrationManager), true, "Yodo1 Integration Manager");
+        window.minSize = new Vector2(editorWindowMinWidth, editorWindowMinLength);
         window.maxSize = window.minSize;
         window.Show();
+    }
+    [MenuItem("Yodo1/MAS/Integration Manager", true, 100)]
+    static bool ValidateInit()
+    {
+#if UNITY_ANDROID
+        return Yodo1AdUtils.IsGooglePlayVersion();
+#else
+        return true;
+#endif
     }
     private void Awake()
     {
@@ -62,7 +91,6 @@ public class IntegrationManager : EditorWindow
             fontSize = 12,
             fontStyle = FontStyle.Bold,
             fixedHeight = 18
-            
         };
         contentLabelStyle = new GUIStyle(EditorStyles.label)
         {
@@ -71,21 +99,68 @@ public class IntegrationManager : EditorWindow
             fixedHeight = 18,
             alignment = TextAnchor.MiddleCenter
         };
-        EditorCoroutineRunner.StartEditorCoroutine(LoadPluginData(result => {
+        EditorCoroutineRunner.StartEditorCoroutine(LoadPluginData(result =>
+        {
             if (result)
             {
                 Repaint();
             }
         }));
     }
+
+    private void OnInspectorUpdate()
+    {
+        if (importPackageCompleted)
+        {
+            EditorCoroutineRunner.StartEditorCoroutine(LoadPluginData(result =>
+            {
+                if (result)
+                {
+                    Repaint();
+                }
+            }));
+            importPackageCompleted = false;
+        }
+    }
+
     IEnumerator LoadPluginData(Action<bool> callback)
     {
         Yodo1AdNetworkManager.GetInstance().InitAdNetworkConfig();
         adNetworkConfig = Yodo1AdNetworkManager.GetInstance().GetAdNetworkConfig();
 
+        if (adNetworkConfig.ios != null && adNetworkConfig.ios.Length > 0)
+        {
+            // Handle Amazon iOS
+            //Yodo1AdNetwork amazon_ios = new Yodo1AdNetwork();
+            //amazon_ios.name = "Amazon";
+            //amazon_ios.displayName = "Amazon Ad Marketplace";
+            //amazon_ios.version = "4.10.0";
+            List<Yodo1AdNetwork> networks_ios = new List<Yodo1AdNetwork>(adNetworkConfig.ios);
+            //networks_ios.Add(amazon_ios);
+            adNetworkConfig.ios = networks_ios.ToArray();
+
+            // Sort iOS config
+            adNetworkConfig.ios = adNetworkConfig.ios.OrderBy(o => o.displayName.FirstOrDefault()).ToArray();
+        }
+
+        if (adNetworkConfig.android != null && adNetworkConfig.android.Length > 0)
+        {
+            // Handle Amazon Android
+            //Yodo1AdNetwork amazon_android = new Yodo1AdNetwork();
+            //amazon_android.name = "Amazon";
+            //amazon_android.displayName = "Amazon Ad Marketplace";
+            //amazon_android.version = "9.10.2";
+            List<Yodo1AdNetwork> networks_android = new List<Yodo1AdNetwork>(adNetworkConfig.android);
+            //networks_android.Add(amazon_android);
+            adNetworkConfig.android = networks_android.ToArray();
+
+            // Sort Android config
+            adNetworkConfig.android = adNetworkConfig.android.OrderBy(o => o.displayName.FirstOrDefault()).ToArray();
+        }
+
         // get the dispalyed networks list
-        androidStandard = adNetworkConfig.androidStandard;
-        iosStandard = adNetworkConfig.iosStandard;
+        android = adNetworkConfig.android;
+        ios = adNetworkConfig.ios;
         // get the cached networks the developer selected before
 
         androidCachedData = Yodo1AdNetworkManager.GetInstance().GetCachedAndroidAdNetworksInfo();
@@ -101,7 +176,7 @@ public class IntegrationManager : EditorWindow
     }
     private string LatestAdNetworkVersion()
     {
-        if(adNetworkConfig == null)
+        if (adNetworkConfig == null)
         {
             return string.Empty;
         }
@@ -110,7 +185,7 @@ public class IntegrationManager : EditorWindow
             return adNetworkConfig.latestSdkversion;
         }
     }
-    private string GetUpgradeDownloadUrl()
+    public string GetUpgradeDownloadUrl()
     {
         if (adNetworkConfig == null)
         {
@@ -125,53 +200,49 @@ public class IntegrationManager : EditorWindow
     {
         var PackageComponents = GetUpgradeDownloadUrl().Split(new[] { ".unitypackage" }, StringSplitOptions.None);
         PackageName = PackageComponents[0].Substring(PackageComponents[0].LastIndexOf("/") + 1);
-
-
         if (PackageName.Contains("-"))
         {
             var components = PackageName.Split(new[] { "-beta" }, StringSplitOptions.None);
             PackageName = components[0];
         }
         EditorCoroutineRunner.StartEditorCoroutine(DownloadPlugin(GetUpgradeDownloadUrl(), PackageName));
-        
-
     }
     private UnityWebRequest webRequest;
-    public IEnumerator DownloadPlugin(string downloadUrl,string Version)
+    public IEnumerator DownloadPlugin(string downloadUrl, string Version)
     {
-            var path = Path.Combine(Application.temporaryCachePath, Version+".unitypackage");
-            var downloadHandler = new DownloadHandlerFile(path);
-            webRequest = new UnityWebRequest(downloadUrl)
-            {
-                method = UnityWebRequest.kHttpVerbGET,
-                downloadHandler = downloadHandler
-            };
-            var operation = webRequest.SendWebRequest();
-            while (!operation.isDone)
-            {
-                yield return new WaitForSeconds(0.1f); // Just wait till webRequest is completed. Our coroutine is pretty rudimentary.
-                //CallDownloadPluginProgressCallback(network.DisplayName, operation.progress, operation.isDone);
-            }
+        var path = Path.Combine(Application.temporaryCachePath, Version + ".unitypackage");
+        var downloadHandler = new DownloadHandlerFile(path);
+        webRequest = new UnityWebRequest(downloadUrl)
+        {
+            method = UnityWebRequest.kHttpVerbGET,
+            downloadHandler = downloadHandler
+        };
+        var operation = webRequest.SendWebRequest();
+        while (!operation.isDone)
+        {
+            yield return new WaitForSeconds(0.1f); // Just wait till webRequest is completed. Our coroutine is pretty rudimentary.
+                                                   //CallDownloadPluginProgressCallback(network.DisplayName, operation.progress, operation.isDone);
+        }
 
 #if UNITY_2020_1_OR_NEWER
             if (webRequest.result != UnityWebRequest.Result.Success)
 #elif UNITY_2017_2_OR_NEWER
-            if (webRequest.isNetworkError || webRequest.isHttpError)
+        if (webRequest.isNetworkError || webRequest.isHttpError)
 #else
-            if (webRequest.isError)
+        if (webRequest.isError)
 #endif
-            {
-                Debug.LogError(webRequest.error);
-            }
-            else
-            {
-                AssetDatabase.ImportPackage(path, true);
-            }
+        {
+            //Debug.LogError(webRequest.error);
+        }
+        else
+        {
+            AssetDatabase.ImportPackage(path, true);
+        }
 
         webRequest.Dispose();
-            webRequest = null;
+        webRequest = null;
     }
-    
+
     private bool CheckIfNetworkIsInstalled(Yodo1AdNetwork adNetwork)
     {
         bool returnVal = false;
@@ -191,7 +262,14 @@ public class IntegrationManager : EditorWindow
                 }
                 else
                 {
-                    returnVal = true;
+                    if (adNetwork.status == 1)
+                    {
+                        returnVal = false;
+                    }
+                    else
+                    {
+                        returnVal = true; // adnetwork in default full
+                    }
                 }
             }
         }
@@ -211,7 +289,14 @@ public class IntegrationManager : EditorWindow
                 }
                 else
                 {
-                    returnVal = true;
+                    if (adNetwork.status == 1)
+                    {
+                        returnVal = false;
+                    }
+                    else
+                    {
+                        returnVal = true; // adnetwork in default full
+                    }
                 }
             }
         }
@@ -219,7 +304,6 @@ public class IntegrationManager : EditorWindow
     }
     private void RemoveAdNetwork(Yodo1AdNetwork adNetwork)
     {
-        
         if (platformTabSelected == 0)
         {
             if (androidCachedData.networks.Count >= 1)
@@ -231,9 +315,9 @@ public class IntegrationManager : EditorWindow
             else
             {
                 List<string> installedList = new List<string>();
-                foreach (Yodo1AdNetwork network in androidStandard)
+                foreach (Yodo1AdNetwork network in android)
                 {
-                    if(!string.Equals(network.name,adNetwork.name))
+                    if (!string.Equals(network.name, adNetwork.name) && network.status != 1)
                     {
                         installedList.Add(network.name);
                     }
@@ -259,11 +343,14 @@ public class IntegrationManager : EditorWindow
             else
             {
                 List<string> installedList = new List<string>();
-                foreach (Yodo1AdNetwork network in iosStandard)
+                foreach (Yodo1AdNetwork network in ios)
                 {
                     if (!string.Equals(network.name, adNetwork.name))
                     {
-                        installedList.Add(network.name);
+                        if (!string.Equals(network.name, adNetwork.name) && network.status != 1)
+                        {
+                            installedList.Add(network.name);
+                        }
                     }
                 }
 
@@ -281,18 +368,75 @@ public class IntegrationManager : EditorWindow
     }
     private void InstallAdNetwork(Yodo1AdNetwork adNetwork)
     {
-
         if (platformTabSelected == 0)
         {
-            androidCachedData.networks.Add(adNetwork.name);
-            Yodo1AdNetworkManager.GetInstance().UpdateAdNetworksInfo(androidCachedData);
-            androidCachedData = Yodo1AdNetworkManager.GetInstance().GetCachedAndroidAdNetworksInfo();
+            if (androidCachedData.networks.Count >= 1)
+            {
+                if (!androidCachedData.networks.Contains(adNetwork.name))
+                {
+                    androidCachedData.networks.Add(adNetwork.name);
+                }
+                Yodo1AdNetworkManager.GetInstance().UpdateAdNetworksInfo(androidCachedData);
+                androidCachedData = Yodo1AdNetworkManager.GetInstance().GetCachedAndroidAdNetworksInfo();
+            }
+            else
+            {
+                List<string> defaultInstalledList = new List<string>();
+                foreach (Yodo1AdNetwork network in android)
+                {
+                    if (network.status != 1)
+                    {
+                        defaultInstalledList.Add(network.name);
+                    }
+                }
+                if (!defaultInstalledList.Contains(adNetwork.name))
+                {
+                    defaultInstalledList.Add(adNetwork.name);
+                }
+
+                Yodo1AdNetworkConfigCacheData data = new Yodo1AdNetworkConfigCacheData();
+                data.sdkType = SDKGroupType.AndroidStandard;
+                data.sdkVersion = adNetworkConfig.sdkVersion;
+                data.latestSdkVersion = adNetworkConfig.latestSdkversion;
+                data.networks = defaultInstalledList;
+                Yodo1AdNetworkManager.GetInstance().UpdateAdNetworksInfo(data);
+                androidCachedData = Yodo1AdNetworkManager.GetInstance().GetCachedAndroidAdNetworksInfo();
+            }
         }
         else
         {
-            iosCachedData.networks.Add(adNetwork.name);
-            Yodo1AdNetworkManager.GetInstance().UpdateAdNetworksInfo(iosCachedData);
-            iosCachedData = Yodo1AdNetworkManager.GetInstance().GetCachedIOSAdNetworksInfo();
+            if (iosCachedData.networks.Count >= 1)
+            {
+                if (!iosCachedData.networks.Contains(adNetwork.name))
+                {
+                    iosCachedData.networks.Add(adNetwork.name);
+                }
+                Yodo1AdNetworkManager.GetInstance().UpdateAdNetworksInfo(iosCachedData);
+                iosCachedData = Yodo1AdNetworkManager.GetInstance().GetCachedIOSAdNetworksInfo();
+            }
+            else
+            {
+                List<string> defaultInstalledList = new List<string>();
+                foreach (Yodo1AdNetwork network in ios)
+                {
+                    if (network.status != 1)
+                    {
+                        defaultInstalledList.Add(network.name);
+                    }
+                }
+                if (!defaultInstalledList.Contains(adNetwork.name))
+                {
+                    defaultInstalledList.Add(adNetwork.name);
+                }
+
+                Yodo1AdNetworkConfigCacheData data = new Yodo1AdNetworkConfigCacheData();
+                data.sdkType = SDKGroupType.IOSStandard;
+                data.sdkVersion = adNetworkConfig.sdkVersion;
+                data.latestSdkVersion = adNetworkConfig.latestSdkversion;
+                data.networks = defaultInstalledList;
+                Yodo1AdNetworkManager.GetInstance().UpdateAdNetworksInfo(data);
+                iosCachedData = Yodo1AdNetworkManager.GetInstance().GetCachedIOSAdNetworksInfo();
+            }
         }
         GetSDKSize();
         Repaint();
@@ -302,22 +446,22 @@ public class IntegrationManager : EditorWindow
         SDKSize = 0f;
         if (platformTabSelected == 0)
         {
-            if (androidStandard != null)
+            if (android != null)
             {
-                for (int i = 0; i < androidStandard.Count; i++)
+                for (int i = 0; i < android.Length; i++)
                 {
-                    if (CheckIfNetworkIsInstalled(androidStandard[i]))
+                    if (CheckIfNetworkIsInstalled(android[i]))
                     {
-                        SDKSize += androidStandard[i].size;
+                        SDKSize += android[i].size;
                     }
                 }
             }
         }
+        SDKSize = ((float)decimal.Round(decimal.Parse(SDKSize.ToString()), 2));
         return SDKSize;
     }
     void OnGUI()
     {
-        
         GUILayout.Space(10);
         DrawPluginDetails();
         GUIUtility.ExitGUI();
@@ -332,18 +476,17 @@ public class IntegrationManager : EditorWindow
             DrawHeaders();
             DrawPluginDetailRow("Standard", CurrentAdNetworkVersion(), LatestAdNetworkVersion());
         }
-        
-        
+
         GUILayout.Space(5);
         GUILayout.EndHorizontal();
-        
+
         platformTabSelected = GUILayout.Toolbar(platformTabSelected, new string[] { "Android", "iOS" });
-        if(platformTabSelected != prevPlatformTabSelected)
+        if (platformTabSelected != prevPlatformTabSelected)
         {
             GetSDKSize();
             prevPlatformTabSelected = platformTabSelected;
         }
-        
+
         GUILayout.Space(10);
         GUILayout.Label("Mediation network details", headerLabelStyle);
         GUILayout.Space(10);
@@ -373,10 +516,10 @@ public class IntegrationManager : EditorWindow
                         }
                     }
                 }
-                
+
             }
         }
-        
+
         GUILayout.Space(40);
         using (new EditorGUILayout.HorizontalScope())
         {
@@ -389,7 +532,7 @@ public class IntegrationManager : EditorWindow
         }
         GUILayout.EndHorizontal();
     }
-    
+
     private void DrawPluginDetailRow(string platform, string currentVersion, string latestVersion)
     {
         using (new EditorGUILayout.HorizontalScope())
@@ -404,7 +547,7 @@ public class IntegrationManager : EditorWindow
             }
             EditorGUILayout.LabelField(new GUIContent(latestVersion), versionWidthOption);
             GUILayout.Space(3);
-            if (CompareVersions(currentVersion,latestVersion) == -1)
+            if (CompareVersions(currentVersion, latestVersion) == -1)
             {
                 if (GUILayout.Button(new GUIContent("Upgrade"), fieldWidth))
                 {
@@ -419,7 +562,7 @@ public class IntegrationManager : EditorWindow
                 }
                 GUI.enabled = true;
             }
-            
+
         }
 
         GUILayout.Space(4);
@@ -428,9 +571,9 @@ public class IntegrationManager : EditorWindow
     {
         using (new EditorGUILayout.HorizontalScope())
         {
-            
+
             GUILayout.Space(5);
-            EditorGUILayout.LabelField(new GUIContent(UpperFirst(adNetwork.name)), versionWidthOption);
+            EditorGUILayout.LabelField(new GUIContent(GetDisplayName(adNetwork)), versionWidthOption);
             EditorGUILayout.LabelField(new GUIContent(adNetwork.version), versionWidthOption);
             GUILayout.Space(3);
             ChangeButtonStatus(adNetwork);
@@ -440,8 +583,8 @@ public class IntegrationManager : EditorWindow
     }
     private void ChangeButtonStatus(Yodo1AdNetwork adNetwork)
     {
-        
-        bool contains = adNetwork.name.IndexOf("APPLOVIN", StringComparison.OrdinalIgnoreCase) >= 0 || adNetwork.name.IndexOf("ADMOB", StringComparison.OrdinalIgnoreCase) >= 0 || adNetwork.name.IndexOf("IRONSOURCE", StringComparison.OrdinalIgnoreCase) >= 0;
+
+        bool contains = adNetwork.name.IndexOf("APPLOVIN", StringComparison.OrdinalIgnoreCase) >= 0 || adNetwork.name.IndexOf("ADMOB", StringComparison.OrdinalIgnoreCase) >= 0 || adNetwork.name.IndexOf("AMAZON", StringComparison.OrdinalIgnoreCase) >= 0;
         if (contains)
         {
             GUI.enabled = false;
@@ -453,13 +596,14 @@ public class IntegrationManager : EditorWindow
         {
             if (GUILayout.Button(new GUIContent("Remove"), fieldWidth))
             {
-                bool selection = EditorUtility.DisplayDialog("Remove "+adNetwork.name,"Are you sure you want to remove "+ adNetwork.name + "? This will impact REVENUE.", "Do Not Remove", "Remove");
+                string displayName = GetDisplayName(adNetwork);
+                bool selection = EditorUtility.DisplayDialog("Remove " + displayName, "Are you sure you want to remove " + displayName + "? This will impact REVENUE.", "Do Not Remove", "Remove");
                 if (!selection)
                 {
                     RemoveAdNetwork(adNetwork);
                     ChangeButtonStatus(adNetwork);
                 }
-                
+
             }
         }
         else
@@ -472,12 +616,17 @@ public class IntegrationManager : EditorWindow
                 ChangeButtonStatus(adNetwork);
 
             }
-            GUILayout.Label(new GUIContent(icon), contentLabelStyle,GUILayout.Width(25f));
+            GUILayout.Label(new GUIContent(icon), contentLabelStyle, GUILayout.Width(25f));
         }
     }
     private string UpperFirst(string text)
     {
         return char.ToUpper(text[0]) + ((text.Length > 1) ? text.Substring(1).ToLower() : string.Empty);
+    }
+    private string GetDisplayName(Yodo1AdNetwork adNetwork)
+    {
+        return string.IsNullOrEmpty(adNetwork.displayName) ? UpperFirst(adNetwork.name) : adNetwork.displayName;
+
     }
     private void DrawHeaders()
     {
@@ -584,5 +733,5 @@ public class IntegrationManager : EditorWindow
         return 0;
     }
 
-    
+
 }

@@ -13,6 +13,8 @@ public class EnemyDamageSystem : IEcsInitSystem, IEcsRunSystem
     private EcsPool<Movement> movementPool;
     private EcsPool<Projectile> projectilePool;
     private EcsPool<Position> positionPool;
+    private EcsPool<Damage> damagePool;
+
     public void Init(IEcsSystems systems)
     {
         _sharedData = systems.GetShared<SharedData>();
@@ -21,20 +23,24 @@ public class EnemyDamageSystem : IEcsInitSystem, IEcsRunSystem
             .Inc<Movement>()
             .Inc<EnemyDamage>()
             .Inc<Position>()
+            .Inc<Damage>()
             .End();
         _towerFilter = _world.Filter<Tower>()
             .Inc<Health>()
             .End();
-        
+
         healthPool = _world.GetPool<Health>();
         meleeDamagePool = _world.GetPool<EnemyDamage>();
-        movementPool= _world.GetPool<Movement>();
+        movementPool = _world.GetPool<Movement>();
         projectilePool = _world.GetPool<Projectile>();
         positionPool = _world.GetPool<Position>();
+        damagePool = _world.GetPool<Damage>();
     }
 
     public void Run(IEcsSystems systems)
     {
+        if (DataController.IsGameplayEnding)
+            return;
 
         foreach (int tower in _towerFilter)
         {
@@ -42,23 +48,15 @@ public class EnemyDamageSystem : IEcsInitSystem, IEcsRunSystem
 
             foreach (int enemy in _enemyFilter)
             {
-                ref Movement enemyMovement = ref movementPool.Get(enemy);
-                if (!enemyMovement.Stopped)
-                {
-                    continue;
-                }
-
                 ref EnemyDamage enemyDamage = ref meleeDamagePool.Get(enemy);
-                enemyDamage.DamageCooldownRemaining -= Time.deltaTime;
-                if (enemyDamage.DamageCooldownRemaining <= 0)
-                {
-                    enemyDamage.DamageCooldownRemaining = enemyDamage.DamageCooldown;
 
-                    if (enemyDamage.isRangeDamage)
-                        Attack(enemy, enemyDamage, movementPool);
-                    else
-                        TakeMeleeDamage(ref towerHealth, enemyDamage);
-                }
+                enemyDamage.DamageCooldownRemaining = enemyDamage.DamageCooldown;
+
+                if (enemyDamage.isRangeDamage)
+                    Attack(enemy, enemyDamage, movementPool);
+                else
+                    TakeMeleeDamage(ref towerHealth, enemyDamage);
+                damagePool.Del(enemy);
             }
         }
     }
@@ -70,23 +68,25 @@ public class EnemyDamageSystem : IEcsInitSystem, IEcsRunSystem
         ref Projectile projectile = ref projectilePool.Add(projectileEntity);
         ref Movement projectileMovement = ref movement.Add(projectileEntity);
         ref Position projectilePosition = ref positionPool.Add(projectileEntity);
-        enemyDamage.OnStartAttack?.Invoke();
 
         // Setup View
-        ProjectileView projectileView = GameObject.Instantiate(_sharedData.Settings.DynamiteView);
+        ProjectileView projectileView = _sharedData.ViewPools != null
+            ? _sharedData.ViewPools.Spawn(_sharedData.Settings.DynamiteView, Vector3.zero, Quaternion.identity)
+            : GameObject.Instantiate(_sharedData.Settings.DynamiteView);
         // Init components
         projectile.Damage = enemyDamage.Damage;
+        projectile.IsConsumed = false;
+        projectile.view = projectileView;
         projectile.OnDamageDealt += (damage, enemyTransform) =>
-            UltimateTextDamageManager.Instance.Add(damage.ToString("N0"), enemyTransform,"tower");
+            UltimateTextDamageManager.Instance.Add(damage.ToString("N0"), enemyTransform, "tower");
         projectileMovement.StopRadius = 0;
 
         projectileMovement.transform = projectileView.transform;
-        projectilePosition =  positionPool.Get(enemy);
+        projectilePosition = positionPool.Get(enemy);
         projectileMovement.Velocity = ((Vector2) positionPool.Get(enemy)).normalized * -projectileView.MovementSpeed;
         // Init View
         //projectileView.transform.position = (Vector2)projectilePosition;
-        projectileView.packedEntity = projectileEntity;
-        projectileView.world = _world;
+        projectileView.Configure(_world, projectileEntity);
     }
 
     private void TakeMeleeDamage(ref Health towerHealth, EnemyDamage enemyDamage)
@@ -97,7 +97,7 @@ public class EnemyDamageSystem : IEcsInitSystem, IEcsRunSystem
             towerHealth.CurrentHealth = 0;
             towerHealth.OnKilled?.Invoke();
         }
-        enemyDamage.OnStartAttack?.Invoke();
+
         enemyDamage.OnDamageDealt?.Invoke(enemyDamage.Damage, _sharedData.towerView.transform);
         towerHealth.OnDamaged?.Invoke();
     }

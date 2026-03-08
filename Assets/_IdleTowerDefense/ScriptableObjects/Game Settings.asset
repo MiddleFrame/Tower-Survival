@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Game Settings
   m_EditorClassIdentifier: 
   currencies:
-  - value: 4
+  - value: 0
     type: 0
     sprite: {fileID: 21300000, guid: 5f07913d1f861f94f98de88f382f24be, type: 3}
-  - value: 1572
+  - value: 546
     type: 1
     sprite: {fileID: 21300000, guid: 70d3e6673155a39438547c5e68ad368a, type: 3}
-  - value: 100
+  - value: 11944
     type: 2
     sprite: {fileID: 21300000, guid: 3a341cef80b7f414c9a78e9aac96b545, type: 3}
   EnemySpawnSettings:
@@ -28,7 +28,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8a24a0c5046a80e4a87d35cf0ca9d8a8, type: 2}
   - {fileID: 11400000, guid: 8127ff662aa37954090bf6ed4bda54a2, type: 2}
   UpgradeSettings: {fileID: 11400000, guid: 2beb3d7ce10244647a0c893696928a4b, type: 2}
-  tower: {fileID: 2203159105387169487, guid: 04d700718b1fdb34fb6021c5be5332e7, type: 3}
+  tower: {fileID: 4071222451322221605, guid: 04d700718b1fdb34fb6021c5be5332e7, type: 3}
   ProjectileView: {fileID: -6287025677217260571, guid: 1ec97e3ef12c87446829b12708c5b747, type: 3}
   DynamiteView: {fileID: 1913065458034170199, guid: 4f5262d842b3b764eb79fc3e9fd92e91, type: 3}
   TowerStartingAttackDamage: 1
@@ -37,5 +37,5 @@ MonoBehaviour:
   TowerStartingTargetingRange: 2
   BaseMaxHealth: 50
   BaseHealthRegeneration: 0
-  EnemySpawnRadius: 3.8
+  EnemySpawnRadius: 5
   shootingSound: {fileID: 8300000, guid: 28657b9a57ac57347804d4d07e8f4b12, type: 3}

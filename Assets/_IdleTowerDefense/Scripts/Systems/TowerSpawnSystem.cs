@@ -42,9 +42,9 @@ public class TowerSpawnSystem : IEcsPreInitSystem, IEcsInitSystem
 
         towerHealth.healthBar = _healthBarValue;
         // Setup View
-        GameObject tower =
-            GameObject.Instantiate(_sharedData.Settings.tower, _spawnTowerPoint, Quaternion.identity);
-
+        TowerView tower =
+            MonoBehaviour.Instantiate(_sharedData.Settings.tower, _spawnTowerPoint, Quaternion.identity);
+        tower.Init();
         // Init components
         towerHealth.InitStartValues(
             _sharedData.Settings.BaseMaxHealth,
@@ -54,8 +54,11 @@ public class TowerSpawnSystem : IEcsPreInitSystem, IEcsInitSystem
             () =>
                 tower.transform.DOPunchPosition(Random.insideUnitCircle / 100f, 0.1f, 3)
                     .OnComplete(() => tower.transform.position = Vector3.zero),
-            () => DataController.Instance.OnTowerKilled()
-        );
+             ()=>
+            {
+                tower.DestroyAnim();
+                DataController.Instance.OnTowerKilled();
+            });
         // Health Regeneration
 
         Debug.Log("Init tower start values");
@@ -63,7 +66,9 @@ public class TowerSpawnSystem : IEcsPreInitSystem, IEcsInitSystem
             _sharedData.Settings.TowerStartingAttackDamage);
 
         towerTargetSelector.InitStartValues(_sharedData.Settings.TowerStartingTargetingRange);
-        towerTargetSelector.radiusRenderer = tower.GetComponentInChildren<LineRenderer>();
+        towerTargetSelector.radiusRenderer = tower.radiusLine;
         _sharedData.towerView = tower;
     }
+    
+    
 }

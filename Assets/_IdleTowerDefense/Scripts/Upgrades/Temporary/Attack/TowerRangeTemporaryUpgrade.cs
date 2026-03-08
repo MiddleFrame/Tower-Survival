@@ -16,6 +16,7 @@ public class TowerRangeTemporaryUpgrade : TemporaryUpgradeBase
         _world = system.GetWorld();
         Debug.Log("Init");
         _towerTargetSelectorFilter = _world.Filter<Tower>().Inc<TowerTargetSelector>().End();
+        UpdateStartValue();
     }
 
 

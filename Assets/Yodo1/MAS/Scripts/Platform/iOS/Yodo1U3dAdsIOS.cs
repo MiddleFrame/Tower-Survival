@@ -84,6 +84,16 @@ public class Yodo1U3dAdsIOS
     }
 
     [DllImport(LIB_NAME)]
+    private static extern void UnityMasSetPersonalizedAdState(int state);
+    public static void SetPersonalizedAdState(Yodo1MasPersonalizedAdState personalizedAdState)
+    {
+        if (Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            UnityMasSetPersonalizedAdState((int)personalizedAdState);
+        }
+    }
+
+    [DllImport(LIB_NAME)]
     private static extern int UnityMasUserAge();
     public static int GetUserAge()
     {
@@ -92,6 +102,27 @@ public class Yodo1U3dAdsIOS
             return UnityMasUserAge();
         }
         return 0;
+    }
+
+    [DllImport(LIB_NAME)]
+    private static extern string UnityMasGetUserIdentifier();
+    public static string GetUserIdentifier()
+    {
+        if (Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            return UnityMasGetUserIdentifier();
+        }
+        return string.Empty;
+    }
+
+    [DllImport(LIB_NAME)]
+    private static extern void UnityMasSetUserIdentifier(string userIdentifier);
+    public static void SetUserIdentifier(string userIdentifier)
+    {
+        if (Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            UnityMasSetUserIdentifier(userIdentifier);
+        }
     }
 
     [DllImport(LIB_NAME)]
@@ -108,17 +139,6 @@ public class Yodo1U3dAdsIOS
     /// <summary>
     /// 初始化SDK
     /// </summary>
-    [DllImport(LIB_NAME)]
-    private static extern void UnityMasInitWithAppKey(string appKey, string gameObject, string methodName);
-
-    public static void InitWithAppKey(string appKey)
-    {
-        if (Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            UnityMasInitWithAppKey(appKey, Yodo1U3dMasCallback.Instance.SdkObjectName, Yodo1U3dMasCallback.Instance.SdkMethodName);
-        }
-    }
-
     [DllImport(LIB_NAME)]
     private static extern void UnityMasInitMasWithAppKey(string appKey, string gameObject, string methodName);
 
@@ -150,6 +170,27 @@ public class Yodo1U3dAdsIOS
         }
     }
 
+    [DllImport(LIB_NAME)]
+    private static extern void UnityMasShowUmpForExistingUser();
+    public static void ShowUmpForExistingUser()
+    {
+        if (Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            UnityMasShowUmpForExistingUser();
+        }
+    }
+
+    [DllImport(LIB_NAME)]
+    private static extern string UnityMasGetIABTCFString(string key);
+    public static string GetIABTCFString(string key)
+    {
+        if (Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            return UnityMasGetIABTCFString(key);
+        }
+        return "";
+    }
+
     /// <summary>
     /// 设置广告配置
     /// </summary>
@@ -164,103 +205,6 @@ public class Yodo1U3dAdsIOS
     }
 
     #region  Banner
-    /// <summary>
-    /// 检查Banner 是否缓存好
-    /// </summary>
-    /// <returns></returns>
-    [DllImport(LIB_NAME)]
-    private static extern bool UnityIsBannerAdLoaded();
-    public static bool IsBannerAdLoaded()
-    {
-        if (Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            return UnityIsBannerAdLoaded();
-        }
-        return false;
-    }
-
-    [DllImport(LIB_NAME)]
-    private static extern void UnityShowBannerAd();
-    public static void ShowBannerAd()
-    {
-        if (Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            UnityShowBannerAd();
-        }
-    }
-
-    [DllImport(LIB_NAME)]
-    private static extern void UnityShowBannerAdWithPlacement(string placement);
-    public static void ShowBannerAd(string placement)
-    {
-        if (Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            UnityShowBannerAdWithPlacement(placement);
-        }
-    }
-
-    /// <summary>
-    /// 显示广告
-    /// </summary>
-    [DllImport(LIB_NAME)]
-    private static extern void UnityShowBannerAdWithAlign(int align);
-    public static void ShowBannerAd(int align)
-    {
-        if (Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            UnityShowBannerAdWithAlign(align);
-        }
-    }
-
-    /// <summary>
-    /// 显示广告
-    /// </summary>
-    [DllImport(LIB_NAME)]
-    private static extern void UnityShowBannerAdWithAlignAndOffset(int align, int offsetX, int offsetY);
-    public static void ShowBannerAd(int align, int offsetX, int offsetY)
-    {
-        if (Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            UnityShowBannerAdWithAlignAndOffset(align, offsetX, offsetY);
-        }
-    }
-
-    [DllImport(LIB_NAME)]
-    private static extern void UnityShowBannerAdWithPlacementAndAlignAndOffset(string placement, int align, int offsetX, int offsetY);
-    public static void ShowBannerAd(string placement, int align, int offsetX, int offsetY)
-    {
-        if (Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            UnityShowBannerAdWithPlacementAndAlignAndOffset(placement, align, offsetX, offsetY);
-        }
-    }
-
-
-    /// <summary>
-    /// dismiss banner ad
-    /// </summary>
-    [DllImport(LIB_NAME)]
-    private static extern void UnityDismissBannerAd();
-    public static void DismissBannerAd()
-    {
-        if (Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            UnityDismissBannerAd();
-        }
-    }
-
-    /// <summary>
-    /// dismiss banner ad
-    /// </summary>
-    [DllImport(LIB_NAME)]
-    private static extern void UnityDismissBannerAdWithDestroy(bool destroy);
-    public static void DismissBannerAd(bool destroy)
-    {
-        if (Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            UnityDismissBannerAdWithDestroy(destroy);
-        }
-    }
 
     [DllImport(LIB_NAME)]
     private static extern void UnityLoadBannerAdV2(string param);
@@ -375,49 +319,6 @@ public class Yodo1U3dAdsIOS
 
     #region  Interstitial
 
-    /// <summary>
-    /// 插屏广告是否可以播放
-    /// </summary>
-    /// <returns><c>true</c>, if switch full screen ad was unityed, <c>false</c> otherwise.</returns>
-    [DllImport(LIB_NAME)]
-    private static extern bool UnityIsInterstitialLoaded();
-
-    public static bool IsInterstitialLoaded()
-    {
-        if (Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            return UnityIsInterstitialLoaded();
-        }
-        return false;
-    }
-
-
-    [DllImport(LIB_NAME)]
-    private static extern void UnityShowInterstitialAd();
-    /// <summary>
-    /// 显示插屏广告
-    /// </summary>
-    public static void ShowInterstitialAd()
-    {
-        if (Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            UnityShowInterstitialAd();
-        }
-    }
-
-    [DllImport(LIB_NAME)]
-    private static extern void UnityShowInterstitialAdWithPlacementId(string placementId);
-    /// <summary>
-    /// 显示插屏广告
-    /// </summary>
-    public static void ShowInterstitialAd(string placementId)
-    {
-        if (Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            UnityShowInterstitialAdWithPlacementId(placementId);
-        }
-    }
-
     [DllImport(LIB_NAME)]
     private static extern void UnityLoadInterstitialAdV2(string param);
     [DllImport(LIB_NAME)]
@@ -448,48 +349,6 @@ public class Yodo1U3dAdsIOS
     #endregion
 
     #region  Video
-
-    [DllImport(LIB_NAME)]
-    private static extern bool UnityIsRewardedAdLoaded();
-    /// <summary>
-    /// Video是否已经准备好
-    /// </summary>
-    /// <returns><c>true</c>, if switch ad video was unityed, <c>false</c> otherwise.</returns>
-    public static bool IsRewardedAdLoaded()
-    {
-        if (Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            return UnityIsRewardedAdLoaded();
-        }
-        return false;
-    }
-
-    [DllImport(LIB_NAME)]
-    private static extern void UnityShowRewardedAd();
-    /// <summary>
-    /// 显示Video广告
-    /// </summary>
-    public static void ShowRewardedAd()
-    {
-        if (Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            UnityShowRewardedAd();
-        }
-    }
-
-    [DllImport(LIB_NAME)]
-    private static extern void UnityShowRewardedAdWithPlacementId(string placementId);
-    /// <summary>
-    /// 显示Video广告
-    /// </summary>
-    public static void ShowRewardedAd(string placementId)
-    {
-        if (Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            UnityShowRewardedAdWithPlacementId(placementId);
-        }
-    }
-
 
     [DllImport(LIB_NAME)]
     private static extern void UnityLoadRewardAdV2(string param);
@@ -533,7 +392,7 @@ public class Yodo1U3dAdsIOS
             }
             if (methodName.Equals("isRewardedInterstitialAdLoaded"))
             {
-                return UnityIsRewardedInterstitialAdLoaded(param);
+
             }
             if (methodName.Equals("isAppOpenAdLoaded"))
             {
@@ -575,33 +434,6 @@ public class Yodo1U3dAdsIOS
     }
     #endregion
 
-    #region  RewardedInterstitial
-    [DllImport(LIB_NAME)]
-    private static extern void UnityLoadRewardedInterstitialAd(string param);
-    [DllImport(LIB_NAME)]
-    private static extern void UnityShowRewardedInterstitialAd(string param);
-    [DllImport(LIB_NAME)]
-    private static extern void UnityDestroyRewardedInterstitialAd(string param);
-    [DllImport(LIB_NAME)]
-    private static extern bool UnityIsRewardedInterstitialAdLoaded(string param);
-    public static void RewardedInterstitial(string methodName, string param)
-    {
-        if (Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            if (methodName.Equals("loadRewardedInterstitialAd"))
-            {
-                UnityLoadRewardedInterstitialAd(param);
-            }
-            if (methodName.Equals("showRewardedInterstitialAd"))
-            {
-                UnityShowRewardedInterstitialAd(param);
-            }
-            if (methodName.Equals("destroyRewardedInterstitialAd"))
-            {
-                UnityDestroyRewardedInterstitialAd(param);
-            }
-        }
-    }
-    #endregion
+
 #endif
 }

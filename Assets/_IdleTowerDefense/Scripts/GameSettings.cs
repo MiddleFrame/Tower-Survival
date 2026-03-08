@@ -13,7 +13,7 @@ public class GameSettings : ScriptableObject
     public UpgradeSettings UpgradeSettings;
 
     [Header("Prefabs")]
-    public GameObject tower;
+    public TowerView tower;
 
     public ProjectileView ProjectileView;
     public ProjectileView DynamiteView;

@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuWindowController : MonoBehaviour
 {
@@ -11,7 +13,38 @@ public class MenuWindowController : MonoBehaviour
     [SerializeField]
     private Animator _settings;
 
+    [SerializeField]
+    private Button _playButton;
+   // [SerializeField]
+   // private GameStarter _worldOne;
 
+    [SerializeField]
+    private Button _upgradesButton;
+
+    [SerializeField]
+    private Button _villageButton;
+    [SerializeField]
+    private Button _futureButton;
+    [SerializeField]
+    private Button _settingsButton;
+
+    [SerializeField]
+    private GameObject _closePopup;
+
+    [SerializeField]
+    private CameraMotion _cameraMotion;
+
+    private void Start()
+    {
+        //_worldOne.Init(OpenMenu);
+        _playButton.onClick.AddListener(GoToMain);
+        _playButton.onClick.AddListener(OpenMenu);
+        _upgradesButton.onClick.AddListener(OpenGrades);
+        _villageButton.onClick.AddListener(GoToVillage);
+        _futureButton.onClick.AddListener(InDevelopment);
+        _settingsButton.onClick.AddListener(OpenSetting);
+    }
+    
     public void OpenMenu()
     {
         if (_menu.gameObject.activeSelf)
@@ -28,6 +61,25 @@ public class MenuWindowController : MonoBehaviour
         
         _menu.gameObject.SetActive(true);
         _menu.Play("Fade In");
+    }
+
+    private void GoToMain()
+    {
+        StartCoroutine(_cameraMotion.GoToMain());
+    }
+
+    private void GoToVillage()
+    {
+        
+        StartCoroutine(_cameraMotion.GoToVillage());
+    }
+    private void CloseWindow(string text)
+    {
+        _closePopup.SetActive(true);
+    }
+    private void InDevelopment()
+    {
+        _closePopup.SetActive(true);
     }
     public void OpenShop()
     {

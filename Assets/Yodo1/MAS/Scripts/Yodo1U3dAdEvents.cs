@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Yodo1.MAS
+﻿namespace Yodo1.MAS
 {
     public enum Yodo1U3dAdEvent
     {
@@ -13,7 +9,8 @@ namespace Yodo1.MAS
         AdLoadFail = 1004,
         AdOpenFail = 1005,
         AdOpening = 1006,
-        AdReward = 2001
+        AdReward = 2001,
+        AdPayRevenue = 2002
     }
 }
 

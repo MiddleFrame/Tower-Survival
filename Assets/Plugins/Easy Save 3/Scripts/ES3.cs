@@ -667,20 +667,18 @@ public static class ES3
         var newSettings = new ES3Settings(audioFilePath, settings);
 
 #if UNITY_2018_3_OR_NEWER
-        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip("file://" + newSettings.FullPath, audioType))
+        using UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip("file://" + newSettings.FullPath, audioType);
+        www.SendWebRequest();
+
+        while (!www.isDone)
         {
-            www.SendWebRequest();
-
-            while (!www.isDone)
-            {
-                // Wait for it to load.
-            }
-
-            if (www.isNetworkError)
-                throw new System.Exception(www.error);
-            else
-                return DownloadHandlerAudioClip.GetContent(www);
+            // Wait for it to load.
         }
+
+        if (www.result == UnityWebRequest.Result.ConnectionError)
+            throw new System.Exception(www.error);
+        else
+            return DownloadHandlerAudioClip.GetContent(www);
 #elif UNITY_2017_1_OR_NEWER
 		WWW www = new WWW(newSettings.FullPath);
 

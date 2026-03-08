@@ -16,6 +16,9 @@ public class World : MonoBehaviour
     [SerializeField]
     private AudioSource _wordSound;
 
+    [SerializeField]
+    private GameplayViewPools _viewPools;
+    
     private EcsWorld _world;
     public IEcsSystems System => _systems;
     private IEcsSystems _systems;
@@ -26,9 +29,16 @@ public class World : MonoBehaviour
         _world = new EcsWorld();
 
         SharedData sharedData = InitData.sharedData;
+        if (_viewPools == null)
+        {
+            var poolsGo = new GameObject("GameplayViewPools");
+            _viewPools = poolsGo.AddComponent<GameplayViewPools>();
+        }
+        sharedData.SetViewPools(_viewPools);
         
         _systems = new EcsSystems(_world, sharedData).Add(new TowerSpawnSystem(_spawnTowerPoint,_healthBar,_healthBarValue))
             .Add(new TowerUpgradeLoadingSystem())
+            .Add(new EnemyAttackSystem())
             .Add(new HealthBarUISystem())
             .Add(new TowerTargetingSystem())
             .Add(new TowerFiringSystem(sharedData.Settings.shootingSound,_wordSound))

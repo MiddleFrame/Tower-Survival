@@ -12,7 +12,6 @@ public class AddManager : MonoBehaviour
     [SerializeField]
     private GameObject _loadingAnim;
 
-    private int age;
 
     private void Awake()
     {

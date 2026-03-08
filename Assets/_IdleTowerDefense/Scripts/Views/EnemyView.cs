@@ -1,5 +1,6 @@
 using System;
-using Leopotam.EcsLite;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemyView : MonoBehaviour
@@ -15,46 +16,73 @@ public class EnemyView : MonoBehaviour
 
     public SpriteRenderer healthBar;
 
-    [SerializeField]
-    private Animator _animator;
+    public Animator animator;
 
     [SerializeField]
     private GameObject model;
 
     [SerializeField]
     private GameObject deadAnim;
-
-    public EcsPackedEntity PackedEntity;
-    public EcsWorld World;
+    
+    public AnimationEventHandler handler;
 
     public EnemyType enemyNumber;
 
-    private static EcsPool<Position> positionPool;
-    private static EcsPool<Health> healthPool;
-    private void Start()
+    [HideInInspector]
+    public int enemyEntity;
+
+    private static readonly HashSet<EnemyView> ActiveViews = new HashSet<EnemyView>();
+    private bool _deathVfxSpawned;
+
+    public static EnemyView[] GetActiveViewsSnapshot()
     {
-        positionPool ??= World.GetPool<Position>();
-        healthPool ??= World.GetPool<Health>();
-        if (!(transform.position.x > 0)) return;
-        var scale = model.transform.localScale;
-        model.transform.localScale = new Vector3(-scale.x, scale.y,
-            scale.z);
+        return ActiveViews.ToArray();
     }
 
-    public void Hit()
+    private void OnEnable()
     {
-        if (transform.position.y > 0.5f)
-            _animator.SetTrigger("Hit_down");
-        else if (transform.position.y < -0.5f)
-            _animator.SetTrigger("Hit_up");
+        ActiveViews.Add(this);
+    }
+
+    private void OnDisable()
+    {
+        ActiveViews.Remove(this);
+    }
+
+    public void SpawnDeathVfx()
+    {
+        if (_deathVfxSpawned || deadAnim == null || DataController.IsGameplayEnding)
+            return;
+
+        if (InitData.sharedData?.ViewPools != null)
+        {
+            InitData.sharedData.ViewPools.SpawnTimed(deadAnim, transform.position, Quaternion.identity, 0.7f);
+        }
         else
-            _animator.SetTrigger("Hit");
+        {
+            var dead = Instantiate(deadAnim, transform.position, new Quaternion());
+            Destroy(dead, 0.7f);
+        }
+
+        _deathVfxSpawned = true;
     }
 
-
-    private void OnDestroy()
+    public void Configure(int entity)
     {
-        var dead = Instantiate(deadAnim, transform.position, new Quaternion());
-        Destroy(dead, 0.7f);
+        enemyEntity = entity;
+        _deathVfxSpawned = false;
+        if (model == null)
+            return;
+
+        if (transform.position.x > 0f)
+        {
+            var scale = model.transform.localScale;
+            model.transform.localScale = new Vector3(-Mathf.Abs(scale.x), scale.y, scale.z);
+        }
+        else
+        {
+            var scale = model.transform.localScale;
+            model.transform.localScale = new Vector3(Mathf.Abs(scale.x), scale.y, scale.z);
+        }
     }
 }

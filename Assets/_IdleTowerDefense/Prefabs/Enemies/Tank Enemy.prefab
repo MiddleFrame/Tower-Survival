@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: -9166989117302009329}
   - component: {fileID: 7168876289237999846}
   - component: {fileID: 6160871011627294610}
+  - component: {fileID: 5371541790002143289}
   m_Layer: 0
   m_Name: Tank Enemy
   m_TagString: Untagged
@@ -303,10 +304,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 5281308951426592612}
-  _animator: {fileID: 6160871011627294610}
+  animator: {fileID: 6160871011627294610}
   model: {fileID: 3938781522497842036}
   deadAnim: {fileID: 5525115552690463809, guid: 72f082927d03ee0418bc767f5c1d07b9, type: 3}
+  handler: {fileID: 5371541790002143289}
   enemyNumber: 1
+  enemyEntity: 0
 --- !u!50 &-9166989117302009329
 Rigidbody2D:
   serializedVersion: 4
@@ -390,3 +393,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5371541790002143289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7918579136678062904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b9b0706206478d4c893d2682fb7c78e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
