@@ -24,7 +24,7 @@ MonoBehaviour:
   m_missingGlyphCharacter: 0
   m_ClearDynamicDataOnBuild: 1
   m_warningsDisabled: 0
-  m_defaultFontAsset: {fileID: 11400000, guid: f953452625d558443b2e07f07c3ed0cf, type: 2}
+  m_defaultFontAsset: {fileID: 11400000, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
   m_defaultFontAssetPath: Assets/_IdleTowerDefense/Fonts
   m_defaultFontSize: 36
   m_defaultAutoSizeMinRatio: 0.5
