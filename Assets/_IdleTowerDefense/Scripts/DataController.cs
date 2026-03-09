@@ -58,17 +58,27 @@ public class DataController : Singleton<DataController>
         StartCoroutine(TowerDeathSequence());
     }
 
+    public void Surrender()
+    {
+        IsGameplayEnding = true;
+        EndGame();
+    }
+
     private IEnumerator TowerDeathSequence()
     {
         _towerDeathSequenceStarted = true;
         IsGameplayEnding = true;
-        //TODO tower animation
         Time.timeScale = Mathf.Clamp(_towerDeathSlowMotionScale, 0.01f, 1f);
         yield return new WaitForSecondsRealtime(Mathf.Max(0f, _loseMenuDelay));
 
+        Time.timeScale = 1f;
+        EndGame();
+    }
+
+    private void EndGame()
+    {
         Paused = true;
         CleanupGameplayViews();
-        Time.timeScale = 1f;
 
         bool isNewHighScore = false;
         int highScore = ES3.Load(SaveKeys.EnemiesKilled+"_"+tier,0);
@@ -161,10 +171,12 @@ public class DataController : Singleton<DataController>
     {
         _setting.SetActive(true);
         Time.timeScale = 0;
+        Paused = true;
     }
     public void CloseSetting()
     {
         _setting.SetActive(false);
+        Paused = false;
     }
     
     public static void LoadData(List<Currency> currencies)

@@ -100,12 +100,6 @@ namespace Managers
             purchased = null;
         }
 
-        public void BuyRemoveAds()
-        {
-            UnityEvent @event = new UnityEvent();
-            @event.AddListener(RemoveAds);
-            BuyProductID(_removeAds, @event);
-        }
 
         public void RemoveAds()
         {
@@ -121,25 +115,26 @@ namespace Managers
         {
             DataController.Currency.AddValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, 1000));
             AddSpeed();
+            ES3.Save(SaveKeys.Gold, DataController.Currency[CurrencyTypes.Gold].value);
         }
 
         public void BuyBigGold()
         {
             DataController.Currency.AddValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, 5000));
-            ES3.Save(SaveKeys.Gold, DataController.Currency[CurrencyTypes.Gold]);
+            ES3.Save(SaveKeys.Gold, DataController.Currency[CurrencyTypes.Gold].value);
         }
 
         public void BuyMediumGold()
         {
-            DataController.Currency.AddValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, 2000));    ES3.Save(SaveKeys.Gold, DataController.Currency[CurrencyTypes.Gold]);
+            DataController.Currency.AddValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, 2000));    ES3.Save(SaveKeys.Gold, DataController.Currency[CurrencyTypes.Gold].value);
         }
 
         public void BuySmallGold()
         {
-            DataController.Currency.AddValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, 500));    ES3.Save(SaveKeys.Gold, DataController.Currency[CurrencyTypes.Gold]);
+            DataController.Currency.AddValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, 500));    ES3.Save(SaveKeys.Gold, DataController.Currency[CurrencyTypes.Gold].value);
         }
 
-        private static bool CheckBuyState(string id)
+        public static bool CheckBuyState(string id)
         {
             Product product = StoreController.products.WithID(id);
             return product.hasReceipt;
