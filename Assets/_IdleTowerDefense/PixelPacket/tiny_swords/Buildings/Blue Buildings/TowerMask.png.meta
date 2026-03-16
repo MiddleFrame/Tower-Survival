@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-guid: 9150ff9a3f88646ddaf1ed327afa1315
-AssetOrigin:
-  serializedVersion: 1
-  productId: 352566
-  packageName: Tiny Swords
-  packageVersion: 1.0
-  assetPath: Assets/Tiny Swords/Buildings/Blue Buildings/Tower.png
-  uploadId: 844324
+guid: 9b2c30df254122c41ba3e617e71552df
 TextureImporter:
   internalIDToNameTable:
   - first:
