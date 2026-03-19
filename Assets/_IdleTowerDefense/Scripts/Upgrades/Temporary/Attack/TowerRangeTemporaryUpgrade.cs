@@ -14,9 +14,7 @@ public class TowerRangeTemporaryUpgrade : TemporaryUpgradeBase
     public override void Init(IEcsSystems system)
     {
         _world = system.GetWorld();
-        Debug.Log("Init");
         _towerTargetSelectorFilter = _world.Filter<Tower>().Inc<TowerTargetSelector>().End();
-        UpdateStartValue();
     }
 
 
