@@ -22,7 +22,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         {
             if (_instance == null)
             {
-                _instance = (T)FindObjectOfType(typeof(T));
+                _instance = (T)FindFirstObjectByType(typeof(T));
                 if (_instance == null)
                 {
 
@@ -51,6 +51,16 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         // release reference on exit
         _instance = null;
     }
+
+    protected virtual void OnDestroy()
+    {
+        if (_instance == this)
+        {
+            _instance = null;
+        }
+    }
+
+    
 
     // in your child class you can implement Awake()
     // and add any initialization code you want such as

@@ -12,7 +12,7 @@ namespace Guirao.UltimateTextDamage
         void Start( )
         {
             if( textManager == null )
-                textManager = FindObjectOfType<UltimateTextDamageManager>( );
+                textManager = FindFirstObjectByType<UltimateTextDamageManager>( );
         }
         private void OnMouseUpAsButton( )
         {

@@ -22,7 +22,7 @@ public class LocalLightController : MonoBehaviour
 
     private void Start()
     {
-        dayNightController = FindObjectOfType<DayNightController>();
+        dayNightController = FindFirstObjectByType<DayNightController>();
         
         if (dayNightController != null)
         {

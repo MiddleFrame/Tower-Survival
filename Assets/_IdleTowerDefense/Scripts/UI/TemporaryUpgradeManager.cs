@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,19 +31,31 @@ public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
     public bool MenuOpen { get; private set; }
 
     private Camera _camera;
+    private readonly List<TemporaryUpgradeButton> _buttons = new();
 
-    private void Start()
+    private IEnumerator Start()
     {
-        Debug.Log("Temporary Init");
+        yield return null;
+        InitializeMenu();
+    }
+
+    private void InitializeMenu()
+    {
+        CleanupMenu();
+
         _camera = Camera.main;
+        if (!TryResolveWorld(out _world))
+        {
+            Debug.LogError("TemporaryUpgradeManager: active World with initialized ECS systems was not found.");
+            return;
+        }
+
         gameSettings.UpgradeSettings.InitTemporaryUpgrades(_world.System);
-        int[] stages =  ES3.Load(SaveKeys.Stage, new int[3]);
-        
+        int[] stages = ES3.Load(SaveKeys.Stage, new int[3]);
+
         foreach (var upgrade in gameSettings.UpgradeSettings.TemporaryUpgrades.Where(upgrade => upgrade.openingStage <= stages[upgrade.window ]))
         {
-
             TemporaryUpgradeCounts.Add(upgrade.Title, 0);
-
             Transform buttonContainer = upgrade.window switch
             {
                 0 => attackContainer,
@@ -52,6 +65,7 @@ public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
             };
             // Setup UpgradeButton values
             TemporaryUpgradeButton temporaryUpgradeButton = Instantiate(temporaryUpgradeButtonPrefab, buttonContainer);
+            _buttons.Add(temporaryUpgradeButton);
             temporaryUpgradeButton.targetTemporaryUpgrade = upgrade;
 
             temporaryUpgradeButton.titleObj.text = upgrade.Title.ToUpper();
@@ -73,7 +87,47 @@ public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
                 }
             );
         }
+    }
 
+    private bool TryResolveWorld(out World resolvedWorld)
+    {
+        resolvedWorld = _world;
+        if (resolvedWorld != null && resolvedWorld.System != null)
+        {
+            return true;
+        }
+
+        resolvedWorld = FindFirstObjectByType<World>();
+        return resolvedWorld != null && resolvedWorld.System != null;
+    }
+
+    private void CleanupMenu()
+    {
+        StopCoroutine(nameof(ApproachCamera));
+        StopCoroutine(nameof(PullBackCamera));
+        MenuOpen = false;
+        TemporaryUpgradeCounts.Clear();
+
+        foreach (var upgrade in gameSettings.UpgradeSettings.TemporaryUpgrades)
+        {
+            upgrade.onUpgrade = null;
+        }
+
+        foreach (var button in _buttons)
+        {
+            if (button != null)
+            {
+                Destroy(button.gameObject);
+            }
+        }
+
+        _buttons.Clear();
+    }
+
+    protected override void OnDestroy()
+    {
+        CleanupMenu();
+        base.OnDestroy();
     }
 
     public void OpenAttackMenu()
