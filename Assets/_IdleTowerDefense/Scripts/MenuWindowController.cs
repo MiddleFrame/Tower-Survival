@@ -14,7 +14,10 @@ public class MenuWindowController : MonoBehaviour
     private Animator _settings;
 
     [SerializeField]
-    private Button _playButton;
+    private Button _playButton;    
+    
+    [SerializeField]
+    private Button _backToMainButton;
    // [SerializeField]
    // private GameStarter _worldOne;
 
@@ -34,10 +37,15 @@ public class MenuWindowController : MonoBehaviour
     [SerializeField]
     private CameraMotion _cameraMotion;
 
+    [SerializeField] 
+    private GameObject[] mainUIElements;
+    [SerializeField] 
+    private GameObject[] villageUIElements;
+
     private void Start()
     {
         //_worldOne.Init(OpenMenu);
-        _playButton.onClick.AddListener(GoToMain);
+        _backToMainButton.onClick.AddListener(GoToMain);
         _playButton.onClick.AddListener(OpenMenu);
         _upgradesButton.onClick.AddListener(OpenGrades);
         _villageButton.onClick.AddListener(GoToVillage);
@@ -65,12 +73,23 @@ public class MenuWindowController : MonoBehaviour
 
     private void GoToMain()
     {
+        foreach (var mainUIElement in mainUIElements) 
+            mainUIElement.SetActive(true);
+
+        foreach (var villageUIElement in villageUIElements) 
+            villageUIElement.SetActive(false);
+        
         StartCoroutine(_cameraMotion.GoToMain());
     }
 
     private void GoToVillage()
     {
-        
+        foreach (var mainUIElement in mainUIElements) 
+            mainUIElement.SetActive(false);
+
+        foreach (var villageUIElement in villageUIElements) 
+            villageUIElement.SetActive(true);
+
         StartCoroutine(_cameraMotion.GoToVillage());
     }
     private void CloseWindow(string text)
