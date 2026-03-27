@@ -39,7 +39,6 @@ public class DataController : Singleton<DataController>
         _towerDeathSequenceStarted = false;
         Time.timeScale = 1f;
         QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = 60;
         // Init Currency dictionary
         
         Currency[CurrencyTypes.Exp].value = 0;

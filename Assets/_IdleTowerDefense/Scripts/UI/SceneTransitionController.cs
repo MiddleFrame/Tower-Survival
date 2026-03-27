@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,6 +19,8 @@ public class SceneTransitionController : MonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = 120;
+
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);

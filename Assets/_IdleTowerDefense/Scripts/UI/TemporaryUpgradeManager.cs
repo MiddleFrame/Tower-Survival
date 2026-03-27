@@ -169,13 +169,13 @@ public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
         const int cameraSpeed = 5;
         const int cameraSpeedSlowly = 1;
 
-        while (_camera.transform.position.y <= 1.5f)
+        while (_camera.transform.position.y <= -2f)
         {
             yield return null;
             _camera.transform.position += new Vector3(0, cameraSpeedSlowly * Time.deltaTime, 0);
         }
 
-        while (_camera.transform.position.y <= 3.5f)
+        while (_camera.transform.position.y <= 0f)
         {
             yield return null;
             _camera.transform.position += new Vector3(0, cameraSpeed * Time.deltaTime, 0);
@@ -186,13 +186,13 @@ public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
     {
         const int cameraSpeed = 5;
         const int cameraSpeedSlowly = 1;
-        while (_camera.transform.position.y >= 1.5f)
+        while (_camera.transform.position.y >= -2f)
         {
             yield return null;
             _camera.transform.position -= new Vector3(0, cameraSpeed * Time.deltaTime, 0);
         }
 
-        while (_camera.transform.position.y >= 1f)
+        while (_camera.transform.position.y >= -2.5f)
         {
             yield return null;
             _camera.transform.position -= new Vector3(0, cameraSpeedSlowly * Time.deltaTime, 0);

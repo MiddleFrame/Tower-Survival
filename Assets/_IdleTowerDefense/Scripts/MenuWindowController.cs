@@ -84,6 +84,13 @@ public class MenuWindowController : MonoBehaviour
 
     private void GoToVillage()
     {
+        if(_menu.gameObject.activeSelf) 
+            _menu.gameObject.SetActive(false);
+        if(_grades.gameObject.activeSelf) 
+            _grades.gameObject.SetActive(false);
+        if(_settings.gameObject.activeSelf) 
+            _settings.gameObject.SetActive(false);
+        
         foreach (var mainUIElement in mainUIElements) 
             mainUIElement.SetActive(false);
 
