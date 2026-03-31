@@ -27,7 +27,10 @@ public class PlayMenu : MonoBehaviour
    [SerializeField]
    private InitData _data;
    [SerializeField]
-   private GameObject _loadingAnim;
+   private GameObject _loadingAnim;   
+   
+   [SerializeField]
+   private GameObject _lockedTierObject;
 
    private static PlayMenu instance;
 
@@ -76,7 +79,8 @@ public class PlayMenu : MonoBehaviour
    {
       _currentTier = tier;
       _tier.text = $"Tier {tier+1}";
-      _toBattle.interactable = _records[_currentTier]>=_data.gameSettings.EnemySpawnSettings[tier].RecordToOpen;
+      //_toBattle.interactable = _records[_currentTier]>=_data.gameSettings.EnemySpawnSettings[tier].RecordToOpen;
+      _lockedTierObject.SetActive(!(_records[_currentTier]>=_data.gameSettings.EnemySpawnSettings[tier].RecordToOpen));
       _oreMultiplier.text = "ore - x"+_data.gameSettings.EnemySpawnSettings[tier].OreMultiplier;
       _enemyKilled.text = "High score - "+_records[tier];
       _damageMultiplier.text = "Enemy damage - "+_data.gameSettings.EnemySpawnSettings[tier].EnemyDamageMultiplier;

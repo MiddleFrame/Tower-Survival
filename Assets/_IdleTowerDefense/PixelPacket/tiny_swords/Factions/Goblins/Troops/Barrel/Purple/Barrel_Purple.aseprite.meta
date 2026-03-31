@@ -129,7 +129,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Barrel_Purple_Frame_0
     originalName: 
-    pivot: {x: 0.5, y: -0.41428572}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -150,8 +150,8 @@ ScriptedImporter:
     uvTransform: {x: 181, y: 321}
   - name: Barrel_Purple_Frame_1
     originalName: 
-    pivot: {x: 0.5, y: -0.41428572}
-    alignment: 9
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -171,8 +171,8 @@ ScriptedImporter:
     uvTransform: {x: 181, y: 399}
   - name: Barrel_Purple_Frame_2
     originalName: 
-    pivot: {x: 0.5, y: -0.4677419}
-    alignment: 9
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -192,7 +192,7 @@ ScriptedImporter:
     uvTransform: {x: 243, y: 4}
   - name: Barrel_Purple_Frame_3
     originalName: 
-    pivot: {x: 0.5, y: -0.29761904}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -213,7 +213,7 @@ ScriptedImporter:
     uvTransform: {x: 181, y: 229}
   - name: Barrel_Purple_Frame_4
     originalName: 
-    pivot: {x: 0.5, y: -0.26881722}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -234,8 +234,8 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 4}
   - name: Barrel_Purple_Frame_5
     originalName: 
-    pivot: {x: 0.5, y: -0.3880597}
-    alignment: 9
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -255,8 +255,8 @@ ScriptedImporter:
     uvTransform: {x: 181, y: 4}
   - name: Barrel_Purple_Frame_6
     originalName: 
-    pivot: {x: 0.5, y: -0.32500002}
-    alignment: 9
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -276,7 +276,7 @@ ScriptedImporter:
     uvTransform: {x: 62, y: 181}
   - name: Barrel_Purple_Frame_7
     originalName: 
-    pivot: {x: 0.5, y: -0.313253}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -297,7 +297,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 294}
   - name: Barrel_Purple_Frame_8
     originalName: 
-    pivot: {x: 0.5, y: -0.313253}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -318,7 +318,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 385}
   - name: Barrel_Purple_Frame_9
     originalName: 
-    pivot: {x: 0.5, y: -0.3880597}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -339,8 +339,8 @@ ScriptedImporter:
     uvTransform: {x: 181, y: 79}
   - name: Barrel_Purple_Frame_10
     originalName: 
-    pivot: {x: 0.5, y: -0.28089887}
-    alignment: 9
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -360,7 +360,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 105}
   - name: Barrel_Purple_Frame_11
     originalName: 
-    pivot: {x: 0.5, y: -0.2631579}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -381,7 +381,7 @@ ScriptedImporter:
     uvTransform: {x: 62, y: 269}
   - name: Barrel_Purple_Frame_12
     originalName: 
-    pivot: {x: 0.5, y: -0.4677419}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -402,7 +402,7 @@ ScriptedImporter:
     uvTransform: {x: 243, y: 74}
   - name: Barrel_Purple_Frame_13
     originalName: 
-    pivot: {x: 0.51111114, y: -0.38157895}
+    pivot: {x: 0.51111114, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -423,7 +423,7 @@ ScriptedImporter:
     uvTransform: {x: 243, y: 222}
   - name: Barrel_Purple_Frame_14
     originalName: 
-    pivot: {x: 0.5, y: -0.41428572}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -444,7 +444,7 @@ ScriptedImporter:
     uvTransform: {x: 243, y: 144}
   - name: Barrel_Purple_Frame_15
     originalName: 
-    pivot: {x: 0.5, y: -0.3880597}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -465,8 +465,8 @@ ScriptedImporter:
     uvTransform: {x: 181, y: 154}
   - name: Barrel_Purple_Frame_16
     originalName: 
-    pivot: {x: 0.5, y: -0.29761904}
-    alignment: 9
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -486,8 +486,8 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 202}
   - name: Barrel_Purple_Frame_17
     originalName: 
-    pivot: {x: 0.5, y: -0.29069766}
-    alignment: 9
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -507,7 +507,7 @@ ScriptedImporter:
     uvTransform: {x: 62, y: 87}
   - name: Barrel_Purple_Frame_18
     originalName: 
-    pivot: {x: 0.50877196, y: -0.3866667}
+    pivot: {x: 0.50877196, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -528,8 +528,8 @@ ScriptedImporter:
     uvTransform: {x: 62, y: 4}
   - name: Barrel_Purple_Frame_19
     originalName: 
-    pivot: {x: 0.5, y: -0.36708862}
-    alignment: 9
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -549,7 +549,7 @@ ScriptedImporter:
     uvTransform: {x: 127, y: 4}
   - name: Barrel_Purple_Frame_20
     originalName: 
-    pivot: {x: 0.5, y: -0.36708862}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
