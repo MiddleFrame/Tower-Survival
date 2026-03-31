@@ -42,9 +42,9 @@ public static class DictionaryExtensions
         float current = start;
         while (timeAnim<time)
         {
-            current = (current + (end - start) * Time.deltaTime);
+            current = (current + (end - start) * Time.unscaledDeltaTime);
             text.text =current.ToString("N0");
-            timeAnim += Time.deltaTime;
+            timeAnim += Time.unscaledDeltaTime;
             yield return null;
         }
 

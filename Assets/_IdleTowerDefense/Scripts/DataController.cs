@@ -22,7 +22,7 @@ public class DataController : Singleton<DataController>
     public LoseMenu _menu;
 
     [SerializeField]
-    private GameObject _setting;
+    private Animator _setting;
     
     [Header("Lose Flow")]
     [SerializeField] private float _towerDeathSlowMotionScale = 0.2f;
@@ -168,13 +168,14 @@ public class DataController : Singleton<DataController>
 
     public void OpenSetting()
     {
-        _setting.SetActive(true);
+        _setting.gameObject.SetActive(true);
+        _setting.Play("Fade In");
         Time.timeScale = 0;
         Paused = true;
     }
     public void CloseSetting()
     {
-        _setting.SetActive(false);
+        _setting.gameObject.SetActive(false);
         Paused = false;
     }
     

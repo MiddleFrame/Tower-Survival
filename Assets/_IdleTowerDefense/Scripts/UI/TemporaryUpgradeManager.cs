@@ -172,13 +172,13 @@ public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
         while (_camera.transform.position.y <= -2f)
         {
             yield return null;
-            _camera.transform.position += new Vector3(0, cameraSpeedSlowly * Time.deltaTime, 0);
+            _camera.transform.position += new Vector3(0, cameraSpeedSlowly * Time.unscaledDeltaTime, 0);
         }
 
         while (_camera.transform.position.y <= 0f)
         {
             yield return null;
-            _camera.transform.position += new Vector3(0, cameraSpeed * Time.deltaTime, 0);
+            _camera.transform.position += new Vector3(0, cameraSpeed * Time.unscaledDeltaTime, 0);
         }
     }
 
@@ -189,13 +189,13 @@ public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
         while (_camera.transform.position.y >= -2f)
         {
             yield return null;
-            _camera.transform.position -= new Vector3(0, cameraSpeed * Time.deltaTime, 0);
+            _camera.transform.position -= new Vector3(0, cameraSpeed * Time.unscaledDeltaTime, 0);
         }
 
         while (_camera.transform.position.y >= -2.5f)
         {
             yield return null;
-            _camera.transform.position -= new Vector3(0, cameraSpeedSlowly * Time.deltaTime, 0);
+            _camera.transform.position -= new Vector3(0, cameraSpeedSlowly * Time.unscaledDeltaTime, 0);
         }
     }
 
