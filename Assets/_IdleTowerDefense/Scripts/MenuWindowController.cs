@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,6 +29,9 @@ public class MenuWindowController : MonoBehaviour
     private Button _villageButton;
     [SerializeField]
     private Button _futureButton;
+
+    [SerializeField]
+    private TMP_Text _fps;
     [SerializeField]
     private Button _settingsButton;
 
@@ -52,7 +56,8 @@ public class MenuWindowController : MonoBehaviour
         _futureButton.onClick.AddListener(InDevelopment);
         _settingsButton.onClick.AddListener(OpenSetting);
     }
-    
+
+
     public void OpenMenu()
     {
         if (_menu.gameObject.activeSelf)
