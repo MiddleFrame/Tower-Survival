@@ -7,10 +7,13 @@ public class Settings : MonoBehaviour
     [SerializeField]
     private Slider _music;
 
+    [SerializeField]
     private SaveOnUpHandler _saveMusic;
+
     [SerializeField]
     private Slider _sound;
 
+    [SerializeField]
     private SaveOnUpHandler _saveSound;
 
     [SerializeField]
@@ -35,8 +38,9 @@ public class Settings : MonoBehaviour
         _sound.value = sound;
         ChangeMusicVolume(music);
         ChangeSoundVolume(sound);
-        _saveMusic= _music.GetComponent<SaveOnUpHandler>();
-        _saveSound=_sound.GetComponent<SaveOnUpHandler>();
+        if (!ValidateReferences())
+            return;
+
         _saveSound.EndDrag += (value) =>
         {
             Debug.Log("Change sound");
@@ -95,5 +99,24 @@ public class Settings : MonoBehaviour
             ES3.Save(SaveKeys.Gold, DataController.Currency[CurrencyTypes.Gold].value);
             ES3.Save("Promo2", true);
         }
+    }
+
+    private bool ValidateReferences()
+    {
+        bool isValid = true;
+
+        if (_saveMusic == null)
+        {
+            Debug.LogError($"{nameof(Settings)} on {name} has no music save handler reference.", this);
+            isValid = false;
+        }
+
+        if (_saveSound == null)
+        {
+            Debug.LogError($"{nameof(Settings)} on {name} has no sound save handler reference.", this);
+            isValid = false;
+        }
+
+        return isValid;
     }
 }

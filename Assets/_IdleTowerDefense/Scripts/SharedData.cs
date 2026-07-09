@@ -6,6 +6,7 @@ public class SharedData
 
     public TowerView towerView;
     public GameplayViewPools ViewPools { get; private set; }
+    public DayNightController DayNightController { get; private set; }
 
     public void InitDefaultValues(GameSettings inputSettings)
     {
@@ -15,5 +16,10 @@ public class SharedData
     public void SetViewPools(GameplayViewPools viewPools)
     {
         ViewPools = viewPools;
+    }
+
+    public void SetDayNightController(DayNightController dayNightController)
+    {
+        DayNightController = dayNightController;
     }
 }

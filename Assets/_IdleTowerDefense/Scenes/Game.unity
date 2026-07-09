@@ -159,6 +159,10 @@ PrefabInstance:
       propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1962441196}
+    - target: {fileID: 2878262744328624437, guid: ae563b8de6240bd4b83520a2dd6bc5a2, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 438728431}
     - target: {fileID: 3749569511522307103, guid: ae563b8de6240bd4b83520a2dd6bc5a2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -203,6 +207,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4730124420433026735, guid: ae563b8de6240bd4b83520a2dd6bc5a2, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 438728431}
     - target: {fileID: 6151247475759000136, guid: ae563b8de6240bd4b83520a2dd6bc5a2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -14813,6 +14821,7 @@ MonoBehaviour:
   expand: 0
   ratioMode: 0
   cellRatio: 1
+  grid: {fileID: 227743588}
 --- !u!114 &227743588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14833,7 +14842,7 @@ MonoBehaviour:
   m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 96.1469, y: 200}
+  m_CellSize: {x: 192.95502, y: 200}
   m_Spacing: {x: 25, y: 25}
   m_Constraint: 1
   m_ConstraintCount: 1
@@ -15102,9 +15111,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad88e459dfc77c4dbcbaff69c5e05a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundManager: {fileID: 11400000, guid: 775da17767219af488e9eeb7d719a55c, type: 2}
+  audioSource: {fileID: 438728431}
   clickSFX: {fileID: 0}
   enableClickSound: 1
   checkForInteraction: 1
+  _sourceButton: {fileID: 252228135}
 --- !u!1 &273197159
 GameObject:
   m_ObjectHideFlags: 0
@@ -15360,6 +15372,7 @@ MonoBehaviour:
   _healthBarValue: {fileID: 1393644423}
   _wordSound: {fileID: 1779539886}
   _viewPools: {fileID: 330689261}
+  _dayNightController: {fileID: 845648422}
 --- !u!4 &291625697
 Transform:
   m_ObjectHideFlags: 0
@@ -15372,7 +15385,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 376246469}
+  - {fileID: 484642032}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &330689260
@@ -15675,12 +15690,12 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11172628, w: 0.993739}
   m_LocalPosition: {x: 0.827, y: -0.023, z: 0}
-  m_LocalScale: {x: 0.50033844, y: 0.50033844, z: 0.50033844}
+  m_LocalScale: {x: 0.5003384, y: 0.5003384, z: 0.50033844}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1847528423}
   - {fileID: 1967087745}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 291625697}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -12.83}
 --- !u!1 &438728429
 GameObject:
@@ -15988,12 +16003,12 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.13060465, w: 0.9914346}
   m_LocalPosition: {x: -0.749, y: -0.094, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.50033844, z: 0.50033844}
+  m_LocalScale: {x: 0.5, y: 0.5003385, z: 0.50033844}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 486149701}
   - {fileID: 462915517}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 291625697}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15.009}
 --- !u!1 &486149700
 GameObject:
@@ -16300,9 +16315,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad88e459dfc77c4dbcbaff69c5e05a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundManager: {fileID: 11400000, guid: 775da17767219af488e9eeb7d719a55c, type: 2}
+  audioSource: {fileID: 438728431}
   clickSFX: {fileID: 0}
   enableClickSound: 1
   checkForInteraction: 1
+  _sourceButton: {fileID: 553037318}
 --- !u!114 &553037318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16482,7 +16500,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45.95
+  m_fontSize: 49.9
   m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -17436,9 +17454,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad88e459dfc77c4dbcbaff69c5e05a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundManager: {fileID: 11400000, guid: 775da17767219af488e9eeb7d719a55c, type: 2}
+  audioSource: {fileID: 438728431}
   clickSFX: {fileID: 0}
   enableClickSound: 1
   checkForInteraction: 1
+  _sourceButton: {fileID: 832346350}
 --- !u!114 &832346350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17763,6 +17784,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LocalLightController
   baseIntensity: 1.17
+  light2D: {fileID: 902356643}
+  dayNightController: {fileID: 0}
 --- !u!1 &914295346
 GameObject:
   m_ObjectHideFlags: 0
@@ -18035,9 +18058,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad88e459dfc77c4dbcbaff69c5e05a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundManager: {fileID: 11400000, guid: 775da17767219af488e9eeb7d719a55c, type: 2}
+  audioSource: {fileID: 438728431}
   clickSFX: {fileID: 0}
   enableClickSound: 1
   checkForInteraction: 1
+  _sourceButton: {fileID: 990403420}
 --- !u!1 &999440583
 GameObject:
   m_ObjectHideFlags: 0
@@ -18114,9 +18140,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad88e459dfc77c4dbcbaff69c5e05a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundManager: {fileID: 11400000, guid: 775da17767219af488e9eeb7d719a55c, type: 2}
+  audioSource: {fileID: 438728431}
   clickSFX: {fileID: 0}
   enableClickSound: 1
   checkForInteraction: 1
+  _sourceButton: {fileID: 999440588}
 --- !u!114 &999440588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18277,8 +18306,10 @@ MonoBehaviour:
   selectorTag: GameSpeed
   enableIndicators: 1
   indicatorParent: {fileID: 760486776}
-  indicatorObject: {fileID: 7388018775442437902, guid: 965ba4945fb69e24c8cf30f11506e9e4, type: 3}
+  indicatorPrefab: {fileID: 2058193382597621834, guid: 965ba4945fb69e24c8cf30f11506e9e4, type: 3}
   itemList: []
+  _label: {fileID: 566881277}
+  _selectorAnimator: {fileID: 1037632574}
 --- !u!114 &1037632571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18321,9 +18352,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad88e459dfc77c4dbcbaff69c5e05a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundManager: {fileID: 11400000, guid: 775da17767219af488e9eeb7d719a55c, type: 2}
+  audioSource: {fileID: 438728431}
   clickSFX: {fileID: 0}
   enableClickSound: 1
   checkForInteraction: 1
+  _sourceButton: {fileID: 1037632577}
 --- !u!95 &1037632574
 Animator:
   serializedVersion: 7
@@ -18486,6 +18520,7 @@ MonoBehaviour:
   expand: 0
   ratioMode: 0
   cellRatio: 1
+  grid: {fileID: 1056006343}
 --- !u!114 &1056006343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18506,7 +18541,7 @@ MonoBehaviour:
   m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 96.1469, y: 200}
+  m_CellSize: {x: 192.95502, y: 200}
   m_Spacing: {x: 25, y: 25}
   m_Constraint: 1
   m_ConstraintCount: 1
@@ -18655,6 +18690,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1108257217}
   m_CullTransparentMesh: 0
+--- !u!114 &1123060212 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5821428099155676728, guid: ae563b8de6240bd4b83520a2dd6bc5a2, type: 3}
+  m_PrefabInstance: {fileID: 13901956}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15d5267c84d650b408cea3eb12688feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1123060213 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2655124273407891717, guid: ae563b8de6240bd4b83520a2dd6bc5a2, type: 3}
+  m_PrefabInstance: {fileID: 13901956}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15d5267c84d650b408cea3eb12688feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1140236757
 GameObject:
   m_ObjectHideFlags: 0
@@ -20449,6 +20506,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LocalLightController
   baseIntensity: 1.17
+  light2D: {fileID: 1242510420}
+  dayNightController: {fileID: 0}
 --- !u!114 &1242510420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21291,6 +21350,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LocalLightController
   baseIntensity: 1.17
+  light2D: {fileID: 1411495254}
+  dayNightController: {fileID: 0}
 --- !u!1 &1463818349
 GameObject:
   m_ObjectHideFlags: 0
@@ -21858,9 +21919,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad88e459dfc77c4dbcbaff69c5e05a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundManager: {fileID: 11400000, guid: 775da17767219af488e9eeb7d719a55c, type: 2}
+  audioSource: {fileID: 438728431}
   clickSFX: {fileID: 0}
   enableClickSound: 1
   checkForInteraction: 1
+  _sourceButton: {fileID: 1561370626}
 --- !u!1 &1561786930
 GameObject:
   m_ObjectHideFlags: 0
@@ -23629,9 +23693,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad88e459dfc77c4dbcbaff69c5e05a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundManager: {fileID: 11400000, guid: 775da17767219af488e9eeb7d719a55c, type: 2}
+  audioSource: {fileID: 438728431}
   clickSFX: {fileID: 0}
   enableClickSound: 1
   checkForInteraction: 1
+  _sourceButton: {fileID: 1819223672}
 --- !u!114 &1819223672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24514,9 +24581,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad88e459dfc77c4dbcbaff69c5e05a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIElementSound
+  soundManager: {fileID: 11400000, guid: 775da17767219af488e9eeb7d719a55c, type: 2}
+  audioSource: {fileID: 438728431}
   clickSFX: {fileID: 0}
   enableClickSound: 1
   checkForInteraction: 1
+  _sourceButton: {fileID: 1950657468}
 --- !u!1 &1962441195
 GameObject:
   m_ObjectHideFlags: 0
@@ -24547,7 +24617,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _music: {fileID: 13901961}
+  _saveMusic: {fileID: 1123060213}
   _sound: {fileID: 13901960}
+  _saveSound: {fileID: 1123060212}
   _damageShow: {fileID: 13901959}
   _musicSource: {fileID: 1800503219}
   _soundSource:
@@ -24877,9 +24949,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad88e459dfc77c4dbcbaff69c5e05a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundManager: {fileID: 11400000, guid: 775da17767219af488e9eeb7d719a55c, type: 2}
+  audioSource: {fileID: 438728431}
   clickSFX: {fileID: 0}
   enableClickSound: 1
   checkForInteraction: 1
+  _sourceButton: {fileID: 1987958861}
 --- !u!114 &1987958861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25071,9 +25146,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad88e459dfc77c4dbcbaff69c5e05a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIElementSound
+  soundManager: {fileID: 11400000, guid: 775da17767219af488e9eeb7d719a55c, type: 2}
+  audioSource: {fileID: 438728431}
   clickSFX: {fileID: 0}
   enableClickSound: 1
   checkForInteraction: 1
+  _sourceButton: {fileID: 2126252452}
 --- !u!114 &2126252452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25440,9 +25518,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad88e459dfc77c4dbcbaff69c5e05a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundManager: {fileID: 11400000, guid: 775da17767219af488e9eeb7d719a55c, type: 2}
+  audioSource: {fileID: 438728431}
   clickSFX: {fileID: 0}
   enableClickSound: 1
   checkForInteraction: 1
+  _sourceButton: {fileID: 1622002019912021050}
 --- !u!114 &1622002019912021050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26450,9 +26531,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad88e459dfc77c4dbcbaff69c5e05a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundManager: {fileID: 11400000, guid: 775da17767219af488e9eeb7d719a55c, type: 2}
+  audioSource: {fileID: 438728431}
   clickSFX: {fileID: 0}
   enableClickSound: 1
   checkForInteraction: 1
+  _sourceButton: {fileID: 3870619682490477819}
 --- !u!114 &3870128123498739061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26496,7 +26580,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3870791217936152767}
   m_HandleRect: {fileID: 3980316766642674857}
   m_Direction: 2
-  m_Value: 1.0000005
+  m_Value: 1.0000014
   m_Size: 0
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -26560,9 +26644,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad88e459dfc77c4dbcbaff69c5e05a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundManager: {fileID: 11400000, guid: 775da17767219af488e9eeb7d719a55c, type: 2}
+  audioSource: {fileID: 438728431}
   clickSFX: {fileID: 0}
   enableClickSound: 1
   checkForInteraction: 1
+  _sourceButton: {fileID: 3871406884265372117}
 --- !u!114 &3870599186760059231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27135,7 +27222,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00012207031, y: -0.000015258789}
+  m_AnchoredPosition: {x: 0.00012207031, y: -0.00020599365}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &3980347088015290900
@@ -27167,6 +27254,7 @@ MonoBehaviour:
   expand: 0
   ratioMode: 0
   cellRatio: 1
+  grid: {fileID: 3980347088015290902}
 --- !u!114 &3980347088015290902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27187,7 +27275,7 @@ MonoBehaviour:
   m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 96.1469, y: 200}
+  m_CellSize: {x: 192.95502, y: 200}
   m_Spacing: {x: 25, y: 25}
   m_Constraint: 1
   m_ConstraintCount: 1
@@ -27578,5 +27666,3 @@ SceneRoots:
   - {fileID: 330689262}
   - {fileID: 570143483}
   - {fileID: 845648423}
-  - {fileID: 376246469}
-  - {fileID: 484642032}

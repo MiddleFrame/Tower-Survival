@@ -769,9 +769,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad88e459dfc77c4dbcbaff69c5e05a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundManager: {fileID: 11400000, guid: 775da17767219af488e9eeb7d719a55c, type: 2}
+  audioSource: {fileID: 0}
   clickSFX: {fileID: 0}
   enableClickSound: 1
   checkForInteraction: 1
+  _sourceButton: {fileID: 6062916483125131490}
 --- !u!1 &5550517257382735879
 GameObject:
   m_ObjectHideFlags: 0

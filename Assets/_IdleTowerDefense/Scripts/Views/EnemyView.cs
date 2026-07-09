@@ -23,6 +23,9 @@ public class EnemyView : MonoBehaviour
 
     [SerializeField]
     private GameObject deadAnim;
+
+    [SerializeField]
+    private LocalLightController[] localLights;
     
     public AnimationEventHandler handler;
 
@@ -83,6 +86,18 @@ public class EnemyView : MonoBehaviour
         {
             var scale = model.transform.localScale;
             model.transform.localScale = new Vector3(Mathf.Abs(scale.x), scale.y, scale.z);
+        }
+    }
+
+    public void SetDayNightController(DayNightController dayNightController)
+    {
+        if (localLights == null)
+            return;
+
+        foreach (LocalLightController localLight in localLights)
+        {
+            if (localLight != null)
+                localLight.SetDayNightController(dayNightController);
         }
     }
 }

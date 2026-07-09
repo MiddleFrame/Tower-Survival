@@ -26,13 +26,15 @@ public class AdjustGridLayoutCellSize : MonoBehaviour
     [SerializeField]
     float cellRatio = 1;
 
+    [SerializeField]
+    private GridLayoutGroup grid;
+
     new RectTransform transform;
-    GridLayoutGroup grid;
 
     void Awake()
     {
-        transform ??= (RectTransform) base.transform;
-         grid ??= GetComponent<GridLayoutGroup>();
+        transform = (RectTransform) base.transform;
+        ValidateReferences();
     }
 
     // Start is called before the first frame update
@@ -44,7 +46,6 @@ public class AdjustGridLayoutCellSize : MonoBehaviour
     void OnRectTransformDimensionsChange()
     {
         transform ??= (RectTransform) base.transform;
-        grid ??= GetComponent<GridLayoutGroup>();
         UpdateCellSize();
     }
 
@@ -59,13 +60,22 @@ public class AdjustGridLayoutCellSize : MonoBehaviour
     void OnValidate()
     {
         transform ??= (RectTransform) base.transform;
-        grid ??= GetComponent<GridLayoutGroup>();
+#if UNITY_EDITOR
+        if (grid == null)
+            TryGetComponent(out grid);
+#endif
         UpdateCellSize();
     }
 
     void UpdateCellSize()
     {
+        if (grid == null)
+            return;
+
         var count = grid.constraintCount;
+        if (count <= 0)
+            return;
+
         if (expand == Axis.X)
         {
             float spacing = (count - 1) * grid.spacing.x;
@@ -82,5 +92,14 @@ public class AdjustGridLayoutCellSize : MonoBehaviour
             grid.cellSize = new Vector2(ratioMode == RatioMode.Free ? grid.cellSize.x : sizePerCell * cellRatio,
                 sizePerCell);
         }
+    }
+
+    private void ValidateReferences()
+    {
+        if (grid != null)
+            return;
+
+        Debug.LogError($"{nameof(AdjustGridLayoutCellSize)} on {name} has no GridLayoutGroup reference.", this);
+        enabled = false;
     }
 }

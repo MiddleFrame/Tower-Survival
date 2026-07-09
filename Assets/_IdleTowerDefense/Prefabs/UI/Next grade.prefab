@@ -399,6 +399,7 @@ GameObject:
   - component: {fileID: 3912592050553261606}
   - component: {fileID: -8206075712622270080}
   - component: {fileID: 9023877878509285474}
+  - component: {fileID: 9211478792060582356}
   m_Layer: 5
   m_Name: Next grade
   m_TagString: Untagged
@@ -523,3 +524,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &9211478792060582356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9141851509561618203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fad88e459dfc77c4dbcbaff69c5e05a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIElementSound
+  soundManager: {fileID: 11400000, guid: 775da17767219af488e9eeb7d719a55c, type: 2}
+  audioSource: {fileID: 0}
+  clickSFX: {fileID: 0}
+  enableClickSound: 1
+  checkForInteraction: 1
+  _sourceButton: {fileID: 9023877878509285474}

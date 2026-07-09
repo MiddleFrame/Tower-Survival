@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class GameplayViewPools : MonoBehaviour
     private readonly Dictionary<int, PoolData> _poolsByPrefabId = new Dictionary<int, PoolData>();
     private readonly Dictionary<GameObject, PoolData> _instanceToPool = new Dictionary<GameObject, PoolData>();
     private readonly Dictionary<GameObject, int> _instanceVersions = new Dictionary<GameObject, int>();
+    private readonly Dictionary<GameObject, Dictionary<Type, Component>> _componentCache = new Dictionary<GameObject, Dictionary<Type, Component>>();
 
     public T Spawn<T>(T prefab, Vector3 position, Quaternion rotation) where T : Component
     {
@@ -20,7 +22,7 @@ public class GameplayViewPools : MonoBehaviour
             return null;
 
         GameObject instance = SpawnInternal(prefab.gameObject, position, rotation);
-        return instance.GetComponent<T>();
+        return GetCachedComponent<T>(instance);
     }
 
     public GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation)
@@ -91,6 +93,25 @@ public class GameplayViewPools : MonoBehaviour
         _instanceToPool[instance] = pool;
         _instanceVersions[instance] = _instanceVersions.TryGetValue(instance, out int version) ? version + 1 : 1;
         return instance;
+    }
+
+    private T GetCachedComponent<T>(GameObject instance) where T : Component
+    {
+        if (!_componentCache.TryGetValue(instance, out Dictionary<Type, Component> components))
+        {
+            components = new Dictionary<Type, Component>();
+            _componentCache[instance] = components;
+        }
+
+        Type type = typeof(T);
+        if (components.TryGetValue(type, out Component component))
+            return (T) component;
+
+        if (!instance.TryGetComponent(out T typedComponent))
+            return null;
+
+        components[type] = typedComponent;
+        return typedComponent;
     }
 
     private PoolData GetOrCreatePool(GameObject prefab)

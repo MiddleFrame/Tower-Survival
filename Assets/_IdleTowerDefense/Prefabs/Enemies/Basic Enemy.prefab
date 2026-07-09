@@ -282,6 +282,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LocalLightController
   baseIntensity: 1.2
+  light2D: {fileID: 3947496613468231258}
+  dayNightController: {fileID: 0}
 --- !u!1 &7867939192743615323
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,6 +429,8 @@ MonoBehaviour:
   animator: {fileID: 7378688037824356041}
   model: {fileID: 3938781522497842036}
   deadAnim: {fileID: 5525115552690463809, guid: 72f082927d03ee0418bc767f5c1d07b9, type: 3}
+  localLights:
+  - {fileID: 1601343314219615504}
   handler: {fileID: 8477109895034825219}
   enemyNumber: 0
   enemyEntity: 0

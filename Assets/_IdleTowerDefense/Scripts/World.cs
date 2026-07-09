@@ -18,6 +18,9 @@ public class World : MonoBehaviour
 
     [SerializeField]
     private GameplayViewPools _viewPools;
+
+    [SerializeField]
+    private DayNightController _dayNightController;
     
     private EcsWorld _world;
     public IEcsSystems System => _systems;
@@ -35,6 +38,7 @@ public class World : MonoBehaviour
             _viewPools = poolsGo.AddComponent<GameplayViewPools>();
         }
         sharedData.SetViewPools(_viewPools);
+        sharedData.SetDayNightController(_dayNightController);
         
         _systems = new EcsSystems(_world, sharedData).Add(new TowerSpawnSystem(_spawnTowerPoint,_healthBar,_healthBarValue))
             .Add(new TowerUpgradeLoadingSystem())
@@ -45,7 +49,6 @@ public class World : MonoBehaviour
             .Add(new EnemySpawnSystem())
             .Add(new EnemyDamageSystem())
             .Add(new HealthRegenerationSystem())
-            .Add(new DestroySystem())
             .Add(new DestroySystem())
             .Add(new MovementSystem());
 

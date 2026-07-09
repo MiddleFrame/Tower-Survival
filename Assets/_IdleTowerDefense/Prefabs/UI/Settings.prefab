@@ -1674,6 +1674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d5267c84d650b408cea3eb12688feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slider: {fileID: 5007691241221660595}
 --- !u!1 &5578957721063767953
 GameObject:
   m_ObjectHideFlags: 0
@@ -2065,6 +2066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d5267c84d650b408cea3eb12688feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slider: {fileID: 7938104056419987002}
 --- !u!1 &6388064935409808980
 GameObject:
   m_ObjectHideFlags: 0
@@ -2246,9 +2248,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad88e459dfc77c4dbcbaff69c5e05a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundManager: {fileID: 11400000, guid: 775da17767219af488e9eeb7d719a55c, type: 2}
+  audioSource: {fileID: 0}
   clickSFX: {fileID: 0}
   enableClickSound: 1
   checkForInteraction: 1
+  _sourceButton: {fileID: 9215367188556757125}
 --- !u!1 &6486226811850648893
 GameObject:
   m_ObjectHideFlags: 0
@@ -2722,9 +2727,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad88e459dfc77c4dbcbaff69c5e05a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundManager: {fileID: 11400000, guid: 775da17767219af488e9eeb7d719a55c, type: 2}
+  audioSource: {fileID: 0}
   clickSFX: {fileID: 0}
   enableClickSound: 1
   checkForInteraction: 1
+  _sourceButton: {fileID: 6298562093262220887}
 --- !u!1 &8587043470827712982
 GameObject:
   m_ObjectHideFlags: 0

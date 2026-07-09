@@ -99,6 +99,7 @@ public class EnemySpawnSystem : IEcsPreInitSystem, IEcsRunSystem, IEcsInitSystem
         EnemyView enemyView = _sharedData.ViewPools != null
             ? _sharedData.ViewPools.Spawn(_spawnSettings.GetRandomEnemy(_stage), randomPosition, Quaternion.identity)
             : GameObject.Instantiate(_spawnSettings.GetRandomEnemy(_stage), randomPosition, Quaternion.identity);
+        enemyView.SetDayNightController(_sharedData.DayNightController);
 
         bool isOreEnemy = Random.Range(0, 10) > 7;
 

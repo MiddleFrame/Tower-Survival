@@ -20,15 +20,23 @@ public class HorizontalSelector : MonoBehaviour
     [Header("Indicators")]
     public bool enableIndicators = true;
 
-    public Transform indicatorParent;
-    public GameObject indicatorObject;
+    [SerializeField]
+    private Transform indicatorParent;
+
+    [SerializeField]
+    private HorizontalSelectorIndicator indicatorPrefab;
 
     [Header("Items")]
     public List<Item> itemList = new();
 
+    [SerializeField]
     private TextMeshProUGUI _label;
+
+    [SerializeField]
     private Animator _selectorAnimator;
+
     private string _newItemTitle;
+    private readonly List<HorizontalSelectorIndicator> _indicators = new();
 
     public static bool rewardedSpeed;
     
@@ -53,8 +61,8 @@ public class HorizontalSelector : MonoBehaviour
             CreateNewItem($"{speed:N1}x",new [] {(UnityAction) (()=>DataController.Instance.SetGameSpeed(speed1))});
         }
 
-        _selectorAnimator = gameObject.GetComponent<Animator>();
-        _label = transform.Find("Text").GetComponent<TextMeshProUGUI>();
+        if (!ValidateReferences())
+            return;
 
       
         _label.text = itemList[DEFAULT_INDEX].itemTitle;
@@ -155,35 +163,62 @@ public class HorizontalSelector : MonoBehaviour
 
     private void ResetIndicators()
     {
+        _indicators.Clear();
+
         foreach (Transform child in indicatorParent)
             Destroy(child.gameObject);
 
         for (int i = 0; i < itemList.Count; ++i)
         {
-            GameObject go = Instantiate(indicatorObject, new Vector3(0, 0, 0), Quaternion.identity);
-            go.transform.SetParent(indicatorParent, false);
-            go.name = itemList[i].itemTitle;
+            HorizontalSelectorIndicator indicator = Instantiate(indicatorPrefab, indicatorParent);
+            indicator.name = itemList[i].itemTitle;
+            _indicators.Add(indicator);
 
-            EnableIndicator(go, i == index);
+            indicator.SetActiveState(i == index);
         }
     }
 
     private void EnableIndicators()
     {
-        for (int i = 0; i < itemList.Count; ++i)
-        {
-            GameObject go = indicatorParent.GetChild(i).gameObject;
-
-            EnableIndicator(go, i == index);
-        }
+        for (int i = 0; i < _indicators.Count; ++i)
+            _indicators[i].SetActiveState(i == index);
     }
 
-    private void EnableIndicator(GameObject go, bool isActive)
+#if UNITY_EDITOR
+    private void Reset()
     {
-        Transform onObj = go.transform.Find("On");
-        Transform offObj = go.transform.Find("Off");
+        TryGetComponent(out _selectorAnimator);
+    }
+#endif
 
-        onObj.gameObject.SetActive(isActive);
-        offObj.gameObject.SetActive(!isActive);
+    private bool ValidateReferences()
+    {
+        bool isValid = true;
+
+        if (_label == null)
+        {
+            Debug.LogError($"{nameof(HorizontalSelector)} on {name} has no label reference.", this);
+            isValid = false;
+        }
+
+        if (_selectorAnimator == null)
+        {
+            Debug.LogError($"{nameof(HorizontalSelector)} on {name} has no animator reference.", this);
+            isValid = false;
+        }
+
+        if (enableIndicators && indicatorParent == null)
+        {
+            Debug.LogError($"{nameof(HorizontalSelector)} on {name} has no indicator parent reference.", this);
+            isValid = false;
+        }
+
+        if (enableIndicators && indicatorPrefab == null)
+        {
+            Debug.LogError($"{nameof(HorizontalSelector)} on {name} has no indicator prefab reference.", this);
+            isValid = false;
+        }
+
+        return isValid;
     }
 }
