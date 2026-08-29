@@ -1,4 +1,4 @@
 Il puntamento è ora più affidabile: la torre ignora i nemici sconfitti e i proiettili non colpiscono più i bersagli già in fase di rimozione.
 Le battaglie ora includono incantesimi attivi e passivi e cristalli rari da raccogliere con un tocco entro 15 secondi. La vecchia valuta temporanea è stata rimossa.
-Menu e annunci non mettono più in pausa il gioco; più/meno apre i dettagli.
+Menu e annunci non fermano il gioco; il pannello ospita icone grandi e più/meno apre i dettagli.
 I cristalli ora hanno pixel art e colori sobri, pulsano dolcemente e volano al contatore.
