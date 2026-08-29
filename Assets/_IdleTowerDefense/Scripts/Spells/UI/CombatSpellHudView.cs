@@ -96,13 +96,12 @@ public sealed class CombatSpellHudView : MonoBehaviour
     private IEnumerator AnimateExpanded(bool expanded)
     {
         _detailsRoot.SetActive(true);
+        _detailsCanvasGroup.alpha = 1f;
         _detailsCanvasGroup.blocksRaycasts = false;
         _detailsCanvasGroup.interactable = false;
 
         float startHeight = _panelRoot.sizeDelta.y;
         float targetHeight = expanded ? _expandedHeight : _collapsedHeight;
-        float startAlpha = _detailsCanvasGroup.alpha;
-        float targetAlpha = expanded ? 1f : 0f;
         float startRotation = _expandArrow.localEulerAngles.z;
         float targetRotation = expanded ? 180f : 0f;
         float elapsed = 0f;
@@ -117,15 +116,13 @@ public sealed class CombatSpellHudView : MonoBehaviour
             float eased = expanded ? EaseOutBack(t) : Mathf.SmoothStep(0f, 1f, t);
             _panelRoot.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,
                 Mathf.LerpUnclamped(startHeight, targetHeight, eased));
-            _detailsCanvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha,
-                Mathf.SmoothStep(0f, 1f, t));
             _expandArrow.localRotation = Quaternion.Euler(0f, 0f,
                 Mathf.LerpAngle(startRotation, targetRotation, Mathf.SmoothStep(0f, 1f, t)));
             yield return null;
         }
 
         _panelRoot.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, targetHeight);
-        _detailsCanvasGroup.alpha = targetAlpha;
+        _detailsCanvasGroup.alpha = 1f;
         _expandArrow.localRotation = Quaternion.Euler(0f, 0f, targetRotation);
         _detailsCanvasGroup.blocksRaycasts = expanded;
         _detailsCanvasGroup.interactable = expanded;
@@ -141,7 +138,7 @@ public sealed class CombatSpellHudView : MonoBehaviour
         _panelRoot.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,
             expanded ? _expandedHeight : _collapsedHeight);
         _detailsRoot.SetActive(expanded);
-        _detailsCanvasGroup.alpha = expanded ? 1f : 0f;
+        _detailsCanvasGroup.alpha = 1f;
         _detailsCanvasGroup.blocksRaycasts = expanded;
         _detailsCanvasGroup.interactable = expanded;
         _expandArrow.localRotation = Quaternion.Euler(0f, 0f, expanded ? 180f : 0f);
