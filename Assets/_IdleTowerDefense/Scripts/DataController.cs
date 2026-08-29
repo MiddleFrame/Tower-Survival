@@ -8,7 +8,8 @@ public enum CurrencyTypes
 {
     Exp,
     Ore,
-    Gold
+    Gold,
+    Crystals
 }
 
 public class DataController : Singleton<DataController>
@@ -16,7 +17,7 @@ public class DataController : Singleton<DataController>
     public static Dictionary<CurrencyTypes, Currency> Currency = new Dictionary<CurrencyTypes, Currency>();
     public static Dictionary<CurrencyTypes, TMP_Text> currencyText = new Dictionary<CurrencyTypes, TMP_Text>();
     public int EnemiesKilled;
-    public int EarnedOre;
+    public int EarnedCrystals;
     public bool Paused;
 
     public LoseMenu _menu;
@@ -31,12 +32,14 @@ public class DataController : Singleton<DataController>
     public static int tier = 0;
     public static bool IsGameplayEnding { get; private set; }
     private bool _towerDeathSequenceStarted;
+    private bool _doubleRewardApplied;
 
     private void Awake()
     {
         Paused = false;
         IsGameplayEnding = false;
         _towerDeathSequenceStarted = false;
+        _doubleRewardApplied = false;
         Time.timeScale = 1f;
         QualitySettings.vSyncCount = 0;
         // Init Currency dictionary
@@ -47,6 +50,7 @@ public class DataController : Singleton<DataController>
     public void SetGameSpeed(float newSpeed)
     {
         Time.timeScale = newSpeed;
+        ES3.Save(SaveKeys.GameSpeed, newSpeed);
     }
 
     public void OnTowerKilled()
@@ -87,7 +91,7 @@ public class DataController : Singleton<DataController>
             ES3.Save(SaveKeys.EnemiesKilled+"_"+tier, EnemiesKilled);
         }
 
-        _menu.OpenLoseMenu(isNewHighScore, EnemiesKilled, EarnedOre, 0);
+        _menu.OpenLoseMenu(isNewHighScore, EnemiesKilled, EarnedCrystals, 0);
     }
 
     private void CleanupGameplayViews()
@@ -115,20 +119,26 @@ public class DataController : Singleton<DataController>
 
     public void OnRewardx2()
     {
-        _menu.OpenLoseMenu(false, EnemiesKilled, EarnedOre*2, 0); 
+        if (_doubleRewardApplied)
+            return;
+
+        _doubleRewardApplied = true;
         Currency.AddValues(
-            new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Ore, DataController.Instance.EarnedOre));
+            new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Crystals, DataController.Instance.EarnedCrystals));
+        ES3.Save(SaveKeys.Crystals, Currency[CurrencyTypes.Crystals].value);
+        _menu.ApplyDoubleReward(EnemiesKilled, EarnedCrystals * 2, 0);
     }
 
     public void ReloadGame()
     {
         IsGameplayEnding = false;
         _towerDeathSequenceStarted = false;
+        _doubleRewardApplied = false;
         SaveGame();
 
         Currency[CurrencyTypes.Exp].value = 0;
         EnemiesKilled = 0;
-        EarnedOre = 0;
+        EarnedCrystals = 0;
         _menu.Close();
 
         if (SceneTransitionController.Instance != null)
@@ -164,6 +174,7 @@ public class DataController : Singleton<DataController>
     {
         ES3.Save(SaveKeys.Ore, Currency[CurrencyTypes.Ore].value);
         ES3.Save(SaveKeys.Gold, Currency[CurrencyTypes.Gold].value);
+        ES3.Save(SaveKeys.Crystals, Currency[CurrencyTypes.Crystals].value);
     }
 
     public void OpenSetting()
@@ -181,12 +192,40 @@ public class DataController : Singleton<DataController>
     
     public static void LoadData(List<Currency> currencies)
     {     
-        if(Currency.Count>0) return;
-        foreach (Currency currency in currencies)
+        if (Currency.Count == 0)
         {
-            Currency.Add(currency.type, currency);
+            foreach (Currency currency in currencies)
+            {
+                Currency.Add(currency.type, new Currency
+                {
+                    type = currency.type,
+                    value = currency.value,
+                    sprite = currency.sprite
+                });
+            }
         }
+
+        EnsureCurrency(CurrencyTypes.Exp, currencies);
+        EnsureCurrency(CurrencyTypes.Ore, currencies);
+        EnsureCurrency(CurrencyTypes.Gold, currencies);
+        EnsureCurrency(CurrencyTypes.Crystals, currencies);
+
         Currency[CurrencyTypes.Gold].value = ES3.Load(SaveKeys.Gold, 0);
         Currency[CurrencyTypes.Ore].value = ES3.Load(SaveKeys.Ore, 0);
+        Currency[CurrencyTypes.Crystals].value = ES3.Load(SaveKeys.Crystals, 0);
+    }
+
+    private static void EnsureCurrency(CurrencyTypes type, List<Currency> authoredCurrencies)
+    {
+        if (Currency.ContainsKey(type))
+            return;
+
+        Currency authored = authoredCurrencies.Find(currency => currency.type == type);
+        Currency[type] = new Currency
+        {
+            type = type,
+            value = authored != null ? authored.value : 0,
+            sprite = authored != null ? authored.sprite : null
+        };
     }
 }

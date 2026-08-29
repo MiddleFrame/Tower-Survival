@@ -1,113 +1,151 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Leopotam.EcsLite;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class TowerTargetingSystem : IEcsInitSystem, IEcsRunSystem
 {
-    private EcsWorld world;
-    private EcsFilter enemyFilter;
-    private EcsFilter towerTargetSelectorFilter;
-    private EcsPool<TowerTargetSelector> towerTargetSelectorPool;
-    private EcsPool<TowerWeapon> towerWeaponPool;
-    private EcsPool<Position> enemyPositionPool;
-    
-    private float _targetingRange = -1;
+    private struct TargetCandidate
+    {
+        public int Entity;
+        public EcsPackedEntity PackedEntity;
+        public float DistanceSquared;
+    }
+
+    private static readonly Comparison<TargetCandidate> CompareByDistance = (left, right) =>
+    {
+        int distanceComparison = left.DistanceSquared.CompareTo(right.DistanceSquared);
+        return distanceComparison != 0 ? distanceComparison : left.Entity.CompareTo(right.Entity);
+    };
+
+    private readonly List<TargetCandidate> _candidates = new List<TargetCandidate>(64);
+    private readonly List<EcsPackedEntity> _previousTargets = new List<EcsPackedEntity>(8);
+
+    private EcsWorld _world;
+    private EcsFilter _enemyFilter;
+    private EcsFilter _towerTargetSelectorFilter;
+    private EcsPool<TowerTargetSelector> _towerTargetSelectorPool;
+    private EcsPool<TowerWeapon> _towerWeaponPool;
+    private EcsPool<Position> _enemyPositionPool;
+
     public void Init(IEcsSystems systems)
     {
-        world = systems.GetWorld();
-        enemyFilter = world.Filter<Enemy>()
+        _world = systems.GetWorld();
+        _enemyFilter = _world.Filter<Enemy>()
             .Inc<Position>()
+            .Exc<Destroy>()
             .End();
-        towerTargetSelectorFilter = world.Filter<Tower>()
+        _towerTargetSelectorFilter = _world.Filter<Tower>()
             .Inc<TowerTargetSelector>()
             .Inc<TowerWeapon>()
             .End();
-        towerTargetSelectorPool = world.GetPool<TowerTargetSelector>();
-        towerWeaponPool = world.GetPool<TowerWeapon>();
-        enemyPositionPool = world.GetPool<Position>();
+        _towerTargetSelectorPool = _world.GetPool<TowerTargetSelector>();
+        _towerWeaponPool = _world.GetPool<TowerWeapon>();
+        _enemyPositionPool = _world.GetPool<Position>();
     }
 
 
     public void Run(IEcsSystems systems)
     {
-        foreach (int towerEntity in towerTargetSelectorFilter)
+        foreach (int towerEntity in _towerTargetSelectorFilter)
         {
-            ref TowerTargetSelector towerTargetSelector = ref towerTargetSelectorPool.Get(towerEntity);
-        
-            if (!_targetingRange.Equals(towerTargetSelector.TargetingRange))
+            ref TowerTargetSelector towerTargetSelector = ref _towerTargetSelectorPool.Get(towerEntity);
+
+            if (!Mathf.Approximately(towerTargetSelector.RenderedTargetingRange,
+                    towerTargetSelector.TargetingRange))
             {
-                _targetingRange = towerTargetSelector.TargetingRange;
-                UpdateTargetingRange(_targetingRange, ref towerTargetSelector);
+                UpdateTargetingRange(towerTargetSelector.TargetingRange, ref towerTargetSelector);
+                towerTargetSelector.RenderedTargetingRange = towerTargetSelector.TargetingRange;
             }
-            
-            ref TowerWeapon towerWeapon = ref towerWeaponPool.Get(towerEntity);
+
+            ref TowerWeapon towerWeapon = ref _towerWeaponPool.Get(towerEntity);
             towerWeapon.AttackCooldownRemaining -= Time.deltaTime;
 
-            
             if (towerWeapon.AttackCooldownRemaining >= 0)
                 continue;
-            
-            
-            List<int> sortedEntities = GetSortedTargets(ref towerTargetSelector);
-            if (sortedEntities.Count == 0) {
-                towerTargetSelector.CurrentTargets = null;
-                continue;
-            }
-            List<int> previousTargets = towerTargetSelector.CurrentTargets?.Where(x=>
-                    sortedEntities.Exists(y=>
-                        y==x))
-                .ToList();
-               
-            towerTargetSelector.CurrentTargets = new List<int>();
-            int targetsCount = Random.Range(0f, 1f) > towerTargetSelector.MultiShotChange
-                ? 1
-                : towerTargetSelector.MaxTargets;
-            int j = 0;
-            if (previousTargets != null)
-                for (; j < targetsCount && j < previousTargets.Count; j++)
-                {
-                    towerTargetSelector.CurrentTargets.Add(previousTargets[j]);
-                }
 
-            for (int i = j; i < targetsCount && i < sortedEntities.Count; i++)
-            {
-                towerTargetSelector.CurrentTargets.Add(sortedEntities[i]);
-            }
+            SelectTargets(ref towerTargetSelector);
         }
     }
 
-    private List<int> GetSortedTargets(ref TowerTargetSelector towerTargetSelector)
+    private void SelectTargets(ref TowerTargetSelector targetSelector)
     {
-        List<int> sortedEntities = new();
+        BuildSortedCandidates(targetSelector.TargetingRange);
 
-        
-        foreach (int enemy in enemyFilter)
+        if (targetSelector.CurrentTargets == null)
+            targetSelector.CurrentTargets = new List<EcsPackedEntity>(targetSelector.MaxTargets > 0
+                ? targetSelector.MaxTargets
+                : 1);
+
+        _previousTargets.Clear();
+        _previousTargets.AddRange(targetSelector.CurrentTargets);
+        targetSelector.CurrentTargets.Clear();
+
+        if (_candidates.Count == 0)
+            return;
+
+        int targetsCount = UnityEngine.Random.value > targetSelector.MultiShotChange
+                ? 1
+                : targetSelector.MaxTargets;
+        if (targetsCount <= 0)
+            return;
+
+        for (int i = 0; i < _previousTargets.Count && targetSelector.CurrentTargets.Count < targetsCount; i++)
         {
-            ref Position enemyPosition = ref enemyPositionPool.Get(enemy);
-            float enemyDistance = ((Vector2)enemyPosition).magnitude;
-            if (enemyDistance <= towerTargetSelector.TargetingRange)
+            if (!_previousTargets[i].Unpack(_world, out int previousEntity))
+                continue;
+
+            int candidateIndex = FindCandidate(previousEntity);
+            if (candidateIndex >= 0)
             {
-                sortedEntities.Add(enemy);
+                targetSelector.CurrentTargets.Add(_candidates[candidateIndex].PackedEntity);
+                _candidates.RemoveAt(candidateIndex);
             }
         }
 
-        
-        sortedEntities.Sort(
-            delegate(int a, int b) {
-                ref Position aPosition = ref enemyPositionPool.Get(a);
-                ref Position bPosition = ref enemyPositionPool.Get(b);
-                return ((Vector2)aPosition).magnitude < ((Vector2)bPosition).magnitude ? -1 : 1;
-            }
-        );
-
-        return sortedEntities;
+        for (int i = 0; i < _candidates.Count && targetSelector.CurrentTargets.Count < targetsCount; i++)
+            targetSelector.CurrentTargets.Add(_candidates[i].PackedEntity);
     }
-    
+
+    private void BuildSortedCandidates(float targetingRange)
+    {
+        _candidates.Clear();
+        float targetingRangeSquared = targetingRange * targetingRange;
+
+        foreach (int enemy in _enemyFilter)
+        {
+            ref Position enemyPosition = ref _enemyPositionPool.Get(enemy);
+            float distanceSquared = enemyPosition.x * enemyPosition.x + enemyPosition.y * enemyPosition.y;
+            if (distanceSquared <= targetingRangeSquared)
+            {
+                _candidates.Add(new TargetCandidate
+                {
+                    Entity = enemy,
+                    PackedEntity = _world.PackEntity(enemy),
+                    DistanceSquared = distanceSquared
+                });
+            }
+        }
+
+        _candidates.Sort(CompareByDistance);
+    }
+
+    private int FindCandidate(int entity)
+    {
+        for (int i = 0; i < _candidates.Count; i++)
+        {
+            if (_candidates[i].Entity == entity)
+                return i;
+        }
+
+        return -1;
+    }
+
     private void UpdateTargetingRange(float range, ref TowerTargetSelector targetSelector)
     {
+        if (targetSelector.radiusRenderer == null)
+            return;
+
         int numSegments = 80;
         float deltaTheta = (2 * Mathf.PI) / numSegments;
         float theta = 0f;

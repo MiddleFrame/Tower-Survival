@@ -32,6 +32,7 @@ public struct TowerWeapon
         BaseAttackDamage = baseDamage;
         AttackDamageMultiplier = 1.15f;
         AttackDamageAdditions = 0.6f;
+        AttackDamage = RecalculateAttackDamage(0);
     }
 
     public float RecalculateAttackDamage(int grades)

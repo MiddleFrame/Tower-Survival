@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Leopotam.EcsLite;
 using UnityEngine;
 
 public class EnemyView : MonoBehaviour
@@ -10,8 +11,7 @@ public class EnemyView : MonoBehaviour
     {
         Basic=0,
         Tank=1,
-        Dynamite=2,
-        Barrel=3
+        Ranged=2
     }
 
     public SpriteRenderer healthBar;
@@ -31,11 +31,16 @@ public class EnemyView : MonoBehaviour
 
     public EnemyType enemyNumber;
 
+    [Tooltip("Destroy this enemy after its animation event deals damage to the tower.")]
+    public bool destroyAfterAttack;
+
     [HideInInspector]
     public int enemyEntity;
 
     private static readonly HashSet<EnemyView> ActiveViews = new HashSet<EnemyView>();
     private bool _deathVfxSpawned;
+    private EcsWorld _world;
+    private EcsPackedEntity _packedEntity;
 
     public static EnemyView[] GetActiveViewsSnapshot()
     {
@@ -50,6 +55,7 @@ public class EnemyView : MonoBehaviour
     private void OnDisable()
     {
         ActiveViews.Remove(this);
+        _world = null;
     }
 
     public void SpawnDeathVfx()
@@ -70,8 +76,10 @@ public class EnemyView : MonoBehaviour
         _deathVfxSpawned = true;
     }
 
-    public void Configure(int entity)
+    public void Configure(EcsWorld world, int entity)
     {
+        _world = world;
+        _packedEntity = world.PackEntity(entity);
         enemyEntity = entity;
         _deathVfxSpawned = false;
         if (model == null)
@@ -87,6 +95,12 @@ public class EnemyView : MonoBehaviour
             var scale = model.transform.localScale;
             model.transform.localScale = new Vector3(Mathf.Abs(scale.x), scale.y, scale.z);
         }
+    }
+
+    public bool TryGetEntity(EcsWorld expectedWorld, out int entity)
+    {
+        entity = -1;
+        return _world == expectedWorld && _packedEntity.Unpack(expectedWorld, out entity);
     }
 
     public void SetDayNightController(DayNightController dayNightController)

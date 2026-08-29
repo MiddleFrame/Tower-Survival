@@ -91,6 +91,9 @@ public class EnemyDamageSystem : IEcsInitSystem, IEcsRunSystem
 
     private void TakeMeleeDamage(ref Health towerHealth, EnemyDamage enemyDamage)
     {
+        if (_sharedData.CombatSpells != null && _sharedData.CombatSpells.IsTowerInvulnerable)
+            return;
+
         towerHealth.CurrentHealth -= enemyDamage.Damage;
         if (towerHealth.CurrentHealth <= 0)
         {

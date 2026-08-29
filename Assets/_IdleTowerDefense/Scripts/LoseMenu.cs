@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using TMPro;
 using UnityEngine;
 
@@ -23,16 +24,32 @@ public class LoseMenu : MonoBehaviour
     private TextMeshProUGUI _tier;
 
     private static readonly int openMenu = Animator.StringToHash("OpenMenu");
+    private bool _isOpen;
 
-
-    public void OpenLoseMenu(bool isNewHighScore, int enemiesKilled, float earnedOre, float earnedGold)
+    private void OnEnable()
     {
-        
+        InAppInitializer.RemoveAdsActivated += GrantRemoveAdsBonus;
+    }
+
+    private void OnDisable()
+    {
+        InAppInitializer.RemoveAdsActivated -= GrantRemoveAdsBonus;
+    }
+
+
+    public void OpenLoseMenu(bool isNewHighScore, int enemiesKilled, float earnedCrystals, float earnedGold)
+    {
+        _isOpen = true;
         OpenAnim();
         EnableHighScore(isNewHighScore);
         SetKilledEnemy(enemiesKilled);
-        SetOreAndGold(earnedOre, earnedGold);
+        SetCrystalsAndGold(earnedCrystals, earnedGold);
         SetTier();
+
+        bool shouldGrantAutomatically = InAppInitializer.isRemoveAds;
+        x2Button.SetActive(!shouldGrantAutomatically);
+        if (shouldGrantAutomatically)
+            DataController.Instance.OnRewardx2();
     }
 
     private void OpenAnim()
@@ -41,13 +58,30 @@ public class LoseMenu : MonoBehaviour
     }   
     public void Close()
     {
+        _isOpen = false;
         _animator.Play($"Close");
     }
 
     public void Getx2()
     {
-        AddManager.ShowRewarded(1);
+        if (AddManager.ShowRewarded(1))
+            x2Button.SetActive(false);
+    }
+
+    public void ApplyDoubleReward(int enemiesKilled, float earnedCrystals, float earnedGold)
+    {
         x2Button.SetActive(false);
+        SetKilledEnemy(enemiesKilled);
+        SetCrystalsAndGold(earnedCrystals, earnedGold);
+    }
+
+    private void GrantRemoveAdsBonus()
+    {
+        if (!_isOpen)
+            return;
+
+        x2Button.SetActive(false);
+        DataController.Instance.OnRewardx2();
     }
 
    
@@ -59,16 +93,19 @@ public class LoseMenu : MonoBehaviour
 
     private void SetKilledEnemy(int enemiesKilled)
     {
-        _enemyKilled.text = $"You killed {enemiesKilled} enemies";
+        LightweightLocalization.Bind(_enemyKilled, "game.you_killed", enemiesKilled);
     }
 
-    private void SetOreAndGold(float earnedOre,float earnedGold)
+    private void SetCrystalsAndGold(float earnedCrystals, float earnedGold)
     {
-        _oreAndGold.text = $"And earn {earnedOre} Ore" + (earnedGold>0?$" and {earnedGold} Gold.":"");
+        if (earnedGold > 0)
+            LightweightLocalization.Bind(_oreAndGold, "game.earned_crystals_gold", earnedCrystals, earnedGold);
+        else
+            LightweightLocalization.Bind(_oreAndGold, "game.earned_crystals", earnedCrystals);
     }
 
     private void SetTier()
     {
-        _tier.text = "Tier 1";
+        LightweightLocalization.Bind(_tier, "game.tier", 1);
     }
 }

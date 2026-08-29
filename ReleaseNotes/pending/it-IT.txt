@@ -1,0 +1,2 @@
+Il puntamento è ora più affidabile: la torre ignora i nemici sconfitti e i proiettili non colpiscono più i bersagli già in fase di rimozione.
+Le battaglie ora includono incantesimi attivi e passivi e cristalli rari da raccogliere con un tocco entro 15 secondi. La vecchia valuta temporanea è stata rimossa.

@@ -21,6 +21,9 @@ public class World : MonoBehaviour
 
     [SerializeField]
     private DayNightController _dayNightController;
+
+    [SerializeField]
+    private CombatSpellController _combatSpells;
     
     private EcsWorld _world;
     public IEcsSystems System => _systems;
@@ -39,6 +42,9 @@ public class World : MonoBehaviour
         }
         sharedData.SetViewPools(_viewPools);
         sharedData.SetDayNightController(_dayNightController);
+        if (_combatSpells == null)
+            _combatSpells = FindFirstObjectByType<CombatSpellController>();
+        sharedData.SetCombatSpells(_combatSpells);
         
         _systems = new EcsSystems(_world, sharedData).Add(new TowerSpawnSystem(_spawnTowerPoint,_healthBar,_healthBarValue))
             .Add(new TowerUpgradeLoadingSystem())
@@ -49,7 +55,7 @@ public class World : MonoBehaviour
             .Add(new EnemySpawnSystem())
             .Add(new EnemyDamageSystem())
             .Add(new HealthRegenerationSystem())
-            .Add(new DestroySystem())
+            .Add(new DestroySystem(_combatSpells))
             .Add(new MovementSystem());
 
         Init();
@@ -58,6 +64,7 @@ public class World : MonoBehaviour
     private void Init()
     {
         _systems.Init();
+        _combatSpells?.Bind(_world);
     }
 
     void Update()

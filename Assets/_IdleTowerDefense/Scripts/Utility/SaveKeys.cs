@@ -14,7 +14,11 @@ public static class SaveKeys
     public const string Mine = "Mine";
     public const string MineGrades = "MineGrades";
     public const string Gold = "Gold";
+    public const string Crystals = "Crystals";
     public const string GoldMine = "GoldMine";
     public const string LastView = "LastView";
     public const string PersistentUpgradeCounts = "PersistentUpgradeCounts";
+    public const string GameSpeed = "GameSpeed";
+    public const string RemoveAds = "RemoveAds";
+    public const string BuyGameSpeed = "BuyGameSpeed";
 }

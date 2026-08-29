@@ -22,6 +22,9 @@ MonoBehaviour:
   - value: 11944
     type: 2
     sprite: {fileID: 21300000, guid: 3a341cef80b7f414c9a78e9aac96b545, type: 3}
+  - value: 0
+    type: 3
+    sprite: {fileID: 21300000, guid: 47e7a6cd7129f2c4895a9f3cd53f24f7, type: 3}
   EnemySpawnSettings:
   - {fileID: 11400000, guid: 458e4e0fdc851e548baa82bb4a42f742, type: 2}
   - {fileID: 11400000, guid: 0122391e0b0e36441a1634896c0f0f16, type: 2}
