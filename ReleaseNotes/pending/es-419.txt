@@ -1,4 +1,4 @@
 El apuntado en combate ahora es más confiable: la torre ignora a los enemigos derrotados y los proyectiles ya no golpean objetivos que están desapareciendo.
 Las batallas ahora incluyen hechizos activos y pasivos, además de cristales raros que debes tocar antes de 15 segundos. Se eliminó la moneda temporal obsoleta.
-Más/menos alterna los detalles; los anuncios ya no pausan el juego.
+El menú y los anuncios ya no pausan el juego; más/menos muestra los detalles.
 Los cristales ahora tienen píxeles y tonos suaves, pulsan despacio y vuelan al contador.

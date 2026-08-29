@@ -1,4 +1,4 @@
 Le ciblage est désormais plus fiable : la tour ignore les ennemis vaincus et les projectiles ne touchent plus les cibles déjà éliminées.
 Les combats proposent désormais des sorts actifs et passifs, ainsi que de rares cristaux à toucher en 15 secondes. L'ancienne monnaie temporaire a été supprimée.
-Plus/moins ouvre les détails ; les pubs ne mettent plus le jeu en pause.
+Menu et pubs ne mettent plus le jeu en pause ; plus/moins affiche les détails.
 Les cristaux ont désormais des pixels et des teintes sobres, pulsent doucement et volent au compteur.

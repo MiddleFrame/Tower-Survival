@@ -46,6 +46,11 @@ public class MenuWindowController : MonoBehaviour
     [SerializeField] 
     private GameObject[] villageUIElements;
 
+    private void Awake()
+    {
+        Time.timeScale = 1f;
+    }
+
     private void Start()
     {
         //_worldOne.Init(OpenMenu);
