@@ -1,4 +1,4 @@
 Savaş hedeflemesi artık daha güvenilir: kule yenilmiş düşmanları yok sayıyor ve mermiler kaldırılmakta olan hedeflere çarpmıyor.
 Savaşlarda artık aktif ve pasif büyüler ile 15 saniye içinde dokunularak toplanan nadir kristaller var. Eski geçici savaş parası kaldırıldı.
 Büyü simgeleri ortalandı ve süreli etkiler artık sürelerini gösteriyor.
-Daha küçük kristaller artık daha yumuşak titreşir, sayaca uçar ve vardığında +1 ekler.
+Kristaller artık sakin piksel renklerine sahip, yumuşak titreşiyor ve sayaca uçuyor.
