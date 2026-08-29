@@ -1,3 +1,4 @@
 Combat targeting is now more reliable: the tower ignores defeated enemies, and projectiles no longer hit enemies already being removed.
 Battles now feature active and passive spells plus rare crystals that must be tapped within 15 seconds. Obsolete temporary battle currency has been removed.
 Spell controls now have clearer states and an expandable panel with full descriptions.
+Collected crystals now fly to their counter and award their value on arrival with a +1 pop.

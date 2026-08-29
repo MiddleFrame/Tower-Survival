@@ -144,3 +144,6 @@ MonoBehaviour:
   _blinkDuration: 4
   _pulseStrength: 0.12
   _pulseSpeed: 6
+  _flightDuration: 0.7
+  _flightArcHeight: 1.4
+  _arrivalScale: 0.5

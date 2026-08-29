@@ -25,6 +25,7 @@ public sealed class CombatSpellController : MonoBehaviour
     private EcsPool<CurrencyDrop> _currencyDropPool;
     private EcsPool<ClickBounty> _clickBountyPool;
     private EcsPool<Destroy> _destroyPool;
+    private CurrencyDisplayElement _crystalDisplay;
     private CombatSpellUseState[] _activeStates = System.Array.Empty<CombatSpellUseState>();
     private float _invulnerabilityRemaining;
     private float _metaDropSurgeRemaining;
@@ -59,6 +60,7 @@ public sealed class CombatSpellController : MonoBehaviour
 
         if (_worldCamera == null)
             _worldCamera = Camera.main;
+        CacheCrystalDisplay();
         _hud?.Bind(this);
     }
 
@@ -129,7 +131,7 @@ public sealed class CombatSpellController : MonoBehaviour
 
         int amount = CombatSpellRules.ResolveRewardAmount(baseAmount, bountyMultiplier);
         MetaCurrencyDropView drop = Instantiate(_metaDropPrefab, position, Quaternion.identity, _metaDropRoot);
-        drop.Initialize(amount, _metaDropLifetime, CollectMetaCurrency);
+        drop.Initialize(amount, _metaDropLifetime, _crystalDisplay, _worldCamera, CollectMetaCurrency);
         return true;
     }
 
@@ -264,7 +266,21 @@ public sealed class CombatSpellController : MonoBehaviour
         }
     }
 
-    private static void CollectMetaCurrency(int amount)
+    private void CacheCrystalDisplay()
+    {
+        CurrencyDisplayElement[] displays = FindObjectsByType<CurrencyDisplayElement>(
+            FindObjectsInactive.Include, FindObjectsSortMode.None);
+        foreach (CurrencyDisplayElement display in displays)
+        {
+            if (display.CurrencyType != CurrencyTypes.Crystals)
+                continue;
+
+            _crystalDisplay = display;
+            return;
+        }
+    }
+
+    private void CollectMetaCurrency(int amount)
     {
         if (amount <= 0 || !DataController.Currency.ContainsKey(CurrencyTypes.Crystals))
             return;
@@ -274,5 +290,6 @@ public sealed class CombatSpellController : MonoBehaviour
         ES3.Save(SaveKeys.Crystals, DataController.Currency[CurrencyTypes.Crystals].value);
         if (DataController.Instance != null)
             DataController.Instance.EarnedCrystals += amount;
+        _crystalDisplay?.ShowGain(amount);
     }
 }
