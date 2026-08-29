@@ -15,6 +15,8 @@ namespace Yodo1.MAS
 
         private bool _enableATTAuthorization = true;
 
+        private Dictionary<string, object> _extra = new Dictionary<string, object>();
+
         /// <summary>
         /// Enable adaptive banner method, 
         /// <c>true</c>, if enable adaptive banner, <c>false</c> otherwise.
@@ -81,6 +83,12 @@ namespace Yodo1.MAS
             return this;
         }
 
+        public Yodo1AdBuildConfig extra(Dictionary<string, object> extra)
+        {
+            this._extra = extra;
+            return this;
+        }
+
         public string toJson()
         {
             Dictionary<string, object> dic = new Dictionary<string, object>();
@@ -132,6 +140,11 @@ namespace Yodo1.MAS
             }
 
             dic.Add("enableATTAuthorization", _enableATTAuthorization);
+
+            if (_extra != null && _extra.Count > 0)
+            {
+                dic.Add("extra", _extra);
+            }
 
             return Yodo1JSON.Serialize(dic);
         }

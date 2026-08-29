@@ -112,13 +112,14 @@ namespace Yodo1.MAS
         }
 
 
-        public static void CallbcksEvent(Yodo1U3dAdEvent adEvent, Yodo1U3dAdError adError, Yodo1U3dAdValue adValue = null)
+        public static void DispatchAdEvent(Yodo1U3dAdEvent adEvent, Yodo1U3dAdError adError, Yodo1U3dAdValue adValue = null)
         {
-            Yodo1U3dInterstitialAd.GetInstance().Callbacks(adEvent, adError, adValue);
+            Yodo1U3dInterstitialAd.GetInstance().HandleAdEvent(adEvent, adError, adValue);
         }
 
-        private void Callbacks(Yodo1U3dAdEvent adEvent, Yodo1U3dAdError adError, Yodo1U3dAdValue adValue)
+        private void HandleAdEvent(Yodo1U3dAdEvent adEvent, Yodo1U3dAdError adError, Yodo1U3dAdValue adValue)
         {
+            Yodo1U3dMasCallback.HandleFullscreenAdLifecycle(adEvent);
             switch (adEvent)
             {
                 case Yodo1U3dAdEvent.AdLoaded:
@@ -131,19 +132,18 @@ namespace Yodo1.MAS
                     Yodo1U3dMasCallback.InvokeEvent(_onAdOpeningEvent, this);
                     break;
                 case Yodo1U3dAdEvent.AdOpened:
-                    Yodo1U3dMasCallback.Instance.Pause();
                     Yodo1U3dMasCallback.InvokeEvent(_onAdOpenedEvent, this);
                     break;
                 case Yodo1U3dAdEvent.AdOpenFail:
-                    Yodo1U3dMasCallback.Instance.UnPause();
                     Yodo1U3dMasCallback.InvokeEvent(_onAdOpenFailedEvent, this, adError);
                     break;
                 case Yodo1U3dAdEvent.AdClosed:
-                    Yodo1U3dMasCallback.Instance.UnPause();
                     Yodo1U3dMasCallback.InvokeEvent(_onAdClosedEvent, this);
                     break;
                 case Yodo1U3dAdEvent.AdPayRevenue:
                     Yodo1U3dMasCallback.InvokeEvent(_onAdPayRevenueEvent, this, adValue);
+                    break;
+                default:
                     break;
             }
         }
@@ -156,12 +156,6 @@ namespace Yodo1.MAS
         private Yodo1U3dInterstitialAd()
         {
 
-        }
-
-        [System.Obsolete("", true)]
-        private void SetAdPlacement(string adPlacement)
-        {
-            this.adPlacement = adPlacement;
         }
 
         private void InterstitialV2(string methodName)
@@ -231,9 +225,9 @@ namespace Yodo1.MAS
 
         public void ShowAd(string placement, string customData)
         {
-            HandleOpeningEvent();
             this.adPlacement = placement;
             this.customData = customData;
+            HandleOpeningEvent();
 #if UNITY_EDITOR
             Yodo1EditorAds.ShowInterstitialAdsInEditor();
 #endif
@@ -246,30 +240,15 @@ namespace Yodo1.MAS
         {
             if (IsLoaded())
             {
-                CallbcksEvent(Yodo1U3dAdEvent.AdOpening, null);
+                DispatchAdEvent(Yodo1U3dAdEvent.AdOpening, null);
             }
         }
 
         public string ToJsonString()
         {
             Dictionary<string, object> dic = new Dictionary<string, object>();
-            if (string.IsNullOrEmpty(this.adPlacement))
-            {
-                dic.Add("adPlacement", "");
-            }
-            else
-            {
-                dic.Add("adPlacement", this.adPlacement);
-            }
-
-            if (string.IsNullOrEmpty(this.customData))
-            {
-                dic.Add("customData", "");
-            }
-            else
-            {
-                dic.Add("customData", this.customData);
-            }
+            dic.Add("adPlacement", this.adPlacement ?? string.Empty);
+            dic.Add("customData", this.customData ?? string.Empty);
             dic.Add("autoDelayIfLoadFail", this.autoDelayIfLoadFail);
             if (_onAdPayRevenueEvent == null)
             {

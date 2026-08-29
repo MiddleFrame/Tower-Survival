@@ -8,7 +8,7 @@ public class GoldPerTenKills : TemporaryUpgradeBase
     public override void Upgrade()
     {
         // Handle cost
-        DataController.Currency.SubtractValues(GetCost());
+        if (!DataController.Currency.SubtractValues(GetCost())) return;
         TemporaryUpgradeManager.Instance.TemporaryUpgradeCounts[Title] += 1;
 
         DestroySystem.goldMultiplier++;

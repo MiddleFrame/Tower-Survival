@@ -1,4 +1,4 @@
-﻿namespace Yodo1.MAS
+namespace Yodo1.MAS
 {
     using UnityEngine;
     using System;
@@ -358,14 +358,98 @@
         #region Pause game
 
         private static bool _autoPauseGame = true;
+        private static bool _isPaused = false;
+        private static float _savedTimeScale = 1f;
+        private static float _savedAudioVolume = 1f;
+        private static bool _savedAudioPause = false;
 
         public static void SetAutoPauseGame(bool autoPauseGame)
         {
             _autoPauseGame = autoPauseGame;
-            PrintAutoGameInfo();
+            PrintAutoPauseGameInfo();
         }
 
-        public static void PrintAutoGameInfo()
+        /// <summary>
+        /// Centralized handler for fullscreen ad lifecycle events.
+        /// Pauses at AdOpening (synchronously before the native SDK call) to avoid
+        /// platform timing issues. AdOpened serves as a fallback in case AdOpening
+        /// was skipped (e.g. IsLoaded() was false). Unpause at AdClosed/AdOpenFail.
+        /// </summary>
+        public static void HandleFullscreenAdLifecycle(Yodo1U3dAdEvent adEvent)
+        {
+            switch (adEvent)
+            {
+                case Yodo1U3dAdEvent.AdOpening:
+                case Yodo1U3dAdEvent.AdOpened:
+                    Instance?.Pause();
+                    break;
+                case Yodo1U3dAdEvent.AdOpenFail:
+                case Yodo1U3dAdEvent.AdClosed:
+                    Instance?.UnPause();
+                    break;
+            }
+        }
+
+        public void Pause()
+        {
+            if (!_autoPauseGame || _isPaused)
+            {
+                return;
+            }
+
+            _savedTimeScale = Time.timeScale;
+            _savedAudioVolume = AudioListener.volume;
+            _savedAudioPause = AudioListener.pause;
+            _isPaused = true;
+
+            Time.timeScale = 0;
+            AudioListener.volume = 0;
+            AudioListener.pause = true;
+        }
+
+        public void UnPause()
+        {
+            if (!_autoPauseGame || !_isPaused)
+            {
+                return;
+            }
+
+            _isPaused = false;
+
+            Time.timeScale = _savedTimeScale;
+            AudioListener.volume = _savedAudioVolume;
+            AudioListener.pause = _savedAudioPause;
+        }
+
+        #endregion
+
+        #region Safe Area Fix
+
+        private static bool _safeAreaFixEnabled = false;
+
+        public static void SetSafeAreaFixEnabled(bool enabled)
+        {
+            _safeAreaFixEnabled = enabled;
+            if (Application.platform == RuntimePlatform.IPhonePlayer)
+            {
+#if UNITY_IPHONE
+                Yodo1U3dAdsIOS.SetSafeAreaFixEnabled(enabled);
+#endif
+            }
+            PrintSafeAreaFixInfo();
+        }
+
+        #endregion
+
+        #region Feature Info
+
+        public static void PrintFeaturesInfo()
+        {
+            PrintAutoPauseGameInfo();
+            PrintSafeAreaFixInfo();
+        }
+
+        private static void PrintAutoPauseGameInfo()
         {
             if (_autoPauseGame)
             {
@@ -377,26 +461,18 @@
             }
         }
 
-        public void Pause()
+        private static void PrintSafeAreaFixInfo()
         {
-            if (!_autoPauseGame)
+#if UNITY_IOS
+            if (_safeAreaFixEnabled)
             {
-                return;
+                Debug.Log(Yodo1U3dMas.TAG + "The feature of safe area fix is enabled, please call `Yodo1U3dMas.SetSafeAreaFixEnabled(false)` if you want to disable it");
             }
-
-            Time.timeScale = 0;
-            AudioListener.volume = 0;
-        }
-
-        public void UnPause()
-        {
-            if (!_autoPauseGame)
+            else
             {
-                return;
+                Debug.Log(Yodo1U3dMas.TAG + "The feature of safe area fix is disabled, please call `Yodo1U3dMas.SetSafeAreaFixEnabled(true)` if you want to enable it");
             }
-
-            Time.timeScale = 1;
-            AudioListener.volume = 1;
+#endif
         }
 
         #endregion
@@ -499,22 +575,22 @@
                 {
                     case AdType.Rewarded:
                         {
-                            Yodo1U3dRewardAd.CallbcksEvent(adEvent, adError, adValue);
+                            Yodo1U3dRewardAd.DispatchAdEvent(adEvent, adError, adValue);
                         }
                         break;
                     case AdType.Interstitial:
                         {
-                            Yodo1U3dInterstitialAd.CallbcksEvent(adEvent, adError, adValue);
+                            Yodo1U3dInterstitialAd.DispatchAdEvent(adEvent, adError, adValue);
                         }
                         break;
                     case AdType.Banner:
                         {
-                            Yodo1U3dBannerAdView.CallbcksEvent(adEvent, adError, indexId, adValue);
+                            Yodo1U3dBannerAdView.DispatchAdEvent(adEvent, adError, indexId, adValue);
                         }
                         break;
                     case AdType.Native:
                         {
-                            Yodo1U3dNativeAdView.CallbcksEvent(adEvent, adError, indexId, adValue);
+                            Yodo1U3dNativeAdView.DispatchAdEvent(adEvent, adError, indexId, adValue);
                         }
                         break;
                     case AdType.RewardedInterstitial:
@@ -523,7 +599,7 @@
                         break;
                     case AdType.AppOpen:
                         {
-                            Yodo1U3dAppOpenAd.CallbcksEvent(adEvent, adError, adValue);
+                            Yodo1U3dAppOpenAd.DispatchAdEvent(adEvent, adError, adValue);
                         }
                         break;
                     default:
@@ -566,92 +642,84 @@
             }
             else if (string.Equals(val, "onRewardedAdLoadedEvent"))
             {
-                Yodo1U3dRewardAd.CallbcksEvent(Yodo1U3dAdEvent.AdLoaded, null);
+                Yodo1U3dRewardAd.DispatchAdEvent(Yodo1U3dAdEvent.AdLoaded, null);
             }
             else if (string.Equals(val, "onRewardedAdLoadFailedEvent"))
             {
                 Yodo1U3dAdError error = new Yodo1U3dAdError();
                 error.Message = "No ads found.";
-                Yodo1U3dRewardAd.CallbcksEvent(Yodo1U3dAdEvent.AdLoadFail, error);
+                Yodo1U3dRewardAd.DispatchAdEvent(Yodo1U3dAdEvent.AdLoadFail, error);
             }
             else if (string.Equals(val, "onRewardedAdOpenedEvent"))
             {
-                Yodo1U3dMasCallback.Instance.Pause();
                 InvokeEvent(_onRewardedAdOpenedEvent);
-                Yodo1U3dRewardAd.CallbcksEvent(Yodo1U3dAdEvent.AdOpened, null);
+                Yodo1U3dRewardAd.DispatchAdEvent(Yodo1U3dAdEvent.AdOpened, null);
             }
             else if (string.Equals(val, "onRewardedAdOpenFailedEvent"))
             {
                 Yodo1U3dAdError error = new Yodo1U3dAdError();
                 error.Message = "Ad failed to play.";
-                Yodo1U3dRewardAd.CallbcksEvent(Yodo1U3dAdEvent.AdOpenFail, error);
+                Yodo1U3dRewardAd.DispatchAdEvent(Yodo1U3dAdEvent.AdOpenFail, error);
             }
             else if (string.Equals(val, "onRewardedAdClosedEvent"))
             {
-                Yodo1U3dMasCallback.Instance.UnPause();
                 InvokeEvent(_onRewardedAdClosedEvent);
-                Yodo1U3dRewardAd.CallbcksEvent(Yodo1U3dAdEvent.AdClosed, null);
+                Yodo1U3dRewardAd.DispatchAdEvent(Yodo1U3dAdEvent.AdClosed, null);
             }
             else if (string.Equals(val, "onRewardedAdReceivedRewardEvent"))
             {
                 InvokeEvent(_onRewardedAdReceivedRewardEvent);
-                Yodo1U3dRewardAd.CallbcksEvent(Yodo1U3dAdEvent.AdReward, null);
+                Yodo1U3dRewardAd.DispatchAdEvent(Yodo1U3dAdEvent.AdReward, null);
             }
             else if (string.Equals(val, "onInterstitialAdLoadedEvent"))
             {
-                Yodo1U3dInterstitialAd.CallbcksEvent(Yodo1U3dAdEvent.AdLoaded, null);
+                Yodo1U3dInterstitialAd.DispatchAdEvent(Yodo1U3dAdEvent.AdLoaded, null);
             }
             else if (string.Equals(val, "onInterstitialAdLoadFailedEvent"))
             {
                 Yodo1U3dAdError error = new Yodo1U3dAdError();
                 error.Message = "No Ads found.";
-                Yodo1U3dInterstitialAd.CallbcksEvent(Yodo1U3dAdEvent.AdLoadFail, error);
+                Yodo1U3dInterstitialAd.DispatchAdEvent(Yodo1U3dAdEvent.AdLoadFail, error);
             }
             else if (string.Equals(val, "onInterstitialAdOpenedEvent"))
             {
-                Yodo1U3dMasCallback.Instance.Pause();
                 InvokeEvent(_onInterstitialAdOpenedEvent);
-                Yodo1U3dInterstitialAd.CallbcksEvent(Yodo1U3dAdEvent.AdOpened, null);
+                Yodo1U3dInterstitialAd.DispatchAdEvent(Yodo1U3dAdEvent.AdOpened, null);
             }
             else if (string.Equals(val, "onInterstitialAdOpenFailedEvent"))
             {
                 Yodo1U3dAdError error = new Yodo1U3dAdError();
                 error.Message = "Ad failed to play.";
-                Yodo1U3dInterstitialAd.CallbcksEvent(Yodo1U3dAdEvent.AdOpenFail, error);
+                Yodo1U3dInterstitialAd.DispatchAdEvent(Yodo1U3dAdEvent.AdOpenFail, error);
             }
             else if (string.Equals(val, "onInterstitialAdClosedEvent"))
             {
-                Yodo1U3dMasCallback.Instance.UnPause();
                 InvokeEvent(_onInterstitialAdClosedEvent);
-                Yodo1U3dInterstitialAd.CallbcksEvent(Yodo1U3dAdEvent.AdClosed, null);
+                Yodo1U3dInterstitialAd.DispatchAdEvent(Yodo1U3dAdEvent.AdClosed, null);
             }
             else if (string.Equals(val, "onAppOpenAdLoadedEvent"))
             {
-                Yodo1U3dAppOpenAd.CallbcksEvent(Yodo1U3dAdEvent.AdLoaded, null);
+                Yodo1U3dAppOpenAd.DispatchAdEvent(Yodo1U3dAdEvent.AdLoaded, null);
             }
             else if (string.Equals(val, "onAppOpenAdLoadFailedEvent"))
             {
                 Yodo1U3dAdError error = new Yodo1U3dAdError();
                 error.Message = "No ads found.";
-                Yodo1U3dAppOpenAd.CallbcksEvent(Yodo1U3dAdEvent.AdLoadFail, error);
+                Yodo1U3dAppOpenAd.DispatchAdEvent(Yodo1U3dAdEvent.AdLoadFail, error);
             }
             else if (string.Equals(val, "onAppOpenAdOpenedEvent"))
             {
-                Yodo1U3dMasCallback.Instance.Pause();
-                InvokeEvent(_onRewardedAdOpenedEvent);
-                Yodo1U3dAppOpenAd.CallbcksEvent(Yodo1U3dAdEvent.AdOpened, null);
+                Yodo1U3dAppOpenAd.DispatchAdEvent(Yodo1U3dAdEvent.AdOpened, null);
             }
             else if (string.Equals(val, "onAppOpenAdOpenFailedEvent"))
             {
                 Yodo1U3dAdError error = new Yodo1U3dAdError();
                 error.Message = "Ad failed to play.";
-                Yodo1U3dAppOpenAd.CallbcksEvent(Yodo1U3dAdEvent.AdOpenFail, error);
+                Yodo1U3dAppOpenAd.DispatchAdEvent(Yodo1U3dAdEvent.AdOpenFail, error);
             }
             else if (string.Equals(val, "onAppOpenAdClosedEvent"))
             {
-                Yodo1U3dMasCallback.Instance.UnPause();
-                InvokeEvent(_onRewardedAdClosedEvent);
-                Yodo1U3dAppOpenAd.CallbcksEvent(Yodo1U3dAdEvent.AdClosed, null);
+                Yodo1U3dAppOpenAd.DispatchAdEvent(Yodo1U3dAdEvent.AdClosed, null);
             }
             else if (string.Equals(val, "onBannerAdOpenedEvent"))
             {

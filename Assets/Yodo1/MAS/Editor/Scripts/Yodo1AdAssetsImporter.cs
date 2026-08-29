@@ -1,13 +1,11 @@
-﻿namespace Yodo1.MAS
+namespace Yodo1.MAS
 {
     using UnityEngine;
     using UnityEditor;
     using System;
-    using System.Collections.Generic;
-    using UnityEditor.Build;
 
     [InitializeOnLoad]
-    public class Yodo1AdAssetsImporter : AssetPostprocessor
+    public class Yodo1AdAssetsImporter
     {
         /// <summary>
         /// Polls a value and signals a callback with the change after the specified delay
@@ -101,10 +99,9 @@
                 }
             }
         }
-        /// <summary>
-        /// Polls for changes in the bundle ID.
-        /// </summary>
-        private static PropertyPoller<string> bundleIdPoller = new PropertyPoller<string>(Yodo1U3dMas.TAG + "Bundle ID");
+
+        private static PropertyPoller<string> androidBundleIdPoller = new PropertyPoller<string>(Yodo1U3dMas.TAG + "Android Bundle ID");
+        private static PropertyPoller<string> iosBundleIdPoller = new PropertyPoller<string>(Yodo1U3dMas.TAG + "iOS Bundle ID");
 
         static Yodo1AdAssetsImporter()
         {
@@ -127,7 +124,8 @@
         }
 
         /// <summary>
-        /// If the user changes the bundle ID, perform resolution again.
+        /// Polls both Android and iOS bundle IDs for changes.
+        /// When a change is detected, fetches app info on a background thread.
         /// </summary>
         private static void PollBundleId()
         {
@@ -136,114 +134,42 @@
                 return;
             }
 
-            bundleIdPoller.Poll(() => PlayerSettings.applicationIdentifier, (previousValue, currentValue) =>
+            androidBundleIdPoller.Poll(Yodo1AdUtils.GetAndroidBundleId, (previousValue, currentValue) =>
             {
-                Yodo1AdSettings settings = Yodo1AdSettingsSave.Load();
-#if UNITY_ANDROID
-                string bundleId = currentValue;
-                Dictionary<string, object> data = Yodo1Net.GetInstance().GetAppInfoByBundleID("android", bundleId);
-                UpdateData(settings, data);
-#endif
-#if UNITY_IOS || UNITY_IPHONE
-                string bundleId = currentValue;
-                Dictionary<string, object> data = Yodo1Net.GetInstance().GetAppInfoByBundleID("iOS", bundleId);
-                UpdateData(settings, data);
-#endif
+                Yodo1AdSettingsSync.FetchAndApplyAsync("android", currentValue);
+            });
+
+            iosBundleIdPoller.Poll(Yodo1AdUtils.GetIOSBundleId, (previousValue, currentValue) =>
+            {
+                Yodo1AdSettingsSync.FetchAndApplyAsync("iOS", currentValue);
             });
         }
 
-        // Allow an editor class method to be initialized when Unity loads without action from the user.
-        // Will be called when the script file changes
-        // Will be called when Unity is opened
+        /// <summary>
+        /// Called on every domain reload (Unity start, script recompilation).
+        /// Uses SessionState to ensure the heavy network operations only run
+        /// once per editor session, avoiding editor stutter on every recompile.
+        /// SessionState resets automatically when Unity restarts.
+        /// </summary>
         [InitializeOnLoadMethod]
         static void OnProjectLoadedInEditor()
         {
-            EditorApplication.update += UpdateAppInfo;
-            EditorApplication.update += UpdateAdNetworkAndDependencies;
-        }
-
-        static void UpdateAdNetworkAndDependencies()
-        {
-            EditorApplication.update -= UpdateAdNetworkAndDependencies;
-            IntegrationManager.UpdateAdNetworkAndDependencies();
-        }
-
-        public static void UpdateAppInfo()
-        {
-            EditorApplication.update -= UpdateAppInfo;
-
-            if (Application.internetReachability == NetworkReachability.NotReachable)
+            // Only run once per editor session to avoid re-triggering on every script recompile
+            const string sessionKey = "Yodo1MAS_ProjectLoaded";
+            if (SessionState.GetBool(sessionKey, false))
             {
                 return;
             }
+            SessionState.SetBool(sessionKey, true);
 
-            Yodo1AdSettings settings = Yodo1AdSettingsSave.Load();
-
-            string bundleId = string.Empty;
-#if UNITY_2023_2_OR_NEWER
-            bundleId = PlayerSettings.GetApplicationIdentifier(NamedBuildTarget.Android);
-#else
-            bundleId = PlayerSettings.GetApplicationIdentifier(BuildTargetGroup.Android);
-#endif
-            Dictionary<string, object> androidData = Yodo1Net.GetInstance().GetAppInfoByBundleID("android", bundleId);
-            UpdateData(settings, androidData);
-
-#if UNITY_2023_2_OR_NEWER
-            bundleId = PlayerSettings.GetApplicationIdentifier(NamedBuildTarget.Android);
-#else
-            bundleId = PlayerSettings.GetApplicationIdentifier(BuildTargetGroup.Android);
-#endif
-            Dictionary<string, object> iosData = Yodo1Net.GetInstance().GetAppInfoByBundleID("iOS", bundleId);
-            UpdateData(settings, iosData);
-        }
-
-        public static void UpdateData(Yodo1AdSettings settings, Dictionary<string, object> dic)
-        {
-            if (settings == null || dic == null)
+            // Defer until domain reload completes — calling AssetDatabase
+            // or synchronous network operations during reload can cause issues.
+            // delayCall fires once on the next editor update and auto-removes.
+            EditorApplication.delayCall += () =>
             {
-                return;
-            }
-
-            string appKey = string.Empty;
-            string admobKey = string.Empty;
-            string platform = string.Empty;
-            string bundleId = string.Empty;
-            if (dic.ContainsKey("platform"))
-            {
-                platform = (string)dic["platform"];
-            }
-            if (dic.ContainsKey("app_key"))
-            {
-                appKey = (string)dic["app_key"];
-            }
-
-            if (dic.ContainsKey("admob_key"))
-            {
-                admobKey = (string)dic["admob_key"];
-            }
-
-            if (dic.ContainsKey("bundle_id"))
-            {
-                bundleId = (string)dic["bundle_id"];
-            }
-
-            if (string.IsNullOrEmpty(appKey) || string.IsNullOrEmpty(admobKey) || string.IsNullOrEmpty(bundleId))
-            {
-                return;
-            }
-            if (platform == "ios" || platform == "iOS")
-            {
-                settings.iOSSettings.AppKey = appKey;
-                settings.iOSSettings.AdmobAppID = admobKey;
-                settings.iOSSettings.BundleID = bundleId;
-            }
-            else if (platform == "android")
-            {
-                settings.androidSettings.AppKey = appKey;
-                settings.androidSettings.AdmobAppID = admobKey;
-                settings.androidSettings.BundleID = bundleId;
-            }
-            Yodo1AdSettingsSave.Save(settings);
+                Yodo1AdSettingsSync.RefreshAllAsync();
+                IntegrationManager.UpdateAdNetworkAndDependencies();
+            };
         }
     }
 }

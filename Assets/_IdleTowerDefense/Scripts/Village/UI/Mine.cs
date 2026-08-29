@@ -95,9 +95,8 @@ public class Mine : VillageUIElement
 
     public void BuyMine()
     {
-        int ore = DataController.Currency[CurrencyTypes.Ore].value;
-        if (ore < _costMine) return;
-        DataController.Currency.SubtractValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Ore, _costMine));
+        if (!DataController.Currency.SubtractValues(
+                new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Ore, _costMine))) return;
         ES3.Save(SaveKeys.Mine, true);
         ES3.Save(SaveKeys.Ore, DataController.Currency[CurrencyTypes.Ore].value);
         Open();
@@ -105,12 +104,10 @@ public class Mine : VillageUIElement
 
     public void GradeMine()
     {
-        int gold = ES3.Load(SaveKeys.Gold, 0);
-        if (gold < _costGrade * _grades.capacity) return;
-        _grades.capacity++;
+        if (!EconomyRules.TryBuyLinearLevel(DataController.Currency, CurrencyTypes.Gold,
+                _costGrade, ref _grades.capacity)) return;
         ES3.Save(SaveKeys.MineGrades, _grades);
         UpdateGradeText();
-        DataController.Currency.SubtractValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, _costGrade * _grades.capacity));
         ES3.Save(SaveKeys.Gold, DataController.Currency[CurrencyTypes.Gold].value);
  
         StopCoroutine(_coroutineGold);
@@ -121,12 +118,10 @@ public class Mine : VillageUIElement
 
     public void GradeLimit()
     {
-        int gold = ES3.Load(SaveKeys.Gold, 0);
-        if (gold < _costGradeLimit * _grades.limit) return;
-        _grades.limit++;
+        if (!EconomyRules.TryBuyLinearLevel(DataController.Currency, CurrencyTypes.Gold,
+                _costGradeLimit, ref _grades.limit)) return;
         ES3.Save(SaveKeys.MineGrades, _grades);
         UpdateLimitText();
-        DataController.Currency.SubtractValues(new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, _costGradeLimit * _grades.limit));
         ES3.Save(SaveKeys.Gold, DataController.Currency[CurrencyTypes.Gold].value);
     }
 
@@ -136,7 +131,7 @@ public class Mine : VillageUIElement
         DataController.Currency.AddValues(new KeyValuePair<CurrencyTypes,int>(CurrencyTypes.Ore,_ore));
         _ore = 0;
         _gold = 0;
-        _earned.text = $"Now available <color=yellow>{_gold} gold</color> and <color=#727272>{_ore} ore</color>";
+        UpdateEarnedText();
         ES3.Save(SaveKeys.Ore, DataController.Currency[CurrencyTypes.Ore].value);
         ES3.Save(SaveKeys.Gold, DataController.Currency[CurrencyTypes.Gold].value);
     }
@@ -158,7 +153,7 @@ public class Mine : VillageUIElement
         float timeForOneOre= 3600f/(100 * _grades.capacity) ;
         while (true)
         {
-            _earned.text = $"Now available <color=yellow>{_gold} gold</color> and <color=#727272>{_ore} ore</color>";
+            UpdateEarnedText();
             yield return new WaitForSeconds(timeForOneOre);
             if (_ore < 1000 * _grades.limit)
                 _ore ++;
@@ -169,21 +164,24 @@ public class Mine : VillageUIElement
     {
         UpdateGradeText();
         UpdateLimitText();
-        _earned.text = $"Now available <color=yellow>{_gold} gold</color> and <color=#727272>{_ore} ore</color>";
+        UpdateEarnedText();
     }
 
     private void UpdateGradeText()
     {
-        _costCapacityUpgrade.text = _costGrade * _grades.capacity + " Gold";
-        _capacity.text =
-            $"It's mining <color=yellow>{5 * _grades.capacity} gold</color> and <color=#727272>{100 * _grades.capacity} ore</color> in one hour";
+        LightweightLocalization.Bind(_costCapacityUpgrade, "mine.gold_cost", _costGrade * _grades.capacity);
+        LightweightLocalization.Bind(_capacity, "mine.rate", 5 * _grades.capacity, 100 * _grades.capacity);
     }
 
     private void UpdateLimitText()
     {
-        _costLimitUpgrade.text = _costGradeLimit * _grades.limit + " Gold";
-        _limit.text =
-            $"The limit is <color=yellow>{20 * _grades.limit} gold</color> and <color=#727272>{1000 * _grades.limit} ore</color >";
+        LightweightLocalization.Bind(_costLimitUpgrade, "mine.gold_cost", _costGradeLimit * _grades.limit);
+        LightweightLocalization.Bind(_limit, "mine.limit", 20 * _grades.limit, 1000 * _grades.limit);
+    }
+
+    private void UpdateEarnedText()
+    {
+        LightweightLocalization.Bind(_earned, "mine.available", _gold, _ore);
     }
 
    

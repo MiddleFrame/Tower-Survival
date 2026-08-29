@@ -38,6 +38,7 @@ public class PersistentUpgradeButton : MonoBehaviour
         {
             locked.SetActive(false);
             completed.SetActive(true);
+            Button.interactable = false;
         }
     }
 }

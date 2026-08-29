@@ -96,7 +96,7 @@ namespace Yodo1.MAS
         }
 
 
-        public static void CallbcksEvent(Yodo1U3dAdEvent adEvent, Yodo1U3dAdError adError, string indexId, Yodo1U3dAdValue adValue)
+        public static void DispatchAdEvent(Yodo1U3dAdEvent adEvent, Yodo1U3dAdError adError, string indexId, Yodo1U3dAdValue adValue)
         {
             if (string.IsNullOrEmpty(indexId))
             {
@@ -107,35 +107,33 @@ namespace Yodo1.MAS
             {
                 if (bannerAdView != null && indexId.Equals(bannerAdView.indexId))
                 {
-                    bannerAdView.Callbacks(adEvent, adError, adValue);
+                    bannerAdView.HandleAdEvent(adEvent, adError, adValue);
                 }
             }
         }
 
-        private void Callbacks(Yodo1U3dAdEvent adEvent, Yodo1U3dAdError adError, Yodo1U3dAdValue adValue)
+        private void HandleAdEvent(Yodo1U3dAdEvent adEvent, Yodo1U3dAdError adError, Yodo1U3dAdValue adValue)
         {
             switch (adEvent)
             {
-                case Yodo1U3dAdEvent.AdError:
-                    break;
-                case (Yodo1U3dAdEvent)1003:
+                case Yodo1U3dAdEvent.AdLoaded:
                     Yodo1U3dMasCallback.InvokeEvent(_onAdLoadedEvent, this);
                     break;
-                case (Yodo1U3dAdEvent)1004:
+                case Yodo1U3dAdEvent.AdLoadFail:
                     Yodo1U3dMasCallback.InvokeEvent(_onAdFailedToLoadEvent, this, adError);
                     break;
                 case Yodo1U3dAdEvent.AdOpened:
                     Yodo1U3dMasCallback.InvokeEvent(_onAdOpenedEvent, this);
                     break;
-                case (Yodo1U3dAdEvent)1005:
+                case Yodo1U3dAdEvent.AdOpenFail:
                     Yodo1U3dMasCallback.InvokeEvent(_onAdFailedToOpenEvent, this, adError);
                     break;
                 case Yodo1U3dAdEvent.AdClosed:
-                    //Yodo1U3dMasCallback.InvokeEvent(_onBannerAdClosedEvent, this);
-                    //BannerAdViews.Remove(this);
                     break;
                 case Yodo1U3dAdEvent.AdPayRevenue:
                     Yodo1U3dMasCallback.InvokeEvent(_onAdPayRevenueEvent, this, adValue);
+                    break;
+                default:
                     break;
             }
         }
@@ -155,7 +153,7 @@ namespace Yodo1.MAS
         /// <summary>
         /// `Yodo1U3dBannerAdView` constructor with `Yodo1U3dBannerAdSize` and `Yodo1U3dBannerAdPosition`
         /// </summary>
-        /// <param name="adSize">Bannr ad size</param>
+        /// <param name="adSize">Banner ad size</param>
         /// <param name="adPosition">Banner ad position</param>
         public Yodo1U3dBannerAdView(Yodo1U3dBannerAdSize adSize, Yodo1U3dBannerAdPosition adPosition)
         {
@@ -248,7 +246,9 @@ namespace Yodo1.MAS
 #if UNITY_EDITOR
             Yodo1EditorAds.DestroyBannerAdsInEditor(indexId);
 #endif
+#if !UNITY_EDITOR
             BannerV2("destroyBannerAdV2");
+#endif
             Yodo1U3dMasCallback.InvokeEvent(_onAdClosedEvent, this);
             BannerAdViews.Remove(this);
         }
@@ -305,23 +305,8 @@ namespace Yodo1.MAS
             dic.Add("customAdPositionX", this.adPositionX);
             dic.Add("customAdPositionY", this.adPositionY);
             dic.Add("indexId", this.indexId);
-            if (string.IsNullOrEmpty(this.adPlacement))
-            {
-                dic.Add("adPlacement", "");
-            }
-            else
-            {
-                dic.Add("adPlacement", this.adPlacement);
-            }
-
-            if (string.IsNullOrEmpty(this.customData))
-            {
-                dic.Add("customData", "");
-            }
-            else
-            {
-                dic.Add("customData", this.customData);
-            }
+            dic.Add("adPlacement", this.adPlacement ?? string.Empty);
+            dic.Add("customData", this.customData ?? string.Empty);
             if (_onAdPayRevenueEvent == null)
             {
                 dic.Add("payRevenueEventCount", 0);

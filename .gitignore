@@ -74,3 +74,21 @@ Assets/unity-shader-sprite-radial-fill-master/Custom_RadialFill.mat
 Assets/unity-shader-sprite-radial-fill-master/Custom_RadialFill.mat
 ProfilerCaptures
 .utmp
+
+# Local Balance Lab output
+/BalanceReports/
+/BalanceLabUnity.log
+/BalancePopulation*.log
+/TestResults/
+
+# Local Codex/plugin import scratch data
+/.codex-yodo-*/
+/*.unitypackage.download
+
+# Unity Android build diagnostics (large, generated, not for distribution)
+/*_BurstDebugInformation_DoNotShip/
+/*_mapping.txt
+
+# Temporary scenes created by the automated test runner
+/Assets/InitTestScene*.unity
+/Assets/InitTestScene*.unity.meta

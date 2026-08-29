@@ -152,9 +152,6 @@ namespace Yodo1.MAS
                 skDic.SetString("SKAdNetworkIdentifier", skAdNetworkId);
             }
 
-            //Set AppLovinSdkKey
-            //rootDict.SetString("AppLovinSdkKey", Yodo1AdEditorConstants.DEFAULT_APPLOVIN_SDK_KEY);
-
             if (settings.iOSSettings.GlobalRegion)
             {
                 //Add Google AdMob App ID
@@ -469,9 +466,11 @@ namespace Yodo1.MAS
                 var possibleXcframeworkPaths = new[]
                 {
                     // AppLovin
-                    Path.Combine("Pods/", "AppLovinSDK/applovin-ios-sdk-13.3.1/AppLovinSDK.xcframework"),
+                    Path.Combine("Pods/", "AppLovinSDK/applovin-ios-sdk-13.5.1/AppLovinSDK.xcframework"),
                     // BidMachine
                     Path.Combine("Pods/", "OMSDK_Appodeal/OMSDK_Appodeal.xcframework"),
+                    // Facebook
+                    Path.Combine("Pods/", "FBAudienceNetwork/Dynamic/FBAudienceNetwork.xcframework"),
                     // InMobi
                     Path.Combine("Pods/", "InMobiSDK/InMobiSDK.xcframework"),
                     // Moloco
@@ -481,13 +480,17 @@ namespace Yodo1.MAS
                     Path.Combine("Pods/", "OpenWrapSDK/OpenWrapSDK/OpenWrapSDK.xcframework"),
                     // ToBid - KuaiShou
                     Path.Combine("Pods/", "KSAdSDK/KSAdSDK.xcframework"),
+                    // TopOn Hyperbid
+                    Path.Combine("Pods/", "MCSDKMaterialPlugin/MCSDKMaterialPlugin.xcframework"),
                     // TaurusX
                     Path.Combine("Pods/", "TaurusxAdsSDK/TaurusxAdsSDK.xcframework"),
                     // Tencent
                     Path.Combine("Pods/", "GDTMobSDK/GDTFramework/GDTMobSDK.xcframework"),
                     Path.Combine("Pods/", "GDTMobSDK/GDTFramework/Tquic.xcframework"),
                     // YSONetwork
-                    Path.Combine("Pods/", "YsoNetworkSDK/YsoNetwork.xcframework")
+                    Path.Combine("Pods/", "YsoNetworkSDK/YsoNetwork.xcframework"),
+                    // AppHarbrSDK
+                    Path.Combine("Pods/", "AppHarbrSDK/AppHarbrSDK.xcframework")
                 };
 
                 dynamicLibraryPathsToEmbed.AddRange(possibleXcframeworkPaths);
@@ -506,13 +509,22 @@ namespace Yodo1.MAS
                 {
                     if (podResult.ExitCode != 0)
                     {
-                        Yodo1AdCommandLine.Run("pod", "install", path);
+                        Debug.LogWarning(Yodo1U3dMas.TAG + "pod install --repo-update failed (exit " + podResult.ExitCode + "), retrying with pod install...\nstderr: " + podResult.StandardError);
+                        var retryResult = Yodo1AdCommandLine.Run("pod", "install", path);
+                        if (retryResult != null && retryResult.ExitCode != 0)
+                        {
+                            Debug.LogError(Yodo1U3dMas.TAG + "pod install failed after retry.\nstdout: " + retryResult.StandardOutput + "\nstderr: " + retryResult.StandardError);
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log(Yodo1U3dMas.TAG + "pod install --repo-update succeeded.");
                     }
                 }
             }
             else
             {
-                //Debug.LogWarning(Yodo1U3dMas.TAG + "Cocoapods is not installed, " + podVersion.StandardOutput + "," + podVersion.StandardError);
+                Debug.LogWarning(Yodo1U3dMas.TAG + "CocoaPods is not installed. stderr: " + podVersion.StandardError);
             }
         }
 
@@ -521,7 +533,7 @@ namespace Yodo1.MAS
             string topTag = "target 'UnityFramework' do";
             string installerTag = "post_install do |installer|";
 
-            string installer =
+            string deploymentInstaller =
                 "\tinstaller.generated_projects.each do |project|\n" +
                 "\t\tproject.targets.each do |target|\n" +
                 "\t\t\ttarget.build_configurations.each do |config|\n" +
@@ -530,15 +542,24 @@ namespace Yodo1.MAS
                 "\t\tend\n" +
                 "\tend\n";
 
+            string yandexInstaller =
+                "\tinstaller.pods_project.targets.each do |target|\n" +
+                "\t\tif target.name == 'AppMetricaLibraryAdapter'\n" +
+                "\t\t\ttarget.build_configurations.each do |config|\n" +
+                "\t\t\t\tconfig.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'NO'\n" +
+                "\t\t\tend\n" +
+                "\t\tend\n" +
+                "\tend\n";
+
             Yodo1AdFileClass app = new Yodo1AdFileClass(path + "/Podfile");
-            //Debug.Log("=================== " + path + "/Podfile");
-            if (app.IsHaveText(installerTag))
+            if (app.ContainsText(installerTag))
             {
-                app.WriteBelow(installerTag, installer);
+                app.WriteBelow(installerTag, deploymentInstaller);
+                app.WriteBelow(installerTag, yandexInstaller);
             }
             else
             {
-                app.WriteBelow(topTag, installerTag + "\n" + installer + "end\n");
+                app.WriteBelow(topTag, installerTag + "\n" + deploymentInstaller + yandexInstaller + "end\n");
             }
         }
     }

@@ -30,15 +30,18 @@ namespace Guirao.UltimateTextDamage
 
         private Dictionary< string , List< UITextDamage > > m_dTextTypes;
         private Dictionary< Transform , List< UITextDamage > > m_instancesInScreen;
-        private List< GameObject > m_tempObjects = new List<GameObject>( );
-        private const int kTempObjectsCount = 30;
+        private readonly List< GameObject > m_tempObjects = new( );
+
+        private void Awake( )
+        {
+            Instance = this;
+        }
         
         /// <summary>
         /// Start Monobehaviours, initializes the manager with the pools
         /// </summary>
-        public void Start( )
+        private void Start( )
         {
-            Instance = this;
             if( ( convertToCamera || autoFaceToCamera ) && theCamera == null )
                 theCamera = Camera.main;
 
@@ -47,19 +50,17 @@ namespace Guirao.UltimateTextDamage
             m_dTextTypes = new Dictionary<string , List<UITextDamage>>( );
 
             // Initialize all text types with a pool
+            if( textTypes == null )
+            {
+                Debug.LogError( "Ultimate Text Damage has no text type list.", this );
+                return;
+            }
+
             foreach( TextDamageType text in textTypes )
             {
                 Initialize( text );
             }
 
-            for( int i = 0 ; i < kTempObjectsCount ; i++ )
-            {
-                GameObject gTemp = new GameObject( "TEMP OBJECT" + i );
-                gTemp.hideFlags = HideFlags.HideInHierarchy;
-                gTemp.transform.SetParent( transform );
-                gTemp.SetActive( false );
-                m_tempObjects.Add( gTemp );
-            }
         }
 
         /// <summary>
@@ -71,7 +72,7 @@ namespace Guirao.UltimateTextDamage
         /// <param name="key">Key type.</param> 
         public void AddStack( float value , Transform target , string stackKey = "normal" , string key = "default" )
         {
-            if (!Settings.isDamageShow) return;
+            if (!Settings.isDamageShow || target == null) return;
             UITextDamage uiToUse = null;
 
             if( !m_instancesInScreen.ContainsKey( target ) )
@@ -102,6 +103,7 @@ namespace Guirao.UltimateTextDamage
             if( uiToUse == null )
             {
                 uiToUse = GetAvailableText( key );
+                if( uiToUse == null ) return;
                 m_instancesInScreen[ target ].Add( uiToUse );
             }
 
@@ -126,10 +128,11 @@ namespace Guirao.UltimateTextDamage
         /// <param name="key">Key type</param>
         public void Add( string text , Transform target , string key = "default" )
         {            
-            if (!Settings.isDamageShow) return;
+            if (!Settings.isDamageShow || target == null) return;
 
             // Get available text instance to use
             UITextDamage uiToUse = GetAvailableText( key );
+            if( uiToUse == null ) return;
 
             if( !m_instancesInScreen.ContainsKey( target ) )
                 m_instancesInScreen.Add( target , new List<UITextDamage>( ) );
@@ -137,6 +140,7 @@ namespace Guirao.UltimateTextDamage
             m_instancesInScreen[ target ].Add( uiToUse );
 
             // Subscribe to animation end event
+            uiToUse.eventOnEnd -= Label_eventOnEnd;
             uiToUse.eventOnEnd += Label_eventOnEnd;
 
             // Inject the transform
@@ -176,18 +180,19 @@ namespace Guirao.UltimateTextDamage
             if( text == null )
                 return null;
 
-            GameObject g = Instantiate( text.prefab.gameObject ) as GameObject;
-            g.transform.SetParent( transform );
-            g.transform.localPosition = Vector3.zero;
-            g.transform.localRotation = Quaternion.identity;
-            g.transform.localScale = Vector3.one;
+            if( text?.prefab == null )
+                return null;
 
-            UITextDamage td = g.GetComponent< UITextDamage >( );
+            UITextDamage td = Instantiate( text.prefab, transform, false );
+            Transform instanceTransform = td.transform;
+            instanceTransform.localPosition = Vector3.zero;
+            instanceTransform.localRotation = Quaternion.identity;
+            instanceTransform.localScale = Vector3.one;
             td.Canvas = this.canvas;
             td.autoFaceCameraWorldSpace = autoFaceToCamera;
             td.Cam = theCamera;
             td.followsTarget = followsTarget;
-            g.SetActive( false );
+            td.gameObject.SetActive( false );
 
             return td;
         }
@@ -198,12 +203,26 @@ namespace Guirao.UltimateTextDamage
         /// <param name="text">damage type</param>
         private void Initialize( TextDamageType text )
         {
+            if( text == null || string.IsNullOrWhiteSpace( text.keyType ) || text.prefab == null )
+            {
+                Debug.LogError( "Ultimate Text Damage contains an invalid text type.", this );
+                return;
+            }
+
+            if( m_dTextTypes.ContainsKey( text.keyType ) )
+            {
+                Debug.LogError( "Ultimate Text Damage contains a duplicate key: " + text.keyType, this );
+                return;
+            }
+
             m_dTextTypes.Add( text.keyType , new List<UITextDamage>( ) );
             List< UITextDamage > container = m_dTextTypes[ text.keyType ];
 
             for( int i = 0 ; i < text.poolCount ; i++ )
             {
-                container.Add( AllocateOneInstance( text ) );
+                UITextDamage instance = AllocateOneInstance( text );
+                if( instance != null )
+                    container.Add( instance );
             }
 
             // If original prefab is in the scene, disable
@@ -233,30 +252,27 @@ namespace Guirao.UltimateTextDamage
         {
             obj.eventOnEnd -= Label_eventOnEnd;
 
-            if( m_instancesInScreen.ContainsKey( transformFollow ) )
+            if( !ReferenceEquals( transformFollow, null ) &&
+                m_instancesInScreen.TryGetValue( transformFollow, out List<UITextDamage> instances ) )
             {
-                m_instancesInScreen[ transformFollow ].Remove( obj );
+                instances.Remove( obj );
+                if( instances.Count == 0 )
+                    m_instancesInScreen.Remove( transformFollow );
 
-                if( transformFollow )
-                {
-                    if( m_tempObjects.Contains( transformFollow.gameObject ) )
-                        transformFollow.gameObject.SetActive( false );
-                }
+                if( transformFollow && m_tempObjects.Contains( transformFollow.gameObject ) )
+                    transformFollow.gameObject.SetActive( false );
             }
         }
 
         private UITextDamage GetAvailableText( string keyType )
         {            
 
-            bool ok = m_dTextTypes.ContainsKey( keyType );
-
-            if( !ok )
+            if( !m_dTextTypes.TryGetValue( keyType, out List<UITextDamage> candidates ) )
             {
                 Debug.LogError( "Text Damage -> Cannot find keyType " + keyType + " on  manager " + gameObject.name );
                 return null;
             }
 
-            List< UITextDamage > candidates = m_dTextTypes[ keyType ];
             for( int i = 0 ; i < candidates.Count ; i++ )
             {
                 if( candidates[ i ].gameObject.activeSelf ) continue;
@@ -269,26 +285,40 @@ namespace Guirao.UltimateTextDamage
             }
 
             // Instantiate new
-            List< UITextDamage > container = m_dTextTypes[ keyType ];
             UITextDamage newInstance = AllocateOneInstance( textTypes.Find( t => t.keyType == keyType ) );
-            container.Add( newInstance );
+            if( newInstance != null )
+                candidates.Add( newInstance );
 
             return newInstance;
         }
 
         private GameObject GetTempObject( )
         {
-            GameObject temp = m_tempObjects.Find( o=> o.activeSelf == false );
+            GameObject temp = null;
+            for( int i = 0; i < m_tempObjects.Count; i++ )
+            {
+                if( !m_tempObjects[ i ].activeSelf )
+                {
+                    temp = m_tempObjects[ i ];
+                    break;
+                }
+            }
             if( temp == null )
             {
-                temp = new GameObject( );
+                temp = new GameObject( "TEMP OBJECT" + m_tempObjects.Count );
                 temp.transform.SetParent( transform );
-                temp.hideFlags = HideFlags.HideInInspector;
+                temp.hideFlags = HideFlags.HideInHierarchy;
                 temp.SetActive( false );
                 m_tempObjects.Add( temp );
             }
 
             return temp;
+        }
+
+        private void OnDestroy( )
+        {
+            if( Instance == this )
+                Instance = null;
         }
     }
 }

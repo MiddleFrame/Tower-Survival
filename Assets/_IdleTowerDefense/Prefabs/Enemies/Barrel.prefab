@@ -309,6 +309,7 @@ MonoBehaviour:
   deadAnim: {fileID: 5525115552690463809, guid: 72f082927d03ee0418bc767f5c1d07b9, type: 3}
   handler: {fileID: 4180329085837211655}
   enemyNumber: 0
+  destroyAfterAttack: 1
   enemyEntity: 0
 --- !u!50 &-9166989117302009329
 Rigidbody2D:

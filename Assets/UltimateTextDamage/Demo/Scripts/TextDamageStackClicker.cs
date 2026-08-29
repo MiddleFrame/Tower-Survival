@@ -24,7 +24,7 @@ namespace Guirao.UltimateTextDamage
             nextNumberOfClicks = UnityEngine.Random.Range( 2 , 10 );
         }
 
-        private void OnMouseUpAsButton( )
+        private void AddDamage( )
         {
             float value = Random.Range( minValue , maxValue );
 
@@ -37,6 +37,10 @@ namespace Guirao.UltimateTextDamage
             }
             textManager.AddStack( value , overrideTransform != null ? overrideTransform : transform , stackKey );
         }
+
+#if UNITY_EDITOR
+        private void OnMouseUpAsButton( ) => AddDamage( );
+#endif
       
         private void Update( )
         {
@@ -53,7 +57,7 @@ namespace Guirao.UltimateTextDamage
             if( Time.time - lastTimeClick >= 1f / clickRate )
             {
                 lastTimeClick = Time.time;
-                OnMouseUpAsButton( );
+                AddDamage( );
                 numberOfClicks++;
             }
         }

@@ -11,7 +11,7 @@ namespace Yodo1.MAS
 
         private Action<Yodo1U3dAppOpenAd> _onAdLoadedEvent;
         private Action<Yodo1U3dAppOpenAd, Yodo1U3dAdError> _onAdLoadFailedEvent;
-        private Action<Yodo1U3dAppOpenAd> _onAdOpeningdEvent;
+        private Action<Yodo1U3dAppOpenAd> _onAdOpeningEvent;
         private Action<Yodo1U3dAppOpenAd> _onAdOpenedEvent;
         private Action<Yodo1U3dAppOpenAd, Yodo1U3dAdError> _onAdOpenFailedEvent;
         private Action<Yodo1U3dAppOpenAd> _onAdClosedEvent;
@@ -45,11 +45,11 @@ namespace Yodo1.MAS
         {
             add
             {
-                _onAdOpeningdEvent += value;
+                _onAdOpeningEvent += value;
             }
             remove
             {
-                _onAdOpeningdEvent -= value;
+                _onAdOpeningEvent -= value;
             }
         }
 
@@ -111,13 +111,14 @@ namespace Yodo1.MAS
             return HelperHolder.Helper;
         }
 
-        public static void CallbcksEvent(Yodo1U3dAdEvent adEvent, Yodo1U3dAdError adError, Yodo1U3dAdValue adValue = null)
+        public static void DispatchAdEvent(Yodo1U3dAdEvent adEvent, Yodo1U3dAdError adError, Yodo1U3dAdValue adValue = null)
         {
-            Yodo1U3dAppOpenAd.GetInstance().Callbacks(adEvent, adError, adValue);
+            Yodo1U3dAppOpenAd.GetInstance().HandleAdEvent(adEvent, adError, adValue);
         }
 
-        private void Callbacks(Yodo1U3dAdEvent adEvent, Yodo1U3dAdError adError, Yodo1U3dAdValue adValue)
+        private void HandleAdEvent(Yodo1U3dAdEvent adEvent, Yodo1U3dAdError adError, Yodo1U3dAdValue adValue)
         {
+            Yodo1U3dMasCallback.HandleFullscreenAdLifecycle(adEvent);
             switch (adEvent)
             {
                 case Yodo1U3dAdEvent.AdLoaded:
@@ -127,22 +128,21 @@ namespace Yodo1.MAS
                     Yodo1U3dMasCallback.InvokeEvent(_onAdLoadFailedEvent, this, adError);
                     break;
                 case Yodo1U3dAdEvent.AdOpening:
-                    Yodo1U3dMasCallback.InvokeEvent(_onAdOpeningdEvent, this);
+                    Yodo1U3dMasCallback.InvokeEvent(_onAdOpeningEvent, this);
                     break;
                 case Yodo1U3dAdEvent.AdOpened:
-                    Yodo1U3dMasCallback.Instance.Pause();
                     Yodo1U3dMasCallback.InvokeEvent(_onAdOpenedEvent, this);
                     break;
                 case Yodo1U3dAdEvent.AdOpenFail:
-                    Yodo1U3dMasCallback.Instance.UnPause();
                     Yodo1U3dMasCallback.InvokeEvent(_onAdOpenFailedEvent, this, adError);
                     break;
                 case Yodo1U3dAdEvent.AdClosed:
-                    Yodo1U3dMasCallback.Instance.UnPause();
                     Yodo1U3dMasCallback.InvokeEvent(_onAdClosedEvent, this);
                     break;
                 case Yodo1U3dAdEvent.AdPayRevenue:
                     Yodo1U3dMasCallback.InvokeEvent(_onAdPayRevenueEvent, this, adValue);
+                    break;
+                default:
                     break;
             }
         }
@@ -194,12 +194,6 @@ namespace Yodo1.MAS
 #endif
         }
 
-        [System.Obsolete("", true)]
-        public void SetAdPlacement(string adPlacement)
-        {
-            this.adPlacement = adPlacement;
-        }
-
         public void LoadAd()
         {
 #if UNITY_EDITOR
@@ -216,7 +210,7 @@ namespace Yodo1.MAS
         }
 
         /// <summary>
-        /// Show reward ads
+        /// Show app open ads
         /// </summary>
         public void ShowAd()
         {
@@ -230,9 +224,9 @@ namespace Yodo1.MAS
 
         public void ShowAd(string placement, string customData)
         {
-            HandleOpeningEvent();
             this.adPlacement = placement;
             this.customData = customData;
+            HandleOpeningEvent();
 #if UNITY_EDITOR
             Yodo1EditorAds.ShowAppOpenInEditor();
 #endif
@@ -245,30 +239,15 @@ namespace Yodo1.MAS
         {
             if (IsLoaded())
             {
-                CallbcksEvent(Yodo1U3dAdEvent.AdOpening, null);
+                DispatchAdEvent(Yodo1U3dAdEvent.AdOpening, null);
             }
         }
 
         public string ToJsonString()
         {
             Dictionary<string, object> dic = new Dictionary<string, object>();
-            if (string.IsNullOrEmpty(this.adPlacement))
-            {
-                dic.Add("adPlacement", "");
-            }
-            else
-            {
-                dic.Add("adPlacement", this.adPlacement);
-            }
-
-            if (string.IsNullOrEmpty(this.customData))
-            {
-                dic.Add("customData", "");
-            }
-            else
-            {
-                dic.Add("customData", this.customData);
-            }
+            dic.Add("adPlacement", this.adPlacement ?? string.Empty);
+            dic.Add("customData", this.customData ?? string.Empty);
             dic.Add("autoDelayIfLoadFail", this.autoDelayIfLoadFail);
             if (_onAdPayRevenueEvent == null)
             {

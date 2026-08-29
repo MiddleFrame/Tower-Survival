@@ -94,6 +94,9 @@ public class LocalLightController : MonoBehaviour
     private void SubscribeToDayNightController()
     {
         if (dayNightController == null)
+            dayNightController = FindFirstObjectByType<DayNightController>();
+
+        if (dayNightController == null)
         {
             Debug.LogWarning($"{nameof(LocalLightController)} on {name} has no DayNightController reference.", this);
             return;

@@ -95,7 +95,7 @@
             GUILayout.Space(20);
             GUILayout.Label("iOS", headerLabelStyle);
             GUILayout.Label("1. iOS 13.0 or above.", contentLabelStyle);
-            GUILayout.Label("2. Xcode 16.3 or above", contentLabelStyle);
+            GUILayout.Label("2. Xcode 26.1.1 or above", contentLabelStyle);
             GUILayout.Label("3. Cocoapods 1.10.0 or above", contentLabelStyle);
 
             GUILayout.EndVertical();

@@ -1,0 +1,29 @@
+# Yodo1 MAS uses reflection/JNI throughout its core. These package-wide rules
+# follow Yodo1's ProGuard guide; keeping only UnityYodo1Mas is insufficient.
+-keeppackagenames com.yodo1.**
+-keep class com.yodo1.** { *; }
+-keepattributes Signature,InnerClasses,Exceptions
+-keepattributes *Annotation*
+
+# MAS deserializes its remote configuration through Gson TypeToken. Keep both
+# Gson and concrete TypeToken subclasses so R8 cannot erase their generic type.
+-keep class com.google.gson.** { *; }
+-keep class * extends com.google.gson.reflect.TypeToken { *; }
+
+# Native libraries resolve Java methods by their original JNI names.
+# Keep those names so Yodo1's ThinkingAnalytics crash module can register them.
+-keepclasseswithmembernames,includedescriptorclasses class * {
+    native <methods>;
+}
+
+# Yodo1's ThinkingAnalytics module also uses reflection and JNI registration.
+-keep class cn.thinkinganalyticsclone.android.** { *; }
+-dontwarn cn.thinkinganalyticsclone.android.thirdparty.**
+
+# Optional compatibility APIs referenced by mediation adapters. The active SDK
+# versions use newer APIs, but R8 still scans the guarded legacy code paths.
+-dontwarn com.android.billingclient.api.SkuDetailsParams**
+-dontwarn com.android.billingclient.api.SkuDetailsResponseListener
+-dontwarn com.bytedance.sdk.openadsdk.core.model.NetExtParams$RenderType
+-dontwarn com.bytedance.sdk.openadsdk.core.settings.TTSdkSettings$FETCH_REQUEST_SOURCE
+-dontwarn com.facebook.infer.annotation.**

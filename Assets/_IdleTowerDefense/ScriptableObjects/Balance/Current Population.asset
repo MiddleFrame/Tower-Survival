@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7e9a68d77e4a1a834f43b31f76403b, type: 3}
+  m_Name: Current Population
+  m_EditorClassIdentifier: 
+  sessionScenario: {fileID: 11400000, guid: 03fd3dcb352b4550bc46d7c64a575940, type: 2}
+  players: 100
+  days: 7
+  sessionsPerDay: 2
+  randomSeed: 481516
+  startingOre: 0
+  startingGold: 0
+  progressThroughTiers: 1
+  buyPersistentUpgrades: 1
+  buyPageUnlocks: 1
+  simulateMine: 1
+  hoursPerDay: 24
+  reproduceMineOverchargeBug: 1
+  archetypes:
+  - name: Economist
+    populationWeight: 18
+    strategy: 4
+    oreReserveFraction: 0.45
+    temporaryPurchaseChance: 0.9
+    persistentPurchaseChance: 0.95
+    meanCombatEfficiency: 0.95
+    combatEfficiencyDeviation: 0.08
+    rewardedOreChance: 0.45
+    sessionsPerDayMultiplier: 1
+    dailyPlayChance: 0.95
+  - name: Saver
+    populationWeight: 18
+    strategy: 1
+    oreReserveFraction: 0.65
+    temporaryPurchaseChance: 0.75
+    persistentPurchaseChance: 0.85
+    meanCombatEfficiency: 0.95
+    combatEfficiencyDeviation: 0.08
+    rewardedOreChance: 0.25
+    sessionsPerDayMultiplier: 0.9
+    dailyPlayChance: 0.9
+  - name: Cheapest first
+    populationWeight: 20
+    strategy: 0
+    oreReserveFraction: 0.05
+    temporaryPurchaseChance: 0.98
+    persistentPurchaseChance: 0.98
+    meanCombatEfficiency: 0.9
+    combatEfficiencyDeviation: 0.12
+    rewardedOreChance: 0.55
+    sessionsPerDayMultiplier: 1.1
+    dailyPlayChance: 0.95
+  - name: Attack focused
+    populationWeight: 18
+    strategy: 2
+    oreReserveFraction: 0.15
+    temporaryPurchaseChance: 0.95
+    persistentPurchaseChance: 0.95
+    meanCombatEfficiency: 1
+    combatEfficiencyDeviation: 0.1
+    rewardedOreChance: 0.4
+    sessionsPerDayMultiplier: 1
+    dailyPlayChance: 0.95
+  - name: Defence focused
+    populationWeight: 12
+    strategy: 3
+    oreReserveFraction: 0.2
+    temporaryPurchaseChance: 0.9
+    persistentPurchaseChance: 0.95
+    meanCombatEfficiency: 0.95
+    combatEfficiencyDeviation: 0.1
+    rewardedOreChance: 0.35
+    sessionsPerDayMultiplier: 0.9
+    dailyPlayChance: 0.9
+  - name: Improviser
+    populationWeight: 14
+    strategy: 5
+    oreReserveFraction: 0.1
+    temporaryPurchaseChance: 0.65
+    persistentPurchaseChance: 0.75
+    meanCombatEfficiency: 0.85
+    combatEfficiencyDeviation: 0.18
+    rewardedOreChance: 0.3
+    sessionsPerDayMultiplier: 0.8
+    dailyPlayChance: 0.8

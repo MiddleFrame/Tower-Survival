@@ -14,13 +14,17 @@ namespace Guirao.UltimateTextDamage
             if( textManager == null )
                 textManager = FindFirstObjectByType<UltimateTextDamageManager>( );
         }
-        private void OnMouseUpAsButton( )
+        private void AddDamage( )
         {
             if( Random.value < 0.3f )
                 textManager.Add( ( Random.Range( 100800f , 2008000f ) ).ToStringScientific( ) , overrideTransform != null ? overrideTransform : transform );
             else
                 textManager.Add( Random.Range( 900000f , 1100000f ).ToStringScientific( ) , overrideTransform != null ? overrideTransform : transform );
         }
+
+#if UNITY_EDITOR
+        private void OnMouseUpAsButton( ) => AddDamage( );
+#endif
 
         public bool autoclicker = true;
         public float clickRate = 1;
@@ -34,7 +38,7 @@ namespace Guirao.UltimateTextDamage
             if( Time.time - lastTimeClick >= 1f / clickRate )
             {
                 lastTimeClick = Time.time;
-                OnMouseUpAsButton( );
+                AddDamage( );
             }
         }
     }

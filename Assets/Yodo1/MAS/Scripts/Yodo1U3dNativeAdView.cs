@@ -69,7 +69,7 @@ namespace Yodo1.MAS
             }
         }
 
-        public static void CallbcksEvent(Yodo1U3dAdEvent adEvent, Yodo1U3dAdError adError, string indexId, Yodo1U3dAdValue adValue)
+        public static void DispatchAdEvent(Yodo1U3dAdEvent adEvent, Yodo1U3dAdError adError, string indexId, Yodo1U3dAdValue adValue)
         {
             if (string.IsNullOrEmpty(indexId))
             {
@@ -80,25 +80,25 @@ namespace Yodo1.MAS
             {
                 if (nativeAdView != null && indexId.Equals(nativeAdView.indexId))
                 {
-                    nativeAdView.Callbacks(adEvent, adError, adValue);
+                    nativeAdView.HandleAdEvent(adEvent, adError, adValue);
                 }
             }
         }
 
-        private void Callbacks(Yodo1U3dAdEvent adEvent, Yodo1U3dAdError adError, Yodo1U3dAdValue adValue)
+        private void HandleAdEvent(Yodo1U3dAdEvent adEvent, Yodo1U3dAdError adError, Yodo1U3dAdValue adValue)
         {
             switch (adEvent)
             {
-                case Yodo1U3dAdEvent.AdError:
-                    break;
-                case (Yodo1U3dAdEvent)1003:
+                case Yodo1U3dAdEvent.AdLoaded:
                     Yodo1U3dMasCallback.InvokeEvent(_onAdLoadedEvent, this);
                     break;
-                case (Yodo1U3dAdEvent)1004:
+                case Yodo1U3dAdEvent.AdLoadFail:
                     Yodo1U3dMasCallback.InvokeEvent(_onAdFailedToLoadEvent, this, adError);
                     break;
                 case Yodo1U3dAdEvent.AdPayRevenue:
                     Yodo1U3dMasCallback.InvokeEvent(_onAdPayRevenueEvent, this, adValue);
+                    break;
+                default:
                     break;
             }
         }
@@ -220,7 +220,9 @@ namespace Yodo1.MAS
 #if UNITY_EDITOR
             Yodo1EditorAds.DestroyNativeAdsInEditor(indexId);
 #endif
+#if !UNITY_EDITOR
             Native("destroyNativeAd");
+#endif
             NativeAdViews.Remove(this);
         }
 
@@ -250,23 +252,8 @@ namespace Yodo1.MAS
             dic.Add("width", this.adWidth);
             dic.Add("height", this.adHeight);
             dic.Add("indexId", this.indexId);
-            if (string.IsNullOrEmpty(this.adPlacement))
-            {
-                dic.Add("adPlacement", "");
-            }
-            else
-            {
-                dic.Add("adPlacement", this.adPlacement);
-            }
-
-            if (string.IsNullOrEmpty(this.customData))
-            {
-                dic.Add("customData", "");
-            }
-            else
-            {
-                dic.Add("customData", this.customData);
-            }
+            dic.Add("adPlacement", this.adPlacement ?? string.Empty);
+            dic.Add("customData", this.customData ?? string.Empty);
             if (!this.backgroundColor.Equals(Color.clear))
             {
                 dic.Add("backgroundColor", "#" + ColorUtility.ToHtmlStringRGB(this.backgroundColor));

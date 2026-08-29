@@ -1,15 +1,18 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Yodo1.MAS
 {
-    /**
-     * The instance of this class is used to record the network information selected by the developer
-     */
+    /// <summary>
+    /// In-memory snapshot of the developer's selected mediation networks for one platform (Android or iOS) in the editor.
+    /// </summary>
     public class Yodo1AdNetworkConfigCacheData
     {
+        /// <summary>
+        /// Which MAS SDK group this selection applies to; distinct from the persisted int field name on <see cref="Yodo1AdDynamicNetworkSettings"/>.
+        /// </summary>
+        public SdkGroupType sdkGroupType;
 
-        public SDKGroupType sdkType;
         public string sdkVersion;
         public string latestSdkVersion;
         public List<string> networks;
@@ -18,9 +21,9 @@ namespace Yodo1.MAS
         {
         }
 
-        public Yodo1AdNetworkConfigCacheData(SDKGroupType sdkType, string sdkVersion, string latestSdkVersion, List<string> networks)
+        public Yodo1AdNetworkConfigCacheData(SdkGroupType sdkGroupType, string sdkVersion, string latestSdkVersion, List<string> networks)
         {
-            this.sdkType = sdkType;
+            this.sdkGroupType = sdkGroupType;
             this.sdkVersion = sdkVersion;
             this.latestSdkVersion = latestSdkVersion;
             this.networks = networks;

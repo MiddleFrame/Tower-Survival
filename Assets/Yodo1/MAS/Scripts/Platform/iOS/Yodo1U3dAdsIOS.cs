@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Runtime.InteropServices;
 using Yodo1.MAS;
@@ -434,6 +434,19 @@ public class Yodo1U3dAdsIOS
     }
     #endregion
 
+    #region Safe Area Fix
+
+    [DllImport(LIB_NAME)]
+    private static extern void UnityMasSetSafeAreaFixEnabled(bool enabled);
+    public static void SetSafeAreaFixEnabled(bool enabled)
+    {
+        if (Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            UnityMasSetSafeAreaFixEnabled(enabled);
+        }
+    }
+
+    #endregion
 
 #endif
 }

@@ -7,8 +7,6 @@ using TMPro;
 public class HorizontalSelector : MonoBehaviour
 {
     [Header("Settings")]
-    private const int DEFAULT_INDEX = 1;
-
     public bool invertAnimation;
     public bool loopSelection;
 
@@ -37,6 +35,7 @@ public class HorizontalSelector : MonoBehaviour
 
     private string _newItemTitle;
     private readonly List<HorizontalSelectorIndicator> _indicators = new();
+    private readonly List<float> _itemSpeeds = new();
 
     public static bool rewardedSpeed;
     
@@ -49,24 +48,24 @@ public class HorizontalSelector : MonoBehaviour
 
     private void Start()
     {
-        CreateNewItem("0x",new [] {(UnityAction) (()=>DataController.Instance.SetGameSpeed(0))});
+        itemList.Clear();
+        _itemSpeeds.Clear();
+        CreateSpeedItem(0f);
+
         float maxSpeed=1;
         if (rewardedSpeed)
             maxSpeed += 1;
         if (InAppInitializer.isBuyGameSpeed)
             maxSpeed += 1;
         for (float speed = 1; speed <= maxSpeed; speed+=0.5f)
-        {
-            var speed1 = speed;
-            CreateNewItem($"{speed:N1}x",new [] {(UnityAction) (()=>DataController.Instance.SetGameSpeed(speed1))});
-        }
+            CreateSpeedItem(speed);
 
         if (!ValidateReferences())
             return;
 
-      
-        _label.text = itemList[DEFAULT_INDEX].itemTitle;
-        index = DEFAULT_INDEX;
+        float savedSpeed = ES3.Load(SaveKeys.GameSpeed, maxSpeed);
+        index = FindClosestSpeedIndex(Mathf.Clamp(savedSpeed, 0f, maxSpeed));
+        _label.text = itemList[index].itemTitle;
 
         if (enableIndicators)
             UpdateUI();
@@ -74,6 +73,35 @@ public class HorizontalSelector : MonoBehaviour
             Destroy(indicatorParent);
 
         itemList[index].onValueChanged.Invoke();
+    }
+
+    private void CreateSpeedItem(float speed)
+    {
+        float selectedSpeed = speed;
+        string title = speed == 0f ? "0x" : $"{speed:N1}x";
+        CreateNewItem(title, new[]
+        {
+            (UnityAction)(() => DataController.Instance.SetGameSpeed(selectedSpeed))
+        });
+        _itemSpeeds.Add(speed);
+    }
+
+    private int FindClosestSpeedIndex(float speed)
+    {
+        int closestIndex = 0;
+        float closestDistance = float.MaxValue;
+
+        for (int i = 0; i < _itemSpeeds.Count; i++)
+        {
+            float distance = Mathf.Abs(_itemSpeeds[i] - speed);
+            if (distance >= closestDistance)
+                continue;
+
+            closestIndex = i;
+            closestDistance = distance;
+        }
+
+        return closestIndex;
     }
 
     public void CloseSetting()

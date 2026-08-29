@@ -37,7 +37,7 @@ namespace Guirao.UltimateTextDamage
             pDamping = serializedObject.FindProperty( "damping" );
             pAutoFaceCameraWorldSpace = serializedObject.FindProperty( "autoFaceToCamera" );
 
-            colorOk = new Color( 0.75f , 2 , 0.75f );
+            colorOk = new Color( 0.75f , 1f , 0.75f );
         }
 
         public override void OnInspectorGUI( )
@@ -150,7 +150,7 @@ namespace Guirao.UltimateTextDamage
 
             list.drawElementCallback = ( Rect rect , int index , bool isActive , bool isFocused ) =>
             {
-                var element = list.serializedProperty.GetArrayElementAtIndex(index);
+                SerializedProperty element = list.serializedProperty.GetArrayElementAtIndex(index);
                 rect.y += 2;
 
                 EditorGUI.PrefixLabel( new Rect( rect.x , rect.y , 25 , EditorGUIUtility.singleLineHeight ) ,
@@ -200,7 +200,9 @@ namespace Guirao.UltimateTextDamage
                 var element = l.serializedProperty.GetArrayElementAtIndex(index);
                 element.FindPropertyRelative( "keyType" ).stringValue = "key"+index.ToString( );
                 element.FindPropertyRelative( "poolCount" ).intValue = 20;
-                element.FindPropertyRelative( "prefab" ).objectReferenceValue = AssetDatabase.LoadAssetAtPath( "Assets/UltimateTextDamage/Prefabs/TextDamageItems/TextDamageItem_default.prefab" , typeof( GameObject ) ) as GameObject;
+                element.FindPropertyRelative( "prefab" ).objectReferenceValue =
+                    AssetDatabase.LoadAssetAtPath<UITextDamage>(
+                        "Assets/UltimateTextDamage/Prefabs/TextDamageItems/TextDamageItem_default_stack_TMP.prefab" );
             };
 
             list.DoLayoutList( );

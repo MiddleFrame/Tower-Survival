@@ -1,0 +1,6 @@
+{
+    "name": "IdleTowerDefense.PlayModeTests",
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ]
+}

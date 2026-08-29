@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,6 +25,9 @@ public class Settings : MonoBehaviour
 
     [SerializeField]
     private AudioSource[] _soundSource;
+
+    private TMP_Text _languageTitle;
+    private TMP_Dropdown _languageDropdown;
 
     public static bool isDamageShow = true;
 
@@ -55,6 +59,7 @@ public class Settings : MonoBehaviour
         _sound.onValueChanged.AddListener(ChangeSoundVolume);
         isDamageShow = ES3.Load(SaveKeys.DamageShow, true);
         _damageShow.isOn = isDamageShow;
+        InitializeLanguageSetting();
     }
 
     private void ChangeMusicVolume(float volume)
@@ -99,6 +104,61 @@ public class Settings : MonoBehaviour
             ES3.Save(SaveKeys.Gold, DataController.Currency[CurrencyTypes.Gold].value);
             ES3.Save("Promo2", true);
         }
+    }
+
+    private void InitializeLanguageSetting()
+    {
+        LightweightLocalization.Initialize();
+
+        Transform content = _damageShow.transform.parent;
+        Transform languageRow = content.Find("Language");
+        if (languageRow == null)
+        {
+            Debug.LogError("The Settings prefab has no Language row.", this);
+            return;
+        }
+
+        _languageTitle = languageRow.Find("Title")?.GetComponent<TMP_Text>();
+        _languageDropdown = languageRow.GetComponentInChildren<TMP_Dropdown>(true);
+        if (_languageTitle == null || _languageDropdown == null)
+        {
+            Debug.LogError("The Language row is missing its title or TMP_Dropdown reference.", this);
+            return;
+        }
+
+        _languageDropdown.onValueChanged.RemoveListener(SetLanguage);
+        _languageDropdown.SetValueWithoutNotify((int)LightweightLocalization.CurrentLanguage);
+        _languageDropdown.RefreshShownValue();
+        _languageDropdown.onValueChanged.AddListener(SetLanguage);
+
+        LightweightLocalization.LanguageChanged -= UpdateLanguageSetting;
+        LightweightLocalization.LanguageChanged += UpdateLanguageSetting;
+        UpdateLanguageSetting();
+    }
+
+    private void SetLanguage(int languageIndex)
+    {
+        GameLanguage language = System.Enum.IsDefined(typeof(GameLanguage), languageIndex)
+            ? (GameLanguage)languageIndex
+            : GameLanguage.English;
+        LightweightLocalization.SetLanguage(language);
+    }
+
+    private void UpdateLanguageSetting()
+    {
+        if (_languageTitle != null)
+            _languageTitle.text = LightweightLocalization.Get("settings.language");
+
+        if (_languageDropdown != null)
+        {
+            _languageDropdown.SetValueWithoutNotify((int)LightweightLocalization.CurrentLanguage);
+            _languageDropdown.RefreshShownValue();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        LightweightLocalization.LanguageChanged -= UpdateLanguageSetting;
     }
 
     private bool ValidateReferences()

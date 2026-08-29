@@ -43,9 +43,10 @@ MonoBehaviour:
     - mintegral
     - moloco
     - pangle
-    - unity
-    - yandex
     - yso
+    - TOPON
+    - yandex
+    - unity
   iosDynamicNetworkSettings:
     sdkType: -1
     sdkVersion: 

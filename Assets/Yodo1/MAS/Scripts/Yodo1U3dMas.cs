@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 namespace Yodo1.MAS
@@ -117,7 +117,7 @@ namespace Yodo1.MAS
             Yodo1EditorAds.InitializeAds();
             Yodo1U3dMasCallback.ForwardEvent("onSdkInitializedEvent");
 #endif
-            Yodo1U3dMasCallback.PrintAutoGameInfo();
+            Yodo1U3dMasCallback.PrintFeaturesInfo();
             return appKey;
         }
 
@@ -505,6 +505,19 @@ namespace Yodo1.MAS
         public static void SetAutoPauseGame(bool autoPauseGame)
         {
             Yodo1U3dMasCallback.SetAutoPauseGame(autoPauseGame);
+        }
+
+        /// <summary>
+        /// Enable or disable the safe area fix for fullscreen ads. The default value is False.
+        ///
+        /// On iOS, Screen.safeArea may return incorrect values after showing fullscreen ads
+        /// (Rewarded, Interstitial, App Open). When enabled, the SDK will force iOS to
+        /// recalculate the safe area insets after each fullscreen ad is dismissed.
+        /// </summary>
+        /// <param name="enabled"><c>true</c> to enable the safe area fix, <c>false</c> to disable it.</param>
+        public static void SetSafeAreaFixEnabled(bool enabled)
+        {
+            Yodo1U3dMasCallback.SetSafeAreaFixEnabled(enabled);
         }
 
         #region Banner Ad Methods - Obsolete

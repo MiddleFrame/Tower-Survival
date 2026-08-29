@@ -16,6 +16,6 @@ public class EnemiesKilledDisplay : MonoBehaviour
         if (timeSinceLastUpdate > 0) return;
 
         timeSinceLastUpdate = updateInterval;
-        textObject.text = $"Enemies Killed: {DataController.Instance.EnemiesKilled}";
+        LightweightLocalization.Bind(textObject, "game.enemies_killed", DataController.Instance.EnemiesKilled);
     }
 }

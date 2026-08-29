@@ -68,12 +68,13 @@ public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
             _buttons.Add(temporaryUpgradeButton);
             temporaryUpgradeButton.targetTemporaryUpgrade = upgrade;
 
-            temporaryUpgradeButton.titleObj.text = upgrade.Title.ToUpper();
+            LightweightLocalization.BindSource(temporaryUpgradeButton.titleObj, upgrade.Title, true);
             temporaryUpgradeButton.targetTemporaryUpgrade.onUpgrade +=
-                x => temporaryUpgradeButton.currentValue.text = "Value: "+x.ToString("N2");
+                x => LightweightLocalization.Bind(temporaryUpgradeButton.currentValue, "upgrade.value", x.ToString("N2"));
             temporaryUpgradeButton.targetTemporaryUpgrade.onUpgrade += _ =>
-                temporaryUpgradeButton.cost.text =
-                    temporaryUpgradeButton.targetTemporaryUpgrade.GetCost().Value +" ore";
+                LightweightLocalization.Bind(temporaryUpgradeButton.cost, "upgrade.cost_ore",
+                    temporaryUpgradeButton.targetTemporaryUpgrade.GetCost().Value);
+            LightweightLocalization.LocalizeHierarchy(temporaryUpgradeButton.gameObject);
             temporaryUpgradeButton.targetTemporaryUpgrade.UpdateStartValue();
 
             temporaryUpgradeButton.Button.onClick.AddListener(
@@ -154,8 +155,9 @@ public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
     
     public void UpdateEnemySpawnRange(float radius)
     {
-        gameSettings.EnemySpawnRadius = radius * 1.2f + 5f;
-        _camera!.orthographicSize = radius * 1.2f + 5f;
+        float gameplayRadius = radius * 1.2f + 5f;
+        InitData.sharedData?.SetEnemySpawnRadius(gameplayRadius);
+        _camera!.orthographicSize = gameplayRadius;
     }
     public void SetMenuOpen(bool value)
     {

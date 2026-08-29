@@ -29,14 +29,16 @@ MonoBehaviour:
     referenceMode: 2
     serializationDepthLimit: 64
     assemblyNames:
-    - Assembly-CSharp
     - Assembly-CSharp-firstpass
-    - PsdPlugin
+    - MCPForUnity.Runtime
+    - Assembly-CSharp
     - PPv2URPConverters
-    - IAPResolver
+    - MCPForUnity.Editor
+    - PsdPlugin
     - ScriptablePacker
-    - Purchasing.Common
     - Leopotam.EcsLite
+    - IAPResolver
+    - IdleTowerDefense.PlayModeTests
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1

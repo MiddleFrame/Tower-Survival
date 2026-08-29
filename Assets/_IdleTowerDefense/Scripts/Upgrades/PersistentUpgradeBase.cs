@@ -27,7 +27,7 @@ public class PersistentUpgradeBase : ScriptableObject
 
     public StatusItem CanUpgrade()
     {
-        return PersistentUpgradeManager.PersistentUpgradeCounts[Title] == maxUpgradeCount? StatusItem.Completed :
+        return PersistentUpgradeManager.PersistentUpgradeCounts[Title] >= maxUpgradeCount? StatusItem.Completed :
             DataController.Currency[CurrencyTypes.Ore].value >= GetCost()?StatusItem.None:StatusItem.Locked;
     }
 

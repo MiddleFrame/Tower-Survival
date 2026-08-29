@@ -56,7 +56,7 @@ namespace Yodo1.MAS
 
             process.StartInfo.WorkingDirectory = workingDirectory;
             process.StartInfo.FileName = "bash";
-            process.StartInfo.Arguments = string.Format("-l -c '\"{0}\" {1} 1> {2} 2> {3}'", toolPath, arguments, stdoutFileName, stderrFileName);
+            process.StartInfo.Arguments = string.Format("-l -c 'export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8; \"{0}\" {1} 1> {2} 2> {3}'", toolPath, arguments, stdoutFileName, stderrFileName);
             process.Start();
 
             process.WaitForExit();

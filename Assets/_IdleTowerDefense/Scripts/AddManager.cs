@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using Managers;
 using UnityEngine;
 using Yodo1.MAS;
@@ -8,6 +7,9 @@ using Yodo1.MAS;
 public class AddManager : MonoBehaviour
 {
     private static AddManager instance;
+    private static bool _isRewardAdBusy;
+
+    public static event Action<bool> RewardedAvailabilityChanged;
 
     [SerializeField]
     private GameObject _loadingAnim;
@@ -51,30 +53,47 @@ public class AddManager : MonoBehaviour
 
     private static int rewardId;
 
-    public static void ShowRewarded(int rewardID)
+    public static bool IsRewardedAvailable
     {
-        if (InAppInitializer.isRemoveAds) {OnRewardAdEarnedEvent(rewardID);
-            return;
-        }
-        bool isLoaded = Yodo1U3dRewardAd.GetInstance().IsLoaded();
-        rewardId = rewardID;
-        if (isLoaded) Yodo1U3dRewardAd.GetInstance().ShowAd();
-        else
+        get
         {
-            instance.StartCoroutine(TryShowReward(rewardID));
+            if (InAppInitializer.isRemoveAds)
+                return true;
+
+            return instance != null &&
+                   !_isRewardAdBusy &&
+                   Yodo1U3dRewardAd.GetInstance().IsLoaded();
         }
     }
 
-    private static IEnumerator TryShowReward(int rewardID)
+    public static bool ShowRewarded(int rewardID)
     {
-        Debug.Log("Try to load add");
-        for (int i = 0; i < 3; i++)
+        if (InAppInitializer.isRemoveAds)
         {
-            Yodo1U3dRewardAd.GetInstance().LoadAd();
-            yield return new WaitForSeconds(1f);
-            rewardId = rewardID;
-            if (Yodo1U3dRewardAd.GetInstance().IsLoaded()) Yodo1U3dRewardAd.GetInstance().ShowAd();
+            OnRewardAdEarnedEvent(rewardID);
+            return true;
         }
+
+        if (instance == null || _isRewardAdBusy)
+        {
+            Debug.Log("[Yodo1 Mas] Reward ad request ignored: another request is already active");
+            return false;
+        }
+
+        Yodo1U3dRewardAd rewardAd = Yodo1U3dRewardAd.GetInstance();
+        if (!rewardAd.IsLoaded())
+        {
+            Debug.Log("[Yodo1 Mas] Reward ad is not loaded yet");
+            NotifyRewardedAvailability(false);
+            rewardAd.LoadAd();
+            return false;
+        }
+
+        rewardId = rewardID;
+        _isRewardAdBusy = true;
+        NotifyRewardedAvailability(false);
+        rewardAd.ShowAd();
+        return true;
     }
 
     private void InitializeRewardedAds()
@@ -84,6 +103,7 @@ public class AddManager : MonoBehaviour
 
         // Ad Events
         Yodo1U3dRewardAd.GetInstance().OnAdLoadedEvent += OnRewardAdLoadedEvent;
+        Yodo1U3dRewardAd.GetInstance().OnAdLoadFailedEvent += OnRewardAdLoadFailedEvent;
         Yodo1U3dRewardAd.GetInstance().OnAdOpenFailedEvent += OnRewardAdOpenFailedEvent;
         Yodo1U3dRewardAd.GetInstance().OnAdClosedEvent += OnRewardAdClosedEvent;
         Yodo1U3dRewardAd.GetInstance().OnAdEarnedEvent += OnRewardAdEarnedEvent;
@@ -93,12 +113,21 @@ public class AddManager : MonoBehaviour
     {
         if (_loadingAnim != null)
             _loadingAnim.SetActive(false);
+        NotifyRewardedAvailability(true);
         Debug.Log("[Yodo1 Mas] OnRewardAdLoadedEvent event received");
     }
 
+    private void OnRewardAdLoadFailedEvent(Yodo1U3dRewardAd ad, Yodo1U3dAdError adError)
+    {
+        _isRewardAdBusy = false;
+        NotifyRewardedAvailability(false);
+        Debug.Log("[Yodo1 Mas] OnRewardAdLoadFailedEvent event received with error: " + adError);
+    }
 
     private void OnRewardAdOpenFailedEvent(Yodo1U3dRewardAd ad, Yodo1U3dAdError adError)
     {
+        _isRewardAdBusy = false;
+        NotifyRewardedAvailability(false);
         Debug.Log("[Yodo1 Mas] OnRewardAdOpenFailedEvent event received with error: " + adError.ToString());
         // Load the next ad
         Yodo1U3dRewardAd.GetInstance().LoadAd();
@@ -106,6 +135,8 @@ public class AddManager : MonoBehaviour
 
     private void OnRewardAdClosedEvent(Yodo1U3dRewardAd ad)
     {
+        _isRewardAdBusy = false;
+        NotifyRewardedAvailability(false);
         Debug.Log("[Yodo1 Mas] OnRewardAdClosedEvent event received");
         // Load the next ad
         Yodo1U3dRewardAd.GetInstance().LoadAd();
@@ -143,5 +174,11 @@ public class AddManager : MonoBehaviour
                 DataController.Instance.OnRewardx2();
                 break;
         }
+    }
+
+    private static void NotifyRewardedAvailability(bool isAvailable)
+    {
+        RewardedAvailabilityChanged?.Invoke(
+            InAppInitializer.isRemoveAds || (isAvailable && !_isRewardAdBusy));
     }
 }

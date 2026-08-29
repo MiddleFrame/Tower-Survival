@@ -13,7 +13,7 @@ namespace Guirao.UltimateTextDamage
         public float maxValue = 2000;
         public string[] optionsToShow = null;
 
-        private void OnMouseUpAsButton( )
+        private void AddDamage( )
         {
             if( !onlyDefault && Random.value < 0.1f )
             {
@@ -38,6 +38,10 @@ namespace Guirao.UltimateTextDamage
             }
         }
 
+#if UNITY_EDITOR
+        private void OnMouseUpAsButton( ) => AddDamage( );
+#endif
+
         public bool autoclicker = true;
         public float clickRate = 1;
 
@@ -50,13 +54,13 @@ namespace Guirao.UltimateTextDamage
             if( Time.time - lastTimeClick >= 1f / clickRate )
             {
                 lastTimeClick = Time.time; //+ Random.value * 0.5f;
-                OnMouseUpAsButton( );
+                AddDamage( );
             }
         }
 
         public void ForceAdd( )
         {
-            OnMouseUpAsButton( );
+            AddDamage( );
         }
     }
 }

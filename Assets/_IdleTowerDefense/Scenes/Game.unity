@@ -594,7 +594,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "MELHORIA AUTOM\xC1TICA"
+  m_text: AUTO-ULEPSZENIE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
   m_sharedMaterial: {fileID: 8280590304419900260, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
@@ -15174,7 +15174,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "E 1 de min\xE9rio e 0 de ouro."
+  m_text: "I 1 rudy oraz 0 z\u0142ota."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
   m_sharedMaterial: {fileID: 8280590304419900260, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
@@ -16305,7 +16305,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Inimigos derrotados: 0'
+  m_text: 'Pokonani wrogowie: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
   m_sharedMaterial: {fileID: 8280590304419900260, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
@@ -16332,7 +16332,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 39.45
+  m_fontSize: 41.55
   m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -17114,7 +17114,7 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 45
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -18527,7 +18527,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Inimigos derrotados: 0'
+  m_text: 'Pokonani wrogowie: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
   m_sharedMaterial: {fileID: 8280590304419900260, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
@@ -20767,7 +20767,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Novo recorde!!!
+  m_text: Nowy rekord!!!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
   m_sharedMaterial: {fileID: 8280590304419900260, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
@@ -20904,7 +20904,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Defesa
+  m_text: Obrona
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
   m_sharedMaterial: {fileID: 8280590304419900260, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
@@ -21484,7 +21484,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ataque
+  m_text: Atak
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
   m_sharedMaterial: {fileID: 8280590304419900260, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
@@ -21768,7 +21768,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Desistir
+  m_text: "Poddaj si\u0119"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
   m_sharedMaterial: {fileID: 8280590304419900260, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
@@ -23188,7 +23188,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Utilidade
+  m_text: Inne
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
   m_sharedMaterial: {fileID: 8280590304419900260, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
@@ -23605,7 +23605,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Recome\xE7ar"
+  m_text: Zacznij od nowa
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
   m_sharedMaterial: {fileID: 8280590304419900260, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
@@ -23632,12 +23632,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.2
+  m_fontSize: 39.4
   m_fontSizeBase: 44.2
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 45
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -24431,7 +24431,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: VELOCIDADE DO JOGO
+  m_text: "SZYBKO\u015A\u0106 GRY"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
   m_sharedMaterial: {fileID: 8280590304419900260, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
@@ -24458,7 +24458,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36.65
+  m_fontSize: 40.75
   m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -24568,7 +24568,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "In\xEDcio"
+  m_text: Dom
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
   m_sharedMaterial: {fileID: 8280590304419900260, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
@@ -24595,12 +24595,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.2
+  m_fontSize: 45
   m_fontSizeBase: 44.2
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 45
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -25000,7 +25000,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "N\xEDvel 1"
+  m_text: Poziom 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
   m_sharedMaterial: {fileID: 8280590304419900260, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
@@ -25933,7 +25933,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fim de jogo
+  m_text: Koniec gry
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
   m_sharedMaterial: {fileID: 8280590304419900260, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
@@ -26686,7 +26686,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Melhorias
+  m_text: Ulepszenia
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
   m_sharedMaterial: {fileID: 8280590304419900260, guid: d5c0e9f7477d51a4cb5916ce982cd410, type: 2}
@@ -27985,9 +27985,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 602621125}
     m_Modifications:
+    - target: {fileID: 1590663617803370987, guid: 9f4df6871ce46b54886fe47d424679ad, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -68.380005
+      objectReference: {fileID: 0}
+    - target: {fileID: 2222273646814609843, guid: 9f4df6871ce46b54886fe47d424679ad, type: 3}
+      propertyPath: m_text
+      value: "ZAKL\u0118CIA"
+      objectReference: {fileID: 0}
     - target: {fileID: 2234368091642061211, guid: 9f4df6871ce46b54886fe47d424679ad, type: 3}
       propertyPath: m_Name
       value: CombatSpellHud
+      objectReference: {fileID: 0}
+    - target: {fileID: 3408867426534411806, guid: 9f4df6871ce46b54886fe47d424679ad, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000061035156
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891583043515895525, guid: 9f4df6871ce46b54886fe47d424679ad, type: 3}
+      propertyPath: m_text
+      value: "SZCZEG\xD3\u0141Y"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891583043515895525, guid: 9f4df6871ce46b54886fe47d424679ad, type: 3}
+      propertyPath: m_fontSize
+      value: 28.9
       objectReference: {fileID: 0}
     - target: {fileID: 4902853758308772124, guid: 9f4df6871ce46b54886fe47d424679ad, type: 3}
       propertyPath: m_Pivot.x
@@ -28068,6 +28088,14 @@ PrefabInstance:
     - target: {fileID: 4902853758308772124, guid: 9f4df6871ce46b54886fe47d424679ad, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6129876844592031683, guid: 9f4df6871ce46b54886fe47d424679ad, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -17.899963
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323522876030500515, guid: 9f4df6871ce46b54886fe47d424679ad, type: 3}
+      propertyPath: m_text
+      value: GOTOWE
       objectReference: {fileID: 0}
     - target: {fileID: 7551346248021834836, guid: 9f4df6871ce46b54886fe47d424679ad, type: 3}
       propertyPath: _worldCamera

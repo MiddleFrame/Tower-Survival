@@ -1,4 +1,5 @@
 using TMPro;
+using Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -23,11 +24,17 @@ public class PlayMenu : MonoBehaviour
 
    [SerializeField]
    private Button _toBattle;
+
+   [SerializeField]
+   private Button _rewardButton;
    
    [SerializeField]
    private InitData _data;
    [SerializeField]
    private GameObject _loadingAnim;   
+
+   [SerializeField]
+   private GameObject _playRewardPrompt;
    
    [SerializeField]
    private GameObject _lockedTierObject;
@@ -46,13 +53,28 @@ public class PlayMenu : MonoBehaviour
       {
          _records[i] = ES3.Load(SaveKeys.EnemiesKilled + "_" + i,0);
       }
-      if (Yodo1.MAS.Yodo1U3dRewardAd.GetInstance().IsLoaded()) _loadingAnim.SetActive(false);
-         
+      RefreshRewardedButton(AddManager.IsRewardedAvailable);
    }
 
    void OnEnable()
    {
+      LightweightLocalization.LanguageChanged += RefreshLanguage;
+      AddManager.RewardedAvailabilityChanged += RefreshRewardedButton;
+      InAppInitializer.RemoveAdsActivated += OnRemoveAdsActivated;
+      RefreshRewardedButton(AddManager.IsRewardedAvailable);
       ChangeTier(0);
+   }
+
+   private void OnDisable()
+   {
+      LightweightLocalization.LanguageChanged -= RefreshLanguage;
+      AddManager.RewardedAvailabilityChanged -= RefreshRewardedButton;
+      InAppInitializer.RemoveAdsActivated -= OnRemoveAdsActivated;
+   }
+
+   private void RefreshLanguage()
+   {
+      ChangeTier(_currentTier);
    }
 
    public static void Play()
@@ -78,18 +100,18 @@ public class PlayMenu : MonoBehaviour
    private void ChangeTier(int tier)
    {
       _currentTier = tier;
-      _tier.text = $"Tier {tier+1}";
+      LightweightLocalization.Bind(_tier, "game.tier", tier + 1);
       //_toBattle.interactable = _records[_currentTier]>=_data.gameSettings.EnemySpawnSettings[tier].RecordToOpen;
       _lockedTierObject.SetActive(!(_records[_currentTier]>=_data.gameSettings.EnemySpawnSettings[tier].RecordToOpen));
-      _oreMultiplier.text = "ore - x"+_data.gameSettings.EnemySpawnSettings[tier].OreMultiplier;
-      _enemyKilled.text = "High score - "+_records[tier];
-      _damageMultiplier.text = "Enemy damage - "+_data.gameSettings.EnemySpawnSettings[tier].EnemyDamageMultiplier;
-      _healthMultiplier.text = "Enemy health - "+_data.gameSettings.EnemySpawnSettings[tier].EnemyHealthMultiplier;
-      _spawnMultiplier.text = "Enemy start spawn delay - "+_data.gameSettings.EnemySpawnSettings[tier].stages[0].enemySpawnRate;
+      LightweightLocalization.Bind(_oreMultiplier, "game.ore_multiplier", _data.gameSettings.EnemySpawnSettings[tier].OreMultiplier);
+      LightweightLocalization.Bind(_enemyKilled, "game.high_score", _records[tier]);
+      LightweightLocalization.Bind(_damageMultiplier, "game.enemy_damage", _data.gameSettings.EnemySpawnSettings[tier].EnemyDamageMultiplier);
+      LightweightLocalization.Bind(_healthMultiplier, "game.enemy_health", _data.gameSettings.EnemySpawnSettings[tier].EnemyHealthMultiplier);
+      LightweightLocalization.Bind(_spawnMultiplier, "game.spawn_delay", _data.gameSettings.EnemySpawnSettings[tier].stages[0].enemySpawnRate);
       _enemyList.text = "";
       foreach (var enemy in _data.gameSettings.EnemySpawnSettings[tier]._enemyList.EnemySpawns)
       {
-         _enemyList.text += enemy.name + '\n';
+         _enemyList.text += LightweightLocalization.FromSource(enemy.name) + '\n';
       }
       LightweightLocalization.SetDisplayText(_enemyList, _enemyList.text);
    }
@@ -97,6 +119,40 @@ public class PlayMenu : MonoBehaviour
    public void ShowAd()
    {
       AddManager.ShowRewarded(0);
+   }
+
+   public void RequestPlay()
+   {
+      if (InAppInitializer.isRemoveAds)
+      {
+         HorizontalSelector.rewardedSpeed = true;
+         Play();
+         return;
+      }
+
+      if (_playRewardPrompt != null)
+         _playRewardPrompt.SetActive(true);
+   }
+
+   private void OnRemoveAdsActivated()
+   {
+      RefreshRewardedButton(true);
+
+      if (_playRewardPrompt == null || !_playRewardPrompt.activeSelf)
+         return;
+
+      _playRewardPrompt.SetActive(false);
+      HorizontalSelector.rewardedSpeed = true;
+      Play();
+   }
+
+   private void RefreshRewardedButton(bool isAvailable)
+   {
+      if (_rewardButton != null)
+         _rewardButton.interactable = isAvailable;
+
+      if (_loadingAnim != null)
+         _loadingAnim.SetActive(!isAvailable);
    }
 
    public void NextTier()

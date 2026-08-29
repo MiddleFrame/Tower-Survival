@@ -1,8 +1,8 @@
-﻿namespace Yodo1.MAS
+namespace Yodo1.MAS
 {
     using UnityEditor;
 
-    public class Yodo1AdAssetsMenuEditor : Editor
+    public class Yodo1AdAssetsMenuEditor : UnityEditor.Editor
     {
         //        [MenuItem("Yodo1/MAS/MAS Conflict Manager", false)]
         //        static void ConflictManager()

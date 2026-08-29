@@ -1,7 +1,7 @@
 using System;
-using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -11,70 +11,167 @@ using Yodo1.MAS;
 [InitializeOnLoad]
 public class IntegrationManager : EditorWindow
 {
-    int platformTabSelected = 0;
-    int prevPlatformTabSelected = 0;
-    private const float editorWindowMinWidth = 600f;
-    private const float editorWindowMinLength = 950f;
-    private const float networkFieldMinWidth = 100f;
-    private const float versionFieldMinWidth = 190f;
-    private const float actionFieldWidth = 60f;
-    private static GUILayoutOption networkWidthOption = GUILayout.Width(networkFieldMinWidth);
-    private static GUILayoutOption versionWidthOption = GUILayout.Width(versionFieldMinWidth);
-    private static readonly GUILayoutOption fieldWidth = GUILayout.Width(actionFieldWidth);
-    private GUIStyle headerLabelStyle;
-    private GUIStyle contentLabelStyle;
+    // ──────────────────────────────────────────────────────────────────────
+    //  Layout Constants
+    // ──────────────────────────────────────────────────────────────────────
 
-    Yodo1AdNetworkConfig adNetworkConfig;
+    /// <summary>Window width = 720px. Satisfies all layout constraints:
+    /// ① Network Version centred at window midpoint (360px);
+    /// ② SDK Actions == Net Actions width (160px) → column left edge aligned;
+    /// ③ Network name column (160px) ≥ "Meta Audience Network" (~155px);
+    /// ④ Actions column just wide enough to hold button + icon (no excess whitespace).</summary>
+    private const float editorWindowWidth     = 720f;
+    private const float editorWindowMinHeight = 500f;
+    private const float windowPadding        = 12f;
+    private const float colSpacing           =  8f;
+    private const float rowHeight            = 24f;
 
-    Yodo1AdNetwork[] android;
-    Yodo1AdNetwork[] ios;
+    // ── SDK version table ─────────────────────────────────────────────────
+    // Usable = 720 - 2×12 - 3×8 = 672px
+    // Type(90) + Version(211) + Latest(211) + Actions(160) = 672
+    private const float sdkTypeColWidth    =  90f;
+    private const float sdkVersionColWidth = 211f;
+    private const float sdkActionsColWidth = 160f;
+    private const float sdkUpgradeBtnWidth =  80f;
 
-    Yodo1AdNetworkConfigCacheData androidCachedData;
-    Yodo1AdNetworkConfigCacheData iosCachedData;
-    float SDKSize = 0f;
-    private static string PackageName = string.Empty;
+    private static readonly float[] sdkColWidths =
+    {
+        sdkTypeColWidth,    // Type
+        sdkVersionColWidth, // Version
+        sdkVersionColWidth, // Latest Version
+        sdkActionsColWidth  // Actions
+    };
 
-    private static bool importPackageCompleted = false;
+    // ── Network list table ────────────────────────────────────────────────
+    // Usable = 720 - 2×12 - 2×8 = 680px
+    // Network(160) + Version(360) + Actions(160) = 680
+    // Actions(160) == SDK Actions(160) → column left edge aligned at x=548
+    // Version centre = 12 + 160 + 8 + 180 = 360px
+    private const float netNameColWidth    = 160f;
+    private const float netVersionColWidth = 360f;
+    private const float netActionsColWidth = 160f;
+    private const float netActionBtnWidth  =  70f;
+    private const float netIconWidth       =  20f;
+
+    private static readonly GUILayoutOption rowHeightOption = GUILayout.Height(rowHeight);
+    private static readonly GUILayoutOption netNameW       = GUILayout.Width(netNameColWidth);
+    private static readonly GUILayoutOption netVersionW    = GUILayout.Width(netVersionColWidth);
+    private static readonly GUILayoutOption netActionsW    = GUILayout.Width(netActionsColWidth);
+
+    private static readonly Color separatorColor = new Color(0.5f, 0.5f, 0.5f, 0.3f);
+    private static readonly Color evenRowColor   = new Color(0f,   0f,   0f,   0.05f);
+
+    // ──────────────────────────────────────────────────────────────────────
+    //  Data Fields
+    // ──────────────────────────────────────────────────────────────────────
+
+    private Yodo1AdNetworkConfig adNetworkConfig;
+    private Yodo1AdNetwork[] android;
+    private Yodo1AdNetwork[] ios;
+    private Yodo1AdNetworkConfigCacheData androidCachedData;
+    private Yodo1AdNetworkConfigCacheData iosCachedData;
+    private float sdkSize;
+
+    // ──────────────────────────────────────────────────────────────────────
+    //  GUI State
+    // ──────────────────────────────────────────────────────────────────────
+
+    private Vector2 scrollPosition;
+    private GUIStyle tableHeaderStyle;
+    private GUIStyle tableHeaderCenterStyle;
+    private GUIStyle tableCellStyle;
+    private GUIStyle tableCellCenterStyle;
+    private GUIStyle statusBarStyle;
+    private Texture installIcon;
+    private int platformTabSelected;
+    private int prevPlatformTabSelected;
+
+    // ──────────────────────────────────────────────────────────────────────
+    //  Download State
+    // ──────────────────────────────────────────────────────────────────────
+
+    private static string packageName = string.Empty;
+    private static bool importPackageCompleted;
+    private UnityWebRequest webRequest;
+
+    // ══════════════════════════════════════════════════════════════════════
+    //  Platform Helper
+    // ══════════════════════════════════════════════════════════════════════
+
+    #region Platform Helper
+
+    /// <summary>Returns the network array for the currently selected platform tab.</summary>
+    private Yodo1AdNetwork[] CurrentNetworks => platformTabSelected == 0 ? android : ios;
+
+    /// <summary>Gets or sets the cached network data for the current platform tab.</summary>
+    private Yodo1AdNetworkConfigCacheData CurrentCachedData
+    {
+        get => platformTabSelected == 0 ? androidCachedData : iosCachedData;
+        set
+        {
+            if (platformTabSelected == 0)
+                androidCachedData = value;
+            else
+                iosCachedData = value;
+        }
+    }
+
+    /// <summary>Returns the SDK group type for the currently selected platform.</summary>
+    private SdkGroupType CurrentSdkGroupType =>
+        platformTabSelected == 0 ? SdkGroupType.AndroidStandard : SdkGroupType.IosStandard;
+
+    /// <summary>Refreshes the cached network data from Yodo1AdNetworkManager for the current platform.</summary>
+    private void RefreshCurrentCachedData()
+    {
+        CurrentCachedData = platformTabSelected == 0
+            ? Yodo1AdNetworkManager.GetInstance().GetCachedAndroidNetworks()
+            : Yodo1AdNetworkManager.GetInstance().GetCachedIosNetworks();
+    }
+
+    #endregion
+
+    // ══════════════════════════════════════════════════════════════════════
+    //  Lifecycle
+    // ══════════════════════════════════════════════════════════════════════
+
+    #region Lifecycle
 
     static IntegrationManager()
     {
         AssetDatabase.importPackageCompleted += OnImportPackageCompleted;
     }
-    private static void OnImportPackageCompleted(string packagename)
+
+    /// <summary>
+    /// Handles post-import work when the MAS (Rivendell) package is installed.
+    /// Ensures the Android plugins folder exists before dependency updates so EDM can copy Gradle templates.
+    /// </summary>
+    private static void OnImportPackageCompleted(string importedPackageName)
     {
-        if (packagename.Contains("Rivendell"))
+        if (importedPackageName.Contains("Rivendell"))
         {
 #if UNITY_ANDROID
-            if (!Yodo1AdUtils.IsGooglePlayVersion())
-            {
-                return;
-            }
+            if (!Yodo1AdUtils.IsGooglePlayVersion()) return;
 #endif
             UpdateAdNetworkAndDependencies();
             importPackageCompleted = true;
         }
     }
 
-    public static void UpdateAdNetworkAndDependencies()
-    {
-#if UNITY_ANDROID
-        if (!Yodo1AdUtils.IsGooglePlayVersion())
-        {
-            return;
-        }
-#endif
-        Yodo1AdNetworkManager.GetInstance().InitAdNetworkConfig();
-        Yodo1AdNetworkManager.GetInstance().CheckDependenciesFileByCachedAdNetworks();
-    }
-
+    /// <summary>
+    /// Opens the Integration Manager window with a fixed width of 720px.
+    /// </summary>
     [MenuItem("Yodo1/MAS/Integration Manager", false, 100)]
     static void Init()
     {
-        IntegrationManager window = (IntegrationManager)EditorWindow.GetWindow(typeof(IntegrationManager), true, "Yodo1 Integration Manager");
-        window.minSize = new Vector2(editorWindowMinWidth, editorWindowMinLength);
-        window.maxSize = window.minSize;
+        var window = (IntegrationManager)GetWindow(typeof(IntegrationManager), true, "Yodo1 Integration Manager");
+        window.minSize = new Vector2(editorWindowWidth, editorWindowMinHeight);
+        window.maxSize = new Vector2(editorWindowWidth, 4096f);
         window.Show();
     }
+
+    /// <summary>
+    /// Validates the menu item; on Android, only shows when the Google Play version is active.
+    /// </summary>
     [MenuItem("Yodo1/MAS/Integration Manager", true, 100)]
     static bool ValidateInit()
     {
@@ -84,155 +181,346 @@ public class IntegrationManager : EditorWindow
         return true;
 #endif
     }
+
+    /// <summary>Initializes GUI styles and triggers the initial data load via delayCall.</summary>
     private void Awake()
     {
-        headerLabelStyle = new GUIStyle(EditorStyles.label)
+        tableHeaderStyle = new GUIStyle(EditorStyles.label)
         {
-            fontSize = 12,
-            fontStyle = FontStyle.Bold,
-            fixedHeight = 18
+            fontSize    = 12,
+            fontStyle   = FontStyle.Bold,
+            fixedHeight = rowHeight,
+            alignment   = TextAnchor.MiddleLeft
         };
-        contentLabelStyle = new GUIStyle(EditorStyles.label)
+        tableHeaderCenterStyle = new GUIStyle(tableHeaderStyle)
         {
-            fontSize = 12,
-            fontStyle = FontStyle.Bold,
-            fixedHeight = 18,
             alignment = TextAnchor.MiddleCenter
         };
-        EditorCoroutineRunner.StartEditorCoroutine(LoadPluginData(result =>
+        tableCellStyle = new GUIStyle(EditorStyles.label)
         {
-            if (result)
-            {
-                Repaint();
-            }
-        }));
+            fontSize    = 12,
+            fixedHeight = rowHeight,
+            alignment   = TextAnchor.MiddleLeft
+        };
+        tableCellCenterStyle = new GUIStyle(tableCellStyle)
+        {
+            alignment = TextAnchor.MiddleCenter
+        };
+        statusBarStyle = new GUIStyle(EditorStyles.label)
+        {
+            fontSize    = 11,
+            fixedHeight = 20,
+            normal      = { textColor = EditorStyles.label.normal.textColor * 0.8f }
+        };
+        installIcon = AssetDatabase.LoadAssetAtPath<Texture>("Assets/Yodo1/MAS/Editor/Resources/asset1.png");
+        EditorApplication.delayCall += LoadAndRepaint;
     }
 
+    /// <summary>Polls for post-import refreshes when a package import completes.</summary>
     private void OnInspectorUpdate()
     {
         if (importPackageCompleted)
         {
-            EditorCoroutineRunner.StartEditorCoroutine(LoadPluginData(result =>
-            {
-                if (result)
-                {
-                    Repaint();
-                }
-            }));
             importPackageCompleted = false;
+            LoadAndRepaint();
         }
     }
 
-    IEnumerator LoadPluginData(Action<bool> callback)
+    /// <summary>Reloads plugin data and triggers a UI repaint.</summary>
+    private void LoadAndRepaint()
+    {
+        LoadPluginData();
+        Repaint();
+    }
+
+    void OnGUI()
+    {
+        DrawPluginDetails();
+        GUIUtility.ExitGUI();
+    }
+
+    #endregion
+
+    // ══════════════════════════════════════════════════════════════════════
+    //  Initialization
+    // ══════════════════════════════════════════════════════════════════════
+
+    #region Initialization
+
+    /// <summary>
+    /// Initializes ad network config, merges cached selections into dependency files, and refreshes assets.
+    /// Callers include the Rivendell import callback and <see cref="Yodo1AdAssetsImporter"/>.
+    /// </summary>
+    public static void UpdateAdNetworkAndDependencies()
+    {
+#if UNITY_ANDROID
+        if (!Yodo1AdUtils.IsGooglePlayVersion()) return;
+#endif
+        EnsureAndroidPluginsFolderForEdm();
+        Yodo1AdNetworkManager.GetInstance().InitAdNetworkConfig();
+        Yodo1AdNetworkManager.GetInstance().SyncDependenciesWithCache();
+    }
+
+    /// <summary>
+    /// Creates <c>Assets/Plugins/Android</c> on disk if missing. Required because EDM copies
+    /// <c>mainTemplate.gradle</c> there during Play Services / Android resolution; a missing parent
+    /// directory causes <see cref="DirectoryNotFoundException"/>.
+    /// </summary>
+    private static void EnsureAndroidPluginsFolderForEdm()
+    {
+        Directory.CreateDirectory(Path.Combine(Application.dataPath, "Plugins", "Android"));
+    }
+
+    #endregion
+
+    // ══════════════════════════════════════════════════════════════════════
+    //  Data Loading
+    // ══════════════════════════════════════════════════════════════════════
+
+    #region Data Loading
+
+    /// <summary>Loads ad network configuration, sorts networks by display name, and caches data for both platforms.</summary>
+    private void LoadPluginData()
     {
         Yodo1AdNetworkManager.GetInstance().InitAdNetworkConfig();
         adNetworkConfig = Yodo1AdNetworkManager.GetInstance().GetAdNetworkConfig();
+        if (adNetworkConfig == null) return;
 
         if (adNetworkConfig.ios != null && adNetworkConfig.ios.Length > 0)
         {
-            // Handle Amazon iOS
-            //Yodo1AdNetwork amazon_ios = new Yodo1AdNetwork();
-            //amazon_ios.name = "Amazon";
-            //amazon_ios.displayName = "Amazon Ad Marketplace";
-            //amazon_ios.version = "4.10.0";
-            List<Yodo1AdNetwork> networks_ios = new List<Yodo1AdNetwork>(adNetworkConfig.ios);
-            //networks_ios.Add(amazon_ios);
-            adNetworkConfig.ios = networks_ios.ToArray();
-
-            // Sort iOS config
-            adNetworkConfig.ios = adNetworkConfig.ios.OrderBy(o => o.displayName.FirstOrDefault()).ToArray();
+            adNetworkConfig.ios = adNetworkConfig.ios
+                .OrderBy(n => n.displayName.FirstOrDefault())
+                .ToArray();
         }
 
         if (adNetworkConfig.android != null && adNetworkConfig.android.Length > 0)
         {
-            // Handle Amazon Android
-            //Yodo1AdNetwork amazon_android = new Yodo1AdNetwork();
-            //amazon_android.name = "Amazon";
-            //amazon_android.displayName = "Amazon Ad Marketplace";
-            //amazon_android.version = "9.10.2";
-            List<Yodo1AdNetwork> networks_android = new List<Yodo1AdNetwork>(adNetworkConfig.android);
-            //networks_android.Add(amazon_android);
-            adNetworkConfig.android = networks_android.ToArray();
-
-            // Sort Android config
-            adNetworkConfig.android = adNetworkConfig.android.OrderBy(o => o.displayName.FirstOrDefault()).ToArray();
+            adNetworkConfig.android = adNetworkConfig.android
+                .OrderBy(n => n.displayName.FirstOrDefault())
+                .ToArray();
         }
 
-        // get the dispalyed networks list
         android = adNetworkConfig.android;
         ios = adNetworkConfig.ios;
-        // get the cached networks the developer selected before
 
-        androidCachedData = Yodo1AdNetworkManager.GetInstance().GetCachedAndroidAdNetworksInfo();
-        iosCachedData = Yodo1AdNetworkManager.GetInstance().GetCachedIOSAdNetworksInfo();
-        GetSDKSize();
-        callback(true);
-        yield return null;
-
+        androidCachedData = Yodo1AdNetworkManager.GetInstance().GetCachedAndroidNetworks();
+        iosCachedData = Yodo1AdNetworkManager.GetInstance().GetCachedIosNetworks();
+        CalculateSDKSize();
     }
+
+    /// <summary>Returns the currently installed MAS SDK version string.</summary>
     private string CurrentAdNetworkVersion()
     {
         return Yodo1AdNetworkManager.GetInstance().GetCurMakSdkVersion();
     }
+
+    /// <summary>Returns the latest available MAS SDK version string from the server config.</summary>
     private string LatestAdNetworkVersion()
     {
-        if (adNetworkConfig == null)
-        {
-            return string.Empty;
-        }
-        else
-        {
-            return adNetworkConfig.latestSdkversion;
-        }
+        return adNetworkConfig != null ? adNetworkConfig.latestSdkversion : string.Empty;
     }
-    public string GetUpgradeDownloadUrl()
+
+    /// <summary>Calculates the total size of all currently installed ad networks on the current platform.</summary>
+    private void CalculateSDKSize()
     {
-        if (adNetworkConfig == null)
+        sdkSize = 0f;
+        var networks = CurrentNetworks;
+        if (networks != null)
         {
-            return string.Empty;
+            foreach (var network in networks)
+            {
+                if (IsNetworkInstalled(network))
+                {
+                    sdkSize += network.size;
+                }
+            }
+        }
+        sdkSize = Mathf.Round(sdkSize * 100f) / 100f;
+    }
+
+    #endregion
+
+    // ══════════════════════════════════════════════════════════════════════
+    //  Network Operations
+    // ══════════════════════════════════════════════════════════════════════
+
+    #region Network Operations
+
+    /// <summary>
+    /// True when a non-empty list is stored in settings. When false, the UI uses implicit behaviour:
+    /// every non-hidden network (<see cref="Yodo1AdNetwork.status"/> != 1) is treated as installed.
+    /// </summary>
+    private static bool HasExplicitSavedNetworkList(Yodo1AdNetworkConfigCacheData cachedData)
+    {
+        return cachedData?.networks != null && cachedData.networks.Count > 0;
+    }
+
+    /// <summary>
+    /// Writes platform group and MAS SDK version fields required when persisting an explicit selection for the first time.
+    /// </summary>
+    private void WriteExplicitSelectionMetadata(Yodo1AdNetworkConfigCacheData cachedData)
+    {
+        cachedData.sdkGroupType = CurrentSdkGroupType;
+        cachedData.sdkVersion = adNetworkConfig.sdkVersion;
+        cachedData.latestSdkVersion = adNetworkConfig.latestSdkversion;
+    }
+
+    /// <summary>
+    /// Builds the list of network names that are "on" under the implicit default: all visible (non-hidden)
+    /// networks on the current tab, optionally omitting <paramref name="excludeName"/>.
+    /// </summary>
+    private List<string> BuildDefaultInstalledNetworkNames(string excludeName)
+    {
+        var networks = CurrentNetworks;
+        var list = new List<string>();
+        if (networks == null) return list;
+
+        foreach (var network in networks)
+        {
+            if (network.status != 1 && !string.Equals(network.name, excludeName, StringComparison.Ordinal))
+            {
+                list.Add(network.name);
+            }
+        }
+        return list;
+    }
+
+    /// <summary>
+    /// First transition from implicit default to a persisted list: default-all visible networks
+    /// minus <paramref name="removedName"/>.
+    /// </summary>
+    private void PersistExplicitSelectionOnRemove(Yodo1AdNetworkConfigCacheData cachedData, string removedName)
+    {
+        cachedData.networks = BuildDefaultInstalledNetworkNames(removedName);
+        WriteExplicitSelectionMetadata(cachedData);
+    }
+
+    /// <summary>
+    /// First transition from implicit default to a persisted list: default-all visible networks,
+    /// ensuring <paramref name="addedName"/> is included (e.g. installing a hidden network).
+    /// </summary>
+    private void PersistExplicitSelectionOnAdd(Yodo1AdNetworkConfigCacheData cachedData, string addedName)
+    {
+        List<string> list = BuildDefaultInstalledNetworkNames(null);
+        if (!string.IsNullOrEmpty(addedName) && !list.Contains(addedName))
+        {
+            list.Add(addedName);
+        }
+        cachedData.networks = list;
+        WriteExplicitSelectionMetadata(cachedData);
+    }
+
+    /// <summary>Returns whether the given ad network is currently considered installed on the active platform.</summary>
+    private bool IsNetworkInstalled(Yodo1AdNetwork adNetwork)
+    {
+        var cachedData = CurrentCachedData;
+        if (cachedData == null) return false;
+
+        if (HasExplicitSavedNetworkList(cachedData))
+        {
+            return cachedData.networks.Contains(adNetwork.name);
+        }
+
+        return adNetwork.status != 1;
+    }
+
+    /// <summary>Installs the specified ad network for the current platform and refreshes the UI.</summary>
+    private void InstallAdNetwork(Yodo1AdNetwork adNetwork)
+    {
+        var cachedData = CurrentCachedData;
+
+        if (HasExplicitSavedNetworkList(cachedData))
+        {
+            if (!cachedData.networks.Contains(adNetwork.name))
+            {
+                cachedData.networks.Add(adNetwork.name);
+            }
         }
         else
         {
-            return adNetworkConfig.sdkDownloadUrl;
+            PersistExplicitSelectionOnAdd(cachedData, adNetwork.name);
         }
+
+        Yodo1AdNetworkManager.GetInstance().UpdateAdNetworksInfo(cachedData);
+        RefreshCurrentCachedData();
+        CalculateSDKSize();
+        Repaint();
     }
+
+    /// <summary>Removes the specified ad network for the current platform and refreshes the UI.</summary>
+    private void RemoveAdNetwork(Yodo1AdNetwork adNetwork)
+    {
+        var cachedData = CurrentCachedData;
+
+        if (HasExplicitSavedNetworkList(cachedData))
+        {
+            cachedData.networks.Remove(adNetwork.name);
+        }
+        else
+        {
+            PersistExplicitSelectionOnRemove(cachedData, adNetwork.name);
+        }
+
+        Yodo1AdNetworkManager.GetInstance().UpdateAdNetworksInfo(cachedData);
+        RefreshCurrentCachedData();
+        CalculateSDKSize();
+        Repaint();
+    }
+
+    #endregion
+
+    // ══════════════════════════════════════════════════════════════════════
+    //  Upgrade / Download
+    // ══════════════════════════════════════════════════════════════════════
+
+    #region Upgrade / Download
+
+    /// <summary>Returns the download URL for the latest MAS SDK version from the server config.</summary>
+    private string GetUpgradeDownloadUrl()
+    {
+        return adNetworkConfig != null ? adNetworkConfig.sdkDownloadUrl : string.Empty;
+    }
+
+    /// <summary>Handles the Upgrade button click: resolves the package name and starts the download.</summary>
     private void UpgradeButtonClicked()
     {
-        var PackageComponents = GetUpgradeDownloadUrl().Split(new[] { ".unitypackage" }, StringSplitOptions.None);
-        PackageName = PackageComponents[0].Substring(PackageComponents[0].LastIndexOf("/") + 1);
-        if (PackageName.Contains("-"))
+        var url = GetUpgradeDownloadUrl();
+        var packageComponents = url.Split(new[] { ".unitypackage" }, StringSplitOptions.None);
+        packageName = packageComponents[0].Substring(packageComponents[0].LastIndexOf("/") + 1);
+        if (packageName.Contains("-"))
         {
-            var components = PackageName.Split(new[] { "-beta" }, StringSplitOptions.None);
-            PackageName = components[0];
+            var components = packageName.Split(new[] { "-beta" }, StringSplitOptions.None);
+            packageName = components[0];
         }
-        EditorCoroutineRunner.StartEditorCoroutine(DownloadPlugin(GetUpgradeDownloadUrl(), PackageName));
+        EditorCoroutineRunner.StartEditorCoroutine(DownloadPlugin(url, packageName));
     }
-    private UnityWebRequest webRequest;
-    public IEnumerator DownloadPlugin(string downloadUrl, string Version)
+
+    /// <summary>Downloads the MAS SDK unity package from the given URL and imports it on completion.</summary>
+    private IEnumerator DownloadPlugin(string downloadUrl, string version)
     {
-        var path = Path.Combine(Application.temporaryCachePath, Version + ".unitypackage");
+        var path = Path.Combine(Application.temporaryCachePath, version + ".unitypackage");
         var downloadHandler = new DownloadHandlerFile(path);
         webRequest = new UnityWebRequest(downloadUrl)
         {
             method = UnityWebRequest.kHttpVerbGET,
             downloadHandler = downloadHandler
         };
+
         var operation = webRequest.SendWebRequest();
         while (!operation.isDone)
         {
-            yield return new WaitForSeconds(0.1f); // Just wait till webRequest is completed. Our coroutine is pretty rudimentary.
-                                                   //CallDownloadPluginProgressCallback(network.DisplayName, operation.progress, operation.isDone);
+            yield return null;
         }
 
 #if UNITY_2020_1_OR_NEWER
-            if (webRequest.result != UnityWebRequest.Result.Success)
+        if (webRequest.result != UnityWebRequest.Result.Success)
 #elif UNITY_2017_2_OR_NEWER
         if (webRequest.isNetworkError || webRequest.isHttpError)
 #else
         if (webRequest.isError)
 #endif
         {
-            //Debug.LogError(webRequest.error);
+            Debug.LogWarning(Yodo1U3dMas.TAG + "Download failed: " + webRequest.error);
         }
         else
         {
@@ -243,495 +531,315 @@ public class IntegrationManager : EditorWindow
         webRequest = null;
     }
 
-    private bool CheckIfNetworkIsInstalled(Yodo1AdNetwork adNetwork)
-    {
-        bool returnVal = false;
-        if (platformTabSelected == 0)
-        {
-            if (androidCachedData != null)
-            {
-                if (androidCachedData.networks.Count >= 1)
-                {
-                    foreach (string network in androidCachedData.networks)
-                    {
-                        if (string.Equals(network, adNetwork.name))
-                        {
-                            returnVal = true;
-                        }
-                    }
-                }
-                else
-                {
-                    if (adNetwork.status == 1)
-                    {
-                        returnVal = false;
-                    }
-                    else
-                    {
-                        returnVal = true; // adnetwork in default full
-                    }
-                }
-            }
-        }
-        else
-        {
-            if (iosCachedData != null)
-            {
-                if (iosCachedData.networks.Count >= 1)
-                {
-                    foreach (string network in iosCachedData.networks)
-                    {
-                        if (string.Equals(network, adNetwork.name))
-                        {
-                            returnVal = true;
-                        }
-                    }
-                }
-                else
-                {
-                    if (adNetwork.status == 1)
-                    {
-                        returnVal = false;
-                    }
-                    else
-                    {
-                        returnVal = true; // adnetwork in default full
-                    }
-                }
-            }
-        }
-        return returnVal;
-    }
-    private void RemoveAdNetwork(Yodo1AdNetwork adNetwork)
-    {
-        if (platformTabSelected == 0)
-        {
-            if (androidCachedData.networks.Count >= 1)
-            {
-                androidCachedData.networks.Remove(adNetwork.name);
-                Yodo1AdNetworkManager.GetInstance().UpdateAdNetworksInfo(androidCachedData);
-                androidCachedData = Yodo1AdNetworkManager.GetInstance().GetCachedAndroidAdNetworksInfo();
-            }
-            else
-            {
-                List<string> installedList = new List<string>();
-                foreach (Yodo1AdNetwork network in android)
-                {
-                    if (!string.Equals(network.name, adNetwork.name) && network.status != 1)
-                    {
-                        installedList.Add(network.name);
-                    }
-                }
+    #endregion
 
-                Yodo1AdNetworkConfigCacheData data = new Yodo1AdNetworkConfigCacheData();
-                data.sdkType = SDKGroupType.AndroidStandard;
-                data.sdkVersion = adNetworkConfig.sdkVersion;
-                data.latestSdkVersion = adNetworkConfig.latestSdkversion;
-                data.networks = installedList;
-                Yodo1AdNetworkManager.GetInstance().UpdateAdNetworksInfo(data);
-                androidCachedData = Yodo1AdNetworkManager.GetInstance().GetCachedAndroidAdNetworksInfo();
-            }
-        }
-        else
-        {
-            if (iosCachedData.networks.Count >= 1)
-            {
-                iosCachedData.networks.Remove(adNetwork.name);
-                Yodo1AdNetworkManager.GetInstance().UpdateAdNetworksInfo(iosCachedData);
-                iosCachedData = Yodo1AdNetworkManager.GetInstance().GetCachedIOSAdNetworksInfo();
-            }
-            else
-            {
-                List<string> installedList = new List<string>();
-                foreach (Yodo1AdNetwork network in ios)
-                {
-                    if (!string.Equals(network.name, adNetwork.name))
-                    {
-                        if (!string.Equals(network.name, adNetwork.name) && network.status != 1)
-                        {
-                            installedList.Add(network.name);
-                        }
-                    }
-                }
+    // ══════════════════════════════════════════════════════════════════════
+    //  SDK Version Table
+    // ══════════════════════════════════════════════════════════════════════
 
-                Yodo1AdNetworkConfigCacheData data = new Yodo1AdNetworkConfigCacheData();
-                data.sdkType = SDKGroupType.IOSStandard;
-                data.sdkVersion = adNetworkConfig.sdkVersion;
-                data.latestSdkVersion = adNetworkConfig.latestSdkversion;
-                data.networks = installedList;
-                Yodo1AdNetworkManager.GetInstance().UpdateAdNetworksInfo(data);
-                iosCachedData = Yodo1AdNetworkManager.GetInstance().GetCachedIOSAdNetworksInfo();
-            }
-        }
-        GetSDKSize();
-        Repaint();
-    }
-    private void InstallAdNetwork(Yodo1AdNetwork adNetwork)
-    {
-        if (platformTabSelected == 0)
-        {
-            if (androidCachedData.networks.Count >= 1)
-            {
-                if (!androidCachedData.networks.Contains(adNetwork.name))
-                {
-                    androidCachedData.networks.Add(adNetwork.name);
-                }
-                Yodo1AdNetworkManager.GetInstance().UpdateAdNetworksInfo(androidCachedData);
-                androidCachedData = Yodo1AdNetworkManager.GetInstance().GetCachedAndroidAdNetworksInfo();
-            }
-            else
-            {
-                List<string> defaultInstalledList = new List<string>();
-                foreach (Yodo1AdNetwork network in android)
-                {
-                    if (network.status != 1)
-                    {
-                        defaultInstalledList.Add(network.name);
-                    }
-                }
-                if (!defaultInstalledList.Contains(adNetwork.name))
-                {
-                    defaultInstalledList.Add(adNetwork.name);
-                }
+    #region SDK Version Table
 
-                Yodo1AdNetworkConfigCacheData data = new Yodo1AdNetworkConfigCacheData();
-                data.sdkType = SDKGroupType.AndroidStandard;
-                data.sdkVersion = adNetworkConfig.sdkVersion;
-                data.latestSdkVersion = adNetworkConfig.latestSdkversion;
-                data.networks = defaultInstalledList;
-                Yodo1AdNetworkManager.GetInstance().UpdateAdNetworksInfo(data);
-                androidCachedData = Yodo1AdNetworkManager.GetInstance().GetCachedAndroidAdNetworksInfo();
-            }
-        }
-        else
-        {
-            if (iosCachedData.networks.Count >= 1)
-            {
-                if (!iosCachedData.networks.Contains(adNetwork.name))
-                {
-                    iosCachedData.networks.Add(adNetwork.name);
-                }
-                Yodo1AdNetworkManager.GetInstance().UpdateAdNetworksInfo(iosCachedData);
-                iosCachedData = Yodo1AdNetworkManager.GetInstance().GetCachedIOSAdNetworksInfo();
-            }
-            else
-            {
-                List<string> defaultInstalledList = new List<string>();
-                foreach (Yodo1AdNetwork network in ios)
-                {
-                    if (network.status != 1)
-                    {
-                        defaultInstalledList.Add(network.name);
-                    }
-                }
-                if (!defaultInstalledList.Contains(adNetwork.name))
-                {
-                    defaultInstalledList.Add(adNetwork.name);
-                }
-
-                Yodo1AdNetworkConfigCacheData data = new Yodo1AdNetworkConfigCacheData();
-                data.sdkType = SDKGroupType.IOSStandard;
-                data.sdkVersion = adNetworkConfig.sdkVersion;
-                data.latestSdkVersion = adNetworkConfig.latestSdkversion;
-                data.networks = defaultInstalledList;
-                Yodo1AdNetworkManager.GetInstance().UpdateAdNetworksInfo(data);
-                iosCachedData = Yodo1AdNetworkManager.GetInstance().GetCachedIOSAdNetworksInfo();
-            }
-        }
-        GetSDKSize();
-        Repaint();
-    }
-    private float GetSDKSize()
-    {
-        SDKSize = 0f;
-        if (platformTabSelected == 0)
-        {
-            if (android != null)
-            {
-                for (int i = 0; i < android.Length; i++)
-                {
-                    if (CheckIfNetworkIsInstalled(android[i]))
-                    {
-                        SDKSize += android[i].size;
-                    }
-                }
-            }
-        }
-        SDKSize = ((float)decimal.Round(decimal.Parse(SDKSize.ToString()), 2));
-        return SDKSize;
-    }
-    void OnGUI()
-    {
-        GUILayout.Space(10);
-        DrawPluginDetails();
-        GUIUtility.ExitGUI();
-    }
+    /// <summary>Draws the complete Integration Manager layout from top to bottom.</summary>
     private void DrawPluginDetails()
     {
         GUILayout.Space(10);
-        GUILayout.BeginHorizontal();
-        GUILayout.Space(10);
-        using (new EditorGUILayout.VerticalScope("box"))
-        {
-            DrawHeaders();
-            DrawPluginDetailRow("Standard", CurrentAdNetworkVersion(), LatestAdNetworkVersion());
-        }
 
-        GUILayout.Space(5);
-        GUILayout.EndHorizontal();
+        DrawSdkVersionSection();
+        DrawPlatformToolbar();
+        DrawMediationNetworksSection();
+        DrawSeparator();
+        DrawStatusBar();
+    }
 
-        platformTabSelected = GUILayout.Toolbar(platformTabSelected, new string[] { "Android", "iOS" });
+    /// <summary>Draws the SDK version header row and the single data row.</summary>
+    private void DrawSdkVersionSection()
+    {
+        DrawSdkVersionHeader();
+        DrawSeparator();
+        DrawSdkVersionRow("Standard", CurrentAdNetworkVersion(), LatestAdNetworkVersion());
+        DrawSeparator();
+        GUILayout.Space(8);
+    }
+
+    /// <summary>
+    /// Manually positions every SDK-version column using Rect so GUILayout
+    /// padding/spacing never shifts columns unexpectedly.
+    /// </summary>
+    private void DrawSdkVersionHeader()
+    {
+        Rect row = GUILayoutUtility.GetRect(0f, rowHeight, GUILayout.ExpandWidth(true));
+        DrawSdkRow(row,
+            () => GUI.Label(SdkCol(row, 0), "Type",           tableHeaderStyle),
+            () => GUI.Label(SdkCol(row, 1), "Version",        tableHeaderCenterStyle),
+            () => GUI.Label(SdkCol(row, 2), "Latest Version", tableHeaderCenterStyle),
+            () => GUI.Label(SdkCol(row, 3), "Actions",        tableHeaderCenterStyle));
+    }
+
+    /// <summary>Draws a single SDK version data row with platform name, current version, latest version, and upgrade button.</summary>
+    private void DrawSdkVersionRow(string platform, string currentVersion, string latestVersion)
+    {
+        Rect row = GUILayoutUtility.GetRect(0f, rowHeight, GUILayout.ExpandWidth(true));
+        DrawSdkRow(row,
+            () => GUI.Label(SdkCol(row, 0), platform,       tableCellStyle),
+            () => GUI.Label(SdkCol(row, 1), currentVersion, tableCellCenterStyle),
+            () =>
+            {
+                if (!Yodo1AdNetworkUtil.IsPrerelease(currentVersion))
+                    GUI.Label(SdkCol(row, 2), latestVersion, tableCellCenterStyle);
+            },
+            () =>
+            {
+                if (!Yodo1AdNetworkUtil.IsPrerelease(currentVersion))
+                {
+                    bool needsUpgrade =
+                        Yodo1AdNetworkUtil.CompareVersions(currentVersion, latestVersion) == -1;
+                    Rect col  = SdkCol(row, 3);
+                    Rect btnR = new Rect(
+                        col.x + (col.width - sdkUpgradeBtnWidth) / 2f,
+                        col.y,
+                        sdkUpgradeBtnWidth,
+                        col.height);
+                    GUI.enabled = needsUpgrade;
+                    if (GUI.Button(btnR, "Upgrade")) UpgradeButtonClicked();
+                    GUI.enabled = true;
+                }
+            });
+    }
+
+    /// <summary>Returns the Rect for SDK column <paramref name="index"/> (0-3).</summary>
+    private static Rect SdkCol(Rect row, int index)
+    {
+        float x = windowPadding;
+        for (int i = 0; i < index; i++)
+            x += sdkColWidths[i] + colSpacing;
+        return new Rect(row.x + x, row.y, sdkColWidths[index], row.height);
+    }
+
+    /// <summary>Executes four column-draw actions; exists only to keep callers tidy.</summary>
+    private static void DrawSdkRow(Rect row, Action col0, Action col1, Action col2, Action col3)
+    {
+        col0(); col1(); col2(); col3();
+    }
+
+    /// <summary>Draws a thin horizontal separator line across the full window width.</summary>
+    private void DrawSeparator()
+    {
+        Rect r = GUILayoutUtility.GetRect(1f, 1f, GUILayout.ExpandWidth(true));
+        EditorGUI.DrawRect(r, separatorColor);
+    }
+
+    #endregion
+
+    // ══════════════════════════════════════════════════════════════════════
+    //  Platform Toolbar
+    // ══════════════════════════════════════════════════════════════════════
+
+    #region Platform Toolbar
+
+    /// <summary>Draws the Android/iOS platform selector toolbar and handles tab changes.</summary>
+    private void DrawPlatformToolbar()
+    {
+        platformTabSelected = GUILayout.Toolbar(
+            platformTabSelected, new[] { "Android", "iOS" });
         if (platformTabSelected != prevPlatformTabSelected)
         {
-            GetSDKSize();
+            CalculateSDKSize();
             prevPlatformTabSelected = platformTabSelected;
         }
+        GUILayout.Space(8);
+    }
 
-        GUILayout.Space(10);
-        GUILayout.Label("Mediation network details", headerLabelStyle);
-        GUILayout.Space(10);
-        using (new EditorGUILayout.VerticalScope("box"))
-        {
-            DrawHeaderNetworks();
-            GUILayout.Space(5);
-            if (adNetworkConfig != null)
-            {
-                if (platformTabSelected == 0)
-                {
-                    if (adNetworkConfig.android != null)
-                    {
-                        for (int i = 0; i < adNetworkConfig.android.Length; i++)
-                        {
-                            DrawNetworkDetailRow(adNetworkConfig.android[i]);
-                        }
-                    }
-                }
-                else
-                {
-                    if (adNetworkConfig.ios != null)
-                    {
-                        for (int i = 0; i < adNetworkConfig.ios.Length; i++)
-                        {
-                            DrawNetworkDetailRow(adNetworkConfig.ios[i]);
-                        }
-                    }
-                }
+    #endregion
 
-            }
-        }
+    // ══════════════════════════════════════════════════════════════════════
+    //  Mediation Networks
+    // ══════════════════════════════════════════════════════════════════════
 
-        GUILayout.Space(40);
+    #region Mediation Networks
+
+    /// <summary>Draws the mediation networks section title, table header, and scrollable rows.</summary>
+    private void DrawMediationNetworksSection()
+    {
         using (new EditorGUILayout.HorizontalScope())
         {
-            GUILayout.FlexibleSpace();
+            GUILayout.Space(windowPadding);
+            GUILayout.Label("Mediation Network Details", tableHeaderStyle);
+        }
+        GUILayout.Space(4);
+        DrawNetworkHeader();
+        DrawSeparator();
+        DrawNetworkRows();
+    }
+
+    /// <summary>Draws the network table header row (fixed, outside ScrollView).</summary>
+    private void DrawNetworkHeader()
+    {
+        using (new EditorGUILayout.HorizontalScope(rowHeightOption))
+        {
+            GUILayout.Space(windowPadding);
+            EditorGUILayout.LabelField("Network", tableHeaderStyle,       netNameW,    rowHeightOption);
+            GUILayout.Space(colSpacing);
+            EditorGUILayout.LabelField("Version", tableHeaderCenterStyle, netVersionW, rowHeightOption);
+            GUILayout.Space(colSpacing);
+            EditorGUILayout.LabelField("Actions", tableHeaderCenterStyle, netActionsW, rowHeightOption);
+            GUILayout.Space(windowPadding);
+        }
+    }
+
+    /// <summary>Draws all network data rows inside a ScrollView.</summary>
+    private void DrawNetworkRows()
+    {
+        scrollPosition = GUILayout.BeginScrollView(
+            scrollPosition, false, false, GUIStyle.none, GUI.skin.verticalScrollbar,
+            GUILayout.ExpandHeight(true));
+        var networks = CurrentNetworks;
+        if (networks != null)
+        {
+            for (int i = 0; i < networks.Length; i++)
+                DrawNetworkRow(networks[i], i);
+        }
+        GUILayout.EndScrollView();
+    }
+
+    /// <summary>Draws a single network data row with zebra striping.</summary>
+    private void DrawNetworkRow(Yodo1AdNetwork adNetwork, int rowIndex)
+    {
+        if (rowIndex % 2 == 1)
+        {
+            Rect bg = GUILayoutUtility.GetRect(0f, rowHeight, GUILayout.ExpandWidth(true));
+            EditorGUI.DrawRect(bg, evenRowColor);
+            GUILayout.Space(-rowHeight);
+        }
+
+        using (new EditorGUILayout.HorizontalScope(rowHeightOption))
+        {
+            GUILayout.Space(windowPadding);
+            EditorGUILayout.LabelField(GetDisplayName(adNetwork), tableCellStyle,       netNameW,    rowHeightOption);
+            GUILayout.Space(colSpacing);
+            EditorGUILayout.LabelField(adNetwork.version.Trim(),  tableCellCenterStyle, netVersionW, rowHeightOption);
+            GUILayout.Space(colSpacing);
+            DrawNetworkActionCell(adNetwork);
+            GUILayout.Space(windowPadding);
+        }
+    }
+
+    /// <summary>Draws the action cell (Install / Remove / N/A) for a network row.</summary>
+    private void DrawNetworkActionCell(Yodo1AdNetwork adNetwork)
+    {
+        float btnOffset = (netActionsColWidth - netActionBtnWidth) / 2f;
+
+        using (new EditorGUILayout.HorizontalScope(netActionsW, rowHeightOption))
+        {
+            GUILayout.Space(btnOffset);
+
+            if (IsProtectedNetwork(adNetwork))
+                DrawProtectedButton();
+            else if (TryDrawUnavailableButton(adNetwork)) { }
+            else if (IsNetworkInstalled(adNetwork))
+                DrawRemoveButton(adNetwork);
+            else
+                DrawInstallButton(adNetwork);
+        }
+    }
+
+    /// <summary>Returns true when the network is protected and cannot be removed.</summary>
+    private static bool IsProtectedNetwork(Yodo1AdNetwork adNetwork)
+    {
+        return adNetwork.name.IndexOf("APPLOVIN", StringComparison.OrdinalIgnoreCase) >= 0
+            || adNetwork.name.IndexOf("ADMOB",    StringComparison.OrdinalIgnoreCase) >= 0
+            || adNetwork.name.IndexOf("AMAZON",   StringComparison.OrdinalIgnoreCase) >= 0;
+    }
+
+    /// <summary>Draws a disabled Remove button for protected networks.</summary>
+    private static void DrawProtectedButton()
+    {
+        GUI.enabled = false;
+        GUILayout.Button("Remove", GUILayout.Width(netActionBtnWidth), rowHeightOption);
+        GUI.enabled = true;
+    }
+
+    /// <summary>
+    /// If the network is unavailable in the current editor, draws an N/A button with a tooltip
+    /// and returns true. Otherwise returns false so the caller falls through to the next state.
+    /// </summary>
+    private bool TryDrawUnavailableButton(Yodo1AdNetwork adNetwork)
+    {
+        if (!Yodo1AdNetworkEditorAvailability.IsBlockedInUi(
+                platformTabSelected != 0, adNetwork))
+            return false;
+
+        Yodo1AdNetworkEditorAvailability.TryGetBlockReasonForUi(
+            platformTabSelected != 0, adNetwork, out string reason);
+        string tip = string.IsNullOrEmpty(reason)
+            ? "Not available in Integration Manager for this editor."
+            : reason;
+        GUILayout.Button(new GUIContent("N/A", tip),
+            GUILayout.Width(netActionBtnWidth), rowHeightOption);
+        return true;
+    }
+
+    /// <summary>Draws a Remove button with a confirmation dialog.</summary>
+    private void DrawRemoveButton(Yodo1AdNetwork adNetwork)
+    {
+        if (GUILayout.Button("Remove", GUILayout.Width(netActionBtnWidth), rowHeightOption))
+        {
+            string dn   = GetDisplayName(adNetwork);
+            bool   keep = EditorUtility.DisplayDialog(
+                "Remove " + dn,
+                "Are you sure you want to remove " + dn + "? This will impact REVENUE.",
+                "Do Not Remove", "Remove");
+            if (!keep) RemoveAdNetwork(adNetwork);
+        }
+    }
+
+    /// <summary>Draws an Install button followed by the install icon.</summary>
+    private void DrawInstallButton(Yodo1AdNetwork adNetwork)
+    {
+        if (GUILayout.Button("Install", GUILayout.Width(netActionBtnWidth), rowHeightOption))
+            InstallAdNetwork(adNetwork);
+        GUILayout.Space(4f);
+        if (installIcon != null)
+            GUILayout.Label(new GUIContent(installIcon),
+                GUILayout.Width(netIconWidth), rowHeightOption);
+    }
+
+    /// <summary>Returns the display name for the given ad network.</summary>
+    private string GetDisplayName(Yodo1AdNetwork adNetwork)
+        => Yodo1AdNetworkEditorAvailability.GetNetworkListDisplayName(adNetwork);
+
+    /// <summary>
+    /// Draws the bottom status bar showing the installed network count (left)
+    /// and the total SDK size for Android (right).
+    /// </summary>
+    private void DrawStatusBar()
+    {
+        using (new EditorGUILayout.HorizontalScope(GUILayout.Height(28)))
+        {
+            GUILayout.Space(windowPadding);
+
+            int installed = 0;
+            var networks = CurrentNetworks;
+            int total = networks != null ? networks.Length : 0;
+            if (networks != null)
+                foreach (var n in networks)
+                    if (IsNetworkInstalled(n)) installed++;
+
+            EditorGUILayout.LabelField(
+                "Mediation Networks: " + installed + " / " + total,
+                statusBarStyle, GUILayout.ExpandWidth(true));
+
             if (platformTabSelected == 0)
             {
-                EditorGUILayout.LabelField(new GUIContent("Current Size : " + SDKSize + " MB"), contentLabelStyle);
-            }
-            GUILayout.FlexibleSpace();
-        }
-        GUILayout.EndHorizontal();
-    }
-
-    private void DrawPluginDetailRow(string platform, string currentVersion, string latestVersion)
-    {
-        using (new EditorGUILayout.HorizontalScope())
-        {
-            GUILayout.Space(5);
-            EditorGUILayout.LabelField(new GUIContent(platform), networkWidthOption);
-            EditorGUILayout.LabelField(new GUIContent(currentVersion), versionWidthOption);
-            GUILayout.Space(3);
-            if (currentVersion.Contains("beta") || currentVersion.Contains("alpha"))
-            {
-                return;
-            }
-            EditorGUILayout.LabelField(new GUIContent(latestVersion), versionWidthOption);
-            GUILayout.Space(3);
-            if (CompareVersions(currentVersion, latestVersion) == -1)
-            {
-                if (GUILayout.Button(new GUIContent("Upgrade"), fieldWidth))
-                {
-                    UpgradeButtonClicked();
-                }
-            }
-            else
-            {
-                GUI.enabled = false;
-                if (GUILayout.Button(new GUIContent("Upgrade"), fieldWidth))
-                {
-                }
-                GUI.enabled = true;
+                var rightStyle = new GUIStyle(statusBarStyle)
+                    { alignment = TextAnchor.MiddleRight };
+                EditorGUILayout.LabelField(
+                    "Current Size: " + sdkSize + " MB",
+                    rightStyle, GUILayout.ExpandWidth(true));
             }
 
-        }
-
-        GUILayout.Space(4);
-    }
-    private void DrawNetworkDetailRow(Yodo1AdNetwork adNetwork)
-    {
-        using (new EditorGUILayout.HorizontalScope())
-        {
-
-            GUILayout.Space(5);
-            EditorGUILayout.LabelField(new GUIContent(GetDisplayName(adNetwork)), versionWidthOption);
-            EditorGUILayout.LabelField(new GUIContent(adNetwork.version), versionWidthOption);
-            GUILayout.Space(3);
-            ChangeButtonStatus(adNetwork);
-            GUILayout.Space(3);
-        }
-        GUILayout.Space(15);
-    }
-    private void ChangeButtonStatus(Yodo1AdNetwork adNetwork)
-    {
-
-        bool contains = adNetwork.name.IndexOf("APPLOVIN", StringComparison.OrdinalIgnoreCase) >= 0 || adNetwork.name.IndexOf("ADMOB", StringComparison.OrdinalIgnoreCase) >= 0 || adNetwork.name.IndexOf("AMAZON", StringComparison.OrdinalIgnoreCase) >= 0;
-        if (contains)
-        {
-            GUI.enabled = false;
-            GUILayout.Button(new GUIContent("Remove"), fieldWidth);
-            GUI.enabled = true;
-            return;
-        }
-        if (CheckIfNetworkIsInstalled(adNetwork))
-        {
-            if (GUILayout.Button(new GUIContent("Remove"), fieldWidth))
-            {
-                string displayName = GetDisplayName(adNetwork);
-                bool selection = EditorUtility.DisplayDialog("Remove " + displayName, "Are you sure you want to remove " + displayName + "? This will impact REVENUE.", "Do Not Remove", "Remove");
-                if (!selection)
-                {
-                    RemoveAdNetwork(adNetwork);
-                    ChangeButtonStatus(adNetwork);
-                }
-
-            }
-        }
-        else
-        {
-            var iconPath = "Assets/Yodo1/MAS/Editor/Resources/asset1.png";
-            var icon = AssetDatabase.LoadAssetAtPath(iconPath, typeof(Texture)) as Texture;
-            if (GUILayout.Button(new GUIContent("Install"), fieldWidth))
-            {
-                InstallAdNetwork(adNetwork);
-                ChangeButtonStatus(adNetwork);
-
-            }
-            GUILayout.Label(new GUIContent(icon), contentLabelStyle, GUILayout.Width(25f));
+            GUILayout.Space(windowPadding);
         }
     }
-    private string UpperFirst(string text)
-    {
-        return char.ToUpper(text[0]) + ((text.Length > 1) ? text.Substring(1).ToLower() : string.Empty);
-    }
-    private string GetDisplayName(Yodo1AdNetwork adNetwork)
-    {
-        return string.IsNullOrEmpty(adNetwork.displayName) ? UpperFirst(adNetwork.name) : adNetwork.displayName;
 
-    }
-    private void DrawHeaders()
-    {
-        using (new EditorGUILayout.HorizontalScope())
-        {
-            GUILayout.Space(5);
-            EditorGUILayout.LabelField("Type", headerLabelStyle, networkWidthOption);
-            EditorGUILayout.LabelField("Version", headerLabelStyle, versionWidthOption);
-            GUILayout.Space(3);
-            EditorGUILayout.LabelField("Latest Version", headerLabelStyle, versionWidthOption);
-            GUILayout.Space(3);
-            GUILayout.Button("Actions", headerLabelStyle, fieldWidth);
-            GUILayout.Space(5);
-        }
-
-        GUILayout.Space(4);
-    }
-    private void DrawHeaderNetworks()
-    {
-        using (new EditorGUILayout.HorizontalScope())
-        {
-            GUILayout.Space(5);
-            EditorGUILayout.LabelField("Network", headerLabelStyle, versionWidthOption);
-            EditorGUILayout.LabelField("Version", headerLabelStyle, versionWidthOption);
-            GUILayout.Space(3);
-            GUILayout.Button("Actions", headerLabelStyle, fieldWidth);
-            GUILayout.Space(5);
-        }
-
-        GUILayout.Space(4);
-    }
-
-    private int CompareVersions(string versionA, string versionB)
-    {
-        if (versionA.Equals(versionB)) return 0;
-
-        // Check if either of the versions are beta versions. Beta versions could be of format x.y.z-beta or x.y.z-betaX.
-        // Split the version string into beta component and the underlying version.
-        int piece;
-        var isVersionABeta = versionA.Contains("-beta");
-        var versionABetaNumber = 0;
-        if (isVersionABeta)
-        {
-            var components = versionA.Split(new[] { "-beta" }, StringSplitOptions.None);
-            versionA = components[0];
-            if (components[1].Contains("."))
-            {
-                components[1] = components[1].Replace(".", string.Empty);
-            }
-            versionABetaNumber = int.TryParse(components[1], out piece) ? piece : 0;
-        }
-        if (!string.IsNullOrEmpty(versionB))
-        {
-            var isVersionBBeta = versionB.Contains("-beta");
-            var versionBBetaNumber = 0;
-            if (isVersionBBeta)
-            {
-                var components = versionB.Split(new[] { "-beta" }, StringSplitOptions.None);
-                versionB = components[0];
-                if (components[1].Contains("."))
-                {
-                    components[1] = components[1].Replace(".", string.Empty);
-                }
-                versionBBetaNumber = int.TryParse(components[1], out piece) ? piece : 0;
-            }
-
-            // Now that we have separated the beta component, check if the underlying versions are the same.
-            if (versionA.Equals(versionB))
-            {
-                // The versions are the same, compare the beta components.
-                if (isVersionABeta && isVersionBBeta)
-                {
-                    if (versionABetaNumber < versionBBetaNumber) return -1;
-
-                    if (versionABetaNumber > versionBBetaNumber) return 1;
-                }
-                // Only VersionA is beta, so A is older.
-                else if (isVersionABeta)
-                {
-                    return -1;
-                }
-                // Only VersionB is beta, A is newer.
-                else
-                {
-                    return 1;
-                }
-            }
-
-            // Compare the non beta component of the version string.
-            var versionAComponents = versionA.Split('.').Select(version => int.TryParse(version, out piece) ? piece : 0).ToArray();
-            var versionBComponents = versionB.Split('.').Select(version => int.TryParse(version, out piece) ? piece : 0).ToArray();
-            var length = Mathf.Max(versionAComponents.Length, versionBComponents.Length);
-            for (var i = 0; i < length; i++)
-            {
-                var aComponent = i < versionAComponents.Length ? versionAComponents[i] : 0;
-                var bComponent = i < versionBComponents.Length ? versionBComponents[i] : 0;
-
-                if (aComponent < bComponent) return -1;
-
-                if (aComponent > bComponent) return 1;
-            }
-        }
-
-        return 0;
-    }
-
-
+    #endregion
 }

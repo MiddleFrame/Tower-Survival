@@ -1,6 +1,7 @@
-﻿namespace Yodo1.MAS
+namespace Yodo1.MAS
 {
     using UnityEditor;
+    using UnityEditor.Build;
     using System.IO;
     using System.Xml;
     using System;
@@ -8,6 +9,24 @@
 
     public class Yodo1AdUtils
     {
+        public static string GetAndroidBundleId()
+        {
+#if UNITY_2023_2_OR_NEWER
+            return PlayerSettings.GetApplicationIdentifier(NamedBuildTarget.Android);
+#else
+            return PlayerSettings.GetApplicationIdentifier(BuildTargetGroup.Android);
+#endif
+        }
+
+        public static string GetIOSBundleId()
+        {
+#if UNITY_2023_2_OR_NEWER
+            return PlayerSettings.GetApplicationIdentifier(NamedBuildTarget.iOS);
+#else
+            return PlayerSettings.GetApplicationIdentifier(BuildTargetGroup.iOS);
+#endif
+        }
+
         /// <summary>
         /// Show Alert
         /// </summary>

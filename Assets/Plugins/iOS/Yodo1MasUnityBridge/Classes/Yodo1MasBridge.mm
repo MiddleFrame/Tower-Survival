@@ -23,8 +23,8 @@
 #import "Yodo1MasNativeAdView+Bridge.h"
 #import "Yodo1MasBannerAdView+Bridge.h"
 
-static NSString* kYodo1MasGameObject;
-static NSString* kYodo1MasMethodName;
+static NSString* sYodo1MasGameObject;
+static NSString* sYodo1MasMethodName;
 
 @interface Yodo1MasBridge : NSObject <
 Yodo1MasRewardAdDelegate,
@@ -95,6 +95,9 @@ Yodo1MasAppStatusDelegate>
 - (void)hideBannerAdV2:(NSString *)param;
 - (void)destroyBannerAdV2:(NSString *)param;
 
+#pragma mark - Safe Area Fix
+@property (nonatomic, assign) BOOL safeAreaFixEnabled;
+
 @end
 
 @implementation Yodo1MasBridge
@@ -126,7 +129,7 @@ Yodo1MasAppStatusDelegate>
 - (void)onApplicationEnterForeground {
     NSString* data = [Yodo1MasBridge convertToAppJsonString:YES];
     NSString* msg = [Yodo1MasBridge getSendMessage:2 data:data];
-    UnitySendMessage([kYodo1MasGameObject cStringUsingEncoding:NSUTF8StringEncoding], [kYodo1MasMethodName cStringUsingEncoding:NSUTF8StringEncoding], [msg cStringUsingEncoding:NSUTF8StringEncoding]);
+    UnitySendMessage([sYodo1MasGameObject cStringUsingEncoding:NSUTF8StringEncoding], [sYodo1MasMethodName cStringUsingEncoding:NSUTF8StringEncoding], [msg cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
 #pragma mark - Reward
@@ -193,6 +196,7 @@ Yodo1MasAppStatusDelegate>
 }
 
 - (void)onRewardAdClosed:(Yodo1MasRewardAd *)ad {
+    [Yodo1MasBridge applySafeAreaFixIfNeeded];
     Yodo1MasAdEvent *event = [[Yodo1MasAdEvent alloc] initWithCode:Yodo1MasAdEventCodeClosed type:Yodo1MasAdTypeReward];
     [Yodo1MasBridge sendMessageWithEvent: event];
 }
@@ -276,6 +280,7 @@ Yodo1MasAppStatusDelegate>
 }
 
 - (void)onInterstitialAdClosed:(Yodo1MasInterstitialAd *)ad {
+    [Yodo1MasBridge applySafeAreaFixIfNeeded];
     Yodo1MasAdEvent *event = [[Yodo1MasAdEvent alloc] initWithCode:Yodo1MasAdEventCodeClosed type:Yodo1MasAdTypeInterstitial];
     [Yodo1MasBridge sendMessageWithEvent: event];
 }
@@ -351,6 +356,7 @@ Yodo1MasAppStatusDelegate>
 }
 
 - (void)onAppOpenAdClosed:(Yodo1MasAppOpenAd *)ad {
+    [Yodo1MasBridge applySafeAreaFixIfNeeded];
     Yodo1MasAdEvent *event = [[Yodo1MasAdEvent alloc] initWithCode:Yodo1MasAdEventCodeClosed type:Yodo1MasAdTypeAppOpen];
     [Yodo1MasBridge sendMessageWithEvent: event];
 }
@@ -790,6 +796,32 @@ Yodo1MasAppStatusDelegate>
     [Yodo1MasBridge sendMessageWithEvent: event];
 }
 
+#pragma mark - Safe Area Fix
++ (void)applySafeAreaFixIfNeeded {
+    if (![Yodo1MasBridge sharedInstance].safeAreaFixEnabled) return;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIWindow *window = UIApplication.sharedApplication.keyWindow;
+        if (!window) return;
+        
+        UIViewController *vc = window.rootViewController;
+        if (!vc) return;
+        
+        UIView *rootView = vc.view;
+        if (!rootView) return;
+        
+        [rootView removeFromSuperview];
+        [rootView setNeedsLayout];
+        [rootView layoutIfNeeded];
+        rootView.frame = window.bounds;
+        [window addSubview:rootView];
+        
+        if (@available(iOS 11.0, *)) {
+            (void)rootView.safeAreaInsets;
+        }
+    });
+}
+
 #pragma mark - Private
 + (void)sendMessageWithEvent:(Yodo1MasAdEvent *)event {
     [Yodo1MasBridge sendMessageWithJson: event.getJsonObject];
@@ -798,7 +830,7 @@ Yodo1MasAppStatusDelegate>
 + (void)sendMessageWithJson:(id)json {
     NSString* data = [Yodo1MasBridge stringWithJSONObject:json error:nil];
     NSString* msg = [Yodo1MasBridge getSendMessage:1 data:data];
-    UnitySendMessage([kYodo1MasGameObject cStringUsingEncoding:NSUTF8StringEncoding], [kYodo1MasMethodName cStringUsingEncoding:NSUTF8StringEncoding], [msg cStringUsingEncoding:NSUTF8StringEncoding]);
+    UnitySendMessage([sYodo1MasGameObject cStringUsingEncoding:NSUTF8StringEncoding], [sYodo1MasMethodName cStringUsingEncoding:NSUTF8StringEncoding], [msg cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
 + (UIViewController*)getRootViewController {
@@ -998,21 +1030,21 @@ void UnityMasInitMasWithAppKey(const char* appKey,const char* gameObjectName, co
     
     NSString* m_gameObject = Yodo1MasConvertCharToNSString(gameObjectName);
     NSCAssert(m_gameObject != nil, @"Unity3d gameObject isn't set!");
-    kYodo1MasGameObject = m_gameObject;
+    sYodo1MasGameObject = m_gameObject;
     
     NSString* m_methodName = Yodo1MasConvertCharToNSString(callbackMethodName);
     NSCAssert(m_methodName != nil, @"Unity3d callback method isn't set!");
-    kYodo1MasMethodName = m_methodName;
+    sYodo1MasMethodName = m_methodName;
     
     [[Yodo1MasBridge sharedInstance] initMasWithAppKey:m_appKey successfulHandler:^(Yodo1MasSdkConfiguration * _Nonnull configuration) {
         NSString* data = [Yodo1MasBridge convertToInitJsonString:configuration masError:nil];
         NSString* msg = [Yodo1MasBridge getSendMessage:0 data:data];
-        UnitySendMessage([kYodo1MasGameObject cStringUsingEncoding:NSUTF8StringEncoding], [kYodo1MasMethodName cStringUsingEncoding:NSUTF8StringEncoding], [msg cStringUsingEncoding:NSUTF8StringEncoding]);
+        UnitySendMessage([sYodo1MasGameObject cStringUsingEncoding:NSUTF8StringEncoding], [sYodo1MasMethodName cStringUsingEncoding:NSUTF8StringEncoding], [msg cStringUsingEncoding:NSUTF8StringEncoding]);
         
     } failHandler:^(Yodo1MasError * _Nonnull error) {
         NSString* data = [Yodo1MasBridge convertToInitJsonString:nil masError:error];
         NSString* msg = [Yodo1MasBridge getSendMessage:0 data:data];
-        UnitySendMessage([kYodo1MasGameObject cStringUsingEncoding:NSUTF8StringEncoding], [kYodo1MasMethodName cStringUsingEncoding:NSUTF8StringEncoding], [msg cStringUsingEncoding:NSUTF8StringEncoding]);
+        UnitySendMessage([sYodo1MasGameObject cStringUsingEncoding:NSUTF8StringEncoding], [sYodo1MasMethodName cStringUsingEncoding:NSUTF8StringEncoding], [msg cStringUsingEncoding:NSUTF8StringEncoding]);
     }];
 }
 
@@ -1028,7 +1060,7 @@ void UnityMasShowUmpForExistingUser() {
     [[Yodo1Mas sharedInstance] showUmpForExistingUser:^(Yodo1MasError * _Nullable error) {
         NSString* data = [Yodo1MasBridge convertToUmpJsonString:error];
         NSString* msg = [Yodo1MasBridge getSendMessage:3 data:data];
-        UnitySendMessage([kYodo1MasGameObject cStringUsingEncoding:NSUTF8StringEncoding], [kYodo1MasMethodName cStringUsingEncoding:NSUTF8StringEncoding], [msg cStringUsingEncoding:NSUTF8StringEncoding]);
+        UnitySendMessage([sYodo1MasGameObject cStringUsingEncoding:NSUTF8StringEncoding], [sYodo1MasMethodName cStringUsingEncoding:NSUTF8StringEncoding], [msg cStringUsingEncoding:NSUTF8StringEncoding]);
     }];
 }
 
@@ -1039,101 +1071,108 @@ const char* UnityMasGetIABTCFString(const char* key) {
 }
 
 void UnitySetAdBuildConfig(const char * config) {
-    NSString * jsonString = Yodo1MasConvertCharToNSString(config);
-    NSError * error = nil;
-    id dict = [Yodo1MasBridge JSONObjectWithString:jsonString error:&error];
-    if (error) {
+    if (config == NULL) {
         return;
     }
-    Yodo1MasAdBuildConfig * buildConfig = [Yodo1MasAdBuildConfig instance];
-    if (dict[@"enableATTAuthorization"]) {
-        buildConfig.enableATTAuthorization = [dict[@"enableATTAuthorization"] boolValue];
+    NSString *jsonString = Yodo1MasConvertCharToNSString(config);
+    if (jsonString == nil || jsonString.length == 0) {
+        return;
     }
-    if (dict[@"enableUserPrivacyDialog"]) {
-        buildConfig.enableUserPrivacyDialog = [dict[@"enableUserPrivacyDialog"] boolValue];
+    NSError *parseError = nil;
+    NSDictionary *dict = [Yodo1MasBridge JSONObjectWithString:jsonString error:&parseError];
+    if (parseError || !dict || ![dict isKindOfClass:[NSDictionary class]]) {
+        return;
+    }
+    Yodo1MasAdBuildConfig *buildConfig = [Yodo1MasAdBuildConfig instance];
+    id val = dict[@"enableATTAuthorization"];
+    if (val != nil) {
+        buildConfig.enableATTAuthorization = [val boolValue];
+    }
+    val = dict[@"enableUserPrivacyDialog"];
+    if (val != nil) {
+        buildConfig.enableUserPrivacyDialog = [val boolValue];
     }
     
     NSString *ump = dict[@"enableUserMessageingPlatform"];
     if ([@"DISABLE" isEqualToString:ump]) {
         buildConfig.enableUserMessageingPlatform = Yodo1MasUMPStateDisable;
-    } else  if ([@"ENABLE" isEqualToString:ump]) {
+    } else if ([@"ENABLE" isEqualToString:ump]) {
         buildConfig.enableUserMessageingPlatform = Yodo1MasUMPStateEnable;
     } else {
         buildConfig.enableUserMessageingPlatform = Yodo1MasUMPStateNotSet;
     }
     
-    if (dict[@"userAgreementUrl"]) {
-        NSString* userAgreementUrl = dict[@"userAgreementUrl"];
-        if (userAgreementUrl != nil && userAgreementUrl.length > 0) {
-            buildConfig.userAgreementUrl = userAgreementUrl;
-        }
+    id userAgreementUrl = dict[@"userAgreementUrl"];
+    if ([userAgreementUrl isKindOfClass:[NSString class]] && [userAgreementUrl length] > 0) {
+        buildConfig.userAgreementUrl = userAgreementUrl;
     }
-    if (dict[@"privacyPolicyUrl"]) {
-        NSString* privacyPolicyUrl = dict[@"privacyPolicyUrl"];
-        if (privacyPolicyUrl != nil && privacyPolicyUrl.length > 0) {
-            buildConfig.privacyPolicyUrl = privacyPolicyUrl;
-        }
+    id privacyPolicyUrl = dict[@"privacyPolicyUrl"];
+    if ([privacyPolicyUrl isKindOfClass:[NSString class]] && [privacyPolicyUrl length] > 0) {
+        buildConfig.privacyPolicyUrl = privacyPolicyUrl;
     }
     
     id agePop = dict[@"userPrivacyConfig"];
-    if (agePop) {
-        NSError * error = nil;
-        id ageJson = [Yodo1MasBridge JSONObjectWithString:agePop error:&error];
-        if (error || !ageJson) {
-            return;
-        }
-        
-        Yodo1MasUserPrivacyConfig *privacyConfig = [Yodo1MasUserPrivacyConfig instance];
-        
-        NSString *titleBackgroundColorStr = ageJson[@"titleBackgroundColor"];
-        if (titleBackgroundColorStr) {
-            UIColor *color = [Yodo1MasUserPrivacyConfig colorWithHexString:titleBackgroundColorStr];
-            if (color && color != [UIColor clearColor]) {
-                privacyConfig.titleBackgroundColor = color;
+    if ([agePop isKindOfClass:[NSString class]] && [agePop length] > 0) {
+        NSError * ageError = nil;
+        NSDictionary *ageJson = [Yodo1MasBridge JSONObjectWithString:agePop error:&ageError];
+        if (!ageError && ageJson && [ageJson isKindOfClass:[NSDictionary class]]) {
+            Yodo1MasUserPrivacyConfig *privacyConfig = [Yodo1MasUserPrivacyConfig instance];
+            
+            NSString *titleBackgroundColorStr = ageJson[@"titleBackgroundColor"];
+            if ([titleBackgroundColorStr isKindOfClass:[NSString class]] && titleBackgroundColorStr.length > 0) {
+                UIColor *color = [Yodo1MasUserPrivacyConfig colorWithHexString:titleBackgroundColorStr];
+                if (color && color != [UIColor clearColor]) {
+                    privacyConfig.titleBackgroundColor = color;
+                }
             }
-        }
-        
-        NSString *titleTextColorStr = ageJson[@"titleTextColor"];
-        if (titleTextColorStr) {
-            UIColor *color = [Yodo1MasUserPrivacyConfig colorWithHexString:titleTextColorStr];
-            if (color && color != [UIColor clearColor]) {
-                privacyConfig.titleTextColor = color;
+            
+            NSString *titleTextColorStr = ageJson[@"titleTextColor"];
+            if ([titleTextColorStr isKindOfClass:[NSString class]] && titleTextColorStr.length > 0) {
+                UIColor *color = [Yodo1MasUserPrivacyConfig colorWithHexString:titleTextColorStr];
+                if (color && color != [UIColor clearColor]) {
+                    privacyConfig.titleTextColor = color;
+                }
             }
-        }
-        
-        NSString *contentBackgroundColorStr = ageJson[@"contentBackgroundColor"];
-        if (contentBackgroundColorStr) {
-            UIColor *color = [Yodo1MasUserPrivacyConfig colorWithHexString:contentBackgroundColorStr];
-            if (color && color != [UIColor clearColor]) {
-                privacyConfig.contentBackgroundColor = color;
+            
+            NSString *contentBackgroundColorStr = ageJson[@"contentBackgroundColor"];
+            if ([contentBackgroundColorStr isKindOfClass:[NSString class]] && contentBackgroundColorStr.length > 0) {
+                UIColor *color = [Yodo1MasUserPrivacyConfig colorWithHexString:contentBackgroundColorStr];
+                if (color && color != [UIColor clearColor]) {
+                    privacyConfig.contentBackgroundColor = color;
+                }
             }
-        }
-        
-        NSString *contentTextColorStr = ageJson[@"contentTextColor"];
-        if (contentTextColorStr) {
-            UIColor *color = [Yodo1MasUserPrivacyConfig colorWithHexString:contentTextColorStr];
-            if (color && color != [UIColor clearColor]) {
-                privacyConfig.contentTextColor = color;
+            
+            NSString *contentTextColorStr = ageJson[@"contentTextColor"];
+            if ([contentTextColorStr isKindOfClass:[NSString class]] && contentTextColorStr.length > 0) {
+                UIColor *color = [Yodo1MasUserPrivacyConfig colorWithHexString:contentTextColorStr];
+                if (color && color != [UIColor clearColor]) {
+                    privacyConfig.contentTextColor = color;
+                }
             }
-        }
-        
-        NSString *buttonBackgroundColorStr = ageJson[@"buttonBackgroundColor"];
-        if (buttonBackgroundColorStr) {
-            UIColor *color = [Yodo1MasUserPrivacyConfig colorWithHexString:buttonBackgroundColorStr];
-            if (color && color != [UIColor clearColor]) {
-                privacyConfig.buttonBackgroundColor = color;
+            
+            NSString *buttonBackgroundColorStr = ageJson[@"buttonBackgroundColor"];
+            if ([buttonBackgroundColorStr isKindOfClass:[NSString class]] && buttonBackgroundColorStr.length > 0) {
+                UIColor *color = [Yodo1MasUserPrivacyConfig colorWithHexString:buttonBackgroundColorStr];
+                if (color && color != [UIColor clearColor]) {
+                    privacyConfig.buttonBackgroundColor = color;
+                }
             }
-        }
-        
-        NSString *buttonTextColorStr = ageJson[@"buttonTextColor"];
-        if (buttonTextColorStr) {
-            UIColor *color = [Yodo1MasUserPrivacyConfig colorWithHexString:buttonTextColorStr];
-            if (color && color != [UIColor clearColor]) {
-                privacyConfig.buttonTextColor = color;
+            
+            NSString *buttonTextColorStr = ageJson[@"buttonTextColor"];
+            if ([buttonTextColorStr isKindOfClass:[NSString class]] && buttonTextColorStr.length > 0) {
+                UIColor *color = [Yodo1MasUserPrivacyConfig colorWithHexString:buttonTextColorStr];
+                if (color && color != [UIColor clearColor]) {
+                    privacyConfig.buttonTextColor = color;
+                }
             }
+            
+            buildConfig.userPrivacyConfig = privacyConfig;
         }
-        
-        buildConfig.userPrivacyConfig = privacyConfig;
+    }
+    
+    id extra = dict[@"extra"];
+    if ([extra isKindOfClass:[NSDictionary class]]) {
+        buildConfig.extra = extra;
     }
     
     [[Yodo1Mas sharedInstance] setAdBuildConfig:buildConfig];
@@ -1298,6 +1337,13 @@ void UnityDestroyAppOpenAd(const char* param)
 {
     NSString* m_param = Yodo1MasConvertCharToNSString(param);
     [[Yodo1MasBridge sharedInstance] destroyAppOpenAd:m_param];
+}
+
+#pragma mark - Safe Area Fix
+
+void UnityMasSetSafeAreaFixEnabled(bool enabled)
+{
+    [Yodo1MasBridge sharedInstance].safeAreaFixEnabled = enabled;
 }
 
 }

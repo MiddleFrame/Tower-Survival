@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0473ce4c7d484f929d1a387a358610ef, type: 3}
+  m_Name: Current Balance
+  m_EditorClassIdentifier: 
+  gameSettings: {fileID: 11400000, guid: 64f6e8953a0b1b44ab883d507c18a38d, type: 2}
+  tier: 0
+  runs: 100
+  maximumSpawnEvents: 1000
+  maximumSeconds: 1800
+  simulationStep: 0.05
+  randomSeed: 12345
+  persistentLevels:
+    attackDamage: 0
+    attackSpeed: 0
+    maxTargets: 0
+    multishot: 0
+    range: 0
+    health: 0
+    regeneration: 0
+    scrapPerKill: 0
+    orePerKill: 0
+    goldPerTenKills: 0
+  attackPage: 0
+  defencePage: 0
+  utilityPage: 0
+  buyTemporaryUpgrades: 1
+  purchasePriority: 00000000010000000700000005000000020000000600000003000000040000000800000009000000
+  enemyFirstAttackDelay: 0.8
+  towerDamageEfficiency: 1
+  enemyHealthScale: 1
+  enemyDamageScale: 1
+  spawnIntervalScale: 1
+  rewardScale: 1

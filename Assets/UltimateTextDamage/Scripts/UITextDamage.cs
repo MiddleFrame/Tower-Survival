@@ -2,12 +2,8 @@
 using System;
 using UnityEngine.Events;
 
-#if UTD_TEXT_MESH_PRO
 using TMPro;
-#else
-using TMPro;
-using UnityEngine.UI;
-#endif
+using UnityEngine.Serialization;
 
 namespace Guirao.UltimateTextDamage
 {
@@ -26,28 +22,11 @@ namespace Guirao.UltimateTextDamage
         
         public event Action< UITextDamage , Transform > eventOnEnd;
 
-#if UTD_TEXT_MESH_PRO
-        public TextMeshProUGUI UsedLabel
-#else
-        public TextMeshProUGUI UsedLabel
-#endif
-        {
-            get
-            {
-#if UTD_TEXT_MESH_PRO
-                return labelTMP;
-#else
-                return label;
-#endif
-            }
-        }
+        public TMP_Text UsedLabel => label;
 
         [ Header( "The Text ui of the item" )]
-#if UTD_TEXT_MESH_PRO
-        public TextMeshProUGUI labelTMP;
-#else
-        public TextMeshProUGUI label;
-#endif
+        [FormerlySerializedAs("labelTMP")]
+        public TMP_Text label;
 
         [Header( "Damage Stack options" )]
         public StackToStringFormat stackToStringType;
@@ -76,9 +55,11 @@ namespace Guirao.UltimateTextDamage
         /// <summary>
         /// Start Monobehaviour
         /// </summary>
-        void Start( )
+        private void Awake( )
         {
             rectTransform = transform as RectTransform;
+            if( label == null )
+                label = GetComponentInChildren<TMP_Text>( true );
         }
 
         /// <summary>
@@ -96,6 +77,7 @@ namespace Guirao.UltimateTextDamage
             m_currentTime = 0;
             if( !gameObject.activeSelf )
                 gameObject.SetActive( true );
+            transform.SetAsLastSibling( );
         }
 
         /// <summary>
@@ -124,18 +106,16 @@ namespace Guirao.UltimateTextDamage
                 gameObject.SetActive( true );
             }
 
-            onItemStackUse.Invoke( stackKey );
+            transform.SetAsLastSibling( );
+            onItemStackUse?.Invoke( stackKey );
 
             m_currentTime = 0;
         }
 
         private void OnValidate( )
         {
-#if UTD_TEXT_MESH_PRO
-            labelTMP = GetComponentInChildren<TextMeshProUGUI>( );
-#else
-            label =GetComponentInChildren<TextMeshProUGUI>( );
-#endif
+            if( label == null )
+                label = GetComponentInChildren<TMP_Text>( true );
         }
 
         /// <summary>
@@ -167,7 +147,7 @@ namespace Guirao.UltimateTextDamage
         public void End( )
         {
             m_accumulate = 0;
-            if( eventOnEnd != null ) eventOnEnd( this , currentTransformFollow );
+            eventOnEnd?.Invoke( this , currentTransformFollow );
             gameObject.SetActive( false );
         }
 
@@ -214,10 +194,11 @@ namespace Guirao.UltimateTextDamage
 
                 if( Cam != null )
                 {
-                    Vector2 screenPoint;
-                    screenPoint = Cam.WorldToScreenPoint( uiWorldPos );
-                    Vector2 output;
-                    RectTransformUtility.ScreenPointToLocalPointInRectangle( transform.parent as RectTransform , screenPoint + Vector2.up * Offset , Canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : Canvas.worldCamera , out output );
+                    Vector2 screenPoint = Cam.WorldToScreenPoint( uiWorldPos );
+                    RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                        transform.parent as RectTransform, screenPoint + Vector2.up * Offset,
+                        Canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : Canvas.worldCamera,
+                        out Vector2 output );
                     rectTransform.anchoredPosition3D = output;
                 }
                 else
@@ -225,8 +206,6 @@ namespace Guirao.UltimateTextDamage
                     rectTransform.anchoredPosition3D = ( Canvas.transform as RectTransform ).InverseTransformPoint( uiWorldPos ) + Vector3.up * Offset;
                 }
             }
-
-            transform.SetAsLastSibling( );
 
             firstTime = false;
         }

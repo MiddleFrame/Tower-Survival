@@ -62,6 +62,7 @@ public partial class TemporaryUpgradeButton : MonoBehaviour
         {
             locked.gameObject.SetActive(false);
             completed.gameObject.SetActive(true);
+            Button.interactable = false;
         }
     }
 }
