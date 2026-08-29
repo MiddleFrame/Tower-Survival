@@ -1,2 +1,3 @@
 Le ciblage est désormais plus fiable : la tour ignore les ennemis vaincus et les projectiles ne touchent plus les cibles déjà éliminées.
 Les combats proposent désormais des sorts actifs et passifs, ainsi que de rares cristaux à toucher en 15 secondes. L'ancienne monnaie temporaire a été supprimée.
+Les états des sorts sont plus lisibles et un panneau dépliant affiche leurs descriptions.

@@ -130,6 +130,9 @@ game.spells	SPELLS	ЗАКЛИНАНИЯ	FEITIÇOS	HECHIZOS	ZAUBER	SORTS	BÜYÜLE
 spell.uses	x{0}	x{0}	x{0}	x{0}	x{0}	x{0}	x{0}	x{0}	x{0}	x{0}
 spell.ready	READY	ГОТОВО	PRONTO	LISTO	BEREIT	PRÊT	HAZIR	SIAP	GOTOWE	PRONTO
 spell.cooldown	{0}s	{0} с	{0}s	{0}s	{0}s	{0}s	{0} sn	{0} dtk	{0}s	{0}s
+spell.details.open	DETAILS	ПОДРОБНЕЕ	DETALHES	DETALLES	DETAILS	DÉTAILS	AYRINTILAR	DETAIL	SZCZEGÓŁY	DETTAGLI
+spell.details.close	CLOSE	ЗАКРЫТЬ	FECHAR	CERRAR	SCHLIESSEN	FERMER	KAPAT	TUTUP	ZAMKNIJ	CHIUDI
+spell.used	USED	ИСПОЛЬЗОВАНО	USADO	USADO	VERBRAUCHT	UTILISÉ	KULLANILDI	TERPAKAI	UŻYTE	USATO
 spell.invulnerability.title	AEGIS	ЭГИДА	ÉGIDE	ÉGIDA	ÄGIS	ÉGIDE	KALKAN	PERISAI	EGIDA	EGIDA
 spell.invulnerability.description	The tower takes no damage for 6 seconds.	Башня не получает урон в течение 6 секунд.	A torre não sofre dano por 6 segundos.	La torre no recibe daño durante 6 segundos.	Der Turm erleidet 6 Sekunden lang keinen Schaden.	La tour ne subit aucun dégât pendant 6 secondes.	Kule 6 saniye boyunca hasar almaz.	Menara tidak menerima damage selama 6 detik.	Wieża nie otrzymuje obrażeń przez 6 sekund.	La torre non subisce danni per 6 secondi.
 spell.resource_surge.title	SURGE	ВСПЛЕСК	SURTO	OLEADA	SCHUB	AFFLUX	AKIN	LONJAKAN	PRZYPŁYW	ONDATA

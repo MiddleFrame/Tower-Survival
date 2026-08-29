@@ -1,26 +1,27 @@
+using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public sealed class PassiveSpellBadgeView : MonoBehaviour
 {
     [SerializeField] private Button _button;
     [SerializeField] private Image _icon;
-    [SerializeField] private TMP_Text _shortTitle;
-    [SerializeField] private GameObject _detailsPanel;
-    [SerializeField] private TMP_Text _detailsTitle;
-    [SerializeField] private TMP_Text _detailsDescription;
+    [FormerlySerializedAs("_shortTitle")]
     [SerializeField] private TMP_Text _status;
 
     private CombatSpellController _controller;
     private CombatSpellDefinition _definition;
+    private Action _onPressed;
 
-    public void Bind(CombatSpellController controller, CombatSpellDefinition definition)
+    public void Bind(CombatSpellController controller, CombatSpellDefinition definition, Action onPressed)
     {
         _controller = controller;
         _definition = definition;
-        _button.onClick.RemoveListener(ToggleDetails);
-        _button.onClick.AddListener(ToggleDetails);
+        _onPressed = onPressed;
+        _button.onClick.RemoveListener(HandlePressed);
+        _button.onClick.AddListener(HandlePressed);
 
         bool hasDefinition = definition != null;
         gameObject.SetActive(hasDefinition);
@@ -29,10 +30,6 @@ public sealed class PassiveSpellBadgeView : MonoBehaviour
 
         _icon.sprite = definition.Icon;
         _icon.enabled = definition.Icon != null;
-        LightweightLocalization.Bind(_shortTitle, definition.TitleKey);
-        LightweightLocalization.Bind(_detailsTitle, definition.TitleKey);
-        LightweightLocalization.Bind(_detailsDescription, definition.DescriptionKey);
-        _detailsPanel.SetActive(false);
         Refresh();
     }
 
@@ -48,8 +45,8 @@ public sealed class PassiveSpellBadgeView : MonoBehaviour
             LightweightLocalization.Bind(_status, "spell.ready");
     }
 
-    private void ToggleDetails()
+    private void HandlePressed()
     {
-        _detailsPanel.SetActive(!_detailsPanel.activeSelf);
+        _onPressed?.Invoke();
     }
 }
