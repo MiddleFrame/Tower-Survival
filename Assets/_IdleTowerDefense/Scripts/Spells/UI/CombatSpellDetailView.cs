@@ -49,6 +49,13 @@ public sealed class CombatSpellDetailView : MonoBehaviour
             return;
         }
 
+        float activeDuration = _controller.GetActiveDurationRemaining(_slotIndex);
+        if (activeDuration > 0.01f)
+        {
+            LightweightLocalization.Bind(_status, "spell.cooldown", activeDuration.ToString("0.0"));
+            return;
+        }
+
         int remaining = _controller.GetRemainingUses(_slotIndex);
         if (remaining > 0)
             LightweightLocalization.Bind(_status, "spell.uses", remaining);

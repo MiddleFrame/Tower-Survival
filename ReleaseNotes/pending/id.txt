@@ -1,4 +1,4 @@
 Penargetan pertempuran kini lebih andal: menara mengabaikan musuh yang kalah, dan proyektil tidak lagi mengenai target yang sedang disingkirkan.
 Pertempuran kini memiliki mantra aktif dan pasif, serta kristal langka yang harus diketuk dalam 15 detik. Mata uang tempur sementara yang lama telah dihapus.
-Status mantra kini lebih jelas dan panel yang dapat dibuka menampilkan deskripsi lengkap.
+Ikon mantra kini terpusat dan efek berjangka menampilkan durasinya.
 Kristal yang lebih kecil kini terbang ke penghitung dan bertambah saat tiba dengan pop-up +1.

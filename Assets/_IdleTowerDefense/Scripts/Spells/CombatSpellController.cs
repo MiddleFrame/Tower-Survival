@@ -87,6 +87,20 @@ public sealed class CombatSpellController : MonoBehaviour
             : 0;
     }
 
+    public float GetActiveDurationRemaining(int slotIndex)
+    {
+        CombatSpellDefinition[] spells = ActiveSpells;
+        if (slotIndex < 0 || slotIndex >= spells.Length || spells[slotIndex] == null)
+            return 0f;
+
+        return spells[slotIndex].ActiveEffect switch
+        {
+            ActiveSpellEffect.TowerInvulnerability => _invulnerabilityRemaining,
+            ActiveSpellEffect.MetaDropSurge => _metaDropSurgeRemaining,
+            _ => 0f
+        };
+    }
+
     public bool TryCastActive(int slotIndex)
     {
         CombatSpellDefinition[] spells = ActiveSpells;

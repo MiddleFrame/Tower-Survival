@@ -1,4 +1,4 @@
 Namierzanie jest teraz pewniejsze: wieża ignoruje pokonanych wrogów, a pociski nie trafiają już celów, które są usuwane.
 W walkach pojawiły się aktywne i pasywne zaklęcia oraz rzadkie kryształy, które trzeba kliknąć w ciągu 15 sekund. Usunięto zbędną walutę tymczasową.
-Stany zaklęć są teraz czytelniejsze, a rozwijany panel pokazuje pełne opisy.
+Ikony zaklęć są wyśrodkowane, a efekty czasowe pokazują swój czas trwania.
 Mniejsze kryształy lecą teraz do licznika i są dodawane po dotarciu wraz z efektem +1.
