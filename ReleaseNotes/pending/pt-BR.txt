@@ -1,4 +1,4 @@
 A mira em combate está mais confiável: a torre ignora inimigos derrotados, e os projéteis não atingem alvos que já estão sendo removidos.
 As batalhas agora têm feitiços ativos e passivos, além de cristais raros que devem ser tocados em 15 segundos. A moeda temporária obsoleta foi removida.
-Ícones e botões cabem no quadro; a máscara e os cantos decorativos ficam no lugar ao abrir.
+O ícone passivo agora fica acima do quadro; a máscara e os cantos decorativos ficam no lugar ao abrir.
 Os cristais agora têm pixel art e cores suaves, pulsam devagar e voam até o contador.
