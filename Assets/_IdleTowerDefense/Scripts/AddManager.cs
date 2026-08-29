@@ -27,6 +27,7 @@ public class AddManager : MonoBehaviour
 
     void Start()
     {
+        Yodo1U3dMas.SetAutoPauseGame(false);
         Yodo1U3dRewardAd.GetInstance().autoDelayIfLoadFail = true;
         Yodo1U3dMas.SetCCPA(false);
         Yodo1U3dMas.SetGDPR(true);
