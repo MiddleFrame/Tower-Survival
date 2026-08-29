@@ -1,4 +1,4 @@
 Penargetan pertempuran kini lebih andal: menara mengabaikan musuh yang kalah, dan proyektil tidak lagi mengenai target yang sedang disingkirkan.
 Pertempuran kini memiliki mantra aktif dan pasif, serta kristal langka yang harus diketuk dalam 15 detik. Mata uang tempur sementara yang lama telah dihapus.
-Ketuk lencana pasif untuk melihat semua statistik; daftar aktif kini hanya berisi mantra aktif.
+Statistik pasif terbuka terpisah; ikon tambah/kurang membuka daftar mantra aktif.
 Kristal kini memakai warna pixel art yang lembut, berdenyut pelan, lalu terbang ke penghitung.

@@ -1,4 +1,4 @@
 Combat targeting is now more reliable: the tower ignores defeated enemies, and projectiles no longer hit enemies already being removed.
 Battles now feature active and passive spells plus rare crystals that must be tapped within 15 seconds. Obsolete temporary battle currency has been removed.
-Tap the passive badge for its own stat popup; the active spell list now contains only active spells.
+Passive stats open separately; plus/minus expands and collapses the active spell list.
 Crystals now use a subdued pixel-art palette, pulse gently, and fly to their counter when collected.

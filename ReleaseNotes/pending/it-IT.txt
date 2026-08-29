@@ -1,4 +1,4 @@
 Il puntamento è ora più affidabile: la torre ignora i nemici sconfitti e i proiettili non colpiscono più i bersagli già in fase di rimozione.
 Le battaglie ora includono incantesimi attivi e passivi e cristalli rari da raccogliere con un tocco entro 15 secondi. La vecchia valuta temporanea è stata rimossa.
-Tocca l'icona passiva per vedere tutte le statistiche; l'elenco attivo mostra solo magie attive.
+Le statistiche passive si aprono a parte; più/meno espande l'elenco delle magie attive.
 I cristalli ora hanno pixel art e colori sobri, pulsano dolcemente e volano al contatore.

@@ -19,7 +19,9 @@ public sealed class CombatSpellHudView : MonoBehaviour
     [SerializeField] private CombatSpellDetailView _detailPrefab;
     [SerializeField] private Button _expandButton;
     [SerializeField] private TMP_Text _expandLabel;
-    [SerializeField] private RectTransform _expandArrow;
+    [SerializeField] private Image _expandIndicator;
+    [SerializeField] private Sprite _collapsedIndicatorIcon;
+    [SerializeField] private Sprite _expandedIndicatorIcon;
     [SerializeField, Min(1f)] private float _collapsedHeight = 240f;
     [SerializeField, Min(1f)] private float _expandedHeight = 720f;
     [SerializeField, Min(0.05f)] private float _expandDuration = 0.45f;
@@ -98,12 +100,11 @@ public sealed class CombatSpellHudView : MonoBehaviour
 
         float startHeight = _panelRoot.sizeDelta.y;
         float targetHeight = expanded ? _expandedHeight : _collapsedHeight;
-        float startRotation = _expandArrow.localEulerAngles.z;
-        float targetRotation = expanded ? 180f : 0f;
         float elapsed = 0f;
 
         LightweightLocalization.Bind(_expandLabel,
             expanded ? "spell.details.close" : "spell.details.open");
+        _expandIndicator.sprite = expanded ? _expandedIndicatorIcon : _collapsedIndicatorIcon;
 
         while (elapsed < _expandDuration)
         {
@@ -112,14 +113,11 @@ public sealed class CombatSpellHudView : MonoBehaviour
             float eased = expanded ? EaseOutBack(t) : Mathf.SmoothStep(0f, 1f, t);
             _panelRoot.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,
                 Mathf.LerpUnclamped(startHeight, targetHeight, eased));
-            _expandArrow.localRotation = Quaternion.Euler(0f, 0f,
-                Mathf.LerpAngle(startRotation, targetRotation, Mathf.SmoothStep(0f, 1f, t)));
             yield return null;
         }
 
         _panelRoot.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, targetHeight);
         _detailsCanvasGroup.alpha = 1f;
-        _expandArrow.localRotation = Quaternion.Euler(0f, 0f, targetRotation);
         _detailsCanvasGroup.blocksRaycasts = expanded;
         _detailsCanvasGroup.interactable = expanded;
         _detailsRoot.SetActive(expanded);
@@ -137,7 +135,7 @@ public sealed class CombatSpellHudView : MonoBehaviour
         _detailsCanvasGroup.alpha = 1f;
         _detailsCanvasGroup.blocksRaycasts = expanded;
         _detailsCanvasGroup.interactable = expanded;
-        _expandArrow.localRotation = Quaternion.Euler(0f, 0f, expanded ? 180f : 0f);
+        _expandIndicator.sprite = expanded ? _expandedIndicatorIcon : _collapsedIndicatorIcon;
         LightweightLocalization.Bind(_expandLabel,
             expanded ? "spell.details.close" : "spell.details.open");
     }
