@@ -10,6 +10,7 @@ public static class LightweightLocalization
     private const string ResourcePath = "Localization/strings";
     private const string FallbackFontPath = "Localization/Neucha SDF";
     private const string LanguagePreferenceKey = "game.language";
+    private const string RussianBaselineOffset = "-0.06em";
 
     private static readonly Dictionary<string, string[]> Translations = new(StringComparer.Ordinal);
     private static readonly Dictionary<string, string> SourceToKey = new(StringComparer.Ordinal);
@@ -122,6 +123,30 @@ public static class LightweightLocalization
             : value.ToUpperInvariant();
     }
 
+    public static void SetDisplayText(TMP_Text target, string value)
+    {
+        if (target == null)
+            return;
+
+        target.text = CurrentLanguage == GameLanguage.Russian && target.richText && ContainsCyrillic(value)
+            ? $"<voffset={RussianBaselineOffset}>{value}</voffset>"
+            : value;
+    }
+
+    private static bool ContainsCyrillic(string value)
+    {
+        if (string.IsNullOrEmpty(value))
+            return false;
+
+        foreach (char character in value)
+        {
+            if (character is >= '\u0400' and <= '\u052F')
+                return true;
+        }
+
+        return false;
+    }
+
     public static void Bind(TMP_Text target, string key, params object[] arguments)
     {
         if (target == null)
@@ -147,7 +172,7 @@ public static class LightweightLocalization
             binding.Bind(target, key, uppercase);
         }
         else if (target != null)
-            target.text = uppercase ? ToUpper(englishSource) : englishSource;
+            SetDisplayText(target, uppercase ? ToUpper(englishSource) : englishSource);
     }
 
     public static void LocalizeHierarchy(GameObject root)
@@ -235,7 +260,7 @@ public static class LightweightLocalization
             StaticTextKeys[instanceId] = key;
         }
 
-        text.text = Get(key);
+        SetDisplayText(text, Get(key));
     }
 
     private static bool TryGetKey(string source, out string key)

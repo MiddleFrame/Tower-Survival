@@ -91,6 +91,7 @@ public class PlayMenu : MonoBehaviour
       {
          _enemyList.text += enemy.name + '\n';
       }
+      LightweightLocalization.SetDisplayText(_enemyList, _enemyList.text);
    }
 
    public void ShowAd()

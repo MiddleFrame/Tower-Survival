@@ -37,7 +37,9 @@ public sealed class LocalizedTextBinding : MonoBehaviour
         if (_target != null && !string.IsNullOrEmpty(_key))
         {
             string value = LightweightLocalization.Get(_key, _arguments);
-            _target.text = _uppercase ? LightweightLocalization.ToUpper(value) : value;
+            LightweightLocalization.SetDisplayText(
+                _target,
+                _uppercase ? LightweightLocalization.ToUpper(value) : value);
         }
     }
 
