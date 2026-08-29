@@ -1,4 +1,4 @@
 Die Zielerfassung ist jetzt zuverlässiger: Der Turm ignoriert besiegte Gegner und Projektile treffen keine bereits entfernten Ziele mehr.
 Kämpfe bieten jetzt aktive und passive Zauber sowie seltene Kristalle, die innerhalb von 15 Sekunden angetippt werden müssen. Veraltete temporäre Währung wurde entfernt.
 Zauber-Symbole sind zentriert und zeitlich begrenzte Effekte zeigen ihre Dauer.
-Die kleineren Kristalle fliegen zum Zähler und werden dort mit +1 gutgeschrieben.
+Die kleineren Kristalle pulsieren sanfter, fliegen zum Zähler und werden dort mit +1 gutgeschrieben.
