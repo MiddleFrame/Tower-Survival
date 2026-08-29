@@ -101,6 +101,17 @@ public sealed class CombatSpellController : MonoBehaviour
         };
     }
 
+    public float GetPassiveResolvedDamage()
+    {
+        CombatSpellDefinition passive = PassiveSpell;
+        if (passive == null)
+            return 0f;
+
+        return passive.PassiveEffect is PassiveSpellEffect.TowerStrike or PassiveSpellEffect.ArcaneEcho
+            ? Mathf.Max(1f, GetTowerDamage() * passive.Magnitude)
+            : 0f;
+    }
+
     public bool TryCastActive(int slotIndex)
     {
         CombatSpellDefinition[] spells = ActiveSpells;

@@ -133,6 +133,13 @@ spell.cooldown	{0}s	{0} с	{0}s	{0}s	{0}s	{0}s	{0} sn	{0} dtk	{0}s	{0}s
 spell.details.open	DETAILS	ПОДРОБНЕЕ	DETALHES	DETALLES	DETAILS	DÉTAILS	AYRINTILAR	DETAIL	SZCZEGÓŁY	DETTAGLI
 spell.details.close	CLOSE	ЗАКРЫТЬ	FECHAR	CERRAR	SCHLIESSEN	FERMER	KAPAT	TUTUP	ZAMKNIJ	CHIUDI
 spell.used	USED	ИСПОЛЬЗОВАНО	USADO	USADO	VERBRAUCHT	UTILISÉ	KULLANILDI	TERPAKAI	UŻYTE	USATO
+spell.passive.popup_title	PASSIVE SPELL	ПАССИВНОЕ ЗАКЛИНАНИЕ	FEITIÇO PASSIVO	HECHIZO PASIVO	PASSIVER ZAUBER	SORT PASSIF	PASİF BÜYÜ	MANTRA PASIF	ZAKLĘCIE PASYWNE	INCANTESIMO PASSIVO
+spell.passive.damage	Damage: {0}	Урон: {0}	Dano: {0}	Daño: {0}	Schaden: {0}	Dégâts : {0}	Hasar: {0}	Damage: {0}	Obrażenia: {0}	Danno: {0}
+spell.passive.power	Effect power: x{0}	Сила эффекта: x{0}	Poder do efeito: x{0}	Potencia del efecto: x{0}	Effektstärke: x{0}	Puissance de l'effet : x{0}	Etki gücü: x{0}	Kekuatan efek: x{0}	Siła efektu: x{0}	Potenza effetto: x{0}
+spell.passive.cooldown	Cooldown: {0}s	Перезарядка: {0} с	Recarga: {0}s	Recarga: {0}s	Abklingzeit: {0}s	Recharge : {0}s	Bekleme: {0} sn	Cooldown: {0} dtk	Odnowienie: {0}s	Ricarica: {0}s
+spell.passive.duration	Duration: {0}s	Длительность: {0} с	Duração: {0}s	Duración: {0}s	Dauer: {0}s	Durée : {0}s	Süre: {0} sn	Durasi: {0} dtk	Czas trwania: {0}s	Durata: {0}s
+spell.passive.status_ready	Status: Ready	Статус: готово	Status: Pronto	Estado: Listo	Status: Bereit	Statut : prêt	Durum: Hazır	Status: Siap	Stan: Gotowe	Stato: Pronto
+spell.passive.status_cooldown	Ready in: {0}s	Будет готово через: {0} с	Pronto em: {0}s	Listo en: {0}s	Bereit in: {0}s	Prêt dans : {0}s	Hazır olma: {0} sn	Siap dalam: {0} dtk	Gotowe za: {0}s	Pronto tra: {0}s
 spell.invulnerability.title	AEGIS	ЭГИДА	ÉGIDE	ÉGIDA	ÄGIS	ÉGIDE	KALKAN	PERISAI	EGIDA	EGIDA
 spell.invulnerability.description	The tower takes no damage for 6 seconds.	Башня не получает урон в течение 6 секунд.	A torre não sofre dano por 6 segundos.	La torre no recibe daño durante 6 segundos.	Der Turm erleidet 6 Sekunden lang keinen Schaden.	La tour ne subit aucun dégât pendant 6 secondes.	Kule 6 saniye boyunca hasar almaz.	Menara tidak menerima damage selama 6 detik.	Wieża nie otrzymuje obrażeń przez 6 sekund.	La torre non subisce danni per 6 secondi.
 spell.resource_surge.title	SURGE	ВСПЛЕСК	SURTO	OLEADA	SCHUB	AFFLUX	AKIN	LONJAKAN	PRZYPŁYW	ONDATA

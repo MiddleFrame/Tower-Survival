@@ -10,6 +10,7 @@ public sealed class CombatSpellHudView : MonoBehaviour
     [SerializeField] private RectTransform _activeContainer;
     [SerializeField] private CombatSpellButtonView _activeButtonPrefab;
     [SerializeField] private PassiveSpellBadgeView _passiveBadge;
+    [SerializeField] private PassiveSpellPopupView _passivePopup;
     [Header("Expanded spell information")]
     [SerializeField] private RectTransform _panelRoot;
     [SerializeField] private GameObject _detailsRoot;
@@ -62,14 +63,8 @@ public sealed class CombatSpellHudView : MonoBehaviour
             _detailViews.Add(detail);
         }
 
-        if (controller.PassiveSpell != null)
-        {
-            CombatSpellDetailView passiveDetail = Instantiate(_detailPrefab, _detailsContainer);
-            passiveDetail.Bind(controller, controller.PassiveSpell, -1, true);
-            _detailViews.Add(passiveDetail);
-        }
-
-        _passiveBadge.Bind(controller, controller.PassiveSpell, ToggleExpanded);
+        _passivePopup.Bind(controller, controller.PassiveSpell);
+        _passiveBadge.Bind(controller, controller.PassiveSpell, _passivePopup.Show);
         _expandButton.onClick.RemoveListener(ToggleExpanded);
         _expandButton.onClick.AddListener(ToggleExpanded);
         SetExpandedImmediate(false);
@@ -81,6 +76,7 @@ public sealed class CombatSpellHudView : MonoBehaviour
         foreach (CombatSpellButtonView button in _activeButtons)
             button.Refresh();
         _passiveBadge.Refresh();
+        _passivePopup.Refresh();
         foreach (CombatSpellDetailView detail in _detailViews)
             detail.Refresh();
     }

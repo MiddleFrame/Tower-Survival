@@ -1,4 +1,4 @@
 El apuntado en combate ahora es más confiable: la torre ignora a los enemigos derrotados y los proyectiles ya no golpean objetivos que están desapareciendo.
 Las batallas ahora incluyen hechizos activos y pasivos, además de cristales raros que debes tocar antes de 15 segundos. Se eliminó la moneda temporal obsoleta.
-La insignia pasiva queda sobre el marco; máscara y esquinas se mantienen al desplegar.
+Toca la insignia pasiva para ver sus datos; la lista solo muestra hechizos activos.
 Los cristales ahora tienen píxeles y tonos suaves, pulsan despacio y vuelan al contador.
