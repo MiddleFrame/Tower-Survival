@@ -1,4 +1,4 @@
 Combat targeting is now more reliable: the tower ignores defeated enemies, and projectiles no longer hit enemies already being removed.
 Battles now feature active and passive spells plus rare crystals that must be tapped within 15 seconds. Obsolete temporary battle currency has been removed.
 Menus and ads no longer pause; the spell panel fits large icons, and plus/minus shows details.
-Crystals now look subtler, pulse gently, and fly to their counter. Cyrillic text is vertically aligned.
+Crystals now use a lighter blue palette, pulse gently, and fly to their counter. Cyrillic text is vertically aligned.

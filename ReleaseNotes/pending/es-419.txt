@@ -1,4 +1,4 @@
 El apuntado es más fiable: la torre ignora enemigos derrotados y los proyectiles ya no golpean objetivos que están desapareciendo.
 Las batallas ahora incluyen hechizos activos y pasivos, además de cristales raros que debes tocar antes de 15 segundos. Se eliminó la moneda temporal obsoleta.
 Menú y anuncios no pausan; el panel admite iconos grandes y más/menos abre detalles.
-Los cristales tienen píxeles suaves, pulsan y vuelan al contador. El texto cirílico ya queda centrado.
+Los cristales usan una paleta azul más clara, pulsan y vuelan al contador. El texto cirílico queda centrado.
