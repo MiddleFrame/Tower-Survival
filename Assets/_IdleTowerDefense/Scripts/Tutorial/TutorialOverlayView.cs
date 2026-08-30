@@ -27,7 +27,6 @@ public sealed class TutorialOverlayView : MonoBehaviour
     {
         if (_canvas == null)
             _canvas = GetComponentInParent<Canvas>();
-        gameObject.SetActive(false);
     }
 
     public void ShowWorld(string localizationKey, Transform target, Camera worldCamera,
