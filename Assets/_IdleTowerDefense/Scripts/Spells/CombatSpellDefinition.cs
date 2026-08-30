@@ -22,6 +22,13 @@ public enum PassiveSpellEffect
     ArcaneEcho
 }
 
+public enum PassiveTutorialTarget
+{
+    EmptyArea,
+    Enemy,
+    Tower
+}
+
 [CreateAssetMenu(fileName = "New Combat Spell", menuName = "Idle Tower Defense/Spells/Combat Spell")]
 public sealed class CombatSpellDefinition : ScriptableObject
 {
@@ -36,6 +43,9 @@ public sealed class CombatSpellDefinition : ScriptableObject
     [SerializeField, Min(0f)] private float _durationSeconds;
     [SerializeField, Min(0f)] private float _magnitude = 1f;
     [SerializeField, Min(0f)] private float _cooldownSeconds;
+    [Header("First-use tutorial")]
+    [SerializeField] private string _tutorialHintKey;
+    [SerializeField] private PassiveTutorialTarget _tutorialTarget;
 
     public string SpellId => _spellId;
     public CombatSpellCategory Category => _category;
@@ -48,4 +58,6 @@ public sealed class CombatSpellDefinition : ScriptableObject
     public float DurationSeconds => Mathf.Max(0f, _durationSeconds);
     public float Magnitude => Mathf.Max(0f, _magnitude);
     public float CooldownSeconds => Mathf.Max(0f, _cooldownSeconds);
+    public string TutorialHintKey => _tutorialHintKey;
+    public PassiveTutorialTarget TutorialTarget => _tutorialTarget;
 }

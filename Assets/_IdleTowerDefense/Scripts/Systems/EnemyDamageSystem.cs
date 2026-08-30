@@ -97,6 +97,12 @@ public class EnemyDamageSystem : IEcsInitSystem, IEcsRunSystem
         towerHealth.CurrentHealth -= enemyDamage.Damage;
         if (towerHealth.CurrentHealth <= 0)
         {
+            if (_sharedData.Tutorial != null && _sharedData.Tutorial.TryInterceptLethalDamage(ref towerHealth))
+            {
+                enemyDamage.OnDamageDealt?.Invoke(enemyDamage.Damage, _sharedData.towerView.transform);
+                towerHealth.OnDamaged?.Invoke();
+                return;
+            }
             towerHealth.CurrentHealth = 0;
             towerHealth.OnKilled?.Invoke();
         }

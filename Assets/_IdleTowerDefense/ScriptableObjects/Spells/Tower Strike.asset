@@ -23,3 +23,5 @@ MonoBehaviour:
   _durationSeconds: 0
   _magnitude: 1
   _cooldownSeconds: 1.25
+  _tutorialHintKey: tutorial.tap_enemy
+  _tutorialTarget: 1

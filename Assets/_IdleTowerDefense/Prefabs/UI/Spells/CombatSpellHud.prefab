@@ -285,6 +285,7 @@ GameObject:
   - component: {fileID: 7580452277008981789}
   - component: {fileID: 8503982557986148616}
   - component: {fileID: 7551346248021834836}
+  - component: {fileID: 7387461442927962320}
   m_Layer: 0
   m_Name: CombatSpellHud
   m_TagString: Untagged
@@ -376,6 +377,7 @@ MonoBehaviour:
   _activeButtonPrefab: {fileID: 3279061015458469332, guid: 4d1f1e346d974284d8330ca11b4cf86b, type: 3}
   _passiveBadge: {fileID: 7310391833672513380}
   _passivePopup: {fileID: 6949077110276679928}
+  _tutorialVisibilityGroup: {fileID: 7387461442927962320}
   _panelRoot: {fileID: 4902853758308772124}
   _detailsRoot: {fileID: 3963457601065174743}
   _detailsCanvasGroup: {fileID: 7428750490525414012}
@@ -408,6 +410,21 @@ MonoBehaviour:
   _worldCamera: {fileID: 0}
   _baseMetaDropChance: 0.2
   _metaDropLifetime: 15
+  _tutorialPassiveSpell: {fileID: 0}
+  _randomStrikeEffectPrefab: {fileID: 0}
+  _towerInvulnerabilityIndicator: {fileID: 0}
+--- !u!225 &7387461442927962320
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2234368091642061211}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &3186960542482511742
 GameObject:
   m_ObjectHideFlags: 0

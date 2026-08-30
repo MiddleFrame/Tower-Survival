@@ -36,6 +36,7 @@ public class HorizontalSelector : MonoBehaviour
     private string _newItemTitle;
     private readonly List<HorizontalSelectorIndicator> _indicators = new();
     private readonly List<float> _itemSpeeds = new();
+    private bool _tutorialLocked;
 
     public static bool rewardedSpeed;
     
@@ -73,6 +74,9 @@ public class HorizontalSelector : MonoBehaviour
             Destroy(indicatorParent);
 
         itemList[index].onValueChanged.Invoke();
+
+        if (_tutorialLocked)
+            ForceTutorialSpeed();
     }
 
     private void CreateSpeedItem(float speed)
@@ -112,6 +116,8 @@ public class HorizontalSelector : MonoBehaviour
 
     public void PreviousClick()
     {
+        if (_tutorialLocked)
+            return;
         if (index == 0)
         {
             if (!loopSelection) return;
@@ -125,6 +131,8 @@ public class HorizontalSelector : MonoBehaviour
 
     public void ForwardClick()
     {
+        if (_tutorialLocked)
+            return;
         if (index + 1 >= itemList.Count)
         {
             if (!loopSelection) return;
@@ -204,6 +212,22 @@ public class HorizontalSelector : MonoBehaviour
 
             indicator.SetActiveState(i == index);
         }
+    }
+
+    public void SetTutorialLocked(bool locked)
+    {
+        _tutorialLocked = locked;
+        if (locked && itemList.Count > 0)
+            ForceTutorialSpeed();
+    }
+
+    private void ForceTutorialSpeed()
+    {
+        int tutorialIndex = FindClosestSpeedIndex(1f);
+        index = tutorialIndex;
+        if (_label != null && itemList.Count > tutorialIndex)
+            _label.text = itemList[tutorialIndex].itemTitle;
+        Time.timeScale = 1f;
     }
 
     private void EnableIndicators()

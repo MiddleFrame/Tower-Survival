@@ -24,6 +24,8 @@ public class World : MonoBehaviour
 
     [SerializeField]
     private CombatSpellController _combatSpells;
+    [SerializeField]
+    private TutorialRunController _tutorial;
     
     private EcsWorld _world;
     public IEcsSystems System => _systems;
@@ -45,6 +47,9 @@ public class World : MonoBehaviour
         if (_combatSpells == null)
             _combatSpells = FindFirstObjectByType<CombatSpellController>();
         sharedData.SetCombatSpells(_combatSpells);
+        if (_tutorial == null)
+            _tutorial = FindFirstObjectByType<TutorialRunController>();
+        sharedData.SetTutorial(_tutorial);
         
         _systems = new EcsSystems(_world, sharedData).Add(new TowerSpawnSystem(_spawnTowerPoint,_healthBar,_healthBarValue))
             .Add(new TowerUpgradeLoadingSystem())

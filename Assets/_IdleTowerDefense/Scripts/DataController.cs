@@ -49,6 +49,9 @@ public class DataController : Singleton<DataController>
 
     public void SetGameSpeed(float newSpeed)
     {
+        if (TutorialRunController.Instance != null && TutorialRunController.Instance.LocksGameSpeed)
+            return;
+
         Time.timeScale = newSpeed;
         ES3.Save(SaveKeys.GameSpeed, newSpeed);
     }
@@ -161,6 +164,7 @@ public class DataController : Singleton<DataController>
             SceneManager.LoadScene("Menu");
 
         SaveGame();
+        TutorialProgress.EndSession();
     }
 
 
@@ -188,6 +192,10 @@ public class DataController : Singleton<DataController>
     {
         _setting.gameObject.SetActive(false);
         Paused = false;
+        Time.timeScale = TutorialRunController.Instance != null
+                         && TutorialRunController.Instance.LocksGameSpeed
+            ? 1f
+            : ES3.Load(SaveKeys.GameSpeed, 1f);
     }
     
     public static void LoadData(List<Currency> currencies)

@@ -1,4 +1,4 @@
-Penargetan pertempuran kini lebih andal: menara mengabaikan musuh yang kalah, dan proyektil tidak lagi mengenai target yang sedang disingkirkan.
-Pertempuran kini memiliki mantra aktif dan pasif, serta kristal langka yang harus diketuk dalam 15 detik. Mata uang tempur sementara yang lama telah dihapus.
-Menu dan iklan tak menjeda; panel mantra memuat ikon besar dan tambah/kurang membuka detail.
-Kristal kini memakai palet biru yang lebih cerah, berdenyut, lalu terbang ke penghitung. Teks Sirilik sudah rata tengah.
+Penargetan lebih andal: musuh yang kalah diabaikan dan target yang dihapus tidak dapat terkena lagi.
+Pertempuran memiliki mantra aktif/pasif dan kristal langka yang terbang ke penghitung saat diketuk. Mata uang sementara lama dihapus.
+Panel mantra memuat ikon besar; tambah/kurang membuka detail. Teks Sirilik sudah rata tengah.
+Pemain baru langsung masuk ke pertempuran terpandu dengan serangan ketuk, mantra penyelamat, petunjuk, dan efek kebal yang jelas.

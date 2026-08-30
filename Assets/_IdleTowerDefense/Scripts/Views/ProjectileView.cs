@@ -115,6 +115,13 @@ public class ProjectileView : MonoBehaviour
                 towerHealth.CurrentHealth -= projectile.Damage;
                 if (towerHealth.CurrentHealth <= 0)
                 {
+                    if (InitData.sharedData?.Tutorial != null
+                        && InitData.sharedData.Tutorial.TryInterceptLethalDamage(ref towerHealth))
+                    {
+                        projectile.OnDamageDealt?.Invoke(projectile.Damage, other.transform);
+                        towerHealth.OnDamaged?.Invoke();
+                        break;
+                    }
                     towerHealth.CurrentHealth = 0;
                     towerHealth.OnKilled?.Invoke();
                 }

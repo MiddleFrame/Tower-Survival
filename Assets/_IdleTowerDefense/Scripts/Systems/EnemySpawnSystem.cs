@@ -42,6 +42,8 @@ public class EnemySpawnSystem : IEcsPreInitSystem, IEcsRunSystem, IEcsInitSystem
         _world = systems.GetWorld();
         _spawnSettings = _sharedData.Settings.EnemySpawnSettings[DataController.tier];
         _enemySpawnDelay = _spawnSettings.stages[_stage].enemySpawnRate;
+        if (_sharedData.Tutorial != null)
+            _enemySpawnDelay *= _sharedData.Tutorial.SpawnDelayMultiplier;
     }
 
     public void Init(IEcsSystems systems)
@@ -76,9 +78,15 @@ public class EnemySpawnSystem : IEcsPreInitSystem, IEcsRunSystem, IEcsInitSystem
 
         // Reduce delay to increase spawn speed, increase health multiplier
         _enemySpawnDelay = _spawnSettings.stages[_stage].enemySpawnRate;
-        _enemyHealthMultiplier *= _spawnSettings.EnemyHealthMultiplier;
+        if (_sharedData.Tutorial != null)
+            _enemySpawnDelay *= _sharedData.Tutorial.SpawnDelayMultiplier;
+        float healthGrowth = _spawnSettings.EnemyHealthMultiplier;
+        if (_sharedData.Tutorial != null)
+            healthGrowth = Mathf.Lerp(1f, healthGrowth, _sharedData.Tutorial.HealthGrowthStrength);
+        _enemyHealthMultiplier *= healthGrowth;
         _enemyDamageMultiplier *= _spawnSettings.EnemyDamageMultiplier;
-        _spawnCount = _spawnSettings.stages[_stage].enemySpawnCount;
+        _spawnCount = _spawnSettings.stages[_stage].enemySpawnCount
+                      + (_sharedData.Tutorial != null ? _sharedData.Tutorial.AdditionalEnemiesPerWave : 0);
 
         _spawnTimeRemaining = _enemySpawnDelay;
     }
@@ -144,6 +152,8 @@ public class EnemySpawnSystem : IEcsPreInitSystem, IEcsRunSystem, IEcsInitSystem
 
         enemy.animator = enemyView.animator;
         enemy.view = enemyView;
+
+        _sharedData.Tutorial?.NotifyEnemySpawned(enemyView, _enemySpawned);
 
 
         enemyDamage.InitStartValues(

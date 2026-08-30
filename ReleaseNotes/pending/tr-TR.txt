@@ -1,4 +1,4 @@
-Savaş hedeflemesi artık daha güvenilir: kule yenilmiş düşmanları yok sayıyor ve mermiler kaldırılmakta olan hedeflere çarpmıyor.
-Savaşlarda artık aktif ve pasif büyüler ile 15 saniye içinde dokunularak toplanan nadir kristaller var. Eski geçici savaş parası kaldırıldı.
-Menü ve reklamlar oyunu duraklatmaz; büyü paneli büyük simgeleri taşır, artı/eksi ayrıntıları açar.
-Kristaller artık daha açık mavi bir palet kullanıyor, yumuşakça titreşip sayaca uçuyor. Kiril metni dikeyde ortalı.
+Hedefleme daha güvenilir: yenilmiş düşmanlar yok sayılır ve kaldırılan hedeflere tekrar vurulmaz.
+Savaşlarda aktif/pasif büyüler ve dokununca sayaca uçan nadir kristaller var. Eski geçici para kaldırıldı.
+Büyü paneli büyük simgeleri taşır; artı/eksi ayrıntıları açar. Kiril metni ortalıdır.
+Yeni oyuncular dokunma saldırıları, kurtarma büyüleri, yönlendirmeler ve görünür yenilmezlik içeren rehberli bir savaşla başlar.

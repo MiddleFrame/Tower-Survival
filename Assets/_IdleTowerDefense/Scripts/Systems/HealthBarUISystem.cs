@@ -25,8 +25,12 @@ public class HealthBarUISystem : IEcsRunSystem, IEcsInitSystem
         {
             ref Health towerHealth = ref _healthPool.Get(tower);
             towerHealth.healthBar.value = towerHealth.CurrentHealth / towerHealth.MaxHealth;
-            ((Image)towerHealth.healthImage).color = Color.Lerp(new Color32(0x95, 0x43, 0x50, 0xFF),
-                new Color32(0x58, 0x95, 0x43, 0xFF), towerHealth.CurrentHealth / towerHealth.MaxHealth);
+            bool invulnerable = InitData.sharedData?.CombatSpells != null
+                                  && InitData.sharedData.CombatSpells.IsTowerInvulnerable;
+            ((Image)towerHealth.healthImage).color = invulnerable
+                ? new Color32(0x77, 0xD3, 0xDE, 0xFF)
+                : Color.Lerp(new Color32(0x95, 0x43, 0x50, 0xFF),
+                    new Color32(0x58, 0x95, 0x43, 0xFF), towerHealth.CurrentHealth / towerHealth.MaxHealth);
         }
 
         foreach (var enemy in _enemyFilter)

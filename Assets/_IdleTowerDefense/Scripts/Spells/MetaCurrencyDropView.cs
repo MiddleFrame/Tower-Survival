@@ -14,6 +14,9 @@ public sealed class MetaCurrencyDropView : MonoBehaviour
     [SerializeField, Min(0f)] private float _flightArcHeight = 1.4f;
     [SerializeField, Range(0.1f, 1f)] private float _arrivalScale = 0.5f;
     [SerializeField] private Image _flightImage;
+    [Header("Collection hint")]
+    [SerializeField] private GameObject _collectionHint;
+    [SerializeField, Min(0.1f)] private float _collectionHintThreshold = 5f;
 
     private SpriteRenderer _spriteRenderer;
     private Collider2D _collider;
@@ -69,6 +72,8 @@ public sealed class MetaCurrencyDropView : MonoBehaviour
         _usesFlightImage = false;
         _collider.enabled = true;
         _spriteRenderer.enabled = true;
+        if (_collectionHint != null)
+            _collectionHint.SetActive(false);
         transform.localScale = _baseScale;
         SetAlpha(1f);
     }
@@ -88,6 +93,10 @@ public sealed class MetaCurrencyDropView : MonoBehaviour
         float pulse = 1f + Mathf.Sin(Time.unscaledTime * _pulseSpeed) * _pulseStrength;
         transform.localScale = _baseScale * pulse;
 
+        if (_collectionHint != null && !_collectionHint.activeSelf
+                                    && _remainingLifetime <= _collectionHintThreshold)
+            _collectionHint.SetActive(true);
+
         if (_remainingLifetime <= _blinkDuration)
         {
             float alpha = Mathf.PingPong(Time.unscaledTime * 4f, 0.7f) + 0.3f;
@@ -106,6 +115,8 @@ public sealed class MetaCurrencyDropView : MonoBehaviour
             return;
 
         _collider.enabled = false;
+        if (_collectionHint != null)
+            _collectionHint.SetActive(false);
         SetAlpha(1f);
         if (_collectionTarget == null || _worldCamera == null)
         {

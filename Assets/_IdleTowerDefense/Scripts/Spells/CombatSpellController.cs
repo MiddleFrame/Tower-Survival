@@ -3,6 +3,7 @@ using Guirao.UltimateTextDamage;
 using Leopotam.EcsLite;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public sealed class CombatSpellController : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public sealed class CombatSpellController : MonoBehaviour
     [SerializeField] private Camera _worldCamera;
     [SerializeField, Range(0f, 1f)] private float _baseMetaDropChance = 0.2f;
     [SerializeField, Min(1f)] private float _metaDropLifetime = 15f;
+    [Header("Tutorial and impact presentation")]
+    [SerializeField] private CombatSpellDefinition _tutorialPassiveSpell;
+    [SerializeField] private FallingDaggerEffect _randomStrikeEffectPrefab;
+    [SerializeField] private Image _towerInvulnerabilityIndicator;
 
     private EcsWorld _world;
     private EcsFilter _enemyFilter;
@@ -31,11 +36,14 @@ public sealed class CombatSpellController : MonoBehaviour
     private float _metaDropSurgeRemaining;
     private float _metaDropSurgeMultiplier = 1f;
     private float _passiveCooldownRemaining;
+    private bool _invulnerabilityPresented;
 
     public CombatSpellDefinition[] ActiveSpells => _loadout != null && _loadout.ActiveSpells != null
         ? _loadout.ActiveSpells
         : System.Array.Empty<CombatSpellDefinition>();
-    public CombatSpellDefinition PassiveSpell => _loadout != null ? _loadout.PassiveSpell : null;
+    public CombatSpellDefinition PassiveSpell => TutorialProgress.IsTutorialRun && _tutorialPassiveSpell != null
+        ? _tutorialPassiveSpell
+        : _loadout != null ? _loadout.PassiveSpell : null;
     public bool IsTowerInvulnerable => _invulnerabilityRemaining > 0f;
     public float PassiveCooldownRemaining => _passiveCooldownRemaining;
 
@@ -62,6 +70,10 @@ public sealed class CombatSpellController : MonoBehaviour
             _worldCamera = Camera.main;
         CacheCrystalDisplay();
         _hud?.Bind(this);
+        InitData.sharedData?.Tutorial?.Bind(this, _hud, _world);
+        if (_towerInvulnerabilityIndicator != null)
+            _towerInvulnerabilityIndicator.gameObject.SetActive(false);
+        UpdateInvulnerabilityPresentation();
     }
 
     private void Update()
@@ -75,6 +87,8 @@ public sealed class CombatSpellController : MonoBehaviour
         _passiveCooldownRemaining = Mathf.Max(0f, _passiveCooldownRemaining - combatDelta);
         if (_metaDropSurgeRemaining <= 0f)
             _metaDropSurgeMultiplier = 1f;
+
+        UpdateInvulnerabilityPresentation();
 
         HandlePointerInput();
         _hud?.RefreshRuntime();
@@ -101,21 +115,41 @@ public sealed class CombatSpellController : MonoBehaviour
         };
     }
 
+    public float GetConfiguredDuration(int slotIndex)
+    {
+        CombatSpellDefinition[] spells = ActiveSpells;
+        if (slotIndex < 0 || slotIndex >= spells.Length || spells[slotIndex] == null)
+            return 0f;
+
+        if (spells[slotIndex].ActiveEffect == ActiveSpellEffect.TowerInvulnerability
+            && TutorialRunController.Instance != null
+            && TutorialRunController.Instance.IsTutorialMatch)
+            return TutorialRunController.Instance.InvulnerabilityDuration;
+        return spells[slotIndex].DurationSeconds;
+    }
+
     public float GetPassiveResolvedDamage()
     {
         CombatSpellDefinition passive = PassiveSpell;
         if (passive == null)
             return 0f;
 
-        return passive.PassiveEffect is PassiveSpellEffect.TowerStrike or PassiveSpellEffect.ArcaneEcho
-            ? Mathf.Max(1f, GetTowerDamage() * passive.Magnitude)
-            : 0f;
+        return passive.PassiveEffect switch
+        {
+            PassiveSpellEffect.TowerStrike => Mathf.Max(1f, GetTowerDamage() * passive.Magnitude),
+            PassiveSpellEffect.ArcaneEcho => Mathf.Max(1f, GetBaseTowerDamage() * passive.Magnitude),
+            _ => 0f
+        };
     }
 
     public bool TryCastActive(int slotIndex)
     {
         CombatSpellDefinition[] spells = ActiveSpells;
         if (slotIndex < 0 || slotIndex >= spells.Length || spells[slotIndex] == null)
+            return false;
+
+        if (TutorialRunController.Instance != null
+            && !TutorialRunController.Instance.CanCastActive(slotIndex))
             return false;
 
         CombatSpellDefinition definition = spells[slotIndex];
@@ -125,7 +159,11 @@ public sealed class CombatSpellController : MonoBehaviour
         switch (definition.ActiveEffect)
         {
             case ActiveSpellEffect.TowerInvulnerability:
-                _invulnerabilityRemaining = Mathf.Max(_invulnerabilityRemaining, definition.DurationSeconds);
+                float duration = TutorialRunController.Instance != null
+                                 && TutorialRunController.Instance.IsTutorialMatch
+                    ? TutorialRunController.Instance.InvulnerabilityDuration
+                    : definition.DurationSeconds;
+                _invulnerabilityRemaining = Mathf.Max(_invulnerabilityRemaining, duration);
                 break;
             case ActiveSpellEffect.MetaDropSurge:
                 _metaDropSurgeRemaining = Mathf.Max(_metaDropSurgeRemaining, definition.DurationSeconds);
@@ -138,6 +176,8 @@ public sealed class CombatSpellController : MonoBehaviour
                 return false;
         }
 
+        UpdateInvulnerabilityPresentation();
+        TutorialRunController.Instance?.NotifyActiveCast(slotIndex);
         _hud?.RefreshRuntime();
         return true;
     }
@@ -185,8 +225,10 @@ public sealed class CombatSpellController : MonoBehaviour
                 return;
         }
 
-        if (PassiveSpell != null && PassiveSpell.PassiveEffect == PassiveSpellEffect.ArcaneEcho)
-            TryDamageRandomEnemy(PassiveSpell.Magnitude);
+        if (PassiveSpell != null && PassiveSpell.PassiveEffect == PassiveSpellEffect.ArcaneEcho
+                                 && _passiveCooldownRemaining <= 0f
+                                 && TryDamageRandomEnemy(PassiveSpell.Magnitude))
+            _passiveCooldownRemaining = PassiveSpell.CooldownSeconds;
     }
 
     private bool TryApplyPassive(EnemyView enemyView)
@@ -209,14 +251,15 @@ public sealed class CombatSpellController : MonoBehaviour
         return applied;
     }
 
-    private bool TryDamageEnemy(EnemyView enemyView, float multiplier)
+    private bool TryDamageEnemy(EnemyView enemyView, float multiplier, bool useBaseDamage = false)
     {
         if (!enemyView.TryGetEntity(_world, out int entity)
             || !_healthPool.Has(entity)
             || _destroyPool.Has(entity))
             return false;
 
-        float damage = Mathf.Max(1f, GetTowerDamage() * Mathf.Max(0f, multiplier));
+        float towerDamage = useBaseDamage ? GetBaseTowerDamage() : GetTowerDamage();
+        float damage = Mathf.Max(1f, towerDamage * Mathf.Max(0f, multiplier));
         ref Health health = ref _healthPool.Get(entity);
         health.CurrentHealth -= damage;
         health.OnDamaged?.Invoke();
@@ -245,8 +288,21 @@ public sealed class CombatSpellController : MonoBehaviour
             return false;
 
         int selected = candidates[Random.Range(0, candidates.Count)];
-        return _enemyPool.Get(selected).view != null
-               && TryDamageEnemy(_enemyPool.Get(selected).view, multiplier);
+        EnemyView view = _enemyPool.Get(selected).view;
+        if (view == null)
+            return false;
+
+        if (_randomStrikeEffectPrefab == null)
+            return TryDamageEnemy(view, multiplier, true);
+
+        FallingDaggerEffect effect = Instantiate(_randomStrikeEffectPrefab, view.transform.position,
+            Quaternion.identity);
+        effect.Play(view.transform, () =>
+        {
+            if (view != null)
+                TryDamageEnemy(view, multiplier, true);
+        });
+        return true;
     }
 
     private bool TryMarkBounty(EnemyView enemyView, float multiplier)
@@ -266,6 +322,13 @@ public sealed class CombatSpellController : MonoBehaviour
         foreach (int tower in _towerWeaponFilter)
             return Mathf.Max(1f, _towerWeaponPool.Get(tower).AttackDamage);
         return 1f;
+    }
+
+    private static float GetBaseTowerDamage()
+    {
+        return Mathf.Max(1f, InitData.sharedData?.Settings != null
+            ? InitData.sharedData.Settings.TowerStartingAttackDamage
+            : 1f);
     }
 
     private void PurgeBattlefield()
@@ -316,5 +379,39 @@ public sealed class CombatSpellController : MonoBehaviour
         if (DataController.Instance != null)
             DataController.Instance.EarnedCrystals += amount;
         _crystalDisplay?.ShowGain(amount);
+    }
+
+    public int FindActiveSlot(ActiveSpellEffect effect)
+    {
+        CombatSpellDefinition[] spells = ActiveSpells;
+        for (int i = 0; i < spells.Length; i++)
+        {
+            if (spells[i] != null && spells[i].ActiveEffect == effect)
+                return i;
+        }
+        return -1;
+    }
+
+    private void UpdateInvulnerabilityPresentation()
+    {
+        bool active = IsTowerInvulnerable;
+        if (_invulnerabilityPresented == active)
+            return;
+
+        _invulnerabilityPresented = active;
+        InitData.sharedData?.towerView?.SetInvulnerable(active);
+        if (_towerInvulnerabilityIndicator != null)
+            _towerInvulnerabilityIndicator.gameObject.SetActive(active);
+    }
+
+    private void OnDisable()
+    {
+        if (_invulnerabilityPresented)
+        {
+            _invulnerabilityPresented = false;
+            InitData.sharedData?.towerView?.SetInvulnerable(false);
+        }
+        if (_towerInvulnerabilityIndicator != null)
+            _towerInvulnerabilityIndicator.gameObject.SetActive(false);
     }
 }

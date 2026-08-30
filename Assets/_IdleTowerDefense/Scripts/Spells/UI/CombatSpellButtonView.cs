@@ -25,6 +25,8 @@ public sealed class CombatSpellButtonView : MonoBehaviour
     private CombatSpellController _controller;
     private CombatSpellDefinition _definition;
     private int _slotIndex;
+    public int SlotIndex => _slotIndex;
+    public RectTransform TargetRect => (RectTransform)transform;
 
     public void Bind(CombatSpellController controller, int slotIndex, CombatSpellDefinition definition)
     {
@@ -56,7 +58,8 @@ public sealed class CombatSpellButtonView : MonoBehaviour
         float activeDuration = _controller.GetActiveDurationRemaining(_slotIndex);
         bool isActive = activeDuration > 0.01f;
         bool isUsed = remaining <= 0 && !isActive;
-        bool showDuration = _definition != null && _definition.DurationSeconds > 0f
+        float configuredDuration = _controller.GetConfiguredDuration(_slotIndex);
+        bool showDuration = _definition != null && configuredDuration > 0f
                             && (remaining > 0 || isActive);
 
         _button.interactable = remaining > 0;
@@ -75,7 +78,7 @@ public sealed class CombatSpellButtonView : MonoBehaviour
             _durationBadge.SetActive(showDuration);
         if (_duration != null && showDuration)
         {
-            float displayedDuration = isActive ? activeDuration : _definition.DurationSeconds;
+            float displayedDuration = isActive ? activeDuration : configuredDuration;
             string format = isActive && displayedDuration < 10f ? "0.0" : "0";
             LightweightLocalization.Bind(_duration, "spell.cooldown", displayedDuration.ToString(format));
             _duration.color = isActive ? ActiveText : ReadyText;

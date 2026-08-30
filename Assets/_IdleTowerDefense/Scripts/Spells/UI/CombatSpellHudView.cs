@@ -11,6 +11,7 @@ public sealed class CombatSpellHudView : MonoBehaviour
     [SerializeField] private CombatSpellButtonView _activeButtonPrefab;
     [SerializeField] private PassiveSpellBadgeView _passiveBadge;
     [SerializeField] private PassiveSpellPopupView _passivePopup;
+    [SerializeField] private CanvasGroup _tutorialVisibilityGroup;
     [Header("Expanded spell information")]
     [SerializeField] private RectTransform _panelRoot;
     [SerializeField] private GameObject _detailsRoot;
@@ -89,6 +90,41 @@ public sealed class CombatSpellHudView : MonoBehaviour
         if (_expandRoutine != null)
             StopCoroutine(_expandRoutine);
         _expandRoutine = StartCoroutine(AnimateExpanded(_isExpanded));
+    }
+
+    public void SetTutorialActiveSlot(int visibleSlot)
+    {
+        bool showActivePanel = visibleSlot >= 0;
+        if (_tutorialVisibilityGroup != null)
+        {
+            _tutorialVisibilityGroup.alpha = showActivePanel ? 1f : 0f;
+            _tutorialVisibilityGroup.interactable = showActivePanel;
+            _tutorialVisibilityGroup.blocksRaycasts = showActivePanel;
+        }
+        if (_activeContainer != null)
+            _activeContainer.gameObject.SetActive(showActivePanel);
+        if (_heading != null)
+            _heading.gameObject.SetActive(showActivePanel);
+        if (_expandButton != null)
+            _expandButton.gameObject.SetActive(showActivePanel);
+        if (_detailsRoot != null)
+            _detailsRoot.SetActive(false);
+
+        foreach (CombatSpellButtonView button in _activeButtons)
+        {
+            if (button != null)
+                button.gameObject.SetActive(showActivePanel && button.SlotIndex == visibleSlot);
+        }
+    }
+
+    public RectTransform GetActiveButtonRect(int slotIndex)
+    {
+        foreach (CombatSpellButtonView button in _activeButtons)
+        {
+            if (button != null && button.SlotIndex == slotIndex)
+                return button.TargetRect;
+        }
+        return null;
     }
 
     private IEnumerator AnimateExpanded(bool expanded)
