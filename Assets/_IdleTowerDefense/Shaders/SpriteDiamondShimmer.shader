@@ -8,6 +8,8 @@ Shader "IdleTowerDefense/SpriteDiamondShimmer"
         _ShimmerSpeed ("Shimmer Speed", Range(0.1, 4)) = 1.15
         _ShimmerWidth ("Shimmer Width", Range(0.02, 0.3)) = 0.1
         _ShimmerIntensity ("Shimmer Intensity", Range(0, 1.5)) = 0.72
+        _PixelBlockSize ("Effect Pixel Block Size", Range(1, 12)) = 8
+        _AnimationFps ("Effect Animation FPS", Range(4, 24)) = 12
     }
 
     SubShader
@@ -48,11 +50,14 @@ Shader "IdleTowerDefense/SpriteDiamondShimmer"
 
             TEXTURE2D(_MainTex);
             SAMPLER(sampler_MainTex);
+            float4 _MainTex_TexelSize;
             float4 _Tint;
             float4 _ShimmerColor;
             float _ShimmerSpeed;
             float _ShimmerWidth;
             float _ShimmerIntensity;
+            float _PixelBlockSize;
+            float _AnimationFps;
 
             Varyings Vert(Attributes input)
             {
@@ -68,11 +73,17 @@ Shader "IdleTowerDefense/SpriteDiamondShimmer"
                 half4 sprite = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, input.uv) * input.color;
                 clip(sprite.a - 0.001h);
 
-                float sweep = frac(input.uv.x + input.uv.y * 0.55 - _Time.y * _ShimmerSpeed);
+                float2 textureSize = max(_MainTex_TexelSize.zw, 1.0);
+                float blockSize = max(_PixelBlockSize, 1.0);
+                float2 pixelCell = floor(input.uv * textureSize / blockSize);
+                float2 pixelUv = (pixelCell * blockSize + blockSize * 0.5) / textureSize;
+                float steppedTime = floor(_Time.y * _AnimationFps) / _AnimationFps;
+
+                float sweep = frac(pixelUv.x + pixelUv.y * 0.55 - steppedTime * _ShimmerSpeed);
                 float distanceToBand = abs(sweep - 0.5);
-                float band = 1.0 - smoothstep(0.0, _ShimmerWidth, distanceToBand);
-                float facets = lerp(0.72, 1.0,
-                    step(0.5, frac(floor(input.uv.x * 12.0) + floor(input.uv.y * 12.0))));
+                float band = step(distanceToBand, _ShimmerWidth);
+                float facets = lerp(0.68, 1.0,
+                    step(0.5, frac((pixelCell.x + pixelCell.y) * 0.5)));
 
                 half3 tinted = lerp(sprite.rgb, sprite.rgb * _Tint.rgb, 0.18h);
                 tinted += _ShimmerColor.rgb * band * facets * _ShimmerIntensity * sprite.a;

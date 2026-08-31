@@ -2,4 +2,4 @@ Il puntamento è più affidabile: ignora i nemici sconfitti e non colpisce di nu
 Le battaglie includono incantesimi attivi/passivi e cristalli rari che volano al contatore al tocco. Rimossa la vecchia valuta temporanea.
 Il pannello ospita icone grandi; più/meno apre i dettagli. Il cirillico è centrato.
 Nel primo scontro, l'indicazione attende che i nemici siano vicini; l'attacco appare come un piccolo pugnale che cade.
-Icona passiva ingrandita.
+Protezione della torre pixelata.

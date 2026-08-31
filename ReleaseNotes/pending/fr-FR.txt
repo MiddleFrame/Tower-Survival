@@ -2,4 +2,4 @@ Le ciblage est plus fiable : les ennemis vaincus sont ignorés et les cibles ret
 Les combats proposent des sorts actifs/passifs et de rares cristaux qui volent au compteur au toucher. L'ancienne monnaie temporaire disparaît.
 Le panneau accepte de grandes icônes ; plus/moins ouvre les détails. Le cyrillique est centré.
 Au premier combat, l'indication attend que les ennemis approchent ; l'attaque apparaît comme une petite dague qui tombe.
-Icône passive agrandie.
+Protection de tour pixelisée.

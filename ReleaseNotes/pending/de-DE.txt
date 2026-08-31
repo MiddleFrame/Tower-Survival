@@ -2,4 +2,4 @@ Die Zielerfassung ist zuverlässiger: Besiegte Gegner werden ignoriert und entfe
 Kämpfe bieten aktive/passive Zauber und seltene Kristalle, die beim Antippen zum Zähler fliegen. Alte temporäre Währung entfällt.
 Die Zauberleiste passt für große Icons; Plus/Minus öffnet Details. Kyrillischer Text ist zentriert.
 Im ersten Kampf wartet der Tipp-Hinweis auf nahe Gegner; der Angriff erscheint als kleiner fallender Dolch.
-Größeres Symbol der passiven Fähigkeit.
+Pixeliger Turmschutz.
