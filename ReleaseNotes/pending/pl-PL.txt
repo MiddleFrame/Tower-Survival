@@ -2,4 +2,4 @@ Namierzanie jest pewniejsze: pokonani wrogowie są ignorowani, a usunięte cele 
 Walki mają aktywne/pasywne zaklęcia i rzadkie kryształy lecące do licznika po dotknięciu. Usunięto starą walutę tymczasową.
 Panel mieści duże ikony; plus/minus otwiera szczegóły. Cyrylica jest wyśrodkowana.
 W pierwszej walce wskazówka czeka, aż wrogowie podejdą bliżej; atak pokazuje mały spadający sztylet.
-Niewrażliwość wieży ma teraz pikselowy połysk.
+Mniejsze sztylety spadają szybciej.

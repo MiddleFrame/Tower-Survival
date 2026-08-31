@@ -8,6 +8,7 @@ public sealed class FallingDaggerEffect : MonoBehaviour
     [SerializeField] private ParticleSystem _bloodParticles;
     [SerializeField, Min(0.1f)] private float _fallDuration = 0.48f;
     [SerializeField, Min(0.1f)] private float _startHeight = 1.35f;
+    [SerializeField, Min(1f)] private float _startSpeedMultiplier = 1f;
     [SerializeField, Min(0f)] private float _impactHold = 0.12f;
 
     public void Play(Transform target, Action onImpact)
@@ -31,7 +32,9 @@ public sealed class FallingDaggerEffect : MonoBehaviour
 
         while (elapsed < _fallDuration && target != null)
         {
-            elapsed += GetAnimationDeltaTime();
+            float normalizedTime = Mathf.Clamp01(elapsed / _fallDuration);
+            float speedMultiplier = Mathf.Lerp(_startSpeedMultiplier, 1f, normalizedTime);
+            elapsed += GetAnimationDeltaTime() * speedMultiplier;
             impact = target.position + Vector3.up * 0.2f;
             start = impact + Vector3.up * _startHeight;
             float t = Mathf.Clamp01(elapsed / _fallDuration);
