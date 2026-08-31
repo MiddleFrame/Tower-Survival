@@ -2,4 +2,4 @@ Combat targeting is more reliable: defeated enemies are ignored and removed targ
 Battles now feature active/passive spells and rare crystals that fly to the counter when tapped. Obsolete temporary currency was removed.
 Spell UI fits large icons; plus/minus opens details. Cyrillic text is centered.
 The guided first battle waits for nearby enemies before teaching tap attacks, shown by a small falling dagger; rescue spells remain one-use.
-Tutorial taps now respond.
+Tutorial spell visuals improved.

@@ -27,10 +27,19 @@ public class HealthBarUISystem : IEcsRunSystem, IEcsInitSystem
             towerHealth.healthBar.value = towerHealth.CurrentHealth / towerHealth.MaxHealth;
             bool invulnerable = InitData.sharedData?.CombatSpells != null
                                   && InitData.sharedData.CombatSpells.IsTowerInvulnerable;
-            ((Image)towerHealth.healthImage).color = invulnerable
-                ? new Color32(0x77, 0xD3, 0xDE, 0xFF)
-                : Color.Lerp(new Color32(0x95, 0x43, 0x50, 0xFF),
+            if (invulnerable)
+            {
+                float shimmer = (Mathf.Sin(Time.unscaledTime * 4f) + 1f) * 0.5f;
+                ((Image)towerHealth.healthImage).color = Color.Lerp(
+                    new Color32(0x66, 0xC8, 0xD3, 0xFF),
+                    new Color32(0xD0, 0xFA, 0xED, 0xFF), shimmer);
+            }
+            else
+            {
+                ((Image)towerHealth.healthImage).color = Color.Lerp(
+                    new Color32(0x95, 0x43, 0x50, 0xFF),
                     new Color32(0x58, 0x95, 0x43, 0xFF), towerHealth.CurrentHealth / towerHealth.MaxHealth);
+            }
         }
 
         foreach (var enemy in _enemyFilter)

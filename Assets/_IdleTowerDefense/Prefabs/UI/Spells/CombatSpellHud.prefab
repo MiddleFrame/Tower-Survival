@@ -413,6 +413,9 @@ MonoBehaviour:
   _tutorialPassiveSpell: {fileID: 0}
   _randomStrikeEffectPrefab: {fileID: 0}
   _towerInvulnerabilityIndicator: {fileID: 0}
+  _towerInvulnerabilityMaterial: {fileID: 2100000, guid: 788698cc74f0514429424a279e7eb54d, type: 2}
+  _purgeEffectPrefab: {fileID: 3313811980859784880, guid: 162b0c793423460468a08612fcb5d4ab, type: 3}
+  _purgeSlowMotionScale: 0.15
 --- !u!225 &7387461442927962320
 CanvasGroup:
   m_ObjectHideFlags: 0

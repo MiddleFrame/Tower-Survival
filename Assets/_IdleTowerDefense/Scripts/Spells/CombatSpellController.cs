@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Guirao.UltimateTextDamage;
 using Leopotam.EcsLite;
@@ -18,6 +19,9 @@ public sealed class CombatSpellController : MonoBehaviour
     [SerializeField] private CombatSpellDefinition _tutorialPassiveSpell;
     [SerializeField] private FallingDaggerEffect _randomStrikeEffectPrefab;
     [SerializeField] private Image _towerInvulnerabilityIndicator;
+    [SerializeField] private Material _towerInvulnerabilityMaterial;
+    [SerializeField] private PurgeBattlefieldEffect _purgeEffectPrefab;
+    [SerializeField, Range(0.05f, 0.5f)] private float _purgeSlowMotionScale = 0.15f;
 
     private EcsWorld _world;
     private EcsFilter _enemyFilter;
@@ -37,6 +41,9 @@ public sealed class CombatSpellController : MonoBehaviour
     private float _metaDropSurgeMultiplier = 1f;
     private float _passiveCooldownRemaining;
     private bool _invulnerabilityPresented;
+    private bool _purgeSequenceActive;
+    private float _purgeRestoreTimeScale = 1f;
+    private PurgeBattlefieldEffect _activePurgeEffect;
 
     public CombatSpellDefinition[] ActiveSpells => _loadout != null && _loadout.ActiveSpells != null
         ? _loadout.ActiveSpells
@@ -170,8 +177,9 @@ public sealed class CombatSpellController : MonoBehaviour
                 _metaDropSurgeMultiplier = Mathf.Max(_metaDropSurgeMultiplier, definition.Magnitude);
                 break;
             case ActiveSpellEffect.PurgeBattlefield:
-                PurgeBattlefield();
-                break;
+                BeginPurgeBattlefield(slotIndex);
+                _hud?.RefreshRuntime();
+                return true;
             default:
                 return false;
         }
@@ -367,6 +375,44 @@ public sealed class CombatSpellController : MonoBehaviour
         }
     }
 
+    private void BeginPurgeBattlefield(int slotIndex)
+    {
+        TutorialRunController.Instance?.NotifyActiveCast(slotIndex);
+
+        _purgeRestoreTimeScale = Mathf.Max(0.01f, Time.timeScale);
+        Time.timeScale = Mathf.Max(0.01f, _purgeRestoreTimeScale * _purgeSlowMotionScale);
+        _purgeSequenceActive = true;
+
+        Transform tower = InitData.sharedData?.towerView != null
+            ? InitData.sharedData.towerView.transform
+            : null;
+        if (_purgeEffectPrefab != null && tower != null)
+        {
+            _activePurgeEffect = Instantiate(_purgeEffectPrefab);
+            _activePurgeEffect.Play(tower, _worldCamera, CompletePurgeBattlefield);
+            return;
+        }
+
+        StartCoroutine(CompletePurgeAfterDelay());
+    }
+
+    private IEnumerator CompletePurgeAfterDelay()
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
+        CompletePurgeBattlefield();
+    }
+
+    private void CompletePurgeBattlefield()
+    {
+        if (!_purgeSequenceActive)
+            return;
+
+        PurgeBattlefield();
+        Time.timeScale = _purgeRestoreTimeScale;
+        _purgeSequenceActive = false;
+        _activePurgeEffect = null;
+    }
+
     private void CacheCrystalDisplay()
     {
         CurrencyDisplayElement[] displays = FindObjectsByType<CurrencyDisplayElement>(
@@ -412,9 +458,9 @@ public sealed class CombatSpellController : MonoBehaviour
             return;
 
         _invulnerabilityPresented = active;
-        InitData.sharedData?.towerView?.SetInvulnerable(active);
+        InitData.sharedData?.towerView?.SetInvulnerable(active, _towerInvulnerabilityMaterial);
         if (_towerInvulnerabilityIndicator != null)
-            _towerInvulnerabilityIndicator.gameObject.SetActive(active);
+            _towerInvulnerabilityIndicator.gameObject.SetActive(false);
     }
 
     private void OnDisable()
@@ -422,9 +468,17 @@ public sealed class CombatSpellController : MonoBehaviour
         if (_invulnerabilityPresented)
         {
             _invulnerabilityPresented = false;
-            InitData.sharedData?.towerView?.SetInvulnerable(false);
+            InitData.sharedData?.towerView?.SetInvulnerable(false, _towerInvulnerabilityMaterial);
         }
         if (_towerInvulnerabilityIndicator != null)
             _towerInvulnerabilityIndicator.gameObject.SetActive(false);
+
+        if (_purgeSequenceActive)
+        {
+            Time.timeScale = _purgeRestoreTimeScale;
+            _purgeSequenceActive = false;
+        }
+        if (_activePurgeEffect != null)
+            Destroy(_activePurgeEffect.gameObject);
     }
 }
