@@ -18,7 +18,7 @@ MonoBehaviour:
   _passiveEffect: 3
   _titleKey: spell.arcane_echo.title
   _descriptionKey: spell.arcane_echo.description
-  _icon: {fileID: 21300000, guid: 9a839c28cbe2d93419951140cd22e461, type: 3}
+  _icon: {fileID: 21300000, guid: 0b5b52760ebac8142939efd62bc31fa2, type: 3}
   _baseUses: 1
   _durationSeconds: 0
   _magnitude: 1
