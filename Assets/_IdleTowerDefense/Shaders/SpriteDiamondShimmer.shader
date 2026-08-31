@@ -82,11 +82,9 @@ Shader "IdleTowerDefense/SpriteDiamondShimmer"
                 float sweep = frac(pixelUv.x + pixelUv.y * 0.55 - steppedTime * _ShimmerSpeed);
                 float distanceToBand = abs(sweep - 0.5);
                 float band = step(distanceToBand, _ShimmerWidth);
-                float facets = lerp(0.68, 1.0,
-                    step(0.5, frac((pixelCell.x + pixelCell.y) * 0.5)));
 
                 half3 tinted = lerp(sprite.rgb, sprite.rgb * _Tint.rgb, 0.18h);
-                tinted += _ShimmerColor.rgb * band * facets * _ShimmerIntensity * sprite.a;
+                tinted += _ShimmerColor.rgb * band * _ShimmerIntensity * sprite.a;
                 return half4(tinted, sprite.a);
             }
             ENDHLSL
