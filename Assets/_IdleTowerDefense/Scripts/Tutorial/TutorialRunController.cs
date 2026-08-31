@@ -180,8 +180,6 @@ public sealed class TutorialRunController : MonoBehaviour
         _spellHud?.SetTutorialActiveSlot(-1);
         ResumeCombat();
 
-        if (_lethalGate >= 2)
-            TutorialProgress.Complete();
     }
 
     private void ApplyTutorialSceneRestrictions()

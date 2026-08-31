@@ -1,5 +1,4 @@
-El apuntado es más fiable: ignora enemigos derrotados y no vuelve a golpear objetivos eliminados.
-Las batallas incluyen hechizos activos/pasivos y cristales raros que vuelan al contador al tocarlos. Se eliminó la moneda temporal.
-El panel admite iconos grandes; más/menos abre detalles. El texto cirílico queda centrado.
-En el primer combate, la indicación espera a que se acerquen los enemigos; el ataque se muestra con una pequeña daga que cae.
-Las dagas pequeñas caen más rápido.
+El apuntado es más fiable y los enemigos derrotados no reciben golpes repetidos.
+Las batallas incluyen hechizos activos/pasivos y cristales coleccionables; se eliminó la moneda temporal.
+El primer combate enseña ataques al tocar con una daga rápida y hechizos de rescate de un solo uso.
+El progreso inicial comienza con mineral de cobre. El disparo automático y el mineral de oro siguen bloqueados.

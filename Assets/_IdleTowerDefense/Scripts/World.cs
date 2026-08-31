@@ -55,8 +55,6 @@ public class World : MonoBehaviour
             .Add(new TowerUpgradeLoadingSystem())
             .Add(new EnemyAttackSystem())
             .Add(new HealthBarUISystem())
-            .Add(new TowerTargetingSystem())
-            .Add(new TowerFiringSystem(sharedData.Settings.shootingSound,_wordSound))
             .Add(new EnemySpawnSystem())
             .Add(new EnemyDamageSystem())
             .Add(new HealthRegenerationSystem())

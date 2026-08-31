@@ -67,6 +67,8 @@ public class TowerSpawnSystem : IEcsPreInitSystem, IEcsInitSystem
 
         towerTargetSelector.InitStartValues(_sharedData.Settings.TowerStartingTargetingRange);
         towerTargetSelector.radiusRenderer = tower.radiusLine;
+        if (tower.radiusLine != null)
+            tower.radiusLine.enabled = false;
         _sharedData.towerView = tower;
     }
     

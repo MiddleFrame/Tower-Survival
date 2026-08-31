@@ -1,5 +1,4 @@
-Le ciblage est plus fiable : les ennemis vaincus sont ignorés et les cibles retirées ne sont plus touchées.
-Les combats proposent des sorts actifs/passifs et de rares cristaux qui volent au compteur au toucher. L'ancienne monnaie temporaire disparaît.
-Le panneau accepte de grandes icônes ; plus/moins ouvre les détails. Le cyrillique est centré.
-Au premier combat, l'indication attend que les ennemis approchent ; l'attaque apparaît comme une petite dague qui tombe.
-Dagues plus petites et rapides.
+Le ciblage est plus fiable et les ennemis vaincus ne sont plus touchés deux fois.
+Les combats proposent des sorts actifs/passifs et des cristaux à ramasser ; la monnaie temporaire disparaît.
+Le premier combat enseigne l'attaque au toucher avec une dague rapide et des sorts de secours à usage unique.
+La progression débute avec le minerai de cuivre. Le tir automatique et le minerai d'or restent verrouillés.

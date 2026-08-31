@@ -22,6 +22,12 @@ public class CurrencyDisplayElement : MonoBehaviour
 
     private void Awake()
     {
+        if (currencyType == CurrencyTypes.Gold)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         _collectionTargetScale = CollectionTarget.localScale;
     }
 

@@ -25,6 +25,7 @@ public class LoseMenu : MonoBehaviour
 
     private static readonly int openMenu = Animator.StringToHash("OpenMenu");
     private bool _isOpen;
+    private bool _isTutorialPlaceholder;
 
     private void OnEnable()
     {
@@ -40,6 +41,8 @@ public class LoseMenu : MonoBehaviour
     public void OpenLoseMenu(bool isNewHighScore, int enemiesKilled, float earnedCrystals, float earnedGold)
     {
         _isOpen = true;
+        _isTutorialPlaceholder = false;
+        SetStandardContentVisible(true);
         OpenAnim();
         EnableHighScore(isNewHighScore);
         SetKilledEnemy(enemiesKilled);
@@ -53,6 +56,15 @@ public class LoseMenu : MonoBehaviour
             DataController.Instance.OnRewardx2();
     }
 
+    public void OpenTutorialCompletionPlaceholder()
+    {
+        _isOpen = true;
+        _isTutorialPlaceholder = true;
+        SetStandardContentVisible(false);
+        x2Button.SetActive(false);
+        OpenAnim();
+    }
+
     private void OpenAnim()
     {
         _animator.SetTrigger(openMenu);
@@ -60,6 +72,8 @@ public class LoseMenu : MonoBehaviour
     public void Close()
     {
         _isOpen = false;
+        _isTutorialPlaceholder = false;
+        SetStandardContentVisible(true);
         _animator.Play($"Close");
     }
 
@@ -78,7 +92,7 @@ public class LoseMenu : MonoBehaviour
 
     private void GrantRemoveAdsBonus()
     {
-        if (!_isOpen)
+        if (!_isOpen || _isTutorialPlaceholder)
             return;
 
         x2Button.SetActive(false);
@@ -117,5 +131,11 @@ public class LoseMenu : MonoBehaviour
 
         TMP_Text label = x2Button.GetComponentInChildren<TMP_Text>(true);
         LightweightLocalization.Bind(label, "game.double_ore");
+    }
+
+    private void SetStandardContentVisible(bool visible)
+    {
+        if (_enemyKilled != null && _enemyKilled.transform.parent != null)
+            _enemyKilled.transform.parent.gameObject.SetActive(visible);
     }
 }

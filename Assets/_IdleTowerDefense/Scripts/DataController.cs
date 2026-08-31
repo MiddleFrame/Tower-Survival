@@ -86,6 +86,14 @@ public class DataController : Singleton<DataController>
         Paused = true;
         CleanupGameplayViews();
 
+        if (TutorialProgress.IsTutorialRun)
+        {
+            ApplyTutorialCompletionEconomy();
+            TutorialProgress.Complete();
+            _menu.OpenTutorialCompletionPlaceholder();
+            return;
+        }
+
         bool isNewHighScore = false;
         int highScore = ES3.Load(SaveKeys.EnemiesKilled+"_"+tier,0);
         if (highScore < EnemiesKilled)
@@ -95,6 +103,19 @@ public class DataController : Singleton<DataController>
         }
 
         _menu.OpenLoseMenu(isNewHighScore, EnemiesKilled, EarnedCrystals, 0);
+    }
+
+    private void ApplyTutorialCompletionEconomy()
+    {
+        if (!EarlyProgressionRules.ApplyTutorialCompletionCurrencies(Currency))
+            return;
+
+        if (currencyText.TryGetValue(CurrencyTypes.Ore, out TMP_Text copperText) && copperText != null)
+            copperText.text = Currency[CurrencyTypes.Ore].value.ToString("N0");
+        if (currencyText.TryGetValue(CurrencyTypes.Gold, out TMP_Text goldText) && goldText != null)
+            goldText.text = Currency[CurrencyTypes.Gold].value.ToString("N0");
+
+        SaveGame();
     }
 
     private void CleanupGameplayViews()

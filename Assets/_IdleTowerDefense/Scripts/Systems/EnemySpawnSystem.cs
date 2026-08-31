@@ -30,6 +30,7 @@ public class EnemySpawnSystem : IEcsPreInitSystem, IEcsRunSystem, IEcsInitSystem
     private EcsPool<Position> _positionPool;
     private EcsPool<Movement> _movementPool;
     private EcsPool<Health> _healthPool;
+    private EcsPool<CurrencyDrop> _currencyDropPool;
     private EcsPool<EnemyDamage> _meleeDamagePool;
     private EcsPool<Damage> _damagePool;
     private EcsPool<Destroy> _destroyPool;
@@ -55,6 +56,7 @@ public class EnemySpawnSystem : IEcsPreInitSystem, IEcsRunSystem, IEcsInitSystem
         _positionPool = _world.GetPool<Position>();
         _movementPool = _world.GetPool<Movement>();
         _healthPool = _world.GetPool<Health>();
+        _currencyDropPool = _world.GetPool<CurrencyDrop>();
         _meleeDamagePool = _world.GetPool<EnemyDamage>();
         _damagePool = _world.GetPool<Damage>();
         _destroyPool = _world.GetPool<Destroy>();
@@ -129,6 +131,17 @@ public class EnemySpawnSystem : IEcsPreInitSystem, IEcsRunSystem, IEcsInitSystem
         position = randomPosition;
         movement.Velocity = -randomPosition.normalized * enemyBaseStats.movementSpeed;
         metaCurrencyReward.Amount = 1;
+
+        if (EarlyProgressionRules.ShouldDropCopperOre(DataController.tier, Random.value))
+        {
+            int copperOre = EarlyProgressionRules.CalculateCopperOreAmount(
+                _spawnSettings.OreMultiplier, oreMultiplier);
+            ref CurrencyDrop currencyDrop = ref _currencyDropPool.Add(entity);
+            currencyDrop.Drops = new Dictionary<CurrencyTypes, int>
+            {
+                { CurrencyTypes.Ore, copperOre }
+            };
+        }
 
         health.InitStartValues(
             enemyBaseStats.startingHealth,

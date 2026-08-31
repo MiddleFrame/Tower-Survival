@@ -53,14 +53,6 @@ public class DestroySystem : IEcsInitSystem, IEcsRunSystem
                 _combatSpells?.TrySpawnMetaDrop(destroyedPosition, amount, rewardMultiplier);
             }
 
-            if (_enemyPool.Has(destroyedEntity)
-                && DataController.Instance.EnemiesKilled > 0
-                && DataController.Instance.EnemiesKilled % 10 == 0)
-            {
-                DataController.Currency.AddValues(
-                    new KeyValuePair<CurrencyTypes, int>(CurrencyTypes.Gold, goldMultiplier));
-            }
-
             if (_currencyDropPool.Has(destroyedEntity))
             {
                 ref CurrencyDrop currencyDrop = ref _currencyDropPool.Get(destroyedEntity);
