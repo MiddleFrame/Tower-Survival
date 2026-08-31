@@ -15,6 +15,7 @@ public sealed class CombatSpellController : MonoBehaviour
     [SerializeField] private Camera _worldCamera;
     [SerializeField, Range(0f, 1f)] private float _baseMetaDropChance = 0.2f;
     [SerializeField, Min(1f)] private float _metaDropLifetime = 15f;
+    [SerializeField, Min(0f)] private float _enemyTapRadius = 0.45f;
     [Header("Tutorial and impact presentation")]
     [SerializeField] private CombatSpellDefinition _tutorialPassiveSpell;
     [SerializeField] private FallingDaggerEffect _randomStrikeEffectPrefab;
@@ -219,8 +220,8 @@ public sealed class CombatSpellController : MonoBehaviour
             return;
 
         Vector2 worldPosition = _worldCamera.ScreenToWorldPoint(Input.mousePosition);
-        Collider2D[] hits = Physics2D.OverlapPointAll(worldPosition);
-        foreach (Collider2D hit in hits)
+        Collider2D[] pointHits = Physics2D.OverlapPointAll(worldPosition);
+        foreach (Collider2D hit in pointHits)
         {
             if (hit.TryGetComponent(out MetaCurrencyDropView drop))
             {
@@ -229,7 +230,10 @@ public sealed class CombatSpellController : MonoBehaviour
             }
         }
 
-        foreach (Collider2D hit in hits)
+        Collider2D[] enemyHits = _enemyTapRadius > 0f
+            ? Physics2D.OverlapCircleAll(worldPosition, _enemyTapRadius)
+            : pointHits;
+        foreach (Collider2D hit in enemyHits)
         {
             EnemyView enemyView = hit.GetComponentInParent<EnemyView>();
             if (enemyView != null && TryApplyPassive(enemyView))

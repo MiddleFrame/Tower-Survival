@@ -45,6 +45,7 @@ public class LoseMenu : MonoBehaviour
         SetKilledEnemy(enemiesKilled);
         SetCrystalsAndGold(earnedCrystals, earnedGold);
         SetTier();
+        LocalizeDoubleRewardButton();
 
         bool shouldGrantAutomatically = InAppInitializer.isRemoveAds;
         x2Button.SetActive(!shouldGrantAutomatically);
@@ -107,5 +108,14 @@ public class LoseMenu : MonoBehaviour
     private void SetTier()
     {
         LightweightLocalization.Bind(_tier, "game.tier", 1);
+    }
+
+    private void LocalizeDoubleRewardButton()
+    {
+        if (x2Button == null)
+            return;
+
+        TMP_Text label = x2Button.GetComponentInChildren<TMP_Text>(true);
+        LightweightLocalization.Bind(label, "game.double_ore");
     }
 }

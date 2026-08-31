@@ -51,6 +51,7 @@ public sealed class TutorialRunController : MonoBehaviour
         }
 
         Instance = this;
+        _overlay?.Hide();
         if (_worldCamera == null)
             _worldCamera = Camera.main;
 

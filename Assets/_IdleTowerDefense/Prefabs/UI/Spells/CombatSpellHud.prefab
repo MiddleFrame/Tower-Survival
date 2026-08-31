@@ -410,6 +410,7 @@ MonoBehaviour:
   _worldCamera: {fileID: 0}
   _baseMetaDropChance: 0.2
   _metaDropLifetime: 15
+  _enemyTapRadius: 0.45
   _tutorialPassiveSpell: {fileID: 0}
   _randomStrikeEffectPrefab: {fileID: 0}
   _towerInvulnerabilityIndicator: {fileID: 0}

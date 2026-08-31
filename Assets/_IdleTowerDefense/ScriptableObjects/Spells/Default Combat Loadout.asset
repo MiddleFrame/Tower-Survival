@@ -14,6 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CombatSpellLoadout
   _activeSpells:
   - {fileID: 11400000, guid: d4c6c2a1dea9e6749bc1028def9fd238, type: 2}
-  - {fileID: 11400000, guid: 95c327ed09ca499458fde21c3fee15cb, type: 2}
   - {fileID: 11400000, guid: 490b1013eb8cdc94eae448b3405b80f0, type: 2}
-  _passiveSpell: {fileID: 11400000, guid: 072a733010c822343938a031dfa8fb14, type: 2}
+  _passiveSpell: {fileID: 11400000, guid: 30bd2b27ac1bd7d4694b778727991169, type: 2}
