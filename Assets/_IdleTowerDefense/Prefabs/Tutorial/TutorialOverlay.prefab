@@ -544,7 +544,7 @@ MonoBehaviour:
   _hint: {fileID: 3798090038720851317}
   _dismissButton: {fileID: 4866833640811337500}
   _fingerOffset: {x: -46, y: 52}
-  _uiFingerOffset: {x: 0, y: 16}
+  _uiFingerOffset: {x: 0, y: -22}
   _bobDistance: 5
   _bobSpeed: 3
 --- !u!223 &7713601051010696480

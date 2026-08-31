@@ -12,7 +12,7 @@ public sealed class TutorialOverlayView : MonoBehaviour
     [SerializeField] private TMP_Text _hint;
     [SerializeField] private Button _dismissButton;
     [SerializeField] private Vector2 _fingerOffset = new(-46f, 52f);
-    [SerializeField] private Vector2 _uiFingerOffset = new(0f, 16f);
+    [SerializeField] private Vector2 _uiFingerOffset = new(0f, -22f);
     [SerializeField, Min(0f)] private float _bobDistance = 5f;
     [SerializeField, Min(0f)] private float _bobSpeed = 3f;
 
