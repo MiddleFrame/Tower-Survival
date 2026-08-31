@@ -1,4 +1,4 @@
 El apuntado es más fiable: ignora enemigos derrotados y no vuelve a golpear objetivos eliminados.
 Las batallas incluyen hechizos activos/pasivos y cristales raros que vuelan al contador al tocarlos. Se eliminó la moneda temporal.
 El panel admite iconos grandes; más/menos abre detalles. El texto cirílico queda centrado.
-Los jugadores nuevos empiezan en un combate guiado con ataques por toque, hechizos de rescate, indicaciones e invulnerabilidad visible.
+En el primer combate, la indicación espera a que se acerquen los enemigos; el ataque se muestra con una pequeña daga que cae.

@@ -1,4 +1,4 @@
 Namierzanie jest pewniejsze: pokonani wrogowie są ignorowani, a usunięte cele nie mogą zostać trafione ponownie.
 Walki mają aktywne/pasywne zaklęcia i rzadkie kryształy lecące do licznika po dotknięciu. Usunięto starą walutę tymczasową.
 Panel mieści duże ikony; plus/minus otwiera szczegóły. Cyrylica jest wyśrodkowana.
-Nowi gracze zaczynają od prowadzonej walki z atakami dotykiem, zaklęciami ratunkowymi, wskazówkami i widoczną niewrażliwością.
+W pierwszej walce wskazówka czeka, aż wrogowie podejdą bliżej; atak pokazuje mały spadający sztylet.

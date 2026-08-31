@@ -184,7 +184,10 @@ public sealed class CombatSpellController : MonoBehaviour
 
     public bool TrySpawnMetaDrop(Vector2 position, int baseAmount, float bountyMultiplier)
     {
-        if (_metaDropPrefab == null || baseAmount <= 0 || DataController.IsGameplayEnding)
+        if (TutorialProgress.IsTutorialRun
+            || _metaDropPrefab == null
+            || baseAmount <= 0
+            || DataController.IsGameplayEnding)
             return false;
 
         float chance = CombatSpellRules.ResolveMetaDropChance(
@@ -225,10 +228,20 @@ public sealed class CombatSpellController : MonoBehaviour
                 return;
         }
 
-        if (PassiveSpell != null && PassiveSpell.PassiveEffect == PassiveSpellEffect.ArcaneEcho
-                                 && _passiveCooldownRemaining <= 0f
-                                 && TryDamageRandomEnemy(PassiveSpell.Magnitude))
-            _passiveCooldownRemaining = PassiveSpell.CooldownSeconds;
+        TryTriggerPassiveTap();
+    }
+
+    internal bool TryTriggerPassiveTap()
+    {
+        CombatSpellDefinition passive = PassiveSpell;
+        if (passive == null
+            || passive.PassiveEffect != PassiveSpellEffect.ArcaneEcho
+            || _passiveCooldownRemaining > 0f
+            || !TryDamageRandomEnemy(passive.Magnitude))
+            return false;
+
+        _passiveCooldownRemaining = passive.CooldownSeconds;
+        return true;
     }
 
     private bool TryApplyPassive(EnemyView enemyView)

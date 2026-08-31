@@ -31,7 +31,7 @@ public sealed class FallingDaggerEffect : MonoBehaviour
 
         while (elapsed < _fallDuration && target != null)
         {
-            elapsed += Time.deltaTime;
+            elapsed += GetAnimationDeltaTime();
             impact = target.position + Vector3.up * 0.2f;
             start = impact + Vector3.up * _startHeight;
             float t = Mathf.Clamp01(elapsed / _fallDuration);
@@ -44,9 +44,19 @@ public sealed class FallingDaggerEffect : MonoBehaviour
             _dagger.gameObject.SetActive(false);
         onImpact?.Invoke();
         _bloodParticles?.Play();
-        yield return new WaitForSeconds(_impactHold);
+        elapsed = 0f;
+        while (elapsed < _impactHold)
+        {
+            elapsed += GetAnimationDeltaTime();
+            yield return null;
+        }
         if (_bloodParticles != null)
             yield return new WaitWhile(() => _bloodParticles.IsAlive(true));
         Destroy(gameObject);
+    }
+
+    private static float GetAnimationDeltaTime()
+    {
+        return Time.timeScale > 0f ? Time.deltaTime : Time.unscaledDeltaTime;
     }
 }

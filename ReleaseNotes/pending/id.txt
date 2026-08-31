@@ -1,4 +1,4 @@
 Penargetan lebih andal: musuh yang kalah diabaikan dan target yang dihapus tidak dapat terkena lagi.
 Pertempuran memiliki mantra aktif/pasif dan kristal langka yang terbang ke penghitung saat diketuk. Mata uang sementara lama dihapus.
 Panel mantra memuat ikon besar; tambah/kurang membuka detail. Teks Sirilik sudah rata tengah.
-Pemain baru langsung masuk ke pertempuran terpandu dengan serangan ketuk, mantra penyelamat, petunjuk, dan efek kebal yang jelas.
+Di pertempuran pertama, petunjuk menunggu musuh mendekat; serangan ketuk ditampilkan sebagai belati kecil yang jatuh.

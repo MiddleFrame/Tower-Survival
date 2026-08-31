@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Leopotam.EcsLite;
 using UnityEngine;
 
@@ -17,6 +18,8 @@ public sealed class TutorialRunController : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float _healthGrowthStrength = 0.3f;
     [SerializeField, Min(0)] private int _additionalEnemiesPerWave = 1;
     [SerializeField, Min(0.1f)] private float _invulnerabilityDuration = 10f;
+    [SerializeField, Min(0f)] private float _introDelaySeconds = 5f;
+    [SerializeField, Min(0.1f)] private float _introEnemyDistance = 4.5f;
 
     private CombatSpellController _spells;
     private EcsWorld _world;
@@ -29,6 +32,8 @@ public sealed class TutorialRunController : MonoBehaviour
     private bool _waitingForSpell;
     private bool _ordinaryPassiveHintQueued;
     private EnemyView _firstEnemy;
+    private readonly List<EnemyView> _spawnedEnemyViews = new();
+    private float _tutorialElapsed;
 
     public bool IsTutorialMatch => TutorialProgress.IsTutorialRun;
     public bool LocksGameSpeed => IsTutorialMatch;
@@ -61,6 +66,18 @@ public sealed class TutorialRunController : MonoBehaviour
             Instance = null;
     }
 
+    private void Update()
+    {
+        if (!IsTutorialMatch || _introShown || DataController.IsGameplayEnding)
+            return;
+
+        _tutorialElapsed += Time.deltaTime;
+        if (_tutorialElapsed < _introDelaySeconds || _spawnedEnemies < 3)
+            return;
+
+        TryShowIntro();
+    }
+
     public void Bind(CombatSpellController spells, CombatSpellHudView hud, EcsWorld world)
     {
         _spells = spells;
@@ -81,21 +98,46 @@ public sealed class TutorialRunController : MonoBehaviour
         _spawnedEnemies = Mathf.Max(_spawnedEnemies, totalSpawned);
         if (_firstEnemy == null)
             _firstEnemy = enemy;
-
-        if (IsTutorialMatch && !_introShown && _spawnedEnemies >= 3)
-        {
-            _introShown = true;
-            PauseCombat();
-            Transform tower = InitData.sharedData?.towerView != null
-                ? InitData.sharedData.towerView.transform
-                : null;
-            _overlay?.ShowWorld("tutorial.tap_screen", tower, _worldCamera, true, ResumeFromIntro);
-            TutorialProgress.MarkPassiveHintSeen(_spells?.PassiveSpell?.SpellId);
-            return;
-        }
+        if (enemy != null)
+            _spawnedEnemyViews.Add(enemy);
 
         if (!IsTutorialMatch && _ordinaryPassiveHintQueued)
             ShowOrdinaryPassiveHint();
+    }
+
+    private void TryShowIntro()
+    {
+        Transform tower = InitData.sharedData?.towerView != null
+            ? InitData.sharedData.towerView.transform
+            : null;
+        if (tower == null)
+            return;
+
+        float triggerDistanceSqr = _introEnemyDistance * _introEnemyDistance;
+        bool enemyIsClose = false;
+        for (int i = _spawnedEnemyViews.Count - 1; i >= 0; i--)
+        {
+            EnemyView enemy = _spawnedEnemyViews[i];
+            if (enemy == null || !enemy.gameObject.activeInHierarchy)
+            {
+                _spawnedEnemyViews.RemoveAt(i);
+                continue;
+            }
+
+            if ((enemy.transform.position - tower.position).sqrMagnitude <= triggerDistanceSqr)
+            {
+                enemyIsClose = true;
+                break;
+            }
+        }
+
+        if (!enemyIsClose)
+            return;
+
+        _introShown = true;
+        PauseCombat();
+        _overlay?.ShowWorld("tutorial.tap_screen", tower, _worldCamera, true, ResumeFromIntro);
+        TutorialProgress.MarkPassiveHintSeen(_spells?.PassiveSpell?.SpellId);
     }
 
     public bool TryInterceptLethalDamage(ref Health health)
@@ -156,6 +198,7 @@ public sealed class TutorialRunController : MonoBehaviour
     private void ResumeFromIntro()
     {
         ResumeCombat();
+        _spells?.TryTriggerPassiveTap();
     }
 
     private void PauseCombat()

@@ -1,4 +1,4 @@
 Le ciblage est plus fiable : les ennemis vaincus sont ignorés et les cibles retirées ne sont plus touchées.
 Les combats proposent des sorts actifs/passifs et de rares cristaux qui volent au compteur au toucher. L'ancienne monnaie temporaire disparaît.
 Le panneau accepte de grandes icônes ; plus/moins ouvre les détails. Le cyrillique est centré.
-Les nouveaux joueurs commencent par un combat guidé avec attaques tactiles, sorts de secours, indications et invulnérabilité visible.
+Au premier combat, l'indication attend que les ennemis approchent ; l'attaque apparaît comme une petite dague qui tombe.

@@ -1,4 +1,4 @@
 A mira está mais confiável: ignora inimigos derrotados e não acerta novamente alvos removidos.
 As batalhas têm feitiços ativos/passivos e cristais raros que voam ao contador ao toque. A moeda temporária antiga foi removida.
 O painel comporta ícones grandes; mais/menos abre detalhes. O texto cirílico fica centralizado.
-Novos jogadores começam em uma batalha guiada com ataques por toque, feitiços de resgate, indicações e invulnerabilidade visível.
+Na primeira batalha, a indicação espera os inimigos se aproximarem; o ataque aparece como uma pequena adaga caindo.
