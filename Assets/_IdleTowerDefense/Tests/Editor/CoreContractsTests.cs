@@ -116,6 +116,8 @@ public sealed class EnemyCombatContractTests
         EnemyView enemy = prefab != null ? prefab.GetComponent<EnemyView>() : null;
 
         Assert.That(prefab, Is.Not.Null, $"Missing prefab: {prefabPath}");
+        Assert.That(PrefabUtility.GetPrefabAssetType(prefab), Is.EqualTo(PrefabAssetType.Regular),
+            "Skeleton must remain an independent prefab, not a Basic Enemy variant.");
         Assert.That(enemy, Is.Not.Null, "Skeleton prefab lost EnemyView.");
         Assert.That(enemy.enemyNumber, Is.EqualTo(EnemyView.EnemyType.Basic));
         Assert.That(enemy.animator, Is.Not.Null, "Skeleton prefab lost Animator.");
@@ -141,6 +143,31 @@ public sealed class EnemyCombatContractTests
             Assert.That(attackEvent, Is.Not.Null, $"{clipName} must queue damage on its final frame.");
             Assert.That(attackEvent.time, Is.GreaterThanOrEqualTo(clip.length - 1f / clip.frameRate - 0.001f));
         }
+    }
+
+    [Test]
+    public void BasicAndSkeletonEnemyPrefabs_HaveIndependentVisuals()
+    {
+        const string basicPath = "Assets/_IdleTowerDefense/Prefabs/Enemies/Basic Enemy.prefab";
+        const string skeletonPath = "Assets/_IdleTowerDefense/Prefabs/Enemies/Skeleton Enemy.prefab";
+        GameObject basic = AssetDatabase.LoadAssetAtPath<GameObject>(basicPath);
+        GameObject skeleton = AssetDatabase.LoadAssetAtPath<GameObject>(skeletonPath);
+
+        Assert.That(basic, Is.Not.Null, $"Missing prefab: {basicPath}");
+        Assert.That(skeleton, Is.Not.Null, $"Missing prefab: {skeletonPath}");
+        Assert.That(PrefabUtility.GetPrefabAssetType(basic), Is.EqualTo(PrefabAssetType.Regular));
+        Assert.That(PrefabUtility.GetPrefabAssetType(skeleton), Is.EqualTo(PrefabAssetType.Regular));
+
+        SpriteRenderer basicModel = basic.transform.Find("Model").GetComponent<SpriteRenderer>();
+        SpriteRenderer skeletonModel = skeleton.transform.Find("Model").GetComponent<SpriteRenderer>();
+        string basicSpritePath = AssetDatabase.GetAssetPath(basicModel.sprite);
+        string skeletonSpritePath = AssetDatabase.GetAssetPath(skeletonModel.sprite);
+
+        Assert.That(basicSpritePath, Does.Not.Contain("/SkeletonHatchet/"),
+            "Basic Enemy must keep the original goblin visuals.");
+        Assert.That(skeletonSpritePath, Does.Contain("/SkeletonHatchet/"),
+            "Skeleton Enemy must use its own skeleton visuals.");
+        Assert.That(basicModel.sprite, Is.Not.SameAs(skeletonModel.sprite));
     }
 
     [Test]
