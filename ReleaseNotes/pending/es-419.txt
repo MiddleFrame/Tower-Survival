@@ -2,4 +2,4 @@ El apuntado es más fiable y los enemigos derrotados no reciben golpes repetidos
 Las batallas incluyen hechizos activos/pasivos y cristales coleccionables; se eliminó la moneda temporal.
 El primer combate enseña ataques al tocar con una daga rápida y hechizos de rescate de un solo uso.
 El progreso inicial comienza con mineral de cobre. El disparo automático y el mineral de oro siguen bloqueados.
-Esqueletos mejor proporcionados lideran ahora el tutorial.
+Los esqueletos bien proporcionados ahora tienen indicadores de salud delineados.

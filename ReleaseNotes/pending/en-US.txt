@@ -2,4 +2,4 @@ Combat targeting is more reliable and defeated enemies cannot be hit twice.
 Battles now feature active/passive spells and collectible crystals; temporary battle currency is gone.
 The guided first battle teaches tap attacks with a fast falling dagger and one-use rescue spells.
 Early progression now starts with copper ore. Tower auto-fire and gold ore remain locked.
-Properly scaled skeleton warriors now lead the tutorial assault.
+Properly scaled skeletons now have clearly outlined health indicators.

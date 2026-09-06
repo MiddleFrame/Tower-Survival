@@ -176,6 +176,40 @@ public sealed class EnemyCombatContractTests
                 UnityEngine.Object.DestroyImmediate(instance);
         }
     }
+
+    [Test]
+    public void SkeletonEnemyPrefab_HealthIndicatorHasOutlinedSpacing()
+    {
+        const string prefabPath = "Assets/_IdleTowerDefense/Prefabs/Enemies/Skeleton Enemy.prefab";
+        GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
+        GameObject instance = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
+
+        try
+        {
+            Assert.That(instance, Is.Not.Null);
+            Transform frame = instance.transform.Find("HealthBar (1)");
+            Transform fill = frame != null ? frame.Find("HealthBar") : null;
+            SpriteRenderer frameRenderer = frame != null ? frame.GetComponent<SpriteRenderer>() : null;
+            SpriteRenderer fillRenderer = fill != null ? fill.GetComponent<SpriteRenderer>() : null;
+
+            Assert.That(frame, Is.Not.Null, "Skeleton health indicator lost its outline object.");
+            Assert.That(fill, Is.Not.Null, "Skeleton health indicator lost its fill object.");
+            Assert.That(frameRenderer, Is.Not.Null);
+            Assert.That(fillRenderer, Is.Not.Null);
+            Assert.That(frameRenderer.sprite, Is.Not.Null, "Skeleton health outline has no sprite.");
+            Assert.That(frame.localPosition.y, Is.GreaterThanOrEqualTo(0.7f),
+                "Skeleton health indicator is too close to its head.");
+            Assert.That(fill.localPosition, Is.EqualTo(Vector3.zero));
+            Assert.That(frame.lossyScale.x, Is.GreaterThan(fill.lossyScale.x),
+                "Health fill must remain inside the outline.");
+            Assert.That(frameRenderer.sortingOrder, Is.LessThan(fillRenderer.sortingOrder));
+        }
+        finally
+        {
+            if (instance != null)
+                UnityEngine.Object.DestroyImmediate(instance);
+        }
+    }
 }
 
 [Category("DataValidation")]
