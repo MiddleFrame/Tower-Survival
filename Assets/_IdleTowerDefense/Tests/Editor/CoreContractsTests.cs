@@ -107,6 +107,41 @@ public sealed class EnemyCombatContractTests
         Assert.That(attackEvent.time, Is.GreaterThanOrEqualTo(clip.length - 1f / clip.frameRate - 0.001f),
             "Barrel damage event moved away from the final animation frame.");
     }
+
+    [Test]
+    public void SkeletonEnemyPrefab_HasCompleteMeleeAnimationContract()
+    {
+        const string prefabPath = "Assets/_IdleTowerDefense/Prefabs/Enemies/Skeleton Enemy.prefab";
+        GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
+        EnemyView enemy = prefab != null ? prefab.GetComponent<EnemyView>() : null;
+
+        Assert.That(prefab, Is.Not.Null, $"Missing prefab: {prefabPath}");
+        Assert.That(enemy, Is.Not.Null, "Skeleton prefab lost EnemyView.");
+        Assert.That(enemy.enemyNumber, Is.EqualTo(EnemyView.EnemyType.Basic));
+        Assert.That(enemy.animator, Is.Not.Null, "Skeleton prefab lost Animator.");
+
+        var overrideController = enemy.animator.runtimeAnimatorController as AnimatorOverrideController;
+        Assert.That(overrideController, Is.Not.Null, "Skeleton must use its animation override controller.");
+        var overrides = new List<KeyValuePair<AnimationClip, AnimationClip>>();
+        overrideController.GetOverrides(overrides);
+
+        foreach (string clipName in new[] { "Idle", "Run", "Hit", "Hit_down", "Hit_up" })
+        {
+            AnimationClip clip = overrides
+                .Where(pair => pair.Key != null && pair.Key.name == clipName)
+                .Select(pair => pair.Value)
+                .SingleOrDefault();
+            Assert.That(clip, Is.Not.Null, $"Skeleton override is missing {clipName}.");
+
+            if (!clipName.StartsWith("Hit", StringComparison.Ordinal))
+                continue;
+
+            AnimationEvent attackEvent = AnimationUtility.GetAnimationEvents(clip)
+                .SingleOrDefault(x => x.functionName == nameof(AnimationEventHandler.OnAnimationEnded));
+            Assert.That(attackEvent, Is.Not.Null, $"{clipName} must queue damage on its final frame.");
+            Assert.That(attackEvent.time, Is.GreaterThanOrEqualTo(clip.length - 1f / clip.frameRate - 0.001f));
+        }
+    }
 }
 
 [Category("DataValidation")]

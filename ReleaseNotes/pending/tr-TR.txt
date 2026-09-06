@@ -2,3 +2,4 @@ Hedefleme daha güvenilir ve yenilmiş düşmanlara iki kez vurulmaz.
 Savaşlarda aktif/pasif büyüler ve toplanabilir kristaller var; geçici para kaldırıldı.
 İlk savaş, hızlı düşen bir hançer ve tek kullanımlık kurtarma büyüleriyle dokunma saldırısını öğretir.
 İlk ilerleme bakır cevheriyle başlar. Otomatik kule ateşi ve altın cevheri kilitli kalır.
+Eğitim savaşındaki saldırıya artık iskelet savaşçılar öncülük ediyor.

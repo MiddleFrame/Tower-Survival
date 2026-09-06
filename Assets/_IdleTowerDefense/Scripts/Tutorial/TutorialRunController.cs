@@ -12,6 +12,7 @@ public sealed class TutorialRunController : MonoBehaviour
     [SerializeField] private GameObject _surrenderButton;
     [SerializeField] private HorizontalSelector _speedSelector;
     [SerializeField] private Camera _worldCamera;
+    [SerializeField] private EnemyView _primaryEnemyPrefab;
 
     [Header("Tutorial balance")]
     [SerializeField, Range(0.1f, 1f)] private float _spawnDelayMultiplier = 0.55f;
@@ -41,6 +42,16 @@ public sealed class TutorialRunController : MonoBehaviour
     public float HealthGrowthStrength => IsTutorialMatch ? _healthGrowthStrength : 1f;
     public int AdditionalEnemiesPerWave => IsTutorialMatch ? _additionalEnemiesPerWave : 0;
     public float InvulnerabilityDuration => _invulnerabilityDuration;
+
+    public EnemyView ResolveEnemyPrefab(EnemyView requestedPrefab)
+    {
+        if (!IsTutorialMatch || _primaryEnemyPrefab == null || requestedPrefab == null)
+            return requestedPrefab;
+
+        return requestedPrefab.enemyNumber == EnemyView.EnemyType.Basic
+            ? _primaryEnemyPrefab
+            : requestedPrefab;
+    }
 
     private void Awake()
     {

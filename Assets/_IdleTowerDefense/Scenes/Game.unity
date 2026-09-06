@@ -25644,10 +25644,13 @@ MonoBehaviour:
   _surrenderButton: {fileID: 2126252449}
   _speedSelector: {fileID: 1037632570}
   _worldCamera: {fileID: 519420031}
+  _primaryEnemyPrefab: {fileID: 7560222593110184585, guid: 101d3fd4cb00dbb4a838ea2661e42d0d, type: 3}
   _spawnDelayMultiplier: 0.55
   _healthGrowthStrength: 0.3
   _additionalEnemiesPerWave: 1
   _invulnerabilityDuration: 10
+  _introDelaySeconds: 5
+  _introEnemyDistance: 4.5
 --- !u!4 &2087479960
 Transform:
   m_ObjectHideFlags: 0

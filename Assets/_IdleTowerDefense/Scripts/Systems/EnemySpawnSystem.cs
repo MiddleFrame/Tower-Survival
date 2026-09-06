@@ -106,9 +106,12 @@ public class EnemySpawnSystem : IEcsPreInitSystem, IEcsRunSystem, IEcsInitSystem
         Vector2 randomPosition = Random.insideUnitCircle.normalized * _sharedData.EnemySpawnRadius;
         // Create Entity, add components
         _enemySpawned++;
+        EnemyView enemyPrefab = _spawnSettings.GetRandomEnemy(_stage);
+        if (_sharedData.Tutorial != null)
+            enemyPrefab = _sharedData.Tutorial.ResolveEnemyPrefab(enemyPrefab);
         EnemyView enemyView = _sharedData.ViewPools != null
-            ? _sharedData.ViewPools.Spawn(_spawnSettings.GetRandomEnemy(_stage), randomPosition, Quaternion.identity)
-            : GameObject.Instantiate(_spawnSettings.GetRandomEnemy(_stage), randomPosition, Quaternion.identity);
+            ? _sharedData.ViewPools.Spawn(enemyPrefab, randomPosition, Quaternion.identity)
+            : GameObject.Instantiate(enemyPrefab, randomPosition, Quaternion.identity);
         enemyView.SetDayNightController(_sharedData.DayNightController);
 
         int entity = _world.NewEntity();
