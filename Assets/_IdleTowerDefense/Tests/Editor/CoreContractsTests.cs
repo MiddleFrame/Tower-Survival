@@ -142,6 +142,40 @@ public sealed class EnemyCombatContractTests
             Assert.That(attackEvent.time, Is.GreaterThanOrEqualTo(clip.length - 1f / clip.frameRate - 0.001f));
         }
     }
+
+    [Test]
+    public void SkeletonEnemyPrefab_SortsBelowTowerFromTheFront()
+    {
+        const string prefabPath = "Assets/_IdleTowerDefense/Prefabs/Enemies/Skeleton Enemy.prefab";
+        GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
+        GameObject instance = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
+
+        try
+        {
+            Assert.That(instance, Is.Not.Null);
+            EnemyView enemy = instance.GetComponent<EnemyView>();
+            MethodInfo applySorting = typeof(EnemyView).GetMethod("ApplyTowerDepthSorting",
+                BindingFlags.NonPublic | BindingFlags.Instance);
+            SpriteRenderer modelRenderer = instance.transform.Find("Model").GetComponent<SpriteRenderer>();
+
+            Assert.That(applySorting, Is.Not.Null);
+
+            instance.transform.position = Vector3.down;
+            applySorting.Invoke(enemy, null);
+            Assert.That(modelRenderer.sortingOrder, Is.EqualTo(6),
+                "An enemy below the tower must render in front of it.");
+
+            instance.transform.position = Vector3.up;
+            applySorting.Invoke(enemy, null);
+            Assert.That(modelRenderer.sortingOrder, Is.EqualTo(4),
+                "An enemy above the tower must render behind it.");
+        }
+        finally
+        {
+            if (instance != null)
+                UnityEngine.Object.DestroyImmediate(instance);
+        }
+    }
 }
 
 [Category("DataValidation")]

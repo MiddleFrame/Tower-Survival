@@ -2,4 +2,4 @@ Namierzanie jest pewniejsze, a pokonani wrogowie nie mogą zostać trafieni drug
 Walki mają aktywne/pasywne zaklęcia i zbierane kryształy; usunięto walutę tymczasową.
 Pierwsza walka uczy ataków dotykiem za pomocą szybkiego sztyletu i jednorazowych zaklęć ratunkowych.
 Początkowy rozwój zaczyna się od rudy miedzi. Automatyczny ostrzał i ruda złota są zablokowane.
-W samouczku atak prowadzą teraz szkieletowi wojownicy.
+Samouczek prowadzą teraz szkielety o poprawnej skali.

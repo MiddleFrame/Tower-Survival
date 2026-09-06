@@ -2,4 +2,4 @@ Il puntamento è più affidabile e i nemici sconfitti non vengono colpiti due vo
 Le battaglie includono incantesimi attivi/passivi e cristalli da raccogliere; rimossa la valuta temporanea.
 Il primo scontro insegna gli attacchi al tocco con un pugnale rapido e incantesimi di salvataggio monouso.
 La progressione inizia con minerale di rame. Fuoco automatico e minerale d'oro restano bloccati.
-Ora i guerrieri scheletro guidano l'assalto del tutorial.
+Scheletri ben proporzionati guidano ora il tutorial.

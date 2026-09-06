@@ -22,6 +22,15 @@ public class EnemyView : MonoBehaviour
     private GameObject model;
 
     [SerializeField]
+    private bool sortModelRelativeToTower;
+
+    [SerializeField]
+    private int behindTowerSortingOrder = 4;
+
+    [SerializeField]
+    private int inFrontOfTowerSortingOrder = 6;
+
+    [SerializeField]
     private GameObject deadAnim;
 
     [SerializeField]
@@ -95,6 +104,21 @@ public class EnemyView : MonoBehaviour
             var scale = model.transform.localScale;
             model.transform.localScale = new Vector3(Mathf.Abs(scale.x), scale.y, scale.z);
         }
+
+        ApplyTowerDepthSorting();
+    }
+
+    private void ApplyTowerDepthSorting()
+    {
+        if (!sortModelRelativeToTower || model == null)
+            return;
+
+        int sortingOrder = transform.position.y < 0f
+            ? inFrontOfTowerSortingOrder
+            : behindTowerSortingOrder;
+
+        foreach (SpriteRenderer spriteRenderer in model.GetComponentsInChildren<SpriteRenderer>(true))
+            spriteRenderer.sortingOrder = sortingOrder;
     }
 
     public bool TryGetEntity(EcsWorld expectedWorld, out int entity)

@@ -2,4 +2,4 @@ A mira está mais confiável e inimigos derrotados não recebem golpes repetidos
 As batalhas têm feitiços ativos/passivos e cristais coletáveis; a moeda temporária foi removida.
 A primeira batalha ensina ataques por toque com uma adaga rápida e feitiços de resgate de uso único.
 O progresso inicial começa com minério de cobre. O tiro automático e o minério de ouro seguem bloqueados.
-Guerreiros esqueletos agora lideram o ataque do tutorial.
+Esqueletos bem proporcionados agora lideram o tutorial.
