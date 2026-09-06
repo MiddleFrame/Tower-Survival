@@ -2,4 +2,4 @@ Le ciblage est plus fiable et les ennemis vaincus ne sont plus touchés deux foi
 Les combats proposent des sorts actifs/passifs et des cristaux à ramasser ; la monnaie temporaire disparaît.
 Le premier combat enseigne l'attaque au toucher avec une dague rapide et des sorts de secours à usage unique.
 La progression débute avec le minerai de cuivre. Le tir automatique et le minerai d'or restent verrouillés.
-Les squelettes bien proportionnés ont désormais une jauge de vie bien détourée.
+Les squelettes sont désormais bien triés et leur jauge de vie est bien détourée.

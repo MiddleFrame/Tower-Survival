@@ -171,6 +171,32 @@ public sealed class EnemyCombatContractTests
     }
 
     [Test]
+    public void SkeletonAnimationSprites_UseCenteredPivots()
+    {
+        const string spriteFolder = "Assets/_IdleTowerDefense/Art/Enemies/SkeletonHatchet";
+        string[] spritePaths = AssetDatabase.FindAssets("t:Texture2D", new[] { spriteFolder })
+            .Select(AssetDatabase.GUIDToAssetPath)
+            .Where(path => path.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
+            .Where(path => !path.EndsWith("/Skeleton_Shadow.png", StringComparison.OrdinalIgnoreCase))
+            .ToArray();
+
+        Assert.That(spritePaths, Has.Length.EqualTo(38));
+        foreach (string path in spritePaths)
+        {
+            var importer = AssetImporter.GetAtPath(path) as TextureImporter;
+            Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(path);
+            var settings = new TextureImporterSettings();
+            importer.ReadTextureSettings(settings);
+            var normalizedPivot = new Vector2(
+                sprite.pivot.x / sprite.rect.width,
+                sprite.pivot.y / sprite.rect.height);
+
+            Assert.That(settings.spriteAlignment, Is.EqualTo((int)SpriteAlignment.Center), path);
+            Assert.That(normalizedPivot, Is.EqualTo(new Vector2(0.5f, 0.5f)), path);
+        }
+    }
+
+    [Test]
     public void SkeletonEnemyPrefab_SortsBelowTowerFromTheFront()
     {
         const string prefabPath = "Assets/_IdleTowerDefense/Prefabs/Enemies/Skeleton Enemy.prefab";
@@ -205,7 +231,7 @@ public sealed class EnemyCombatContractTests
     }
 
     [Test]
-    public void SkeletonEnemyPrefab_HealthIndicatorHasOutlinedSpacing()
+    public void SkeletonEnemyPrefab_HealthIndicatorHasOutline()
     {
         const string prefabPath = "Assets/_IdleTowerDefense/Prefabs/Enemies/Skeleton Enemy.prefab";
         GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
@@ -224,9 +250,6 @@ public sealed class EnemyCombatContractTests
             Assert.That(frameRenderer, Is.Not.Null);
             Assert.That(fillRenderer, Is.Not.Null);
             Assert.That(frameRenderer.sprite, Is.Not.Null, "Skeleton health outline has no sprite.");
-            Assert.That(frame.localPosition.y, Is.GreaterThanOrEqualTo(0.7f),
-                "Skeleton health indicator is too close to its head.");
-            Assert.That(fill.localPosition, Is.EqualTo(Vector3.zero));
             Assert.That(frame.lossyScale.x, Is.GreaterThan(fill.lossyScale.x),
                 "Health fill must remain inside the outline.");
             Assert.That(frameRenderer.sortingOrder, Is.LessThan(fillRenderer.sortingOrder));

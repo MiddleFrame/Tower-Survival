@@ -2,4 +2,4 @@ Penargetan lebih andal dan musuh yang kalah tidak dapat terkena dua kali.
 Pertempuran memiliki mantra aktif/pasif dan kristal koleksi; mata uang sementara dihapus.
 Pertempuran pertama mengajarkan serangan ketuk dengan belati cepat dan mantra penyelamat sekali pakai.
 Progres awal dimulai dengan bijih tembaga. Tembakan otomatis menara dan bijih emas masih terkunci.
-Kerangka berskala pas kini memiliki indikator kesehatan berbingkai jelas.
+Kerangka kini diurutkan dengan benar dan memiliki indikator kesehatan berbingkai jelas.
