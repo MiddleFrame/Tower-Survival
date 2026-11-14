@@ -1,0 +1,49 @@
+{
+  "source": "Docs/Art/SkeletonHatchet/AnimationTrials/idle-v1",
+  "firstLockedRow": 76,
+  "referenceFrame": "frame-00.png",
+  "report": [
+    {
+      "frame": "frame-00.png",
+      "changedFootPixels": 0,
+      "remainingFootDifferences": 0,
+      "changedUpperBodyPixels": 0
+    },
+    {
+      "frame": "frame-01.png",
+      "changedFootPixels": 149,
+      "remainingFootDifferences": 0,
+      "changedUpperBodyPixels": 0
+    },
+    {
+      "frame": "frame-02.png",
+      "changedFootPixels": 279,
+      "remainingFootDifferences": 0,
+      "changedUpperBodyPixels": 0
+    },
+    {
+      "frame": "frame-03.png",
+      "changedFootPixels": 160,
+      "remainingFootDifferences": 0,
+      "changedUpperBodyPixels": 0
+    },
+    {
+      "frame": "frame-04.png",
+      "changedFootPixels": 138,
+      "remainingFootDifferences": 0,
+      "changedUpperBodyPixels": 0
+    },
+    {
+      "frame": "frame-05.png",
+      "changedFootPixels": 96,
+      "remainingFootDifferences": 0,
+      "changedUpperBodyPixels": 0
+    },
+    {
+      "frame": "frame-06.png",
+      "changedFootPixels": 0,
+      "remainingFootDifferences": 0,
+      "changedUpperBodyPixels": 0
+    }
+  ]
+}

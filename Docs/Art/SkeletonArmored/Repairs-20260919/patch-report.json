@@ -1,0 +1,203 @@
+[
+  {
+    "source": "Docs\\Art\\SkeletonArmored\\Hit-v2\\frame-02.png",
+    "target": "Docs\\Art\\SkeletonArmored\\Hit-v3\\frame-02.png",
+    "generated": "Docs\\Art\\SkeletonArmored\\Repairs-20260919\\Raw\\Hit-v3-frame-02.png",
+    "rectangle": [
+      59,
+      33,
+      24,
+      15
+    ],
+    "changedPixels": 360,
+    "outsideChanges": 0
+  },
+  {
+    "source": "Docs\\Art\\SkeletonArmored\\Hit-v2\\frame-03.png",
+    "target": "Docs\\Art\\SkeletonArmored\\Hit-v3\\frame-03.png",
+    "generated": "Docs\\Art\\SkeletonArmored\\Repairs-20260919\\Raw\\Hit-v3-frame-03.png",
+    "rectangle": [
+      59,
+      36,
+      24,
+      15
+    ],
+    "changedPixels": 352,
+    "outsideChanges": 0
+  },
+  {
+    "source": "Docs\\Art\\SkeletonArmored\\Hit-v2\\frame-04.png",
+    "target": "Docs\\Art\\SkeletonArmored\\Hit-v3\\frame-04.png",
+    "generated": "Docs\\Art\\SkeletonArmored\\Repairs-20260919\\Raw\\Hit-v3-frame-04.png",
+    "rectangle": [
+      61,
+      39,
+      24,
+      14
+    ],
+    "changedPixels": 336,
+    "outsideChanges": 0
+  },
+  {
+    "source": "Docs\\Art\\SkeletonArmored\\Hit-v2\\frame-05.png",
+    "target": "Docs\\Art\\SkeletonArmored\\Hit-v3\\frame-05.png",
+    "generated": "Docs\\Art\\SkeletonArmored\\Repairs-20260919\\Raw\\Hit-v3-frame-05.png",
+    "rectangle": [
+      60,
+      39,
+      24,
+      14
+    ],
+    "changedPixels": 315,
+    "outsideChanges": 0
+  },
+  {
+    "source": "Docs\\Art\\SkeletonArmored\\Hit-v2\\frame-06.png",
+    "target": "Docs\\Art\\SkeletonArmored\\Hit-v3\\frame-06.png",
+    "generated": "Docs\\Art\\SkeletonArmored\\Repairs-20260919\\Raw\\Hit-v3-frame-06.png",
+    "rectangle": [
+      59,
+      36,
+      24,
+      15
+    ],
+    "changedPixels": 337,
+    "outsideChanges": 0
+  },
+  {
+    "source": "Docs\\Art\\SkeletonArmored\\Hit-v2\\frame-07.png",
+    "target": "Docs\\Art\\SkeletonArmored\\Hit-v3\\frame-07.png",
+    "generated": "Docs\\Art\\SkeletonArmored\\Repairs-20260919\\Raw\\Hit-v3-frame-07.png",
+    "rectangle": [
+      59,
+      33,
+      24,
+      15
+    ],
+    "changedPixels": 360,
+    "outsideChanges": 0
+  },
+  {
+    "source": "Docs\\Art\\SkeletonArmored\\HitUp-v2\\frame-03.png",
+    "target": "Docs\\Art\\SkeletonArmored\\HitUp-v3\\frame-03.png",
+    "generated": "Docs\\Art\\SkeletonArmored\\Repairs-20260919\\Raw\\HitUp-v3-frame-03.png",
+    "rectangle": [
+      82,
+      38,
+      10,
+      12
+    ],
+    "changedPixels": 120,
+    "outsideChanges": 0
+  },
+  {
+    "source": "Docs\\Art\\SkeletonArmored\\HitDown-v1\\frame-02.png",
+    "target": "Docs\\Art\\SkeletonArmored\\HitDown-v2\\frame-02.png",
+    "generated": "Docs\\Art\\SkeletonArmored\\Repairs-20260919\\Raw\\HitDown-v2-frame-02.png",
+    "mask": "Exact original slash color RGBA(251,253,231,255)",
+    "replacedPixels": 304
+  },
+  {
+    "source": "Docs\\Art\\SkeletonArmored\\HitDown-v1\\frame-03.png",
+    "target": "Docs\\Art\\SkeletonArmored\\HitDown-v2\\frame-03.png",
+    "generated": "Docs\\Art\\SkeletonArmored\\Repairs-20260919\\Raw\\HitDown-v2-frame-03.png",
+    "mask": "Exact original slash color RGBA(251,253,231,255)",
+    "replacedPixels": 2114
+  },
+  {
+    "source": "Docs\\Art\\SkeletonArmored\\HitDown-v1\\frame-04.png",
+    "target": "Docs\\Art\\SkeletonArmored\\HitDown-v2\\frame-04.png",
+    "generated": "Docs\\Art\\SkeletonArmored\\Repairs-20260919\\Raw\\HitDown-hatchet-frame-04.png",
+    "mask": [
+      79,
+      79,
+      31,
+      34
+    ],
+    "replacedPixels": 1054
+  },
+  {
+    "source": "Docs\\Art\\SkeletonArmored\\HitDown-v1\\frame-05.png",
+    "target": "Docs\\Art\\SkeletonArmored\\HitDown-v2\\frame-05.png",
+    "generated": "Docs\\Art\\SkeletonArmored\\Repairs-20260919\\Raw\\HitDown-hatchet-frame-05.png",
+    "mask": [
+      79,
+      79,
+      31,
+      34
+    ],
+    "replacedPixels": 1054
+  },
+  {
+    "source": "Docs\\Art\\SkeletonArmored\\HitDown-v1\\frame-06.png",
+    "target": "Docs\\Art\\SkeletonArmored\\HitDown-v2\\frame-06.png",
+    "generated": "Docs\\Art\\SkeletonArmored\\Repairs-20260919\\Raw\\HitDown-hatchet-frame-06.png",
+    "mask": [
+      64,
+      81,
+      34,
+      36
+    ],
+    "replacedPixels": 1224
+  },
+  {
+    "source": "Docs\\Art\\SkeletonArmored\\Idle-v2\\frame-00.png",
+    "target": "Docs\\Art\\SkeletonArmored\\Idle-v3\\frame-00.png",
+    "footLockSource": "Idle-v2/frame-00.png",
+    "rectangle": [
+      0,
+      86,
+      128,
+      42
+    ],
+    "footPixelsMatch": true
+  },
+  {
+    "source": "Docs\\Art\\SkeletonArmored\\Idle-v2\\frame-01.png",
+    "target": "Docs\\Art\\SkeletonArmored\\Idle-v3\\frame-01.png",
+    "footLockSource": "Idle-v2/frame-00.png",
+    "rectangle": [
+      0,
+      86,
+      128,
+      42
+    ],
+    "footPixelsMatch": true
+  },
+  {
+    "source": "Docs\\Art\\SkeletonArmored\\Idle-v2\\frame-02.png",
+    "target": "Docs\\Art\\SkeletonArmored\\Idle-v3\\frame-02.png",
+    "footLockSource": "Idle-v2/frame-00.png",
+    "rectangle": [
+      0,
+      86,
+      128,
+      42
+    ],
+    "footPixelsMatch": true
+  },
+  {
+    "source": "Docs\\Art\\SkeletonArmored\\Idle-v2\\frame-03.png",
+    "target": "Docs\\Art\\SkeletonArmored\\Idle-v3\\frame-03.png",
+    "footLockSource": "Idle-v2/frame-00.png",
+    "rectangle": [
+      0,
+      86,
+      128,
+      42
+    ],
+    "footPixelsMatch": true
+  },
+  {
+    "source": "Docs\\Art\\SkeletonArmored\\Idle-v2\\frame-04.png",
+    "target": "Docs\\Art\\SkeletonArmored\\Idle-v3\\frame-04.png",
+    "footLockSource": "Idle-v2/frame-00.png",
+    "rectangle": [
+      0,
+      86,
+      128,
+      42
+    ],
+    "footPixelsMatch": true
+  }
+]

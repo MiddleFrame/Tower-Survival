@@ -1,0 +1,73 @@
+{
+  "date": "2026-09-06",
+  "runRejected": {
+    "job": "e8c8c24c-b290-4a7e-8952-643a2eb5dd94",
+    "seed": 143842,
+    "cost": 1,
+    "reason": "Asymmetric gait: one leg stepped while the other dragged."
+  },
+  "runRejectedSecond": {
+    "job": "fe27ef94-dd7b-4e60-8e9b-d326f27af2d4",
+    "seed": 143846,
+    "cost": 1,
+    "canvas": [96, 96],
+    "generatedFrames": 6,
+    "prompt": "A SYMMETRICAL two-step run-in-place cycle with TWO EQUAL STRIDES. First half: screen-left leg swings clearly forward while screen-right leg extends equally backward, then they pass under the pelvis. Second half: screen-right leg swings equally far forward while screen-left leg extends equally backward, then return to the exact supplied stance. Neither leg drags, shuffles, stays bent, or merely catches up; both feet lift, travel and plant by the same distance. Keep hips centered and level, fixed ground anchor, same low right-facing 3/4 view and exact skeleton size. Empty arm stays near torso; same short hatchet. No limp, asymmetric gait, travel, turn, zoom, morph, shadow, ground or effects.",
+    "reason": "User found that the limp moved to the left leg."
+  },
+  "runSelected": {
+    "status": "rejected",
+    "halfStepJob": "c84339d7-9619-4103-b166-1f85201325c4",
+    "contactPoseJob": "0acd4eed-2409-4409-8ae8-bc347b21d242",
+    "seeds": [143851, 143853],
+    "costIncludingRejectedPoseAttempts": 6,
+    "canvas": [96, 96],
+    "playbackFrames": 8,
+    "assembly": [0, 1, 2, 3, 4, 3, 2, 1],
+    "closingFrame": 0,
+    "oppositeContact": "Rows 58..95 were mirrored around x=49.5; rows 58..67 were restricted to the leg corridor x=25..74 so the arms and weapon remain unchanged.",
+    "reason": "Rejected by the user: this reads as running, and mirroring the legs separately from the pelvis makes the limbs look detached."
+  },
+  "walkCandidate": {
+    "status": "awaiting_user_review",
+    "job": "fd0bb70c-2e49-442e-aaab-3fafe0fcdff5",
+    "seed": 143854,
+    "cost": 2,
+    "canvas": [96, 96],
+    "generatedFrames": 8,
+    "playbackFrames": 8,
+    "closingFrame": 0,
+    "manualLimbMirroring": false,
+    "prompt": "A slow natural WALK-IN-PLACE cycle, not running and not jogging. Animate the entire skeleton as one connected body. The pelvis, hip joints, thighs, knees, shins, ankles and feet must stay anatomically connected in every frame. Alternate equal short steps: left heel contact, weight over left foot, passing pose, right heel contact, weight over right foot, passing pose, then smoothly return to the exact starting pose. At least one foot remains planted on the ground in every frame; never both feet airborne. Keep the pelvis centered over the supporting foot with only a very small vertical body bob. Preserve the exact approved right-facing low three-quarter view, body proportions, scale, skull, hatchet and tucked free arm. Do not mirror or detach individual limbs. No hopping, running, lunging, split pose, dragging foot, sliding feet, crossed legs, teleporting feet, disconnected bones, exaggerated stride, squash and stretch, trails, dust, shadow, glow or effects."
+  },
+  "hitSide": {
+    "job": "e2011caf-025c-4efa-a1c6-1c157b4f7ef8",
+    "seed": 143843,
+    "cost": 2,
+    "canvas": [128, 128],
+    "generatedFrames": 8
+  },
+  "hitDownRejected": {
+    "job": "19d55b86-3236-47f4-aac2-957917692818",
+    "seed": 143844,
+    "cost": 2,
+    "reason": "The hatchet disappeared inside the generated motion arc in two phases."
+  },
+  "hitDownReplacement": {
+    "job": "8445c306-79ac-41ec-9a45-5e00e2fd0974",
+    "seed": 143847,
+    "cost": 2,
+    "canvas": [128, 128],
+    "generatedFrames": 8,
+    "status": "selected",
+    "prompt": "A compact but strong FRONT-FACING hatchet chop TOWARD THE VIEWER / DOWN-SCREEN, then recover to the exact starting pose. The SAME COMPLETE HATCHET — metal head and brown handle — MUST REMAIN FULLY VISIBLE in EVERY frame, never hidden behind the body and never replaced by an effect. Raise it beside the screen-right shoulder, swing diagonally down toward bottom-center with contact around frame 5, follow through, then return upright. Keep straight centered front view, both feet on the same ground baseline, exact skeleton scale and palette. No motion trail, arc, slash, glow, duplicate weapon, disappearing weapon, turn, walk, deep crouch, shadow, ground, camera or scale change."
+  },
+  "hitUp": {
+    "job": "e434cba0-14ae-430a-844c-11828d04606d",
+    "seed": 143845,
+    "cost": 2,
+    "canvas": [128, 128],
+    "generatedFrames": 8
+  },
+  "notes": "Every animation receives the same pose as both first and last frame. Returned sequences therefore contain one duplicate closing frame, excluded from GIF previews. PixelLab added flat-color motion arcs despite explicit negative constraints; selected attack frames remove only those generated colors and detached residue, with the raw frames preserved alongside them."
+}

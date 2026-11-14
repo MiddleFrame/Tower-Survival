@@ -1,5 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+
+[System.Serializable]
+public sealed class EnemyTierContent
+{
+    public AssetReferenceT<EnemySpawnSettings> SpawnSettings;
+    public int RecordToOpen;
+    public float OreMultiplier;
+    public float EnemyDamageMultiplier;
+    public float EnemyHealthMultiplier;
+    public float FirstStageSpawnRate;
+    public string[] EnemyNames;
+}
 
 [CreateAssetMenu(fileName = "New Game Settings", menuName = "Idle Tower Defense/Game Settings")]
 public class GameSettings : ScriptableObject
@@ -8,7 +21,8 @@ public class GameSettings : ScriptableObject
     public List<Currency> currencies;
     
     [Header("Settings")]
-    public EnemySpawnSettings[] EnemySpawnSettings;
+    [HideInInspector] public EnemySpawnSettings[] EnemySpawnSettings;
+    public EnemyTierContent[] Tiers;
 
     public UpgradeSettings UpgradeSettings;
 

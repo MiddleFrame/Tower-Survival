@@ -1,0 +1,76 @@
+{
+  "date": "2026-09-19",
+  "budget": 4,
+  "balanceBeforeUsed": 142,
+  "character_id": "b168bcad-9036-449e-8538-17e63f1fc599",
+  "creationCost": 2,
+  "status": "completed",
+  "request": {
+    "description": "Skeleton warrior wearing the same open steel helmet, fitted slate-teal armor and greaves as the reference, holding a small single-bladed hatchet. Preserve the reference design, bone proportions and hollow eye sockets. Rigid skull with no eyeballs or eyelids. Low top-down game view, transparent background, no shadow or effects.",
+    "name": "Skeleton Armored Character Trial 20260919",
+    "mode": "v3",
+    "size": 128,
+    "view": "low top-down",
+    "n_directions": 8,
+    "source": "PoseDown-v2/frame-00.png"
+  },
+  "response": "id: b168bcad-9036-449e-8538-17e63f1fc599\nname: Skeleton Armored Character Trial 20260919\nmode: v3 reference (2 generations, 8 directions)\nbody: humanoid\nsize: 128x128px\nview: low top-down\nstyle: from reference image (outline/detail hints ignored)\nstatus: processing (~3-5 min)\n\nhint: get_character(character_id=\"b168bcad-9036-449e-8538-17e63f1fc599\")",
+  "animation": {
+    "action": "One strong overhead hatchet chop, then recover to the starting stance. The head naturally tilts and follows the torso through the swing. Preserve the same rigid skull anatomy and hollow eye sockets throughout: no eyelids, blinking, pupils or facial expression. Keep the small single-bladed hatchet and armor consistent. Character motion only, no slash trails, flashes or particles.",
+    "mode": "v3",
+    "direction": "south-east",
+    "frame_count": 4,
+    "response": "character: b168bcad-9036-449e-8538-17e63f1fc599\nanimation: v3 custom (One strong overhead hatchet chop, then recover to the starting stance. The head naturally tilts and follows the torso through the swing. Preserve the same rigid skull anatomy and hollow eye sockets throughout: no eyelids, blinking, pupils or facial expression. Keep the small single-bladed hatchet and armor consistent. Character motion only, no slash trails, flashes or particles.)\ndirections: south-east (1 jobs)\ngroup: 7dc583e1-dfd7-46f0-ade0-ac08c18b4ef0\nframes: 5 (1 reference + 4 animated)\ncost: 1 generation (1/dir x 1)\neta: ~30-60s/direction\n\nhint: get_character(character_id=\"b168bcad-9036-449e-8538-17e63f1fc599\")\nadd more directions to this group: animate_character(character_id=\"b168bcad-9036-449e-8538-17e63f1fc599\", action_description=\"One strong overhead hatchet chop, then recover to the starting stance. The head naturally tilts and follows the torso through the swing. Preserve the same rigid skull anatomy and hollow eye sockets throughout: no eyelids, blinking, pupils or facial expression. Keep the small single-bladed hatchet and armor consistent. Character motion only, no slash trails, flashes or particles.\", animation_group_id=\"7dc583e1-dfd7-46f0-ade0-ac08c18b4ef0\", directions=[...])",
+    "costReported": 1,
+    "costInferredFromBalance": 2,
+    "urls": [
+      "https://backblaze.pixellab.ai/file/pixellab-characters/7a917d9b-a9cd-4d50-b658-149c6edd1bf5/b168bcad-9036-449e-8538-17e63f1fc599/animations/029e8f86-1d68-4ce8-9935-feab0fd55513/south-east/0.png?t=1789810936017",
+      "https://backblaze.pixellab.ai/file/pixellab-characters/7a917d9b-a9cd-4d50-b658-149c6edd1bf5/b168bcad-9036-449e-8538-17e63f1fc599/animations/029e8f86-1d68-4ce8-9935-feab0fd55513/south-east/1.png?t=1789810936017",
+      "https://backblaze.pixellab.ai/file/pixellab-characters/7a917d9b-a9cd-4d50-b658-149c6edd1bf5/b168bcad-9036-449e-8538-17e63f1fc599/animations/029e8f86-1d68-4ce8-9935-feab0fd55513/south-east/2.png?t=1789810936017",
+      "https://backblaze.pixellab.ai/file/pixellab-characters/7a917d9b-a9cd-4d50-b658-149c6edd1bf5/b168bcad-9036-449e-8538-17e63f1fc599/animations/029e8f86-1d68-4ce8-9935-feab0fd55513/south-east/3.png?t=1789810936017",
+      "https://backblaze.pixellab.ai/file/pixellab-characters/7a917d9b-a9cd-4d50-b658-149c6edd1bf5/b168bcad-9036-449e-8538-17e63f1fc599/animations/029e8f86-1d68-4ce8-9935-feab0fd55513/south-east/4.png?t=1789810936017"
+    ],
+    "group_id": "7dc583e1-dfd7-46f0-ade0-ac08c18b4ef0",
+    "canvas": {
+      "width": 140,
+      "height": 140
+    },
+    "review": "Raw result: eye sockets more consistent than rejected per-frame repair, head moves; white slash frame03 and double-headed axe remain, no recovery to initial stance. Not selected for integration. No retouching or frame-region compositing."
+  },
+  "rotationUrls": [
+    {
+      "direction": "south",
+      "url": "https://backblaze.pixellab.ai/file/pixellab-characters/7a917d9b-a9cd-4d50-b658-149c6edd1bf5/b168bcad-9036-449e-8538-17e63f1fc599/rotations/south.png?t=1789810813"
+    },
+    {
+      "direction": "east",
+      "url": "https://backblaze.pixellab.ai/file/pixellab-characters/7a917d9b-a9cd-4d50-b658-149c6edd1bf5/b168bcad-9036-449e-8538-17e63f1fc599/rotations/east.png?t=1789810813"
+    },
+    {
+      "direction": "north",
+      "url": "https://backblaze.pixellab.ai/file/pixellab-characters/7a917d9b-a9cd-4d50-b658-149c6edd1bf5/b168bcad-9036-449e-8538-17e63f1fc599/rotations/north.png?t=1789810813"
+    },
+    {
+      "direction": "west",
+      "url": "https://backblaze.pixellab.ai/file/pixellab-characters/7a917d9b-a9cd-4d50-b658-149c6edd1bf5/b168bcad-9036-449e-8538-17e63f1fc599/rotations/west.png?t=1789810813"
+    },
+    {
+      "direction": "south-east",
+      "url": "https://backblaze.pixellab.ai/file/pixellab-characters/7a917d9b-a9cd-4d50-b658-149c6edd1bf5/b168bcad-9036-449e-8538-17e63f1fc599/rotations/south-east.png?t=1789810813"
+    },
+    {
+      "direction": "north-east",
+      "url": "https://backblaze.pixellab.ai/file/pixellab-characters/7a917d9b-a9cd-4d50-b658-149c6edd1bf5/b168bcad-9036-449e-8538-17e63f1fc599/rotations/north-east.png?t=1789810813"
+    },
+    {
+      "direction": "north-west",
+      "url": "https://backblaze.pixellab.ai/file/pixellab-characters/7a917d9b-a9cd-4d50-b658-149c6edd1bf5/b168bcad-9036-449e-8538-17e63f1fc599/rotations/north-west.png?t=1789810813"
+    },
+    {
+      "direction": "south-west",
+      "url": "https://backblaze.pixellab.ai/file/pixellab-characters/7a917d9b-a9cd-4d50-b658-149c6edd1bf5/b168bcad-9036-449e-8538-17e63f1fc599/rotations/south-west.png?t=1789810813"
+    }
+  ],
+  "balanceAfterUsed": 146,
+  "actualTotalUsage": 4
+}

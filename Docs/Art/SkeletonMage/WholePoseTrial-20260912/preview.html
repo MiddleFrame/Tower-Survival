@@ -1,0 +1,19 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Цельные позы — проба ожидания</title>
+<style>body{background:#191e28;color:#eee6d8;font:16px/1.5 system-ui;margin:30px}h1{font-size:26px}p{max-width:900px;color:#bbc4d3}section{display:flex;gap:24px;flex-wrap:wrap}article{background:#252e3c;padding:16px;border-radius:10px;overflow:auto}h2{font-size:18px;margin:0 0 12px}canvas{display:block;background:#303947;image-rendering:pixelated;width:384px;height:384px}button,select{background:#303947;color:inherit;font:inherit;padding:8px 14px;border:1px solid #667085;border-radius:6px}.tools{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin:20px 0}small{color:#adb9ca}</style>
+<h1>Ожидание: цельные позы</h1>
+<p>Пять цельных поз. Кадр с глубоким наклоном исключён из цикла.</p>
+<div class="tools"><button id="pause">Пауза</button><button id="next">Следующий кадр</button><label>Темп <select id="speed"><option value="0.5">½</option><option value="1" selected>1×</option><option value="1.5">1½×</option></select></label><span id="counter"></span></div>
+<section><article><h2>Предыдущая сборка из деталей</h2><canvas id="old" width="128" height="128"></canvas></article><article><h2>Новые цельные позы</h2><canvas id="new" width="128" height="128"></canvas></article></section>
+<p><small>Новый спрайт 96×96 с прозрачностью; здесь помещён в ячейку 128×128 для сравнения масштаба. Подложка однотонная. Нет построчной деформации и блокировки частей тела. Между нарисованными позами могут различаться детали — это ещё не принятый игровой ресурс.</small></p>
+<script src="../RigidTrial-20260912/viewer-data.js"></script><script src="viewer-data.js"></script>
+<script>
+const oldImage=new Image(),newImage=new Image();oldImage.src=DATA.images.idle;newImage.src=SHEET;
+let paused=false,time=0,last=0,chosen=0;const durations=CLIP.durations_ms,sequence=CLIP.frame_indices,total=durations.reduce((a,b)=>a+b,0);
+function frame(t){let x=t%total;for(let i=0;i<sequence.length;i++){if(x<durations[i])return i;x-=durations[i];}return sequence.length-1;}
+function draw(){let i=paused?chosen:frame(time),j=Math.floor(time/120)%12;document.getElementById('counter').textContent=`Новая поза ${i+1} / ${sequence.length}`;for(const [id,im,n,cell,cols,pad] of [['new',newImage,sequence[i],96,3,16],['old',oldImage,j,128,4,0]]){if(!im.complete||!im.naturalWidth)continue;const c=document.getElementById(id).getContext('2d');c.imageSmoothingEnabled=false;c.clearRect(0,0,128,128);c.drawImage(im,n%cols*cell,Math.floor(n/cols)*cell,cell,cell,pad,pad,cell,cell);}}
+document.getElementById('pause').onclick=()=>{if(!paused)chosen=frame(time);paused=!paused;document.getElementById('pause').textContent=paused?'Продолжить':'Пауза';};
+document.getElementById('next').onclick=()=>{chosen=((paused?chosen:frame(time))+1)%sequence.length;paused=true;document.getElementById('pause').textContent='Продолжить';draw();};
+function resize(){const dpr=devicePixelRatio||1;for(const c of document.querySelectorAll('canvas')){const k=Math.max(1,Math.floor(Math.min(384,innerWidth-100)*dpr/128));c.style.width=c.style.height=128*k/dpr+'px';}}
+addEventListener('resize',resize);resize();requestAnimationFrame(function tick(now){if(last&&!paused)time+=Math.min(now-last,100)*Number(document.getElementById('speed').value);last=now;draw();requestAnimationFrame(tick);});
+</script></html>

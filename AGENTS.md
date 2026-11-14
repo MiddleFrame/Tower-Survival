@@ -12,7 +12,7 @@ This is a Unity mobile game project. Preserve player data, serialized references
 - Editor tooling: `Assets/_IdleTowerDefense/Editor/` and editor-only folders under tests/tools.
 - Tests: `Assets/_IdleTowerDefense/Tests/`; test policy and commands are in `Docs/Testing.md`.
 - Enabled player scenes, in order: `Assets/_IdleTowerDefense/Scenes/Menu.unity`, then `Assets/_IdleTowerDefense/Scenes/Game.unity`.
-- Product direction: `README.md`; balance findings: `Docs/BalanceAudit.md`; optimization work: `Docs/OptimizationBacklog.md`.
+- Product direction: `README.md`; current economy design: `Docs/GameDesign/02_EconomyModel.md`; optimization work: `Docs/OptimizationBacklog.md`.
 - The repository may already contain extensive user or third-party changes. Never discard, overwrite, stage, commit, or reformat unrelated changes.
 
 ## Tool ownership and MCP
@@ -59,6 +59,7 @@ This is a Unity mobile game project. Preserve player data, serialized references
 
 ## 2D art, textures, and ImageGen
 
+- For user-requested pixel-native authoring or frame editing in Aseprite, use the `aseprite` MCP server and follow `Docs/Art/AsepriteWorkflow.md`. Work on new `.aseprite` copies outside `Assets`, inspect each frame at 1x and nearest-neighbor zoom, and preserve source sprites. A working MCP connection is not proof of artistic quality; do not treat generated or edited frames as accepted without visual review.
 - For newly generated or materially edited bitmap art, use the available `imagegen` skill/tool (ImageGen plugin capability). Do not approximate requested art with procedural Python drawing, HTML/canvas, or an unrelated image service.
 - Do not use ImageGen for existing SVG/vector/code-native assets or for a tiny edit better performed in the asset's native format.
 - Before generating, inspect the relevant in-game references: neighboring sprites, palette, outline weight, lighting direction, camera scale, intended UI/world use, and target pixel dimensions. Match the established visual language rather than inventing a second style.

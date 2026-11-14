@@ -1,0 +1,130 @@
+[
+  {
+    "file": "frame-00.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      42,
+      18,
+      102,
+      105
+    ],
+    "partialAlpha": 0,
+    "colors": 74,
+    "lowerRegionDiff": 0,
+    "lowerMaskDiff": 0,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-01.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      42,
+      18,
+      102,
+      105
+    ],
+    "partialAlpha": 0,
+    "colors": 74,
+    "lowerRegionDiff": 163,
+    "lowerMaskDiff": 5,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-02.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      41,
+      17,
+      102,
+      105
+    ],
+    "partialAlpha": 0,
+    "colors": 74,
+    "lowerRegionDiff": 206,
+    "lowerMaskDiff": 35,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-03.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      42,
+      17,
+      102,
+      105
+    ],
+    "partialAlpha": 0,
+    "colors": 73,
+    "lowerRegionDiff": 178,
+    "lowerMaskDiff": 9,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-04.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      42,
+      17,
+      102,
+      105
+    ],
+    "partialAlpha": 0,
+    "colors": 74,
+    "lowerRegionDiff": 185,
+    "lowerMaskDiff": 12,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-05.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      42,
+      17,
+      102,
+      105
+    ],
+    "partialAlpha": 0,
+    "colors": 71,
+    "lowerRegionDiff": 208,
+    "lowerMaskDiff": 40,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-06.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      42,
+      17,
+      102,
+      105
+    ],
+    "partialAlpha": 0,
+    "colors": 74,
+    "lowerRegionDiff": 161,
+    "lowerMaskDiff": 20,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-07.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      42,
+      17,
+      102,
+      105
+    ],
+    "partialAlpha": 0,
+    "colors": 73,
+    "lowerRegionDiff": 171,
+    "lowerMaskDiff": 16,
+    "edgeClipping": false
+  }
+]

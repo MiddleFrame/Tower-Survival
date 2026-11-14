@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Local_Tiers_1
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Local_Tiers_1
+  m_GUID: 97f713f554f53eb4db1ff115db3574b5
+  m_SerializeEntries:
+  - m_GUID: 26cf745ce3a391b439a71067ccc302f3
+    m_Address: enemies/26cf745ce3a391b439a71067ccc302f3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 458e4e0fdc851e548baa82bb4a42f742
+    m_Address: tiers/1/spawn-settings
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 35d594535f84d77439ba941d8c75e2b6, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c8e5cb37ef2cda8408f2eda10d331b10, type: 2}
+    - {fileID: 11400000, guid: c4d72f3836bf40b4db8ccb101863a214, type: 2}

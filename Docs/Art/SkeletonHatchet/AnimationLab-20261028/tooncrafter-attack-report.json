@@ -1,0 +1,11 @@
+{
+  "prompt": "A pixel art skeleton warrior with a large skull swings his small iron axe, facing right in three quarter view. Static camera, fixed framing, dark solid background. Preserve the same skeleton, skull, limbs, colors and axe.",
+  "size": 256,
+  "frames": 16,
+  "steps": 20,
+  "cfg": 5,
+  "seed": 28102026,
+  "seconds": 4.093999999999141,
+  "gpu": "NVIDIA GeForce RTX 3060",
+  "max_vram_bytes": 4895678976
+}

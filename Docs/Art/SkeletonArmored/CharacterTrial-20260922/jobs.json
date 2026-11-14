@@ -1,0 +1,102 @@
+{
+  "date": "2026-09-22",
+  "daily_budget_user_reported": 15,
+  "account_usage_before": 146,
+  "source": "../Base-v1/armored-skeleton-128.png",
+  "source_role": "exact low 3/4 reference",
+  "character_id": "9783f3cb-edbb-4a90-b3ca-658a8ec5eb2c",
+  "character_cost_reported": 2,
+  "character_status": "completed",
+  "description": "Armored skeleton hatchet warrior exactly matching this source sprite. The SOUTH rotation is this exact low three-quarter view facing right, with the skull and chest visible, not a newly redrawn frontal camera. Maintain the open steel helmet, small single-bladed axe, muted teal and slate armor, hollow dark eye sockets, same anatomy, outline, palette and pixel grid. Transparent background; no shadow, pupils, eyelids, blinking, slash trail or new weapon.",
+  "animation": {
+    "mode": "v3",
+    "direction": "south",
+    "frame_count": 4,
+    "custom_start_frame": "managed south rotation",
+    "end_frame": "same managed south rotation",
+    "action": "One forceful overhead chop with the held small single-bladed hatchet, with a clear wind-up, downward strike, and full recovery to the same starting pose. Head and torso move naturally. Keep skull bone rigid and hollow eye sockets consistent. Axe stays the same size and shape, gripped continuously. Character motion only, no bright slash arcs, flashes, particles or new objects.",
+    "group_id": "441991aa-33c3-40fe-a7dd-677768e4834c",
+    "reported_cost": 2,
+    "status": "completed",
+    "canvas": "128x132",
+    "frames": 5,
+    "review": "Stable skull and single-bladed hatchet, clear original angle, return to start, but very weak strike"
+  },
+  "character_cost_actual": 2,
+  "angle_reference_visible_pixel_differences": 206,
+  "beta_attempt": {
+    "mode": "skeleton-v3",
+    "template_animation_id": "cross-punch",
+    "result": "403 tier1 subscription required",
+    "cost": 0
+  },
+  "account_usage_after_first_animation": 150,
+  "animation_second": {
+    "mode": "v3",
+    "direction": "south",
+    "frame_count": 8,
+    "action": "A strong deliberate hatchet attack: wind up by raising the held hatchet above the shoulder, then a fast full downward chop well below chest level, recoil, and settle back into the original stance. The head follows the torso during the strike. Keep the skull rigid with hollow sockets; the same small single-bladed hatchet stays gripped. Plain character motion with transparent background; no white arcs, effects, or extra weapon.",
+    "group_id": "645c0d24-9ae2-4e70-a2fa-922f44ff43bc",
+    "reported_cost": 3,
+    "status": "completed",
+    "canvas": "132x132",
+    "frames": 9,
+    "review": "Strong downward swing without white arc, open skull sockets; no return until separately generated recovery"
+  },
+  "account_usage_after_second_animation": 153,
+  "recovery": {
+    "mode": "v3",
+    "direction": "south",
+    "frame_count": 4,
+    "group_id": "fd8abd9d-5a11-4ba9-97a9-8cbef62df9bc",
+    "reported_cost": 2,
+    "status": "completed",
+    "review": "Attack/recovery frame seam and loop seam zero visible pixel differences after 6px transparent pad of attack frames"
+  },
+  "account_usage_after_recovery": 155,
+  "idle": {
+    "mode": "template",
+    "template_animation_id": "breathing-idle",
+    "direction": "south",
+    "group_id": "86e3bc04-3843-42c9-9d93-c19585ff6694",
+    "status": "completed",
+    "cost": 1,
+    "review": "Rejected: the axe vanishes in all four idle frames"
+  },
+  "walk_template": {
+    "mode": "template",
+    "template_animation_id": "walking-8-frames",
+    "direction": "south",
+    "group_id": "d1a31777-839e-4f23-9b8e-e2ffce4a3bae",
+    "status": "completed",
+    "cost": 1,
+    "review": "Rejected: little readable leg motion; resembles a static stance rather than a walk"
+  },
+  "idle_pinned": {
+    "mode": "v3",
+    "direction": "south",
+    "frame_count": 4,
+    "custom_start_frame": "managed south rotation",
+    "end_frame": "same managed south rotation",
+    "group_id": "beef532e-fd89-4c6b-a020-e18873df7e2a",
+    "status": "completed",
+    "cost": 2,
+    "review": "Candidate: keeps axe and dark sockets, closes on original pose; feet have slight changes"
+  },
+  "walk_pinned": {
+    "mode": "v3",
+    "direction": "south",
+    "frame_count": 4,
+    "custom_start_frame": "managed south rotation",
+    "end_frame": "same managed south rotation",
+    "group_id": "d91509e6-c313-4806-af0e-b8e43802146e",
+    "status": "completed",
+    "cost": 2,
+    "action": "Slow in-place walk with distinct alternating left/right steps, natural torso/head bob, fixed hollow skull sockets and continuously held single-bladed hatchet",
+    "review": "More leg motion and retained axe/dark sockets, but steps still do not read as reliably alternating; do not integrate as finished walk"
+  },
+  "account_usage_after_idle_pinned": 159,
+  "account_usage_after_all_jobs": 161,
+  "account_usage_delta": 15,
+  "credits_after": 0
+}

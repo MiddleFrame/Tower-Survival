@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Local_UI_SpellDetails
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Local_UI_SpellDetails
+  m_GUID: fddee4577dad03244a0d3dd08ba97b88
+  m_SerializeEntries:
+  - m_GUID: 6c19d53e57385cd4781b9ef54702bc95
+    m_Address: ui/spells/detail-card
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ui.spells.details
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 35d594535f84d77439ba941d8c75e2b6, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: f76fd5e1ab598b9448353849fd15b5a5, type: 2}
+    - {fileID: 11400000, guid: b43c1875f953e6441bfa85f0bc50c5b7, type: 2}

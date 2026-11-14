@@ -1,0 +1,93 @@
+{
+  "native_frames_checked": 140,
+  "binary_alpha": true,
+  "palette_subset_of_original_19_colors": true,
+  "no_edge_clipping": true,
+  "master_unchanged": true,
+  "gif_previews": {
+    "cast-demo-1s.gif": {
+      "decoded_frames": 30,
+      "duration_ms": 3040
+    },
+    "cast-demo-3s.gif": {
+      "decoded_frames": 50,
+      "duration_ms": 5040
+    },
+    "cast-enter.gif": {
+      "decoded_frames": 7,
+      "duration_ms": 980
+    },
+    "cast-exit.gif": {
+      "decoded_frames": 7,
+      "duration_ms": 980
+    },
+    "cast-hold.gif": {
+      "decoded_frames": 12,
+      "duration_ms": 1200
+    },
+    "cast-ready.gif": {
+      "decoded_frames": 12,
+      "duration_ms": 1200
+    },
+    "cast-release-from-00.gif": {
+      "decoded_frames": 6,
+      "duration_ms": 850
+    },
+    "cast-release-from-01.gif": {
+      "decoded_frames": 6,
+      "duration_ms": 850
+    },
+    "cast-release-from-02.gif": {
+      "decoded_frames": 6,
+      "duration_ms": 850
+    },
+    "cast-release-from-03.gif": {
+      "decoded_frames": 6,
+      "duration_ms": 850
+    },
+    "cast-release-from-04.gif": {
+      "decoded_frames": 6,
+      "duration_ms": 850
+    },
+    "cast-release-from-05.gif": {
+      "decoded_frames": 6,
+      "duration_ms": 850
+    },
+    "cast-release-from-06.gif": {
+      "decoded_frames": 6,
+      "duration_ms": 850
+    },
+    "cast-release-from-07.gif": {
+      "decoded_frames": 6,
+      "duration_ms": 850
+    },
+    "cast-release-from-08.gif": {
+      "decoded_frames": 6,
+      "duration_ms": 850
+    },
+    "cast-release-from-09.gif": {
+      "decoded_frames": 6,
+      "duration_ms": 850
+    },
+    "cast-release-from-10.gif": {
+      "decoded_frames": 6,
+      "duration_ms": 850
+    },
+    "cast-release-from-11.gif": {
+      "decoded_frames": 6,
+      "duration_ms": 850
+    },
+    "cast-release.gif": {
+      "decoded_frames": 6,
+      "duration_ms": 850
+    },
+    "idle.gif": {
+      "decoded_frames": 12,
+      "duration_ms": 1200
+    },
+    "walk.gif": {
+      "decoded_frames": 12,
+      "duration_ms": 960
+    }
+  }
+}

@@ -1,5 +1,9 @@
 {
     "name": "IdleTowerDefense.PlayModeTests",
+    "references": [
+        "Unity.Addressables",
+        "Unity.ResourceManager"
+    ],
     "optionalUnityReferences": [
         "TestAssemblies"
     ]

@@ -207,7 +207,7 @@ public sealed class BalanceLabWindow : EditorWindow
 
     private static void WriteSpawnCurve(string path, BalanceScenario scenario)
     {
-        EnemySpawnSettings settings = scenario.gameSettings.EnemySpawnSettings[scenario.tier];
+        EnemySpawnSettings settings = EnemyTierEditorAssets.Load(scenario.gameSettings, scenario.tier);
         var csv = new StringBuilder("event,spawned_before,stage,group_size,interval,health_multiplier,damage_multiplier,expected_base_hp,expected_base_damage,expected_ore_per_enemy,exp_per_next_enemy\n");
         int spawned = 0;
         int stage = 0;

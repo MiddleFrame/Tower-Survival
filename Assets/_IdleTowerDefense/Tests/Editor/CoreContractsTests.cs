@@ -171,6 +171,47 @@ public sealed class EnemyCombatContractTests
     }
 
     [Test]
+    public void SkeletonDeath_IsSeparateOneShotVisualWithoutCombatEvents()
+    {
+        const string folder = "Assets/_IdleTowerDefense/Prefabs/Enemies/";
+        GameObject skeleton = AssetDatabase.LoadAssetAtPath<GameObject>(folder + "Skeleton Enemy.prefab");
+        GameObject death = AssetDatabase.LoadAssetAtPath<GameObject>(folder + "Skeleton Death.prefab");
+        Assert.That(skeleton, Is.Not.Null);
+        Assert.That(death, Is.Not.Null);
+
+        var enemyData = new SerializedObject(skeleton.GetComponent<EnemyView>());
+        Assert.That(enemyData.FindProperty("deadAnim").objectReferenceValue, Is.EqualTo(death));
+        Assert.That(enemyData.FindProperty("alignDeathVfxToModel").boolValue, Is.True);
+        Assert.That(death.GetComponentsInChildren<EnemyView>(true), Is.Empty);
+        Assert.That(death.GetComponentsInChildren<Collider>(true), Is.Empty);
+        Assert.That(death.GetComponentsInChildren<Collider2D>(true), Is.Empty);
+        Assert.That(death.GetComponent<SpriteRenderer>(), Is.Not.Null);
+
+        Animator animator = death.GetComponent<Animator>();
+        Assert.That(animator, Is.Not.Null);
+        Assert.That(animator.runtimeAnimatorController, Is.Not.Null);
+        AnimationClip clip = animator.runtimeAnimatorController.animationClips.Distinct().Single();
+        Assert.That(clip.isLooping, Is.False);
+        Assert.That(AnimationUtility.GetAnimationEvents(clip), Is.Empty,
+            "Death must not queue another attack or reward.");
+        Assert.That(enemyData.FindProperty("deathVfxLifetime").floatValue,
+            Is.GreaterThanOrEqualTo(clip.length), "Pooling must not cut off the collapse.");
+
+        EditorCurveBinding binding = AnimationUtility.GetObjectReferenceCurveBindings(clip)
+            .Single(x => x.type == typeof(SpriteRenderer) && x.propertyName == "m_Sprite");
+        ObjectReferenceKeyframe[] frames = AnimationUtility.GetObjectReferenceCurve(clip, binding);
+        Assert.That(frames.All(frame => frame.value is Sprite), Is.True);
+        Assert.That(frames.Select(frame => frame.value).Distinct().Count(), Is.EqualTo(7));
+        Assert.That(frames.Last().value, Is.Not.EqualTo(frames.First().value),
+            "A dead skeleton must hold the fallen pose rather than return to standing.");
+        Assert.That(frames[1].time, Is.LessThanOrEqualTo(0.06f),
+            "Disintegration should begin immediately, without a slow anticipation pose.");
+        float landedAt = frames.First(frame => frame.value == frames.Last().value).time;
+        Assert.That(landedAt, Is.LessThanOrEqualTo(0.5f),
+            "The collapse should land within half a second, then hold the fallen pose.");
+    }
+
+    [Test]
     public void SkeletonAnimationSprites_UseCenteredPivots()
     {
         const string spriteFolder = "Assets/_IdleTowerDefense/Art/Enemies/SkeletonHatchet";
@@ -180,7 +221,7 @@ public sealed class EnemyCombatContractTests
             .Where(path => !path.EndsWith("/Skeleton_Shadow.png", StringComparison.OrdinalIgnoreCase))
             .ToArray();
 
-        Assert.That(spritePaths, Has.Length.EqualTo(38));
+        Assert.That(spritePaths, Has.Length.EqualTo(45));
         foreach (string path in spritePaths)
         {
             var importer = AssetImporter.GetAtPath(path) as TextureImporter;
@@ -269,7 +310,7 @@ public sealed class ProductionBalanceAssetTests
     [Test]
     public void EnemyTiers_HaveValidStageData()
     {
-        foreach (EnemySpawnSettings tier in TestAssets.GameSettings.EnemySpawnSettings)
+        foreach (EnemySpawnSettings tier in TestAssets.EnemyTiers)
         {
             Assert.That(tier, Is.Not.Null);
             Assert.That(tier._enemyList, Is.Not.Null, $"{tier.name}: missing enemy list.");
@@ -299,7 +340,7 @@ public sealed class ProductionBalanceAssetTests
     public void TierUnlockRecords_AreNonDecreasing()
     {
         int previous = -1;
-        foreach (EnemySpawnSettings tier in TestAssets.GameSettings.EnemySpawnSettings)
+        foreach (EnemySpawnSettings tier in TestAssets.EnemyTiers)
         {
             Assert.That(tier.RecordToOpen, Is.GreaterThanOrEqualTo(previous),
                 "A later tier cannot require a lower record than the preceding tier.");
@@ -1037,6 +1078,16 @@ internal static class TestAssets
             GameSettings asset = AssetDatabase.LoadAssetAtPath<GameSettings>(GameSettingsPath);
             Assert.That(asset, Is.Not.Null, $"Missing Game Settings at {GameSettingsPath}");
             return asset;
+        }
+    }
+
+    internal static EnemySpawnSettings[] EnemyTiers
+    {
+        get
+        {
+            GameSettings settings = GameSettings;
+            return Enumerable.Range(0, settings.Tiers.Length)
+                .Select(index => EnemyTierEditorAssets.Load(settings, index)).ToArray();
         }
     }
 

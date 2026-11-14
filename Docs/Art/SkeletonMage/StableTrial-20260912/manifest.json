@@ -1,0 +1,33 @@
+{
+  "status": "cutout_animation_trial",
+  "source_sha256": "e96cbf79b24eb270f3dbccb1688ca7e598dedc21c3fc358081aef32ddde247b3",
+  "method": "immutable source cutouts, nearest-neighbour rigid transforms; no image generation",
+  "cell_size": 128,
+  "source_size": 96,
+  "clips": [
+    {
+      "name": "idle",
+      "frames": 8,
+      "columns": 4,
+      "cell": 128,
+      "ms": 140,
+      "loop": true
+    },
+    {
+      "name": "walk",
+      "frames": 8,
+      "columns": 4,
+      "cell": 128,
+      "ms": 100,
+      "loop": true
+    },
+    {
+      "name": "cast",
+      "frames": 10,
+      "columns": 4,
+      "cell": 128,
+      "ms": 100,
+      "loop": false
+    }
+  ]
+}

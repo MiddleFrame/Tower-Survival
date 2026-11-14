@@ -3,6 +3,7 @@ using UnityEngine;
 public class SharedData 
 {
     public GameSettings Settings { get; private set; }
+    public EnemySpawnSettings SelectedEnemyTier { get; private set; }
 
     public TowerView towerView;
     public GameplayViewPools ViewPools { get; private set; }
@@ -15,6 +16,11 @@ public class SharedData
     {
         Settings = inputSettings;
         EnemySpawnRadius = inputSettings.EnemySpawnRadius;
+    }
+
+    public void SetSelectedEnemyTier(EnemySpawnSettings tier)
+    {
+        SelectedEnemyTier = tier;
     }
 
     public void SetViewPools(GameplayViewPools viewPools)

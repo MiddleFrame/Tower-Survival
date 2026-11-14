@@ -1,0 +1,16 @@
+{
+  "date": "2026-09-06",
+  "tool": "PixelLab animate_image",
+  "job": "fd0bb70c-2e49-442e-aaab-3fafe0fcdff5",
+  "seed": 143854,
+  "cost": 2,
+  "canvas": [96, 96],
+  "generatedFrames": 8,
+  "returnedFramesIncludingInput": 9,
+  "playbackFrames": 8,
+  "noBackground": true,
+  "firstAndLastInput": "../../skeleton-hatchet-approved-96.png",
+  "approvedMasterSha256": "FDAD47309B54F14A52CAC52B3834BE93F4F7BF5DDDA4415C962E09DE3EB792D7",
+  "selectedFrameNote": "frame-00.png and frame-08.png are exact copies of the approved master. Unmodified PixelLab responses are preserved in raw/.",
+  "status": "awaiting_user_review"
+}

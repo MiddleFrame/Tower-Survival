@@ -1,0 +1,49 @@
+{
+  "source": "C:/Users/tente/Desktop/The-Lone-Tower-main/TestResults/ArtTrials/Skeleton/IdleDown01",
+  "firstLockedRow": 76,
+  "referenceFrame": "frame-00.png",
+  "report": [
+    {
+      "frame": "frame-00.png",
+      "changedFootPixels": 0,
+      "remainingFootDifferences": 0,
+      "changedUpperBodyPixels": 0
+    },
+    {
+      "frame": "frame-01.png",
+      "changedFootPixels": 110,
+      "remainingFootDifferences": 0,
+      "changedUpperBodyPixels": 0
+    },
+    {
+      "frame": "frame-02.png",
+      "changedFootPixels": 99,
+      "remainingFootDifferences": 0,
+      "changedUpperBodyPixels": 0
+    },
+    {
+      "frame": "frame-03.png",
+      "changedFootPixels": 102,
+      "remainingFootDifferences": 0,
+      "changedUpperBodyPixels": 0
+    },
+    {
+      "frame": "frame-04.png",
+      "changedFootPixels": 71,
+      "remainingFootDifferences": 0,
+      "changedUpperBodyPixels": 0
+    },
+    {
+      "frame": "frame-05.png",
+      "changedFootPixels": 95,
+      "remainingFootDifferences": 0,
+      "changedUpperBodyPixels": 0
+    },
+    {
+      "frame": "frame-06.png",
+      "changedFootPixels": 0,
+      "remainingFootDifferences": 0,
+      "changedUpperBodyPixels": 0
+    }
+  ]
+}

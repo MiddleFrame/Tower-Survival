@@ -1,0 +1,124 @@
+{
+  "source": "C:\\Users\\tente\\Desktop\\The-Lone-Tower-main\\Docs\\Art\\SkeletonHatchet\\AnimationLab-20261028\\mcp-parts.aseprite",
+  "output": "C:\\Users\\tente\\Desktop\\The-Lone-Tower-main\\Docs\\Art\\SkeletonHatchet\\AnimationLab-20261028\\mcp-attack.aseprite",
+  "padding": 32,
+  "animations": [
+    {
+      "name": "attack",
+      "frames": 12,
+      "durationMs": 65,
+      "loop": false,
+      "tracks": [
+        {
+          "layer": [
+            "head",
+            "torso",
+            "arm_l",
+            "arm_r"
+          ],
+          "x": {
+            "seq": [
+              0,
+              0,
+              -1,
+              -2,
+              -2,
+              1,
+              3,
+              3,
+              2,
+              1,
+              0,
+              0
+            ]
+          },
+          "y": {
+            "seq": [
+              0,
+              0,
+              0,
+              1,
+              1,
+              0,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "layer": "torso",
+          "pivot": [
+            44,
+            66
+          ],
+          "rot": {
+            "seq": [
+              0,
+              0,
+              -2,
+              -4,
+              -4,
+              4,
+              6,
+              4,
+              3,
+              1,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "layer": "arm_r",
+          "pivot": [
+            51,
+            46
+          ],
+          "rot": {
+            "seq": [
+              0,
+              -10,
+              -25,
+              -50,
+              -65,
+              -20,
+              50,
+              65,
+              40,
+              20,
+              5,
+              0
+            ]
+          }
+        },
+        {
+          "layer": "arm_l",
+          "pivot": [
+            33,
+            45
+          ],
+          "rot": {
+            "seq": [
+              0,
+              0,
+              3,
+              5,
+              5,
+              -3,
+              -8,
+              -6,
+              -3,
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

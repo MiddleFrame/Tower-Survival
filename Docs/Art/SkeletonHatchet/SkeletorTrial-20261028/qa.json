@@ -1,0 +1,159 @@
+{
+  "tool": "Skeletor actual GPU renders",
+  "source_preserved": true,
+  "unity_imported": false,
+  "accepted": false,
+  "animations": {
+    "walk-cleanedge": {
+      "frames": 12,
+      "cell": [
+        160,
+        160
+      ],
+      "durations": [
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80
+      ],
+      "alpha_values": [
+        0,
+        255
+      ]
+    },
+    "walk-omniscale": {
+      "frames": 12,
+      "cell": [
+        160,
+        160
+      ],
+      "durations": [
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80
+      ],
+      "alpha_values": [
+        0,
+        255
+      ]
+    },
+    "walk-nns": {
+      "frames": 12,
+      "cell": [
+        160,
+        160
+      ],
+      "durations": [
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80
+      ],
+      "alpha_values": [
+        0,
+        255
+      ]
+    },
+    "attack-cleanedge": {
+      "frames": 12,
+      "cell": [
+        160,
+        160
+      ],
+      "durations": [
+        220,
+        100,
+        90,
+        140,
+        50,
+        40,
+        60,
+        100,
+        100,
+        100,
+        80,
+        220
+      ],
+      "alpha_values": [
+        0,
+        255
+      ]
+    },
+    "attack-omniscale": {
+      "frames": 12,
+      "cell": [
+        160,
+        160
+      ],
+      "durations": [
+        220,
+        100,
+        90,
+        140,
+        50,
+        40,
+        60,
+        100,
+        100,
+        100,
+        80,
+        220
+      ],
+      "alpha_values": [
+        0,
+        255
+      ]
+    },
+    "attack-nns": {
+      "frames": 12,
+      "cell": [
+        160,
+        160
+      ],
+      "durations": [
+        220,
+        100,
+        90,
+        140,
+        50,
+        40,
+        60,
+        100,
+        100,
+        100,
+        80,
+        220
+      ],
+      "alpha_values": [
+        0,
+        255
+      ]
+    }
+  },
+  "unposed_pixels_exact": true
+}

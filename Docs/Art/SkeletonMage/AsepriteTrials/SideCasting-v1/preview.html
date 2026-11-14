@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Скелет-маг — проба Aseprite</title>
+  <style>
+    :root { color-scheme: dark; --sprite-size: 384px; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px; background: #172029; color: #e6e3d3; font: 16px/1.5 system-ui, sans-serif; }
+    main { max-width: 1120px; margin: auto; }
+    h1 { margin: 0 0 8px; font-size: 26px; }
+    h2 { margin: 0; font-size: 20px; }
+    p { margin: 8px 0 16px; }
+    a { color: #9ad9ce; }
+    button, select { font: inherit; color: inherit; background: #293842; border: 1px solid #61747a; border-radius: 5px; padding: 7px 12px; }
+    button { cursor: pointer; }
+    .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 18px 0; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; }
+    article { border: 1px solid #53666d; border-radius: 8px; padding: 14px; min-width: 0; }
+    .stage { background: #41513f; height: 420px; overflow: auto; display: grid; place-items: center; margin: 12px 0; }
+    .stage img { width: var(--sprite-size); height: var(--sprite-size); max-width: none; image-rendering: pixelated; }
+    .status { min-height: 48px; font-variant-numeric: tabular-nums; }
+    .note { color: #b9c5be; }
+    input[type=range] { width: 100%; margin: 12px 0; }
+    @media (max-width: 740px) { body { padding: 12px; } .cards { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Скелет-маг · проба Aseprite</h1>
+  <p class="note">Боковой ракурс. Черновик для оценки движения, не принятые игровые анимации. В Unity ничего не заменено.</p>
+  <div class="controls">
+    <button id="play" type="button">Пауза</button>
+    <button id="restart" type="button">С начала</button>
+    <label>Скорость <select id="speed"><option value="0.25">0.25×</option><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label>
+    <label>Масштаб <select id="scale"><option value="1">1×</option><option value="2">2×</option><option value="3" selected>3×</option><option value="4">4×</option></select></label>
+  </div>
+  <div class="cards">
+    <article>
+      <h2>Ожидание</h2>
+      <div class="stage"><img id="idle" alt="Скелет-маг: ожидание" width="128" height="128"></div>
+      <div id="idle-status" class="status">Загрузка кадров…</div>
+      <p class="note">Перенос веса, участие коленей и корпуса, отдельные изменения формы ткани.</p>
+      <a href="Clips/idle.aseprite">Открыть редактируемый idle</a>
+    </article>
+    <article>
+      <h2>Каст из ладони</h2>
+      <label>Показ <select id="clip"><option value="demo">Полный каст</option><option value="cast-hand-enter">Вход</option><option value="cast-hand-hold">Удержание</option><option value="cast-hand-release">Выпуск</option><option value="cast-hand-exit">Возврат</option></select></label>
+      <div class="stage"><img id="cast" alt="Скелет-маг: каст из ладони" width="128" height="128"></div>
+      <div id="cast-status" class="status">Загрузка кадров…</div>
+      <input id="frame" type="range" min="0" max="29" value="0" aria-label="Кадр каста">
+      <div class="controls"><button id="previous" type="button">Предыдущий кадр</button><button id="next" type="button">Следующий кадр</button></div>
+      <p class="note">Вход → два повтора удержания → выпуск → возврат. Снаряд не запечён в персонажа.</p>
+    </article>
+  </div>
+  <p id="load-status" role="status">Загрузка PNG…</p>
+  <p>Исходники: <a href="README.md">описание пробы</a> · <a href="manifest.json">фазы и длительности</a> · <a href="qa.json">проверки</a>.</p>
+</main>
+<script src="viewer-data.js"></script>
+<script src="viewer.js"></script>
+</body>
+</html>

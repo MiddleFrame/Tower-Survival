@@ -1,0 +1,1226 @@
+{
+  "date": "2026-10-05",
+  "status": "trial-awaiting-user-review",
+  "cellSize": [
+    128,
+    128
+  ],
+  "sourceVisibleScale": "unchanged 96px master; 16px padding",
+  "source": "../../UpdateTrial-20260909/skeleton-mage-idle-96.png",
+  "referenceLayer": 1,
+  "visibleLayers": [
+    "Far leg",
+    "Near leg",
+    "Body and skull",
+    "Cloth",
+    "Casting arm",
+    "Staff arm",
+    "Staff"
+  ],
+  "clips": [
+    {
+      "name": "idle",
+      "loop": true,
+      "path": "Clips/idle.aseprite",
+      "atlas": "Atlases/idle.png",
+      "atlasMetadata": "Atlases/idle.json",
+      "frameCount": 7,
+      "durationsMs": [
+        180,
+        160,
+        160,
+        160,
+        180,
+        160,
+        160
+      ],
+      "totalMs": 1160,
+      "releaseEvent": null,
+      "poses": [
+        {
+          "name": "balanced",
+          "angle": 0,
+          "dx": 0,
+          "dy": 0,
+          "nearFoot": [
+            34,
+            85
+          ],
+          "wrist": [
+            28,
+            66
+          ],
+          "wind": 0,
+          "openHand": false,
+          "ms": 180,
+          "frame": 1,
+          "elbow": [
+            25.000000000000004,
+            55
+          ],
+          "armBoneLengths": [
+            11.6619037896906,
+            11.40175425099138
+          ],
+          "neck": [
+            45,
+            40
+          ]
+        },
+        {
+          "name": "settle",
+          "angle": 0,
+          "dx": 0,
+          "dy": 1,
+          "nearFoot": [
+            34,
+            85
+          ],
+          "wrist": [
+            28,
+            67
+          ],
+          "wind": 1,
+          "openHand": false,
+          "ms": 160,
+          "frame": 2,
+          "elbow": [
+            25.000000000000004,
+            56
+          ],
+          "armBoneLengths": [
+            11.6619037896906,
+            11.40175425099138
+          ],
+          "neck": [
+            45,
+            41
+          ]
+        },
+        {
+          "name": "weight forward",
+          "angle": 1,
+          "dx": 1,
+          "dy": 1,
+          "nearFoot": [
+            34,
+            85
+          ],
+          "wrist": [
+            29,
+            67
+          ],
+          "wind": 2,
+          "openHand": false,
+          "ms": 160,
+          "frame": 3,
+          "elbow": [
+            26.511680063794294,
+            55.87308381018886
+          ],
+          "armBoneLengths": [
+            11.661903789690601,
+            11.401754250991381
+          ],
+          "neck": [
+            46.40140534805752,
+            41.003503011403
+          ]
+        },
+        {
+          "name": "rise forward",
+          "angle": 1,
+          "dx": 1,
+          "dy": 0,
+          "nearFoot": [
+            34,
+            85
+          ],
+          "wrist": [
+            30,
+            66
+          ],
+          "wind": 1,
+          "openHand": false,
+          "ms": 160,
+          "frame": 4,
+          "elbow": [
+            26.82825316283892,
+            55.04828680064353
+          ],
+          "armBoneLengths": [
+            11.661903789690601,
+            11.401754250991381
+          ],
+          "neck": [
+            46.40140534805752,
+            40.003503011403
+          ]
+        },
+        {
+          "name": "balanced",
+          "angle": 0,
+          "dx": 0,
+          "dy": 0,
+          "nearFoot": [
+            34,
+            85
+          ],
+          "wrist": [
+            28,
+            66
+          ],
+          "wind": 0,
+          "openHand": false,
+          "ms": 180,
+          "frame": 5,
+          "elbow": [
+            25.000000000000004,
+            55
+          ],
+          "armBoneLengths": [
+            11.6619037896906,
+            11.40175425099138
+          ],
+          "neck": [
+            45,
+            40
+          ]
+        },
+        {
+          "name": "weight back",
+          "angle": -1,
+          "dx": -1,
+          "dy": 0,
+          "nearFoot": [
+            34,
+            85
+          ],
+          "wrist": [
+            27,
+            65
+          ],
+          "wind": 2,
+          "openHand": false,
+          "ms": 160,
+          "frame": 6,
+          "elbow": [
+            22.57782167644001,
+            54.490749842418055
+          ],
+          "armBoneLengths": [
+            11.661903789690603,
+            11.40175425099138
+          ],
+          "neck": [
+            43.59859465194248,
+            40.003503011403
+          ]
+        },
+        {
+          "name": "settle back",
+          "angle": -1,
+          "dx": -1,
+          "dy": 1,
+          "nearFoot": [
+            34,
+            85
+          ],
+          "wrist": [
+            27,
+            66
+          ],
+          "wind": 1,
+          "openHand": false,
+          "ms": 160,
+          "frame": 7,
+          "elbow": [
+            22.57782167644001,
+            55.490749842418055
+          ],
+          "armBoneLengths": [
+            11.661903789690603,
+            11.40175425099138
+          ],
+          "neck": [
+            43.59859465194248,
+            41.003503011403
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cast-hand-enter",
+      "loop": false,
+      "path": "Clips/cast-hand-enter.aseprite",
+      "atlas": "Atlases/cast-hand-enter.png",
+      "atlasMetadata": "Atlases/cast-hand-enter.json",
+      "frameCount": 6,
+      "durationsMs": [
+        120,
+        90,
+        90,
+        90,
+        90,
+        120
+      ],
+      "totalMs": 600,
+      "releaseEvent": null,
+      "poses": [
+        {
+          "name": "ready",
+          "angle": 0,
+          "dx": 0,
+          "dy": 0,
+          "nearFoot": [
+            34,
+            85
+          ],
+          "wrist": [
+            28,
+            66
+          ],
+          "wind": 0,
+          "openHand": false,
+          "ms": 120,
+          "frame": 1,
+          "elbow": [
+            25.000000000000004,
+            55
+          ],
+          "armBoneLengths": [
+            11.6619037896906,
+            11.40175425099138
+          ],
+          "neck": [
+            45,
+            40
+          ]
+        },
+        {
+          "name": "anticipation",
+          "angle": -2,
+          "dx": -1,
+          "dy": 1,
+          "nearFoot": [
+            34,
+            85
+          ],
+          "wrist": [
+            30,
+            64
+          ],
+          "wind": 1,
+          "openHand": false,
+          "ms": 90,
+          "frame": 2,
+          "elbow": [
+            22.197045720954954,
+            55.68652271795174
+          ],
+          "armBoneLengths": [
+            11.661903789690601,
+            11.401754250991376
+          ],
+          "neck": [
+            43.19731157584248,
+            41.0140109785608
+          ]
+        },
+        {
+          "name": "step lift",
+          "angle": -3,
+          "dx": -1,
+          "dy": 1,
+          "nearFoot": [
+            35,
+            84
+          ],
+          "wrist": [
+            34,
+            63
+          ],
+          "wind": 2,
+          "openHand": false,
+          "ms": 90,
+          "frame": 3,
+          "elbow": [
+            24.118144376144635,
+            57.31238807325271
+          ],
+          "armBoneLengths": [
+            11.661903789690601,
+            11.401754250991376
+          ],
+          "neck": [
+            42.79627300641229,
+            41.031520700644805
+          ]
+        },
+        {
+          "name": "arm rising",
+          "angle": 0,
+          "dx": 0,
+          "dy": 1,
+          "nearFoot": [
+            36,
+            84
+          ],
+          "wrist": [
+            42,
+            59
+          ],
+          "wind": 1,
+          "openHand": false,
+          "ms": 90,
+          "frame": 4,
+          "elbow": [
+            30.677564423608025,
+            57.65744548771629
+          ],
+          "armBoneLengths": [
+            11.661903789690603,
+            11.401754250991381
+          ],
+          "neck": [
+            45,
+            41
+          ]
+        },
+        {
+          "name": "palm opening",
+          "angle": 3,
+          "dx": 1,
+          "dy": 0,
+          "nearFoot": [
+            37,
+            85
+          ],
+          "wrist": [
+            49,
+            55
+          ],
+          "wind": 0,
+          "openHand": true,
+          "ms": 90,
+          "frame": 5,
+          "elbow": [
+            37.598248319899774,
+            54.992343281926814
+          ],
+          "armBoneLengths": [
+            11.6619037896906,
+            11.401754250991381
+          ],
+          "neck": [
+            47.20372699358771,
+            40.031520700644805
+          ]
+        },
+        {
+          "name": "hold ready",
+          "angle": 5,
+          "dx": 1,
+          "dy": 0,
+          "nearFoot": [
+            37,
+            85
+          ],
+          "wrist": [
+            54,
+            52
+          ],
+          "wind": 1,
+          "openHand": true,
+          "ms": 120,
+          "frame": 6,
+          "elbow": [
+            42.621985019939316,
+            51.264625868340005
+          ],
+          "armBoneLengths": [
+            11.661903789690598,
+            11.40175425099138
+          ],
+          "neck": [
+            48.00458208319614,
+            40.087521943889854
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cast-hand-hold",
+      "loop": true,
+      "path": "Clips/cast-hand-hold.aseprite",
+      "atlas": "Atlases/cast-hand-hold.png",
+      "atlasMetadata": "Atlases/cast-hand-hold.json",
+      "frameCount": 7,
+      "durationsMs": [
+        140,
+        120,
+        140,
+        140,
+        120,
+        140,
+        120
+      ],
+      "totalMs": 920,
+      "releaseEvent": null,
+      "poses": [
+        {
+          "name": "hold settle",
+          "angle": 5,
+          "dx": 1,
+          "dy": 0,
+          "nearFoot": [
+            37,
+            85
+          ],
+          "wrist": [
+            54,
+            52
+          ],
+          "wind": 1,
+          "openHand": true,
+          "ms": 140,
+          "frame": 1,
+          "elbow": [
+            42.621985019939316,
+            51.264625868340005
+          ],
+          "armBoneLengths": [
+            11.661903789690598,
+            11.40175425099138
+          ],
+          "neck": [
+            48.00458208319614,
+            40.087521943889854
+          ]
+        },
+        {
+          "name": "hold forward",
+          "angle": 6,
+          "dx": 1,
+          "dy": 0,
+          "nearFoot": [
+            37,
+            85
+          ],
+          "wrist": [
+            54,
+            51
+          ],
+          "wind": 2,
+          "openHand": true,
+          "ms": 120,
+          "frame": 2,
+          "elbow": [
+            42.60743474898041,
+            51.45766472582107
+          ],
+          "armBoneLengths": [
+            11.6619037896906,
+            11.401754250991376
+          ],
+          "neck": [
+            48.40415465515603,
+            40.125996406529715
+          ]
+        },
+        {
+          "name": "hold forward settle",
+          "angle": 6,
+          "dx": 1,
+          "dy": 1,
+          "nearFoot": [
+            37,
+            85
+          ],
+          "wrist": [
+            54,
+            52
+          ],
+          "wind": 1,
+          "openHand": true,
+          "ms": 140,
+          "frame": 3,
+          "elbow": [
+            42.60743474898041,
+            52.45766472582107
+          ],
+          "armBoneLengths": [
+            11.6619037896906,
+            11.401754250991376
+          ],
+          "neck": [
+            48.40415465515603,
+            41.125996406529715
+          ]
+        },
+        {
+          "name": "hold centre",
+          "angle": 5,
+          "dx": 1,
+          "dy": 1,
+          "nearFoot": [
+            37,
+            85
+          ],
+          "wrist": [
+            54,
+            53
+          ],
+          "wind": 0,
+          "openHand": true,
+          "ms": 140,
+          "frame": 4,
+          "elbow": [
+            42.621985019939316,
+            52.264625868340005
+          ],
+          "armBoneLengths": [
+            11.661903789690598,
+            11.40175425099138
+          ],
+          "neck": [
+            48.00458208319614,
+            41.087521943889854
+          ]
+        },
+        {
+          "name": "hold ease",
+          "angle": 4,
+          "dx": 1,
+          "dy": 0,
+          "nearFoot": [
+            37,
+            85
+          ],
+          "wrist": [
+            53,
+            52
+          ],
+          "wind": 1,
+          "openHand": true,
+          "ms": 120,
+          "frame": 5,
+          "elbow": [
+            41.60094189768728,
+            52.247940275265435
+          ],
+          "armBoneLengths": [
+            11.6619037896906,
+            11.40175425099138
+          ],
+          "neck": [
+            47.60439889611488,
+            40.056026844024046
+          ]
+        },
+        {
+          "name": "hold back",
+          "angle": 4,
+          "dx": 0,
+          "dy": 0,
+          "nearFoot": [
+            37,
+            85
+          ],
+          "wrist": [
+            53,
+            51
+          ],
+          "wind": 2,
+          "openHand": true,
+          "ms": 140,
+          "frame": 6,
+          "elbow": [
+            41.5986154573126,
+            51.09181780747094
+          ],
+          "armBoneLengths": [
+            11.661903789690603,
+            11.40175425099138
+          ],
+          "neck": [
+            46.60439889611488,
+            40.056026844024046
+          ]
+        },
+        {
+          "name": "hold rising",
+          "angle": 5,
+          "dx": 0,
+          "dy": 0,
+          "nearFoot": [
+            37,
+            85
+          ],
+          "wrist": [
+            54,
+            51
+          ],
+          "wind": 1,
+          "openHand": true,
+          "ms": 120,
+          "frame": 7,
+          "elbow": [
+            42.66391702432446,
+            49.778025054021455
+          ],
+          "armBoneLengths": [
+            11.661903789690598,
+            11.401754250991381
+          ],
+          "neck": [
+            47.00458208319614,
+            40.087521943889854
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cast-hand-release",
+      "loop": false,
+      "path": "Clips/cast-hand-release.aseprite",
+      "atlas": "Atlases/cast-hand-release.png",
+      "atlasMetadata": "Atlases/cast-hand-release.json",
+      "frameCount": 5,
+      "durationsMs": [
+        80,
+        80,
+        70,
+        100,
+        120
+      ],
+      "totalMs": 450,
+      "releaseEvent": {
+        "frame": 3,
+        "timeMs": 160,
+        "canvasPosition": [
+          82,
+          64
+        ],
+        "socket": "palm",
+        "effectBaked": false
+      },
+      "poses": [
+        {
+          "name": "held",
+          "angle": 5,
+          "dx": 1,
+          "dy": 0,
+          "nearFoot": [
+            37,
+            85
+          ],
+          "wrist": [
+            54,
+            52
+          ],
+          "wind": 1,
+          "openHand": true,
+          "ms": 80,
+          "frame": 1,
+          "elbow": [
+            42.621985019939316,
+            51.264625868340005
+          ],
+          "armBoneLengths": [
+            11.661903789690598,
+            11.40175425099138
+          ],
+          "neck": [
+            48.00458208319614,
+            40.087521943889854
+          ]
+        },
+        {
+          "name": "release preparation",
+          "angle": 4,
+          "dx": 0,
+          "dy": 1,
+          "nearFoot": [
+            37,
+            85
+          ],
+          "wrist": [
+            53,
+            53
+          ],
+          "wind": 0,
+          "openHand": true,
+          "ms": 80,
+          "frame": 2,
+          "elbow": [
+            41.63889112828099,
+            52.03812412186006
+          ],
+          "armBoneLengths": [
+            11.6619037896906,
+            11.401754250991376
+          ],
+          "neck": [
+            46.60439889611488,
+            41.056026844024046
+          ]
+        },
+        {
+          "name": "palm impulse",
+          "angle": 8,
+          "dx": 2,
+          "dy": 0,
+          "nearFoot": [
+            37,
+            85
+          ],
+          "wrist": [
+            57,
+            48
+          ],
+          "wind": 2,
+          "openHand": true,
+          "ms": 70,
+          "frame": 3,
+          "elbow": [
+            45.660937045835325,
+            49.1940064160172
+          ],
+          "armBoneLengths": [
+            11.661903789690598,
+            11.401754250991377
+          ],
+          "neck": [
+            50.2009813220815,
+            40.22383441894388
+          ]
+        },
+        {
+          "name": "followthrough",
+          "angle": 7,
+          "dx": 2,
+          "dy": 1,
+          "nearFoot": [
+            37,
+            85
+          ],
+          "wrist": [
+            56,
+            50
+          ],
+          "wind": 2,
+          "openHand": true,
+          "ms": 100,
+          "frame": 4,
+          "elbow": [
+            44.67914109916073,
+            51.355785288048324
+          ],
+          "armBoneLengths": [
+            11.6619037896906,
+            11.401754250991381
+          ],
+          "neck": [
+            49.80299489831839,
+            41.171438512249594
+          ]
+        },
+        {
+          "name": "held recovery",
+          "angle": 5,
+          "dx": 1,
+          "dy": 0,
+          "nearFoot": [
+            37,
+            85
+          ],
+          "wrist": [
+            54,
+            52
+          ],
+          "wind": 1,
+          "openHand": true,
+          "ms": 120,
+          "frame": 5,
+          "elbow": [
+            42.621985019939316,
+            51.264625868340005
+          ],
+          "armBoneLengths": [
+            11.661903789690598,
+            11.40175425099138
+          ],
+          "neck": [
+            48.00458208319614,
+            40.087521943889854
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cast-hand-exit",
+      "loop": false,
+      "path": "Clips/cast-hand-exit.aseprite",
+      "atlas": "Atlases/cast-hand-exit.png",
+      "atlasMetadata": "Atlases/cast-hand-exit.json",
+      "frameCount": 6,
+      "durationsMs": [
+        100,
+        100,
+        100,
+        100,
+        120,
+        160
+      ],
+      "totalMs": 680,
+      "releaseEvent": null,
+      "poses": [
+        {
+          "name": "held",
+          "angle": 5,
+          "dx": 1,
+          "dy": 0,
+          "nearFoot": [
+            37,
+            85
+          ],
+          "wrist": [
+            54,
+            52
+          ],
+          "wind": 1,
+          "openHand": true,
+          "ms": 100,
+          "frame": 1,
+          "elbow": [
+            42.621985019939316,
+            51.264625868340005
+          ],
+          "armBoneLengths": [
+            11.661903789690598,
+            11.40175425099138
+          ],
+          "neck": [
+            48.00458208319614,
+            40.087521943889854
+          ]
+        },
+        {
+          "name": "relax palm",
+          "angle": 4,
+          "dx": 1,
+          "dy": 1,
+          "nearFoot": [
+            37,
+            85
+          ],
+          "wrist": [
+            50,
+            56
+          ],
+          "wind": 2,
+          "openHand": true,
+          "ms": 100,
+          "frame": 2,
+          "elbow": [
+            38.611813836317296,
+            55.44392815095003
+          ],
+          "armBoneLengths": [
+            11.661903789690598,
+            11.401754250991381
+          ],
+          "neck": [
+            47.60439889611488,
+            41.056026844024046
+          ]
+        },
+        {
+          "name": "lower hand",
+          "angle": 2,
+          "dx": 0,
+          "dy": 1,
+          "nearFoot": [
+            36,
+            85
+          ],
+          "wrist": [
+            43,
+            60
+          ],
+          "wind": 1,
+          "openHand": false,
+          "ms": 100,
+          "frame": 3,
+          "elbow": [
+            31.952484380959717,
+            57.18000023988282
+          ],
+          "armBoneLengths": [
+            11.6619037896906,
+            11.401754250991377
+          ],
+          "neck": [
+            45.80268842415752,
+            41.0140109785608
+          ]
+        },
+        {
+          "name": "recover foot",
+          "angle": 0,
+          "dx": 0,
+          "dy": 1,
+          "nearFoot": [
+            35,
+            84
+          ],
+          "wrist": [
+            36,
+            64
+          ],
+          "wind": 2,
+          "openHand": false,
+          "ms": 100,
+          "frame": 4,
+          "elbow": [
+            27.02770261325567,
+            56.964527051873425
+          ],
+          "armBoneLengths": [
+            11.6619037896906,
+            11.40175425099138
+          ],
+          "neck": [
+            45,
+            41
+          ]
+        },
+        {
+          "name": "relax",
+          "angle": 0,
+          "dx": 0,
+          "dy": 0,
+          "nearFoot": [
+            34,
+            85
+          ],
+          "wrist": [
+            30,
+            66
+          ],
+          "wind": 1,
+          "openHand": false,
+          "ms": 120,
+          "frame": 5,
+          "elbow": [
+            25.757309471820463,
+            55.41701473675335
+          ],
+          "armBoneLengths": [
+            11.6619037896906,
+            11.401754250991385
+          ],
+          "neck": [
+            45,
+            40
+          ]
+        },
+        {
+          "name": "ready",
+          "angle": 0,
+          "dx": 0,
+          "dy": 0,
+          "nearFoot": [
+            34,
+            85
+          ],
+          "wrist": [
+            28,
+            66
+          ],
+          "wind": 0,
+          "openHand": false,
+          "ms": 160,
+          "frame": 6,
+          "elbow": [
+            25.000000000000004,
+            55
+          ],
+          "armBoneLengths": [
+            11.6619037896906,
+            11.40175425099138
+          ],
+          "neck": [
+            45,
+            40
+          ]
+        }
+      ]
+    }
+  ],
+  "demo": {
+    "path": "Previews/cast-demo-3x.gif",
+    "sequence": [
+      {
+        "clip": "cast-hand-enter",
+        "frame": 1,
+        "ms": 120
+      },
+      {
+        "clip": "cast-hand-enter",
+        "frame": 2,
+        "ms": 90
+      },
+      {
+        "clip": "cast-hand-enter",
+        "frame": 3,
+        "ms": 90
+      },
+      {
+        "clip": "cast-hand-enter",
+        "frame": 4,
+        "ms": 90
+      },
+      {
+        "clip": "cast-hand-enter",
+        "frame": 5,
+        "ms": 90
+      },
+      {
+        "clip": "cast-hand-enter",
+        "frame": 6,
+        "ms": 120
+      },
+      {
+        "clip": "cast-hand-hold",
+        "frame": 1,
+        "ms": 140
+      },
+      {
+        "clip": "cast-hand-hold",
+        "frame": 2,
+        "ms": 120
+      },
+      {
+        "clip": "cast-hand-hold",
+        "frame": 3,
+        "ms": 140
+      },
+      {
+        "clip": "cast-hand-hold",
+        "frame": 4,
+        "ms": 140
+      },
+      {
+        "clip": "cast-hand-hold",
+        "frame": 5,
+        "ms": 120
+      },
+      {
+        "clip": "cast-hand-hold",
+        "frame": 6,
+        "ms": 140
+      },
+      {
+        "clip": "cast-hand-hold",
+        "frame": 7,
+        "ms": 120
+      },
+      {
+        "clip": "cast-hand-hold",
+        "frame": 1,
+        "ms": 140
+      },
+      {
+        "clip": "cast-hand-hold",
+        "frame": 2,
+        "ms": 120
+      },
+      {
+        "clip": "cast-hand-hold",
+        "frame": 3,
+        "ms": 140
+      },
+      {
+        "clip": "cast-hand-hold",
+        "frame": 4,
+        "ms": 140
+      },
+      {
+        "clip": "cast-hand-hold",
+        "frame": 5,
+        "ms": 120
+      },
+      {
+        "clip": "cast-hand-hold",
+        "frame": 6,
+        "ms": 140
+      },
+      {
+        "clip": "cast-hand-hold",
+        "frame": 7,
+        "ms": 120
+      },
+      {
+        "clip": "cast-hand-release",
+        "frame": 1,
+        "ms": 80
+      },
+      {
+        "clip": "cast-hand-release",
+        "frame": 2,
+        "ms": 80
+      },
+      {
+        "clip": "cast-hand-release",
+        "frame": 3,
+        "ms": 70
+      },
+      {
+        "clip": "cast-hand-release",
+        "frame": 4,
+        "ms": 100
+      },
+      {
+        "clip": "cast-hand-release",
+        "frame": 5,
+        "ms": 120
+      },
+      {
+        "clip": "cast-hand-exit",
+        "frame": 2,
+        "ms": 100
+      },
+      {
+        "clip": "cast-hand-exit",
+        "frame": 3,
+        "ms": 100
+      },
+      {
+        "clip": "cast-hand-exit",
+        "frame": 4,
+        "ms": 100
+      },
+      {
+        "clip": "cast-hand-exit",
+        "frame": 5,
+        "ms": 120
+      },
+      {
+        "clip": "cast-hand-exit",
+        "frame": 6,
+        "ms": 160
+      }
+    ],
+    "durationMs": 3470
+  },
+  "notes": [
+    "Only side/right 3/4 view.",
+    "No projectiles or glow baked into character.",
+    "Head follows torso translation while keeping its source pixel drawing.",
+    "Cloth hems and casting palm have native key edits.",
+    "Pose construction still includes rigid source-part transformations; this is not proof of natural motion.",
+    "Boundary pose is canonical; arbitrary-phase hold exit requires a later integration decision."
+  ]
+}

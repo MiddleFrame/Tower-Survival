@@ -25,11 +25,68 @@ MonoBehaviour:
   - value: 0
     type: 3
     sprite: {fileID: 21300000, guid: 47e7a6cd7129f2c4895a9f3cd53f24f7, type: 3}
-  EnemySpawnSettings:
-  - {fileID: 11400000, guid: 458e4e0fdc851e548baa82bb4a42f742, type: 2}
-  - {fileID: 11400000, guid: 0122391e0b0e36441a1634896c0f0f16, type: 2}
-  - {fileID: 11400000, guid: 8a24a0c5046a80e4a87d35cf0ca9d8a8, type: 2}
-  - {fileID: 11400000, guid: 8127ff662aa37954090bf6ed4bda54a2, type: 2}
+  EnemySpawnSettings: []
+  Tiers:
+  - SpawnSettings:
+      m_AssetGUID: 458e4e0fdc851e548baa82bb4a42f742
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+    RecordToOpen: 0
+    OreMultiplier: 6
+    EnemyDamageMultiplier: 1.05
+    EnemyHealthMultiplier: 1.02
+    FirstStageSpawnRate: 2
+    EnemyNames:
+    - Basic Enemy
+    - Tank Enemy
+    - Ranged Enemy
+  - SpawnSettings:
+      m_AssetGUID: 0122391e0b0e36441a1634896c0f0f16
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+    RecordToOpen: 1000
+    OreMultiplier: 9
+    EnemyDamageMultiplier: 1.1
+    EnemyHealthMultiplier: 1.05
+    FirstStageSpawnRate: 1
+    EnemyNames:
+    - Barrel
+    - Tank Enemy
+    - Ranged Enemy
+  - SpawnSettings:
+      m_AssetGUID: 8a24a0c5046a80e4a87d35cf0ca9d8a8
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+    RecordToOpen: 1000
+    OreMultiplier: 13
+    EnemyDamageMultiplier: 1.2
+    EnemyHealthMultiplier: 1.1
+    FirstStageSpawnRate: 1
+    EnemyNames:
+    - Barrel
+    - Tank Enemy
+    - Ranged Enemy
+  - SpawnSettings:
+      m_AssetGUID: 8127ff662aa37954090bf6ed4bda54a2
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+    RecordToOpen: 1000
+    OreMultiplier: 18
+    EnemyDamageMultiplier: 1.2
+    EnemyHealthMultiplier: 1.15
+    FirstStageSpawnRate: 1
+    EnemyNames:
+    - Barrel
+    - Tank Enemy
+    - Ranged Enemy
   UpgradeSettings: {fileID: 11400000, guid: 2beb3d7ce10244647a0c893696928a4b, type: 2}
   tower: {fileID: 4071222451322221605, guid: 04d700718b1fdb34fb6021c5be5332e7, type: 3}
   ProjectileView: {fileID: -6287025677217260571, guid: 1ec97e3ef12c87446829b12708c5b747, type: 3}

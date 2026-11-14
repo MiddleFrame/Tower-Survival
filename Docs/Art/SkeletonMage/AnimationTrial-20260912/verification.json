@@ -1,0 +1,69 @@
+{
+  "clips": [
+    {
+      "clip": "idle-side",
+      "frames": 6,
+      "png_checks": "passed",
+      "gif_decoded_frames_match_png": "passed"
+    },
+    {
+      "clip": "idle-front",
+      "frames": 6,
+      "png_checks": "passed",
+      "gif_decoded_frames_match_png": "passed"
+    },
+    {
+      "clip": "idle-back",
+      "frames": 6,
+      "png_checks": "passed",
+      "gif_decoded_frames_match_png": "passed"
+    },
+    {
+      "clip": "walk-side",
+      "frames": 8,
+      "png_checks": "passed",
+      "gif_decoded_frames_match_png": "passed"
+    },
+    {
+      "clip": "cast-side",
+      "frames": 8,
+      "png_checks": "passed",
+      "gif_decoded_frames_match_png": "passed"
+    },
+    {
+      "clip": "cast-front",
+      "frames": 8,
+      "png_checks": "passed",
+      "gif_decoded_frames_match_png": "passed"
+    },
+    {
+      "clip": "cast-back",
+      "frames": 8,
+      "png_checks": "passed",
+      "gif_decoded_frames_match_png": "passed"
+    },
+    {
+      "clip": "death-side",
+      "frames": 7,
+      "png_checks": "passed",
+      "gif_decoded_frames_match_png": "passed"
+    },
+    {
+      "clip": "magic-projectile",
+      "frames": 6,
+      "png_checks": "passed",
+      "gif_decoded_frames_match_png": "passed"
+    },
+    {
+      "clip": "magic-cast",
+      "frames": 6,
+      "png_checks": "passed",
+      "gif_decoded_frames_match_png": "passed"
+    }
+  ],
+  "total_frames": 69,
+  "master_sha256_unchanged": "e96cbf79b24eb270f3dbccb1688ca7e598dedc21c3fc358081aef32ddde247b3",
+  "viewer_js_syntax": "passed",
+  "viewer_browser_test": "blocked_by_browser_local_url_policy",
+  "unity_validation": "not_performed_no_import"
+}

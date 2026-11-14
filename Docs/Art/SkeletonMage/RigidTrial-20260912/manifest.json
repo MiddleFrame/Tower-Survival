@@ -1,0 +1,195 @@
+{
+  "status": "rigid_animation_trial_not_imported",
+  "cell": 128,
+  "cast_lifecycle": [
+    "cast-ready",
+    "cast-enter",
+    "cast-hold",
+    "cast-release",
+    "cast-exit",
+    "cast-ready"
+  ],
+  "hold_duration": "controlled externally; loop cast-hold until requested release",
+  "cast_carry_pose_changed": true,
+  "clips": [
+    {
+      "name": "idle",
+      "count": 12,
+      "columns": 4,
+      "cell": 128,
+      "ms": 120,
+      "loop": true
+    },
+    {
+      "name": "walk",
+      "count": 12,
+      "columns": 4,
+      "cell": 128,
+      "ms": 90,
+      "loop": true
+    },
+    {
+      "name": "cast-ready",
+      "count": 12,
+      "columns": 4,
+      "cell": 128,
+      "ms": 110,
+      "loop": true
+    },
+    {
+      "name": "cast-enter",
+      "count": 7,
+      "columns": 4,
+      "cell": 128,
+      "ms": 100,
+      "loop": false
+    },
+    {
+      "name": "cast-hold",
+      "count": 12,
+      "columns": 4,
+      "cell": 128,
+      "ms": 100,
+      "loop": true
+    },
+    {
+      "name": "cast-exit",
+      "count": 7,
+      "columns": 4,
+      "cell": 128,
+      "ms": 100,
+      "loop": false
+    },
+    {
+      "name": "cast-release-from-00",
+      "count": 6,
+      "columns": 4,
+      "cell": 128,
+      "ms": 70,
+      "loop": false,
+      "release_frame": 2
+    },
+    {
+      "name": "cast-release-from-01",
+      "count": 6,
+      "columns": 4,
+      "cell": 128,
+      "ms": 70,
+      "loop": false,
+      "release_frame": 2
+    },
+    {
+      "name": "cast-release-from-02",
+      "count": 6,
+      "columns": 4,
+      "cell": 128,
+      "ms": 70,
+      "loop": false,
+      "release_frame": 2
+    },
+    {
+      "name": "cast-release-from-03",
+      "count": 6,
+      "columns": 4,
+      "cell": 128,
+      "ms": 70,
+      "loop": false,
+      "release_frame": 2
+    },
+    {
+      "name": "cast-release-from-04",
+      "count": 6,
+      "columns": 4,
+      "cell": 128,
+      "ms": 70,
+      "loop": false,
+      "release_frame": 2
+    },
+    {
+      "name": "cast-release-from-05",
+      "count": 6,
+      "columns": 4,
+      "cell": 128,
+      "ms": 70,
+      "loop": false,
+      "release_frame": 2
+    },
+    {
+      "name": "cast-release-from-06",
+      "count": 6,
+      "columns": 4,
+      "cell": 128,
+      "ms": 70,
+      "loop": false,
+      "release_frame": 2
+    },
+    {
+      "name": "cast-release-from-07",
+      "count": 6,
+      "columns": 4,
+      "cell": 128,
+      "ms": 70,
+      "loop": false,
+      "release_frame": 2
+    },
+    {
+      "name": "cast-release-from-08",
+      "count": 6,
+      "columns": 4,
+      "cell": 128,
+      "ms": 70,
+      "loop": false,
+      "release_frame": 2
+    },
+    {
+      "name": "cast-release-from-09",
+      "count": 6,
+      "columns": 4,
+      "cell": 128,
+      "ms": 70,
+      "loop": false,
+      "release_frame": 2
+    },
+    {
+      "name": "cast-release-from-10",
+      "count": 6,
+      "columns": 4,
+      "cell": 128,
+      "ms": 70,
+      "loop": false,
+      "release_frame": 2
+    },
+    {
+      "name": "cast-release-from-11",
+      "count": 6,
+      "columns": 4,
+      "cell": 128,
+      "ms": 70,
+      "loop": false,
+      "release_frame": 2
+    },
+    {
+      "name": "cast-release",
+      "count": 6,
+      "columns": 4,
+      "cell": 128,
+      "ms": 70,
+      "loop": false,
+      "release_frame": 2
+    }
+  ],
+  "release_for_hold_frame": [
+    "cast-release-from-00",
+    "cast-release-from-01",
+    "cast-release-from-02",
+    "cast-release-from-03",
+    "cast-release-from-04",
+    "cast-release-from-05",
+    "cast-release-from-06",
+    "cast-release-from-07",
+    "cast-release-from-08",
+    "cast-release-from-09",
+    "cast-release-from-10",
+    "cast-release-from-11"
+  ]
+}

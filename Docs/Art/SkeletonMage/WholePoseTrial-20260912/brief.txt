@@ -1,0 +1,1 @@
+Whole-pose idle experiment. Generate six coordinated poses in a 3x2 sheet on flat magenta. Preserve the original skeleton mage design. No rigid-cutout animation or scanline deformation. This is a small artistic experiment; temporal texture consistency remains unproven.

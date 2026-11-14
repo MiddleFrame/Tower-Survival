@@ -1,0 +1,66 @@
+[
+  {
+    "file": "frame-00.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      42,
+      18,
+      81,
+      105
+    ],
+    "partialAlpha": 0,
+    "colors": 78,
+    "lowerRegionDiff": 0,
+    "lowerMaskDiff": 0,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-01.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      42,
+      18,
+      81,
+      105
+    ],
+    "partialAlpha": 0,
+    "colors": 77,
+    "lowerRegionDiff": 151,
+    "lowerMaskDiff": 1,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-02.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      42,
+      18,
+      81,
+      105
+    ],
+    "partialAlpha": 0,
+    "colors": 75,
+    "lowerRegionDiff": 168,
+    "lowerMaskDiff": 6,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-03.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      42,
+      18,
+      81,
+      105
+    ],
+    "partialAlpha": 0,
+    "colors": 74,
+    "lowerRegionDiff": 164,
+    "lowerMaskDiff": 3,
+    "edgeClipping": false
+  }
+]

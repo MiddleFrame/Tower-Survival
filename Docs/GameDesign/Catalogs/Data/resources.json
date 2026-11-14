@@ -1,0 +1,231 @@
+{
+  "version": "2026-09-07-current",
+  "units": "Добыча за активную реальную минуту при скорости боя ×1; плавка в реальных минутах при скорости печи ×1.",
+  "resources": {
+    "RAW_CU": {
+      "name": "Медная руда",
+      "tier": 1,
+      "biome": "L01",
+      "location": "Лес / гоблины",
+      "unlock": "START",
+      "kills_per_minute": 24,
+      "drop_chance": 0.65,
+      "min_drop": 1,
+      "max_drop": 3,
+      "expected_per_minute": 31.2,
+      "coal_per_minute": 21.6,
+      "mine_base_per_hour": 60
+    },
+    "INGOT_CU": {
+      "name": "Медный слиток",
+      "tier": 1,
+      "biome": "L01",
+      "location": "Кузница BLD02",
+      "unlock": "START",
+      "recipe_id": "INGOT_CU",
+      "purchasable": false
+    },
+    "RAW_FE": {
+      "name": "Железная руда",
+      "tier": 2,
+      "biome": "L02",
+      "location": "Катакомбы / скелеты",
+      "unlock": "G01",
+      "kills_per_minute": 22,
+      "drop_chance": 0.6,
+      "min_drop": 1,
+      "max_drop": 3,
+      "expected_per_minute": 26.4,
+      "coal_per_minute": 18.48,
+      "mine_base_per_hour": 42
+    },
+    "INGOT_FE": {
+      "name": "Железный слиток",
+      "tier": 2,
+      "biome": "L02",
+      "location": "Кузница BLD02",
+      "unlock": "G01",
+      "recipe_id": "INGOT_FE",
+      "purchasable": false
+    },
+    "RAW_AG": {
+      "name": "Серебряная руда",
+      "tier": 3,
+      "biome": "L03",
+      "location": "Редут / люди",
+      "unlock": "G02",
+      "kills_per_minute": 20,
+      "drop_chance": 0.55,
+      "min_drop": 1,
+      "max_drop": 3,
+      "expected_per_minute": 22,
+      "coal_per_minute": 15,
+      "mine_base_per_hour": 28
+    },
+    "INGOT_AG": {
+      "name": "Серебряный слиток",
+      "tier": 3,
+      "biome": "L03",
+      "location": "Кузница BLD02",
+      "unlock": "G02",
+      "recipe_id": "INGOT_AG",
+      "purchasable": false
+    },
+    "RAW_AU": {
+      "name": "Золотая руда",
+      "tier": 4,
+      "biome": "L04",
+      "location": "Нагорье / звери",
+      "unlock": "G03",
+      "kills_per_minute": 18,
+      "drop_chance": 0.5,
+      "min_drop": 1,
+      "max_drop": 2,
+      "expected_per_minute": 13.5,
+      "coal_per_minute": 13.5,
+      "mine_base_per_hour": 18
+    },
+    "INGOT_AU": {
+      "name": "Золотой слиток",
+      "tier": 4,
+      "biome": "L04",
+      "location": "Кузница BLD02",
+      "unlock": "G03",
+      "recipe_id": "INGOT_AU",
+      "purchasable": false
+    },
+    "RAW_MY": {
+      "name": "Мифрильная руда",
+      "tier": 5,
+      "biome": "L05",
+      "location": "Кузни / конструкты",
+      "unlock": "G04",
+      "kills_per_minute": 16,
+      "drop_chance": 0.45,
+      "min_drop": 1,
+      "max_drop": 2,
+      "expected_per_minute": 10.8,
+      "coal_per_minute": 10.56,
+      "mine_base_per_hour": 10
+    },
+    "INGOT_MY": {
+      "name": "Мифрильный слиток",
+      "tier": 5,
+      "biome": "L05",
+      "location": "Кузница BLD02",
+      "unlock": "G04",
+      "recipe_id": "INGOT_MY",
+      "purchasable": false
+    },
+    "RAW_AS": {
+      "name": "Астралит",
+      "tier": 6,
+      "biome": "L06",
+      "location": "Разлом / астральные",
+      "unlock": "G05",
+      "kills_per_minute": 14,
+      "drop_chance": 0.4,
+      "min_drop": 1,
+      "max_drop": 2,
+      "expected_per_minute": 8.4,
+      "coal_per_minute": 8.4,
+      "mine_base_per_hour": 6
+    },
+    "INGOT_AS": {
+      "name": "Обработанный астралит",
+      "tier": 6,
+      "biome": "L06",
+      "location": "Кузница BLD02",
+      "unlock": "G05",
+      "recipe_id": "INGOT_AS",
+      "purchasable": false
+    },
+    "COAL": {
+      "name": "Уголь",
+      "tier": 0,
+      "unlock": "START",
+      "location": "Все открытые биомы; угольный режим шахты",
+      "max_reference_per_minute": 21.6
+    },
+    "CRYSTAL": {
+      "name": "Кристаллы",
+      "tier": 0,
+      "unlock": "Награды прохождения / задания / магазин",
+      "location": "Универсальная валюта; не заменяет закрытый ресурс или готовый материал"
+    },
+    "AD_TOKEN": {
+      "name": "Рекламные жетоны",
+      "tier": 0,
+      "unlock": "Обучение рекламным наградам",
+      "location": "За подтверждённую добровольную rewarded-награду; таверна"
+    }
+  },
+  "recipes": {
+    "INGOT_CU": {
+      "input": {
+        "RAW_CU": 12,
+        "COAL": 6
+      },
+      "output": {
+        "INGOT_CU": 1
+      },
+      "minutes": 6
+    },
+    "INGOT_FE": {
+      "input": {
+        "RAW_FE": 22,
+        "COAL": 10
+      },
+      "output": {
+        "INGOT_FE": 1
+      },
+      "minutes": 14
+    },
+    "INGOT_AG": {
+      "input": {
+        "RAW_AG": 32,
+        "COAL": 18
+      },
+      "output": {
+        "INGOT_AG": 1
+      },
+      "minutes": 30
+    },
+    "INGOT_AU": {
+      "input": {
+        "RAW_AU": 40,
+        "COAL": 28
+      },
+      "output": {
+        "INGOT_AU": 1
+      },
+      "minutes": 60
+    },
+    "INGOT_MY": {
+      "input": {
+        "RAW_MY": 60,
+        "COAL": 45
+      },
+      "output": {
+        "INGOT_MY": 1
+      },
+      "minutes": 150
+    },
+    "INGOT_AS": {
+      "input": {
+        "RAW_AS": 90,
+        "COAL": 80
+      },
+      "output": {
+        "INGOT_AS": 1
+      },
+      "minutes": 360
+    }
+  },
+  "forge": {
+    "max_slots": 4,
+    "building_speed_cap": 1.6,
+    "laboratory_speed_cap": 1.25,
+    "combined_speed_cap": 2
+  }
+}

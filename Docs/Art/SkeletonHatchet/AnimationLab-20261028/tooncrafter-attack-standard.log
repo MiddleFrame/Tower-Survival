@@ -1,0 +1,20 @@
+Loading text encoder
+WARNING:root:clip missing: ['text_model.encoder.layers.23.layer_norm1.weight', 'text_model.encoder.layers.23.layer_norm1.bias', 'text_model.encoder.layers.23.self_attn.q_proj.weight', 'text_model.encoder.layers.23.self_attn.q_proj.bias', 'text_model.encoder.layers.23.self_attn.k_proj.weight', 'text_model.encoder.layers.23.self_attn.k_proj.bias', 'text_model.encoder.layers.23.self_attn.v_proj.weight', 'text_model.encoder.layers.23.self_attn.v_proj.bias', 'text_model.encoder.layers.23.self_attn.out_proj.weight', 'text_model.encoder.layers.23.self_attn.out_proj.bias', 'text_model.encoder.layers.23.layer_norm2.weight', 'text_model.encoder.layers.23.layer_norm2.bias', 'text_model.encoder.layers.23.mlp.fc1.weight', 'text_model.encoder.layers.23.mlp.fc1.bias', 'text_model.encoder.layers.23.mlp.fc2.weight', 'text_model.encoder.layers.23.mlp.fc2.bias', 'text_projection.weight']
+Loading vision encoder
+Constructing ToonCrafter
+W1028 22:31:06.393000 15404 venv\Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+WARNING:tooncrafter-wrapper.lvdm.modules.attention_svd:no module 'xformers'. Processing without...
+AE working on z of shape (1, 4, 32, 32) = 4096 dimensions.
+vanilla
+cross-attn-fusion
+cross-attn-fusion
+Sampling
+Decoding
+VAE using dtype: torch.float16
+Decoding frames 0 - 16 out of 16 using xformers
+Finished attack-standard
+Exception ignored in: <function ModelPatcher.__del__ at 0x000002586F4F0360>
+Traceback (most recent call last):
+  File "A:\AI\StabilityMatrix\Data\Packages\ComfyUI\comfy\model_patcher.py", line 1747, in __del__
+  File "A:\AI\StabilityMatrix\Data\Packages\ComfyUI\comfy\model_patcher.py", line 1300, in detach
+AttributeError: 'NoneType' object has no attribute 'ON_DETACH'

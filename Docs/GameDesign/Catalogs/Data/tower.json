@@ -1,0 +1,4745 @@
+{
+  "system": "tower",
+  "branches": [
+    {
+      "id": "TW01",
+      "name": "Урон выстрела",
+      "max_level": 100,
+      "availability": "START; диапазоны требуют конкретных источников",
+      "purpose": "Частая основная числовая покупка",
+      "effect_description": "Базовый урон ×1,045 за уровень. 100 индивидуально заданных цен; поздние диапазоны требуют одновременно новые и прежние материалы. На уровнях 21/41/61/81 цена включает подготовку следующего конструкционного диапазона за слитки; отдельного скачка параметра это не даёт.",
+      "effect_unit": "множитель базы",
+      "stacking": "Лабораторный +10% урона считается отдельным аддитивным бонусом своего источника; скорость/цели не спрятаны в этом коэффициенте.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "RAW_CU": 15
+          },
+          "cost_end": {
+            "RAW_CU": 15
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.045,
+          "effect_end": 1.045,
+          "requires": "START"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "RAW_CU": 17
+          },
+          "cost_end": {
+            "RAW_CU": 17
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.0920249999999998,
+          "effect_end": 1.0920249999999998,
+          "requires": "START"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "RAW_CU": 18
+          },
+          "cost_end": {
+            "RAW_CU": 18
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.1411661249999998,
+          "effect_end": 1.1411661249999998,
+          "requires": "START"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "RAW_CU": 19
+          },
+          "cost_end": {
+            "RAW_CU": 19
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.1925186006249997,
+          "effect_end": 1.1925186006249997,
+          "requires": "START"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "cost_start": {
+            "RAW_CU": 21
+          },
+          "cost_end": {
+            "RAW_CU": 21
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.2461819376531247,
+          "effect_end": 1.2461819376531247,
+          "requires": "START"
+        },
+        {
+          "from": 6,
+          "to": 6,
+          "cost_start": {
+            "RAW_CU": 22
+          },
+          "cost_end": {
+            "RAW_CU": 22
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.3022601248475152,
+          "effect_end": 1.3022601248475152,
+          "requires": "START"
+        },
+        {
+          "from": 7,
+          "to": 7,
+          "cost_start": {
+            "RAW_CU": 24
+          },
+          "cost_end": {
+            "RAW_CU": 24
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.3608618304656532,
+          "effect_end": 1.3608618304656532,
+          "requires": "START"
+        },
+        {
+          "from": 8,
+          "to": 8,
+          "cost_start": {
+            "RAW_CU": 25
+          },
+          "cost_end": {
+            "RAW_CU": 25
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.4221006128366074,
+          "effect_end": 1.4221006128366074,
+          "requires": "START"
+        },
+        {
+          "from": 9,
+          "to": 9,
+          "cost_start": {
+            "RAW_CU": 27
+          },
+          "cost_end": {
+            "RAW_CU": 27
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.4860951404142546,
+          "effect_end": 1.4860951404142546,
+          "requires": "START"
+        },
+        {
+          "from": 10,
+          "to": 10,
+          "cost_start": {
+            "RAW_CU": 29
+          },
+          "cost_end": {
+            "RAW_CU": 29
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.552969421732896,
+          "effect_end": 1.552969421732896,
+          "requires": "START"
+        },
+        {
+          "from": 11,
+          "to": 11,
+          "cost_start": {
+            "RAW_FE": 30,
+            "RAW_CU": 12
+          },
+          "cost_end": {
+            "RAW_FE": 30,
+            "RAW_CU": 12
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.6228530457108763,
+          "effect_end": 1.6228530457108763,
+          "requires": "G01"
+        },
+        {
+          "from": 12,
+          "to": 12,
+          "cost_start": {
+            "RAW_FE": 33,
+            "RAW_CU": 13
+          },
+          "cost_end": {
+            "RAW_FE": 33,
+            "RAW_CU": 13
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.6958814327678655,
+          "effect_end": 1.6958814327678655,
+          "requires": "G01"
+        },
+        {
+          "from": 13,
+          "to": 13,
+          "cost_start": {
+            "RAW_FE": 35,
+            "RAW_CU": 15
+          },
+          "cost_end": {
+            "RAW_FE": 35,
+            "RAW_CU": 15
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.7721960972424193,
+          "effect_end": 1.7721960972424193,
+          "requires": "G01"
+        },
+        {
+          "from": 14,
+          "to": 14,
+          "cost_start": {
+            "RAW_FE": 38,
+            "RAW_CU": 16
+          },
+          "cost_end": {
+            "RAW_FE": 38,
+            "RAW_CU": 16
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.8519449216183281,
+          "effect_end": 1.8519449216183281,
+          "requires": "G01"
+        },
+        {
+          "from": 15,
+          "to": 15,
+          "cost_start": {
+            "RAW_FE": 41,
+            "RAW_CU": 18
+          },
+          "cost_end": {
+            "RAW_FE": 41,
+            "RAW_CU": 18
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.9352824430911528,
+          "effect_end": 1.9352824430911528,
+          "requires": "G01"
+        },
+        {
+          "from": 16,
+          "to": 16,
+          "cost_start": {
+            "RAW_FE": 44,
+            "RAW_CU": 19
+          },
+          "cost_end": {
+            "RAW_FE": 44,
+            "RAW_CU": 19
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.0223701530302547,
+          "effect_end": 2.0223701530302547,
+          "requires": "G01"
+        },
+        {
+          "from": 17,
+          "to": 17,
+          "cost_start": {
+            "RAW_FE": 47,
+            "RAW_CU": 21
+          },
+          "cost_end": {
+            "RAW_FE": 47,
+            "RAW_CU": 21
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.1133768099166157,
+          "effect_end": 2.1133768099166157,
+          "requires": "G01"
+        },
+        {
+          "from": 18,
+          "to": 18,
+          "cost_start": {
+            "RAW_FE": 50,
+            "RAW_CU": 22
+          },
+          "cost_end": {
+            "RAW_FE": 50,
+            "RAW_CU": 22
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.2084787663628633,
+          "effect_end": 2.2084787663628633,
+          "requires": "G01"
+        },
+        {
+          "from": 19,
+          "to": 19,
+          "cost_start": {
+            "RAW_FE": 54,
+            "RAW_CU": 24
+          },
+          "cost_end": {
+            "RAW_FE": 54,
+            "RAW_CU": 24
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.307860310849192,
+          "effect_end": 2.307860310849192,
+          "requires": "G01"
+        },
+        {
+          "from": 20,
+          "to": 20,
+          "cost_start": {
+            "RAW_FE": 58,
+            "RAW_CU": 25
+          },
+          "cost_end": {
+            "RAW_FE": 58,
+            "RAW_CU": 25
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.411714024837406,
+          "effect_end": 2.411714024837406,
+          "requires": "G01"
+        },
+        {
+          "from": 21,
+          "to": 21,
+          "cost_start": {
+            "RAW_AG": 50,
+            "RAW_FE": 24,
+            "RAW_CU": 11,
+            "INGOT_FE": 2
+          },
+          "cost_end": {
+            "RAW_AG": 50,
+            "RAW_FE": 24,
+            "RAW_CU": 11,
+            "INGOT_FE": 2
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.520241155955089,
+          "effect_end": 2.520241155955089,
+          "requires": "G02"
+        },
+        {
+          "from": 22,
+          "to": 22,
+          "cost_start": {
+            "RAW_AG": 54,
+            "RAW_FE": 27,
+            "RAW_CU": 12
+          },
+          "cost_end": {
+            "RAW_AG": 54,
+            "RAW_FE": 27,
+            "RAW_CU": 12
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.6336520079730676,
+          "effect_end": 2.6336520079730676,
+          "requires": "G02"
+        },
+        {
+          "from": 23,
+          "to": 23,
+          "cost_start": {
+            "RAW_AG": 58,
+            "RAW_FE": 30,
+            "RAW_CU": 14
+          },
+          "cost_end": {
+            "RAW_AG": 58,
+            "RAW_FE": 30,
+            "RAW_CU": 14
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.7521663483318553,
+          "effect_end": 2.7521663483318553,
+          "requires": "G02"
+        },
+        {
+          "from": 24,
+          "to": 24,
+          "cost_start": {
+            "RAW_AG": 63,
+            "RAW_FE": 33,
+            "RAW_CU": 16
+          },
+          "cost_end": {
+            "RAW_AG": 63,
+            "RAW_FE": 33,
+            "RAW_CU": 16
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.8760138340067884,
+          "effect_end": 2.8760138340067884,
+          "requires": "G02"
+        },
+        {
+          "from": 25,
+          "to": 25,
+          "cost_start": {
+            "RAW_AG": 67,
+            "RAW_FE": 36,
+            "RAW_CU": 18
+          },
+          "cost_end": {
+            "RAW_AG": 67,
+            "RAW_FE": 36,
+            "RAW_CU": 18
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3.005434456537094,
+          "effect_end": 3.005434456537094,
+          "requires": "G02"
+        },
+        {
+          "from": 26,
+          "to": 26,
+          "cost_start": {
+            "RAW_AG": 72,
+            "RAW_FE": 38,
+            "RAW_CU": 19
+          },
+          "cost_end": {
+            "RAW_AG": 72,
+            "RAW_FE": 38,
+            "RAW_CU": 19
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3.140679007081263,
+          "effect_end": 3.140679007081263,
+          "requires": "G02"
+        },
+        {
+          "from": 27,
+          "to": 27,
+          "cost_start": {
+            "RAW_AG": 78,
+            "RAW_FE": 41,
+            "RAW_CU": 21
+          },
+          "cost_end": {
+            "RAW_AG": 78,
+            "RAW_FE": 41,
+            "RAW_CU": 21
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3.2820095623999195,
+          "effect_end": 3.2820095623999195,
+          "requires": "G02"
+        },
+        {
+          "from": 28,
+          "to": 28,
+          "cost_start": {
+            "RAW_AG": 83,
+            "RAW_FE": 44,
+            "RAW_CU": 23
+          },
+          "cost_end": {
+            "RAW_AG": 83,
+            "RAW_FE": 44,
+            "RAW_CU": 23
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3.4296999927079157,
+          "effect_end": 3.4296999927079157,
+          "requires": "G02"
+        },
+        {
+          "from": 29,
+          "to": 29,
+          "cost_start": {
+            "RAW_AG": 90,
+            "RAW_FE": 47,
+            "RAW_CU": 24
+          },
+          "cost_end": {
+            "RAW_AG": 90,
+            "RAW_FE": 47,
+            "RAW_CU": 24
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3.584036492379772,
+          "effect_end": 3.584036492379772,
+          "requires": "G02"
+        },
+        {
+          "from": 30,
+          "to": 30,
+          "cost_start": {
+            "RAW_AG": 96,
+            "RAW_FE": 50,
+            "RAW_CU": 26
+          },
+          "cost_end": {
+            "RAW_AG": 96,
+            "RAW_FE": 50,
+            "RAW_CU": 26
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3.7453181345368614,
+          "effect_end": 3.7453181345368614,
+          "requires": "G02"
+        },
+        {
+          "from": 31,
+          "to": 31,
+          "cost_start": {
+            "RAW_AU": 75,
+            "RAW_CU": 50,
+            "RAW_FE": 22
+          },
+          "cost_end": {
+            "RAW_AU": 75,
+            "RAW_CU": 50,
+            "RAW_FE": 22
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3.9138574505910197,
+          "effect_end": 3.9138574505910197,
+          "requires": "G03"
+        },
+        {
+          "from": 32,
+          "to": 32,
+          "cost_start": {
+            "RAW_AU": 81,
+            "RAW_CU": 56,
+            "RAW_FE": 26
+          },
+          "cost_end": {
+            "RAW_AU": 81,
+            "RAW_CU": 56,
+            "RAW_FE": 26
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 4.089981035867615,
+          "effect_end": 4.089981035867615,
+          "requires": "G03"
+        },
+        {
+          "from": 33,
+          "to": 33,
+          "cost_start": {
+            "RAW_AU": 87,
+            "RAW_CU": 62,
+            "RAW_FE": 30
+          },
+          "cost_end": {
+            "RAW_AU": 87,
+            "RAW_CU": 62,
+            "RAW_FE": 30
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 4.274030182481658,
+          "effect_end": 4.274030182481658,
+          "requires": "G03"
+        },
+        {
+          "from": 34,
+          "to": 34,
+          "cost_start": {
+            "RAW_AU": 94,
+            "RAW_CU": 68,
+            "RAW_FE": 33
+          },
+          "cost_end": {
+            "RAW_AU": 94,
+            "RAW_CU": 68,
+            "RAW_FE": 33
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 4.466361540693332,
+          "effect_end": 4.466361540693332,
+          "requires": "G03"
+        },
+        {
+          "from": 35,
+          "to": 35,
+          "cost_start": {
+            "RAW_AU": 101,
+            "RAW_CU": 74,
+            "RAW_FE": 36
+          },
+          "cost_end": {
+            "RAW_AU": 101,
+            "RAW_CU": 74,
+            "RAW_FE": 36
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 4.667347810024531,
+          "effect_end": 4.667347810024531,
+          "requires": "G03"
+        },
+        {
+          "from": 36,
+          "to": 36,
+          "cost_start": {
+            "RAW_AU": 108,
+            "RAW_CU": 80,
+            "RAW_FE": 40
+          },
+          "cost_end": {
+            "RAW_AU": 108,
+            "RAW_CU": 80,
+            "RAW_FE": 40
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 4.877378461475635,
+          "effect_end": 4.877378461475635,
+          "requires": "G03"
+        },
+        {
+          "from": 37,
+          "to": 37,
+          "cost_start": {
+            "RAW_AU": 116,
+            "RAW_CU": 86,
+            "RAW_FE": 44
+          },
+          "cost_end": {
+            "RAW_AU": 116,
+            "RAW_CU": 86,
+            "RAW_FE": 44
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 5.096860492242039,
+          "effect_end": 5.096860492242039,
+          "requires": "G03"
+        },
+        {
+          "from": 38,
+          "to": 38,
+          "cost_start": {
+            "RAW_AU": 125,
+            "RAW_CU": 92,
+            "RAW_FE": 47
+          },
+          "cost_end": {
+            "RAW_AU": 125,
+            "RAW_CU": 92,
+            "RAW_FE": 47
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 5.32621921439293,
+          "effect_end": 5.32621921439293,
+          "requires": "G03"
+        },
+        {
+          "from": 39,
+          "to": 39,
+          "cost_start": {
+            "RAW_AU": 134,
+            "RAW_CU": 98,
+            "RAW_FE": 50
+          },
+          "cost_end": {
+            "RAW_AU": 134,
+            "RAW_CU": 98,
+            "RAW_FE": 50
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 5.565899079040611,
+          "effect_end": 5.565899079040611,
+          "requires": "G03"
+        },
+        {
+          "from": 40,
+          "to": 40,
+          "cost_start": {
+            "RAW_AU": 144,
+            "RAW_CU": 104,
+            "RAW_FE": 54
+          },
+          "cost_end": {
+            "RAW_AU": 144,
+            "RAW_CU": 104,
+            "RAW_FE": 54
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 5.816364537597439,
+          "effect_end": 5.816364537597439,
+          "requires": "G03"
+        },
+        {
+          "from": 41,
+          "to": 41,
+          "cost_start": {
+            "RAW_MY": 105,
+            "RAW_AG": 90,
+            "RAW_CU": 40,
+            "INGOT_AG": 5
+          },
+          "cost_end": {
+            "RAW_MY": 105,
+            "RAW_AG": 90,
+            "RAW_CU": 40,
+            "INGOT_AG": 5
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 6.078100941789322,
+          "effect_end": 6.078100941789322,
+          "requires": "G04"
+        },
+        {
+          "from": 42,
+          "to": 42,
+          "cost_start": {
+            "RAW_MY": 113,
+            "RAW_AG": 101,
+            "RAW_CU": 47
+          },
+          "cost_end": {
+            "RAW_MY": 113,
+            "RAW_AG": 101,
+            "RAW_CU": 47
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 6.351615484169842,
+          "effect_end": 6.351615484169842,
+          "requires": "G04"
+        },
+        {
+          "from": 43,
+          "to": 43,
+          "cost_start": {
+            "RAW_MY": 122,
+            "RAW_AG": 112,
+            "RAW_CU": 53
+          },
+          "cost_end": {
+            "RAW_MY": 122,
+            "RAW_AG": 112,
+            "RAW_CU": 53
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 6.637438180957484,
+          "effect_end": 6.637438180957484,
+          "requires": "G04"
+        },
+        {
+          "from": 44,
+          "to": 44,
+          "cost_start": {
+            "RAW_MY": 131,
+            "RAW_AG": 122,
+            "RAW_CU": 59
+          },
+          "cost_end": {
+            "RAW_MY": 131,
+            "RAW_AG": 122,
+            "RAW_CU": 59
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 6.93612289910057,
+          "effect_end": 6.93612289910057,
+          "requires": "G04"
+        },
+        {
+          "from": 45,
+          "to": 45,
+          "cost_start": {
+            "RAW_MY": 141,
+            "RAW_AG": 133,
+            "RAW_CU": 66
+          },
+          "cost_end": {
+            "RAW_MY": 141,
+            "RAW_AG": 133,
+            "RAW_CU": 66
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 7.248248429560095,
+          "effect_end": 7.248248429560095,
+          "requires": "G04"
+        },
+        {
+          "from": 46,
+          "to": 46,
+          "cost_start": {
+            "RAW_MY": 151,
+            "RAW_AG": 144,
+            "RAW_CU": 72
+          },
+          "cost_end": {
+            "RAW_MY": 151,
+            "RAW_AG": 144,
+            "RAW_CU": 72
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 7.5744196088903,
+          "effect_end": 7.5744196088903,
+          "requires": "G04"
+        },
+        {
+          "from": 47,
+          "to": 47,
+          "cost_start": {
+            "RAW_MY": 163,
+            "RAW_AG": 155,
+            "RAW_CU": 78
+          },
+          "cost_end": {
+            "RAW_MY": 163,
+            "RAW_AG": 155,
+            "RAW_CU": 78
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 7.915268491290362,
+          "effect_end": 7.915268491290362,
+          "requires": "G04"
+        },
+        {
+          "from": 48,
+          "to": 48,
+          "cost_start": {
+            "RAW_MY": 175,
+            "RAW_AG": 166,
+            "RAW_CU": 85
+          },
+          "cost_end": {
+            "RAW_MY": 175,
+            "RAW_AG": 166,
+            "RAW_CU": 85
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 8.271455573398429,
+          "effect_end": 8.271455573398429,
+          "requires": "G04"
+        },
+        {
+          "from": 49,
+          "to": 49,
+          "cost_start": {
+            "RAW_MY": 188,
+            "RAW_AG": 176,
+            "RAW_CU": 91
+          },
+          "cost_end": {
+            "RAW_MY": 188,
+            "RAW_AG": 176,
+            "RAW_CU": 91
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 8.643671074201357,
+          "effect_end": 8.643671074201357,
+          "requires": "G04"
+        },
+        {
+          "from": 50,
+          "to": 50,
+          "cost_start": {
+            "RAW_MY": 202,
+            "RAW_AG": 187,
+            "RAW_CU": 97
+          },
+          "cost_end": {
+            "RAW_MY": 202,
+            "RAW_AG": 187,
+            "RAW_CU": 97
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 9.032636272540417,
+          "effect_end": 9.032636272540417,
+          "requires": "G04"
+        },
+        {
+          "from": 51,
+          "to": 51,
+          "cost_start": {
+            "RAW_AS": 150,
+            "RAW_FE": 170,
+            "RAW_AG": 76
+          },
+          "cost_end": {
+            "RAW_AS": 150,
+            "RAW_FE": 170,
+            "RAW_AG": 76
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 9.439104904804735,
+          "effect_end": 9.439104904804735,
+          "requires": "G05"
+        },
+        {
+          "from": 52,
+          "to": 52,
+          "cost_start": {
+            "RAW_AS": 162,
+            "RAW_FE": 190,
+            "RAW_AG": 88
+          },
+          "cost_end": {
+            "RAW_AS": 162,
+            "RAW_FE": 190,
+            "RAW_AG": 88
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 9.863864625520948,
+          "effect_end": 9.863864625520948,
+          "requires": "G05"
+        },
+        {
+          "from": 53,
+          "to": 53,
+          "cost_start": {
+            "RAW_AS": 174,
+            "RAW_FE": 211,
+            "RAW_AG": 100
+          },
+          "cost_end": {
+            "RAW_AS": 174,
+            "RAW_FE": 211,
+            "RAW_AG": 100
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 10.30773853366939,
+          "effect_end": 10.30773853366939,
+          "requires": "G05"
+        },
+        {
+          "from": 54,
+          "to": 54,
+          "cost_start": {
+            "RAW_AS": 187,
+            "RAW_FE": 231,
+            "RAW_AG": 112
+          },
+          "cost_end": {
+            "RAW_AS": 187,
+            "RAW_FE": 231,
+            "RAW_AG": 112
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 10.77158676768451,
+          "effect_end": 10.77158676768451,
+          "requires": "G05"
+        },
+        {
+          "from": 55,
+          "to": 55,
+          "cost_start": {
+            "RAW_AS": 201,
+            "RAW_FE": 252,
+            "RAW_AG": 124
+          },
+          "cost_end": {
+            "RAW_AS": 201,
+            "RAW_FE": 252,
+            "RAW_AG": 124
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 11.256308172230314,
+          "effect_end": 11.256308172230314,
+          "requires": "G05"
+        },
+        {
+          "from": 56,
+          "to": 56,
+          "cost_start": {
+            "RAW_AS": 216,
+            "RAW_FE": 272,
+            "RAW_AG": 136
+          },
+          "cost_end": {
+            "RAW_AS": 216,
+            "RAW_FE": 272,
+            "RAW_AG": 136
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 11.762842039980677,
+          "effect_end": 11.762842039980677,
+          "requires": "G05"
+        },
+        {
+          "from": 57,
+          "to": 57,
+          "cost_start": {
+            "RAW_AS": 232,
+            "RAW_FE": 292,
+            "RAW_AG": 148
+          },
+          "cost_end": {
+            "RAW_AS": 232,
+            "RAW_FE": 292,
+            "RAW_AG": 148
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 12.292169931779807,
+          "effect_end": 12.292169931779807,
+          "requires": "G05"
+        },
+        {
+          "from": 58,
+          "to": 58,
+          "cost_start": {
+            "RAW_AS": 249,
+            "RAW_FE": 313,
+            "RAW_AG": 160
+          },
+          "cost_end": {
+            "RAW_AS": 249,
+            "RAW_FE": 313,
+            "RAW_AG": 160
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 12.845317578709897,
+          "effect_end": 12.845317578709897,
+          "requires": "G05"
+        },
+        {
+          "from": 59,
+          "to": 59,
+          "cost_start": {
+            "RAW_AS": 268,
+            "RAW_FE": 333,
+            "RAW_AG": 172
+          },
+          "cost_end": {
+            "RAW_AS": 268,
+            "RAW_FE": 333,
+            "RAW_AG": 172
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 13.423356869751842,
+          "effect_end": 13.423356869751842,
+          "requires": "G05"
+        },
+        {
+          "from": 60,
+          "to": 60,
+          "cost_start": {
+            "RAW_AS": 288,
+            "RAW_FE": 354,
+            "RAW_AG": 184
+          },
+          "cost_end": {
+            "RAW_AS": 288,
+            "RAW_FE": 354,
+            "RAW_AG": 184
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 14.027407928890673,
+          "effect_end": 14.027407928890673,
+          "requires": "G05"
+        },
+        {
+          "from": 61,
+          "to": 61,
+          "cost_start": {
+            "RAW_AS": 300,
+            "RAW_CU": 420,
+            "RAW_FE": 189,
+            "INGOT_AU": 12
+          },
+          "cost_end": {
+            "RAW_AS": 300,
+            "RAW_CU": 420,
+            "RAW_FE": 189,
+            "INGOT_AU": 12
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 14.658641285690752,
+          "effect_end": 14.658641285690752,
+          "requires": "G06 + глава мастерства 6 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 62,
+          "to": 62,
+          "cost_start": {
+            "RAW_AS": 334,
+            "RAW_CU": 470,
+            "RAW_FE": 218
+          },
+          "cost_end": {
+            "RAW_AS": 334,
+            "RAW_CU": 470,
+            "RAW_FE": 218
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 15.318280143546836,
+          "effect_end": 15.318280143546836,
+          "requires": "G06 + глава мастерства 6 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 63,
+          "to": 63,
+          "cost_start": {
+            "RAW_AS": 367,
+            "RAW_CU": 521,
+            "RAW_FE": 248
+          },
+          "cost_end": {
+            "RAW_AS": 367,
+            "RAW_CU": 521,
+            "RAW_FE": 248
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 16.00760275000644,
+          "effect_end": 16.00760275000644,
+          "requires": "G06 + глава мастерства 6 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 64,
+          "to": 64,
+          "cost_start": {
+            "RAW_AS": 400,
+            "RAW_CU": 571,
+            "RAW_FE": 277
+          },
+          "cost_end": {
+            "RAW_AS": 400,
+            "RAW_CU": 571,
+            "RAW_FE": 277
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 16.72794487375673,
+          "effect_end": 16.72794487375673,
+          "requires": "G06 + глава мастерства 6 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 65,
+          "to": 65,
+          "cost_start": {
+            "RAW_AS": 434,
+            "RAW_CU": 622,
+            "RAW_FE": 307
+          },
+          "cost_end": {
+            "RAW_AS": 434,
+            "RAW_CU": 622,
+            "RAW_FE": 307
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 17.48070239307578,
+          "effect_end": 17.48070239307578,
+          "requires": "G06 + глава мастерства 6 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 66,
+          "to": 66,
+          "cost_start": {
+            "RAW_AS": 467,
+            "RAW_CU": 672,
+            "RAW_FE": 336
+          },
+          "cost_end": {
+            "RAW_AS": 467,
+            "RAW_CU": 672,
+            "RAW_FE": 336
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 18.26733400076419,
+          "effect_end": 18.26733400076419,
+          "requires": "G06 + глава мастерства 6 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 67,
+          "to": 67,
+          "cost_start": {
+            "RAW_AS": 500,
+            "RAW_CU": 722,
+            "RAW_FE": 365
+          },
+          "cost_end": {
+            "RAW_AS": 500,
+            "RAW_CU": 722,
+            "RAW_FE": 365
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 19.089364030798578,
+          "effect_end": 19.089364030798578,
+          "requires": "G06 + глава мастерства 6 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 68,
+          "to": 68,
+          "cost_start": {
+            "RAW_AS": 534,
+            "RAW_CU": 773,
+            "RAW_FE": 395
+          },
+          "cost_end": {
+            "RAW_AS": 534,
+            "RAW_CU": 773,
+            "RAW_FE": 395
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 19.948385412184514,
+          "effect_end": 19.948385412184514,
+          "requires": "G06 + глава мастерства 6 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 69,
+          "to": 69,
+          "cost_start": {
+            "RAW_AS": 567,
+            "RAW_CU": 823,
+            "RAW_FE": 424
+          },
+          "cost_end": {
+            "RAW_AS": 567,
+            "RAW_CU": 823,
+            "RAW_FE": 424
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 20.846062755732817,
+          "effect_end": 20.846062755732817,
+          "requires": "G06 + глава мастерства 6 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 70,
+          "to": 70,
+          "cost_start": {
+            "RAW_AS": 600,
+            "RAW_CU": 874,
+            "RAW_FE": 454
+          },
+          "cost_end": {
+            "RAW_AS": 600,
+            "RAW_CU": 874,
+            "RAW_FE": 454
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 21.78413557974079,
+          "effect_end": 21.78413557974079,
+          "requires": "G06 + глава мастерства 6 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 71,
+          "to": 71,
+          "cost_start": {
+            "RAW_AS": 1000,
+            "RAW_AG": 1400,
+            "RAW_CU": 630
+          },
+          "cost_end": {
+            "RAW_AS": 1000,
+            "RAW_AG": 1400,
+            "RAW_CU": 630
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 22.764421680829123,
+          "effect_end": 22.764421680829123,
+          "requires": "G06 + глава мастерства 12 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 72,
+          "to": 72,
+          "cost_start": {
+            "RAW_AS": 1167,
+            "RAW_AG": 1568,
+            "RAW_CU": 728
+          },
+          "cost_end": {
+            "RAW_AS": 1167,
+            "RAW_AG": 1568,
+            "RAW_CU": 728
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 23.788820656466434,
+          "effect_end": 23.788820656466434,
+          "requires": "G06 + глава мастерства 12 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 73,
+          "to": 73,
+          "cost_start": {
+            "RAW_AS": 1334,
+            "RAW_AG": 1736,
+            "RAW_CU": 826
+          },
+          "cost_end": {
+            "RAW_AS": 1334,
+            "RAW_AG": 1736,
+            "RAW_CU": 826
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 24.85931758600742,
+          "effect_end": 24.85931758600742,
+          "requires": "G06 + глава мастерства 12 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 74,
+          "to": 74,
+          "cost_start": {
+            "RAW_AS": 1500,
+            "RAW_AG": 1904,
+            "RAW_CU": 924
+          },
+          "cost_end": {
+            "RAW_AS": 1500,
+            "RAW_AG": 1904,
+            "RAW_CU": 924
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 25.977986877377752,
+          "effect_end": 25.977986877377752,
+          "requires": "G06 + глава мастерства 12 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 75,
+          "to": 75,
+          "cost_start": {
+            "RAW_AS": 1667,
+            "RAW_AG": 2072,
+            "RAW_CU": 1022
+          },
+          "cost_end": {
+            "RAW_AS": 1667,
+            "RAW_AG": 2072,
+            "RAW_CU": 1022
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 27.14699628685975,
+          "effect_end": 27.14699628685975,
+          "requires": "G06 + глава мастерства 12 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 76,
+          "to": 76,
+          "cost_start": {
+            "RAW_AS": 1834,
+            "RAW_AG": 2240,
+            "RAW_CU": 1120
+          },
+          "cost_end": {
+            "RAW_AS": 1834,
+            "RAW_AG": 2240,
+            "RAW_CU": 1120
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 28.36861111976844,
+          "effect_end": 28.36861111976844,
+          "requires": "G06 + глава мастерства 12 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 77,
+          "to": 77,
+          "cost_start": {
+            "RAW_AS": 2000,
+            "RAW_AG": 2408,
+            "RAW_CU": 1218
+          },
+          "cost_end": {
+            "RAW_AS": 2000,
+            "RAW_AG": 2408,
+            "RAW_CU": 1218
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 29.645198620158016,
+          "effect_end": 29.645198620158016,
+          "requires": "G06 + глава мастерства 12 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 78,
+          "to": 78,
+          "cost_start": {
+            "RAW_AS": 2167,
+            "RAW_AG": 2576,
+            "RAW_CU": 1316
+          },
+          "cost_end": {
+            "RAW_AS": 2167,
+            "RAW_AG": 2576,
+            "RAW_CU": 1316
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 30.979232558065124,
+          "effect_end": 30.979232558065124,
+          "requires": "G06 + глава мастерства 12 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 79,
+          "to": 79,
+          "cost_start": {
+            "RAW_AS": 2334,
+            "RAW_AG": 2744,
+            "RAW_CU": 1414
+          },
+          "cost_end": {
+            "RAW_AS": 2334,
+            "RAW_AG": 2744,
+            "RAW_CU": 1414
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 32.37329802317805,
+          "effect_end": 32.37329802317805,
+          "requires": "G06 + глава мастерства 12 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 80,
+          "to": 80,
+          "cost_start": {
+            "RAW_AS": 2500,
+            "RAW_AG": 2912,
+            "RAW_CU": 1512
+          },
+          "cost_end": {
+            "RAW_AS": 2500,
+            "RAW_AG": 2912,
+            "RAW_CU": 1512
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 33.83009643422106,
+          "effect_end": 33.83009643422106,
+          "requires": "G06 + глава мастерства 12 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 81,
+          "to": 81,
+          "cost_start": {
+            "RAW_AS": 5000,
+            "RAW_FE": 5000,
+            "RAW_AG": 2250,
+            "INGOT_MY": 24
+          },
+          "cost_end": {
+            "RAW_AS": 5000,
+            "RAW_FE": 5000,
+            "RAW_AG": 2250,
+            "INGOT_MY": 24
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 35.35245077376101,
+          "effect_end": 35.35245077376101,
+          "requires": "G06 + глава мастерства 20 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 82,
+          "to": 82,
+          "cost_start": {
+            "RAW_AS": 6000,
+            "RAW_FE": 5600,
+            "RAW_AG": 2600
+          },
+          "cost_end": {
+            "RAW_AS": 6000,
+            "RAW_FE": 5600,
+            "RAW_AG": 2600
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 36.94331105858025,
+          "effect_end": 36.94331105858025,
+          "requires": "G06 + глава мастерства 20 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 83,
+          "to": 83,
+          "cost_start": {
+            "RAW_AS": 7000,
+            "RAW_FE": 6200,
+            "RAW_AG": 2950
+          },
+          "cost_end": {
+            "RAW_AS": 7000,
+            "RAW_FE": 6200,
+            "RAW_AG": 2950
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 38.60576005621636,
+          "effect_end": 38.60576005621636,
+          "requires": "G06 + глава мастерства 20 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 84,
+          "to": 84,
+          "cost_start": {
+            "RAW_AS": 8000,
+            "RAW_FE": 6800,
+            "RAW_AG": 3300
+          },
+          "cost_end": {
+            "RAW_AS": 8000,
+            "RAW_FE": 6800,
+            "RAW_AG": 3300
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 40.34301925874609,
+          "effect_end": 40.34301925874609,
+          "requires": "G06 + глава мастерства 20 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 85,
+          "to": 85,
+          "cost_start": {
+            "RAW_AS": 9000,
+            "RAW_FE": 7400,
+            "RAW_AG": 3650
+          },
+          "cost_end": {
+            "RAW_AS": 9000,
+            "RAW_FE": 7400,
+            "RAW_AG": 3650
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 42.158455125389665,
+          "effect_end": 42.158455125389665,
+          "requires": "G06 + глава мастерства 20 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 86,
+          "to": 86,
+          "cost_start": {
+            "RAW_AS": 10000,
+            "RAW_FE": 8000,
+            "RAW_AG": 4000
+          },
+          "cost_end": {
+            "RAW_AS": 10000,
+            "RAW_FE": 8000,
+            "RAW_AG": 4000
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 44.055585606032196,
+          "effect_end": 44.055585606032196,
+          "requires": "G06 + глава мастерства 20 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 87,
+          "to": 87,
+          "cost_start": {
+            "RAW_AS": 11000,
+            "RAW_FE": 8600,
+            "RAW_AG": 4350
+          },
+          "cost_end": {
+            "RAW_AS": 11000,
+            "RAW_FE": 8600,
+            "RAW_AG": 4350
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 46.038086958303644,
+          "effect_end": 46.038086958303644,
+          "requires": "G06 + глава мастерства 20 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 88,
+          "to": 88,
+          "cost_start": {
+            "RAW_AS": 12000,
+            "RAW_FE": 9200,
+            "RAW_AG": 4700
+          },
+          "cost_end": {
+            "RAW_AS": 12000,
+            "RAW_FE": 9200,
+            "RAW_AG": 4700
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 48.1098008714273,
+          "effect_end": 48.1098008714273,
+          "requires": "G06 + глава мастерства 20 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 89,
+          "to": 89,
+          "cost_start": {
+            "RAW_AS": 13000,
+            "RAW_FE": 9800,
+            "RAW_AG": 5050
+          },
+          "cost_end": {
+            "RAW_AS": 13000,
+            "RAW_FE": 9800,
+            "RAW_AG": 5050
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 50.274741910641524,
+          "effect_end": 50.274741910641524,
+          "requires": "G06 + глава мастерства 20 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 90,
+          "to": 90,
+          "cost_start": {
+            "RAW_AS": 14000,
+            "RAW_FE": 10400,
+            "RAW_AG": 5400
+          },
+          "cost_end": {
+            "RAW_AS": 14000,
+            "RAW_FE": 10400,
+            "RAW_AG": 5400
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 52.53710529662039,
+          "effect_end": 52.53710529662039,
+          "requires": "G06 + глава мастерства 20 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 91,
+          "to": 91,
+          "cost_start": {
+            "RAW_AS": 30000,
+            "RAW_CU": 21000,
+            "RAW_FE": 9450
+          },
+          "cost_end": {
+            "RAW_AS": 30000,
+            "RAW_CU": 21000,
+            "RAW_FE": 9450
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 54.90127503496831,
+          "effect_end": 54.90127503496831,
+          "requires": "G06 + глава мастерства 30 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 92,
+          "to": 92,
+          "cost_start": {
+            "RAW_AS": 37223,
+            "RAW_CU": 23520,
+            "RAW_FE": 10920
+          },
+          "cost_end": {
+            "RAW_AS": 37223,
+            "RAW_CU": 23520,
+            "RAW_FE": 10920
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 57.371832411541874,
+          "effect_end": 57.371832411541874,
+          "requires": "G06 + глава мастерства 30 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 93,
+          "to": 93,
+          "cost_start": {
+            "RAW_AS": 44445,
+            "RAW_CU": 26040,
+            "RAW_FE": 12390
+          },
+          "cost_end": {
+            "RAW_AS": 44445,
+            "RAW_CU": 26040,
+            "RAW_FE": 12390
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 59.95356487006126,
+          "effect_end": 59.95356487006126,
+          "requires": "G06 + глава мастерства 30 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 94,
+          "to": 94,
+          "cost_start": {
+            "RAW_AS": 51667,
+            "RAW_CU": 28560,
+            "RAW_FE": 13860
+          },
+          "cost_end": {
+            "RAW_AS": 51667,
+            "RAW_CU": 28560,
+            "RAW_FE": 13860
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 62.651475289214005,
+          "effect_end": 62.651475289214005,
+          "requires": "G06 + глава мастерства 30 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 95,
+          "to": 95,
+          "cost_start": {
+            "RAW_AS": 58889,
+            "RAW_CU": 31080,
+            "RAW_FE": 15330
+          },
+          "cost_end": {
+            "RAW_AS": 58889,
+            "RAW_CU": 31080,
+            "RAW_FE": 15330
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 65.47079167722863,
+          "effect_end": 65.47079167722863,
+          "requires": "G06 + глава мастерства 30 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 96,
+          "to": 96,
+          "cost_start": {
+            "RAW_AS": 66112,
+            "RAW_CU": 33600,
+            "RAW_FE": 16800
+          },
+          "cost_end": {
+            "RAW_AS": 66112,
+            "RAW_CU": 33600,
+            "RAW_FE": 16800
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 68.41697730270391,
+          "effect_end": 68.41697730270391,
+          "requires": "G06 + глава мастерства 30 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 97,
+          "to": 97,
+          "cost_start": {
+            "RAW_AS": 73334,
+            "RAW_CU": 36120,
+            "RAW_FE": 18270
+          },
+          "cost_end": {
+            "RAW_AS": 73334,
+            "RAW_CU": 36120,
+            "RAW_FE": 18270
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 71.49574128132559,
+          "effect_end": 71.49574128132559,
+          "requires": "G06 + глава мастерства 30 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 98,
+          "to": 98,
+          "cost_start": {
+            "RAW_AS": 80556,
+            "RAW_CU": 38640,
+            "RAW_FE": 19740
+          },
+          "cost_end": {
+            "RAW_AS": 80556,
+            "RAW_CU": 38640,
+            "RAW_FE": 19740
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 74.71304963898524,
+          "effect_end": 74.71304963898524,
+          "requires": "G06 + глава мастерства 30 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 99,
+          "to": 99,
+          "cost_start": {
+            "RAW_AS": 87778,
+            "RAW_CU": 41160,
+            "RAW_FE": 21210
+          },
+          "cost_end": {
+            "RAW_AS": 87778,
+            "RAW_CU": 41160,
+            "RAW_FE": 21210
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 78.07513687273956,
+          "effect_end": 78.07513687273956,
+          "requires": "G06 + глава мастерства 30 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 100,
+          "to": 100,
+          "cost_start": {
+            "RAW_AS": 95000,
+            "RAW_CU": 43680,
+            "RAW_FE": 22680
+          },
+          "cost_end": {
+            "RAW_AS": 95000,
+            "RAW_CU": 43680,
+            "RAW_FE": 22680
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 81.58851803201284,
+          "effect_end": 81.58851803201284,
+          "requires": "G06 + глава мастерства 30 (привязка главы к встрече требует полного DAG)"
+        }
+      ]
+    },
+    {
+      "id": "TW02",
+      "name": "Скорость выстрела",
+      "max_level": 40,
+      "availability": "START",
+      "purpose": "Частая покупка с растущей эффективностью",
+      "effect_description": "Накопительное сокращение исходного интервала; 1 секунда становится 0.7 секунды на max, DPS при единственной цели растёт ×1.4286. Общий интервал всех источников не ниже 0.15 секунды.",
+      "effect_unit": "доля сокращения интервала",
+      "stacking": "Сокращения интервала складываются по общему бюджету, не перемножаются; preview показывает итоговый интервал.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 10,
+          "cost_start": {
+            "RAW_CU": 30
+          },
+          "cost_end": {
+            "RAW_CU": 80
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.005,
+          "effect_end": 0.05,
+          "requires": "START"
+        },
+        {
+          "from": 11,
+          "to": 20,
+          "cost_start": {
+            "RAW_FE": 95,
+            "RAW_CU": 18
+          },
+          "cost_end": {
+            "RAW_FE": 220,
+            "RAW_CU": 60
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.056,
+          "effect_end": 0.11,
+          "requires": "G01"
+        },
+        {
+          "from": 21,
+          "to": 30,
+          "cost_start": {
+            "RAW_AG": 260,
+            "RAW_FE": 110
+          },
+          "cost_end": {
+            "RAW_AG": 750,
+            "RAW_FE": 350
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.118,
+          "effect_end": 0.19,
+          "requires": "G02"
+        },
+        {
+          "from": 31,
+          "to": 40,
+          "cost_start": {
+            "RAW_MY": 1000,
+            "RAW_CU": 450
+          },
+          "cost_end": {
+            "RAW_MY": 3600,
+            "RAW_CU": 1500
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.201,
+          "effect_end": 0.3,
+          "requires": "G04"
+        }
+      ]
+    },
+    {
+      "id": "TW03",
+      "name": "Дальность выстрела",
+      "max_level": 20,
+      "availability": "START",
+      "purpose": "Раннее удобство, затем тактическая ценность",
+      "effect_description": "Радиус относительно исходного. Ранние шаги +1%, поздние +0.5%; boss вне досягаемости не обязан становиться доступным этой веткой.",
+      "effect_unit": "множитель радиуса",
+      "stacking": "С лабораторией и временными эффектами не выше ×1.5; эта ветка занимает только +15%.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 10,
+          "cost_start": {
+            "RAW_CU": 25
+          },
+          "cost_end": {
+            "RAW_CU": 100
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.01,
+          "effect_end": 1.1,
+          "requires": "START"
+        },
+        {
+          "from": 11,
+          "to": 20,
+          "cost_start": {
+            "RAW_AG": 150,
+            "RAW_FE": 80
+          },
+          "cost_end": {
+            "RAW_AG": 600,
+            "RAW_FE": 300
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.105,
+          "effect_end": 1.15,
+          "requires": "G02"
+        }
+      ]
+    },
+    {
+      "id": "TW04",
+      "name": "Шанс критического удара",
+      "max_level": 40,
+      "availability": "G01",
+      "purpose": "Умеренная прибавка DPS, зависит от крит-множителя",
+      "effect_description": "Накопительный дополнительный шанс крита, до +20 процентных пунктов.",
+      "effect_unit": "доля вероятности",
+      "stacking": "С базой, лабораторией и всеми источниками суммарно ≤60%; при ×2 crit max этой ветки даёт около +20% среднего урона при нулевом исходном шансе.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 10,
+          "cost_start": {
+            "RAW_FE": 45,
+            "RAW_CU": 20
+          },
+          "cost_end": {
+            "RAW_FE": 130,
+            "RAW_CU": 60
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.005,
+          "effect_end": 0.05,
+          "requires": "G01"
+        },
+        {
+          "from": 11,
+          "to": 20,
+          "cost_start": {
+            "RAW_AG": 180,
+            "RAW_FE": 90
+          },
+          "cost_end": {
+            "RAW_AG": 500,
+            "RAW_FE": 260
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.055,
+          "effect_end": 0.1,
+          "requires": "G02"
+        },
+        {
+          "from": 21,
+          "to": 30,
+          "cost_start": {
+            "RAW_AU": 650,
+            "RAW_CU": 500
+          },
+          "cost_end": {
+            "RAW_AU": 1800,
+            "RAW_CU": 1600
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.105,
+          "effect_end": 0.15,
+          "requires": "G03"
+        },
+        {
+          "from": 31,
+          "to": 40,
+          "cost_start": {
+            "RAW_AS": 2300,
+            "RAW_AG": 2400
+          },
+          "cost_end": {
+            "RAW_AS": 7000,
+            "RAW_AG": 6800
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.155,
+          "effect_end": 0.2,
+          "requires": "G05"
+        }
+      ]
+    },
+    {
+      "id": "TW05",
+      "name": "Сила критического удара",
+      "max_level": 20,
+      "availability": "G02",
+      "purpose": "Условная синергия со шансом крита",
+      "effect_description": "Добавка к множителю критического удара: +0.025 за шаг, суммарно +0.5.",
+      "effect_unit": "добавка к крит-множителю",
+      "stacking": "Итоговый crit multiplier ≤3. Эффект на средний DPS зависит от TW04, не равен +50% всем ударам.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 10,
+          "cost_start": {
+            "RAW_AG": 60,
+            "RAW_FE": 100
+          },
+          "cost_end": {
+            "RAW_AG": 350,
+            "RAW_FE": 360
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.025,
+          "effect_end": 0.25,
+          "requires": "G02"
+        },
+        {
+          "from": 11,
+          "to": 20,
+          "cost_start": {
+            "RAW_MY": 500,
+            "RAW_CU": 1600
+          },
+          "cost_end": {
+            "RAW_MY": 2400,
+            "RAW_CU": 5200
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.275,
+          "effect_end": 0.5,
+          "requires": "G04"
+        }
+      ]
+    },
+    {
+      "id": "TW06",
+      "name": "Пробивание выстрела",
+      "max_level": 30,
+      "availability": "G01; BLD04; R_GATE02; первые 20 уровней до G02",
+      "purpose": "Основная постепенная прокачка пробивания после лабораторного чертежа, доступная за медь и железо до серебра.",
+      "effect_description": "После R_GATE02 значение 0. Уровни 1–20 дают по +1 п.п. игнорирования структурного поглощения; уровни 21–30 по +0,5 п.п., максимум 25 п.п. TW06 20 и LAB_PIERCING 10 дают 26 п.п. вместе.",
+      "effect_unit": "доля игнорируемого структурного поглощения",
+      "stacking": "В формуле выстрела P=min(0.60, TW06+LAB_PIERCING/100); остаточное поглощение=max(0,броня−P). Для брони 60% при TW06=0,20 и LAB_PIERCING=6 остаток 34%; пропускается 66% исходного урона. Исследование R_GATE02 не является множителем. P04 учитывает собственное попадание отдельно.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 10,
+          "cost_start": {
+            "RAW_CU": 10,
+            "RAW_FE": 15
+          },
+          "cost_end": {
+            "RAW_CU": 28,
+            "RAW_FE": 42
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.01,
+          "effect_end": 0.1,
+          "requires": "G01; R_GATE02"
+        },
+        {
+          "from": 11,
+          "to": 20,
+          "cost_start": {
+            "RAW_CU": 30,
+            "RAW_FE": 45
+          },
+          "cost_end": {
+            "RAW_CU": 75,
+            "RAW_FE": 120
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.11,
+          "effect_end": 0.2,
+          "requires": "G01; R_GATE02"
+        },
+        {
+          "from": 21,
+          "to": 25,
+          "cost_start": {
+            "RAW_AG": 100,
+            "RAW_FE": 160
+          },
+          "cost_end": {
+            "RAW_AG": 340,
+            "RAW_FE": 500
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.205,
+          "effect_end": 0.225,
+          "requires": "G02; R_GATE02"
+        },
+        {
+          "from": 26,
+          "to": 30,
+          "cost_start": {
+            "RAW_AS": 600,
+            "RAW_AG": 1800,
+            "RAW_CU": 2500
+          },
+          "cost_end": {
+            "RAW_AS": 3000,
+            "RAW_AG": 7200,
+            "RAW_CU": 11000
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.23,
+          "effect_end": 0.25,
+          "requires": "G05; R_GATE02"
+        }
+      ]
+    },
+    {
+      "id": "TW07",
+      "name": "Дополнительные цели",
+      "max_level": 2,
+      "availability": "G02 + Арканум",
+      "purpose": "Сильный дискретный скачок против групп",
+      "effect_description": "Общее число целей одного выстрела: 2 затем 3. Дополнительная цель получает 50% исходного урона; по одиночному боссу бонуса нет.",
+      "effect_unit": "целей",
+      "stacking": "Бюджет максимального суммарного урона ×1.5/×2 при наличии целей, без рекурсивного proc; BLD01_MODULE открывает отдельный режим залпа, повторно эту цель не покупает.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_AG": 35,
+            "INGOT_CU": 45
+          },
+          "cost_end": {
+            "INGOT_AG": 35,
+            "INGOT_CU": 45
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2,
+          "effect_end": 2,
+          "requires": "G02 + глава мастерства 2"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_MY": 90,
+            "INGOT_FE": 140
+          },
+          "cost_end": {
+            "INGOT_MY": 90,
+            "INGOT_FE": 140
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3,
+          "effect_end": 3,
+          "requires": "G04 + глава мастерства 8"
+        }
+      ]
+    },
+    {
+      "id": "TW08",
+      "name": "Приоритет цели",
+      "max_level": 1,
+      "availability": "G03 + глава мастерства 6",
+      "purpose": "Функциональный выбор, один уровень",
+      "effect_description": "Разрешает ручной выбор правила башни: ближайший / дальний / максимум здоровья. Это боевой эффект автоматики, а не плата за интерфейс подсказок.",
+      "effect_unit": "набор правил",
+      "stacking": "Один выбранный приоритет, не три одновременно; не даёт башне достать внешнего босса.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_AU": 20,
+            "INGOT_CU": 35
+          },
+          "cost_end": {
+            "INGOT_AU": 20,
+            "INGOT_CU": 35
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G03 + глава мастерства 6"
+        }
+      ]
+    },
+    {
+      "id": "TW09",
+      "name": "Здоровье башни",
+      "max_level": 100,
+      "availability": "START; диапазоны требуют конкретных источников",
+      "purpose": "Частая основная числовая покупка",
+      "effect_description": "Базовое здоровье ×1,04 за уровень. 100 индивидуально заданных цен; поздние диапазоны требуют одновременно новые и прежние материалы. На уровнях 21/41/61/81 цена включает подготовку следующего конструкционного диапазона за слитки; отдельного скачка параметра это не даёт.",
+      "effect_unit": "множитель базы",
+      "stacking": "Лабораторный бонус HP считается отдельным аддитивным бонусом своего источника; скорость/цели не спрятаны в этом коэффициенте.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "RAW_CU": 12
+          },
+          "cost_end": {
+            "RAW_CU": 12
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.04,
+          "effect_end": 1.04,
+          "requires": "START"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "RAW_CU": 13
+          },
+          "cost_end": {
+            "RAW_CU": 13
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.0816000000000001,
+          "effect_end": 1.0816000000000001,
+          "requires": "START"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "RAW_CU": 14
+          },
+          "cost_end": {
+            "RAW_CU": 14
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.124864,
+          "effect_end": 1.124864,
+          "requires": "START"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "RAW_CU": 15
+          },
+          "cost_end": {
+            "RAW_CU": 15
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.1698585600000002,
+          "effect_end": 1.1698585600000002,
+          "requires": "START"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "cost_start": {
+            "RAW_CU": 17
+          },
+          "cost_end": {
+            "RAW_CU": 17
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.2166529024000001,
+          "effect_end": 1.2166529024000001,
+          "requires": "START"
+        },
+        {
+          "from": 6,
+          "to": 6,
+          "cost_start": {
+            "RAW_CU": 18
+          },
+          "cost_end": {
+            "RAW_CU": 18
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.2653190184960004,
+          "effect_end": 1.2653190184960004,
+          "requires": "START"
+        },
+        {
+          "from": 7,
+          "to": 7,
+          "cost_start": {
+            "RAW_CU": 19
+          },
+          "cost_end": {
+            "RAW_CU": 19
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.3159317792358403,
+          "effect_end": 1.3159317792358403,
+          "requires": "START"
+        },
+        {
+          "from": 8,
+          "to": 8,
+          "cost_start": {
+            "RAW_CU": 20
+          },
+          "cost_end": {
+            "RAW_CU": 20
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.3685690504052739,
+          "effect_end": 1.3685690504052739,
+          "requires": "START"
+        },
+        {
+          "from": 9,
+          "to": 9,
+          "cost_start": {
+            "RAW_CU": 22
+          },
+          "cost_end": {
+            "RAW_CU": 22
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.423311812421485,
+          "effect_end": 1.423311812421485,
+          "requires": "START"
+        },
+        {
+          "from": 10,
+          "to": 10,
+          "cost_start": {
+            "RAW_CU": 24
+          },
+          "cost_end": {
+            "RAW_CU": 24
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.4802442849183444,
+          "effect_end": 1.4802442849183444,
+          "requires": "START"
+        },
+        {
+          "from": 11,
+          "to": 11,
+          "cost_start": {
+            "RAW_FE": 24,
+            "RAW_CU": 9
+          },
+          "cost_end": {
+            "RAW_FE": 24,
+            "RAW_CU": 9
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.5394540563150783,
+          "effect_end": 1.5394540563150783,
+          "requires": "G01"
+        },
+        {
+          "from": 12,
+          "to": 12,
+          "cost_start": {
+            "RAW_FE": 26,
+            "RAW_CU": 10
+          },
+          "cost_end": {
+            "RAW_FE": 26,
+            "RAW_CU": 10
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.6010322185676815,
+          "effect_end": 1.6010322185676815,
+          "requires": "G01"
+        },
+        {
+          "from": 13,
+          "to": 13,
+          "cost_start": {
+            "RAW_FE": 28,
+            "RAW_CU": 11
+          },
+          "cost_end": {
+            "RAW_FE": 28,
+            "RAW_CU": 11
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.6650735073103888,
+          "effect_end": 1.6650735073103888,
+          "requires": "G01"
+        },
+        {
+          "from": 14,
+          "to": 14,
+          "cost_start": {
+            "RAW_FE": 30,
+            "RAW_CU": 12
+          },
+          "cost_end": {
+            "RAW_FE": 30,
+            "RAW_CU": 12
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.7316764476028044,
+          "effect_end": 1.7316764476028044,
+          "requires": "G01"
+        },
+        {
+          "from": 15,
+          "to": 15,
+          "cost_start": {
+            "RAW_FE": 33,
+            "RAW_CU": 13
+          },
+          "cost_end": {
+            "RAW_FE": 33,
+            "RAW_CU": 13
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.8009435055069165,
+          "effect_end": 1.8009435055069165,
+          "requires": "G01"
+        },
+        {
+          "from": 16,
+          "to": 16,
+          "cost_start": {
+            "RAW_FE": 35,
+            "RAW_CU": 14
+          },
+          "cost_end": {
+            "RAW_FE": 35,
+            "RAW_CU": 14
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.8729812457271933,
+          "effect_end": 1.8729812457271933,
+          "requires": "G01"
+        },
+        {
+          "from": 17,
+          "to": 17,
+          "cost_start": {
+            "RAW_FE": 38,
+            "RAW_CU": 15
+          },
+          "cost_end": {
+            "RAW_FE": 38,
+            "RAW_CU": 15
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.947900495556281,
+          "effect_end": 1.947900495556281,
+          "requires": "G01"
+        },
+        {
+          "from": 18,
+          "to": 18,
+          "cost_start": {
+            "RAW_FE": 40,
+            "RAW_CU": 17
+          },
+          "cost_end": {
+            "RAW_FE": 40,
+            "RAW_CU": 17
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.0258165153785326,
+          "effect_end": 2.0258165153785326,
+          "requires": "G01"
+        },
+        {
+          "from": 19,
+          "to": 19,
+          "cost_start": {
+            "RAW_FE": 43,
+            "RAW_CU": 18
+          },
+          "cost_end": {
+            "RAW_FE": 43,
+            "RAW_CU": 18
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.106849175993674,
+          "effect_end": 2.106849175993674,
+          "requires": "G01"
+        },
+        {
+          "from": 20,
+          "to": 20,
+          "cost_start": {
+            "RAW_FE": 47,
+            "RAW_CU": 19
+          },
+          "cost_end": {
+            "RAW_FE": 47,
+            "RAW_CU": 19
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.191123143033421,
+          "effect_end": 2.191123143033421,
+          "requires": "G01"
+        },
+        {
+          "from": 21,
+          "to": 21,
+          "cost_start": {
+            "RAW_AG": 40,
+            "RAW_FE": 20,
+            "RAW_CU": 9,
+            "INGOT_FE": 2
+          },
+          "cost_end": {
+            "RAW_AG": 40,
+            "RAW_FE": 20,
+            "RAW_CU": 9,
+            "INGOT_FE": 2
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.278768068754758,
+          "effect_end": 2.278768068754758,
+          "requires": "G02"
+        },
+        {
+          "from": 22,
+          "to": 22,
+          "cost_start": {
+            "RAW_AG": 43,
+            "RAW_FE": 22,
+            "RAW_CU": 10
+          },
+          "cost_end": {
+            "RAW_AG": 43,
+            "RAW_FE": 22,
+            "RAW_CU": 10
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.369918791504948,
+          "effect_end": 2.369918791504948,
+          "requires": "G02"
+        },
+        {
+          "from": 23,
+          "to": 23,
+          "cost_start": {
+            "RAW_AG": 47,
+            "RAW_FE": 25,
+            "RAW_CU": 12
+          },
+          "cost_end": {
+            "RAW_AG": 47,
+            "RAW_FE": 25,
+            "RAW_CU": 12
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.464715543165146,
+          "effect_end": 2.464715543165146,
+          "requires": "G02"
+        },
+        {
+          "from": 24,
+          "to": 24,
+          "cost_start": {
+            "RAW_AG": 50,
+            "RAW_FE": 27,
+            "RAW_CU": 13
+          },
+          "cost_end": {
+            "RAW_AG": 50,
+            "RAW_FE": 27,
+            "RAW_CU": 13
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.5633041648917523,
+          "effect_end": 2.5633041648917523,
+          "requires": "G02"
+        },
+        {
+          "from": 25,
+          "to": 25,
+          "cost_start": {
+            "RAW_AG": 54,
+            "RAW_FE": 30,
+            "RAW_CU": 15
+          },
+          "cost_end": {
+            "RAW_AG": 54,
+            "RAW_FE": 30,
+            "RAW_CU": 15
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.665836331487422,
+          "effect_end": 2.665836331487422,
+          "requires": "G02"
+        },
+        {
+          "from": 26,
+          "to": 26,
+          "cost_start": {
+            "RAW_AG": 58,
+            "RAW_FE": 32,
+            "RAW_CU": 16
+          },
+          "cost_end": {
+            "RAW_AG": 58,
+            "RAW_FE": 32,
+            "RAW_CU": 16
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.772469784746919,
+          "effect_end": 2.772469784746919,
+          "requires": "G02"
+        },
+        {
+          "from": 27,
+          "to": 27,
+          "cost_start": {
+            "RAW_AG": 62,
+            "RAW_FE": 34,
+            "RAW_CU": 17
+          },
+          "cost_end": {
+            "RAW_AG": 62,
+            "RAW_FE": 34,
+            "RAW_CU": 17
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.883368576136796,
+          "effect_end": 2.883368576136796,
+          "requires": "G02"
+        },
+        {
+          "from": 28,
+          "to": 28,
+          "cost_start": {
+            "RAW_AG": 67,
+            "RAW_FE": 37,
+            "RAW_CU": 19
+          },
+          "cost_end": {
+            "RAW_AG": 67,
+            "RAW_FE": 37,
+            "RAW_CU": 19
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.998703319182268,
+          "effect_end": 2.998703319182268,
+          "requires": "G02"
+        },
+        {
+          "from": 29,
+          "to": 29,
+          "cost_start": {
+            "RAW_AG": 72,
+            "RAW_FE": 39,
+            "RAW_CU": 20
+          },
+          "cost_end": {
+            "RAW_AG": 72,
+            "RAW_FE": 39,
+            "RAW_CU": 20
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3.118651451949559,
+          "effect_end": 3.118651451949559,
+          "requires": "G02"
+        },
+        {
+          "from": 30,
+          "to": 30,
+          "cost_start": {
+            "RAW_AG": 77,
+            "RAW_FE": 42,
+            "RAW_CU": 22
+          },
+          "cost_end": {
+            "RAW_AG": 77,
+            "RAW_FE": 42,
+            "RAW_CU": 22
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3.2433975100275414,
+          "effect_end": 3.2433975100275414,
+          "requires": "G02"
+        },
+        {
+          "from": 31,
+          "to": 31,
+          "cost_start": {
+            "RAW_AU": 60,
+            "RAW_CU": 44,
+            "RAW_FE": 20
+          },
+          "cost_end": {
+            "RAW_AU": 60,
+            "RAW_CU": 44,
+            "RAW_FE": 20
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3.3731334104286432,
+          "effect_end": 3.3731334104286432,
+          "requires": "G03"
+        },
+        {
+          "from": 32,
+          "to": 32,
+          "cost_start": {
+            "RAW_AU": 65,
+            "RAW_CU": 49,
+            "RAW_FE": 23
+          },
+          "cost_end": {
+            "RAW_AU": 65,
+            "RAW_CU": 49,
+            "RAW_FE": 23
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3.508058746845789,
+          "effect_end": 3.508058746845789,
+          "requires": "G03"
+        },
+        {
+          "from": 33,
+          "to": 33,
+          "cost_start": {
+            "RAW_AU": 70,
+            "RAW_CU": 55,
+            "RAW_FE": 26
+          },
+          "cost_end": {
+            "RAW_AU": 70,
+            "RAW_CU": 55,
+            "RAW_FE": 26
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3.648381096719621,
+          "effect_end": 3.648381096719621,
+          "requires": "G03"
+        },
+        {
+          "from": 34,
+          "to": 34,
+          "cost_start": {
+            "RAW_AU": 75,
+            "RAW_CU": 60,
+            "RAW_FE": 29
+          },
+          "cost_end": {
+            "RAW_AU": 75,
+            "RAW_CU": 60,
+            "RAW_FE": 29
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3.7943163405884057,
+          "effect_end": 3.7943163405884057,
+          "requires": "G03"
+        },
+        {
+          "from": 35,
+          "to": 35,
+          "cost_start": {
+            "RAW_AU": 81,
+            "RAW_CU": 65,
+            "RAW_FE": 32
+          },
+          "cost_end": {
+            "RAW_AU": 81,
+            "RAW_CU": 65,
+            "RAW_FE": 32
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3.946088994211942,
+          "effect_end": 3.946088994211942,
+          "requires": "G03"
+        },
+        {
+          "from": 36,
+          "to": 36,
+          "cost_start": {
+            "RAW_AU": 87,
+            "RAW_CU": 70,
+            "RAW_FE": 35
+          },
+          "cost_end": {
+            "RAW_AU": 87,
+            "RAW_CU": 70,
+            "RAW_FE": 35
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 4.10393255398042,
+          "effect_end": 4.10393255398042,
+          "requires": "G03"
+        },
+        {
+          "from": 37,
+          "to": 37,
+          "cost_start": {
+            "RAW_AU": 93,
+            "RAW_CU": 76,
+            "RAW_FE": 38
+          },
+          "cost_end": {
+            "RAW_AU": 93,
+            "RAW_CU": 76,
+            "RAW_FE": 38
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 4.268089856139636,
+          "effect_end": 4.268089856139636,
+          "requires": "G03"
+        },
+        {
+          "from": 38,
+          "to": 38,
+          "cost_start": {
+            "RAW_AU": 100,
+            "RAW_CU": 81,
+            "RAW_FE": 41
+          },
+          "cost_end": {
+            "RAW_AU": 100,
+            "RAW_CU": 81,
+            "RAW_FE": 41
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 4.438813450385222,
+          "effect_end": 4.438813450385222,
+          "requires": "G03"
+        },
+        {
+          "from": 39,
+          "to": 39,
+          "cost_start": {
+            "RAW_AU": 108,
+            "RAW_CU": 86,
+            "RAW_FE": 44
+          },
+          "cost_end": {
+            "RAW_AU": 108,
+            "RAW_CU": 86,
+            "RAW_FE": 44
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 4.616365988400632,
+          "effect_end": 4.616365988400632,
+          "requires": "G03"
+        },
+        {
+          "from": 40,
+          "to": 40,
+          "cost_start": {
+            "RAW_AU": 116,
+            "RAW_CU": 92,
+            "RAW_FE": 48
+          },
+          "cost_end": {
+            "RAW_AU": 116,
+            "RAW_CU": 92,
+            "RAW_FE": 48
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 4.801020627936657,
+          "effect_end": 4.801020627936657,
+          "requires": "G03"
+        },
+        {
+          "from": 41,
+          "to": 41,
+          "cost_start": {
+            "RAW_MY": 84,
+            "RAW_AG": 76,
+            "RAW_CU": 34,
+            "INGOT_AG": 4
+          },
+          "cost_end": {
+            "RAW_MY": 84,
+            "RAW_AG": 76,
+            "RAW_CU": 34,
+            "INGOT_AG": 4
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 4.993061453054123,
+          "effect_end": 4.993061453054123,
+          "requires": "G04"
+        },
+        {
+          "from": 42,
+          "to": 42,
+          "cost_start": {
+            "RAW_MY": 91,
+            "RAW_AG": 85,
+            "RAW_CU": 40
+          },
+          "cost_end": {
+            "RAW_MY": 91,
+            "RAW_AG": 85,
+            "RAW_CU": 40
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 5.192783911176289,
+          "effect_end": 5.192783911176289,
+          "requires": "G04"
+        },
+        {
+          "from": 43,
+          "to": 43,
+          "cost_start": {
+            "RAW_MY": 98,
+            "RAW_AG": 94,
+            "RAW_CU": 45
+          },
+          "cost_end": {
+            "RAW_MY": 98,
+            "RAW_AG": 94,
+            "RAW_CU": 45
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 5.40049526762334,
+          "effect_end": 5.40049526762334,
+          "requires": "G04"
+        },
+        {
+          "from": 44,
+          "to": 44,
+          "cost_start": {
+            "RAW_MY": 105,
+            "RAW_AG": 103,
+            "RAW_CU": 50
+          },
+          "cost_end": {
+            "RAW_MY": 105,
+            "RAW_AG": 103,
+            "RAW_CU": 50
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 5.616515078328274,
+          "effect_end": 5.616515078328274,
+          "requires": "G04"
+        },
+        {
+          "from": 45,
+          "to": 45,
+          "cost_start": {
+            "RAW_MY": 113,
+            "RAW_AG": 112,
+            "RAW_CU": 55
+          },
+          "cost_end": {
+            "RAW_MY": 113,
+            "RAW_AG": 112,
+            "RAW_CU": 55
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 5.841175681461405,
+          "effect_end": 5.841175681461405,
+          "requires": "G04"
+        },
+        {
+          "from": 46,
+          "to": 46,
+          "cost_start": {
+            "RAW_MY": 121,
+            "RAW_AG": 122,
+            "RAW_CU": 61
+          },
+          "cost_end": {
+            "RAW_MY": 121,
+            "RAW_AG": 122,
+            "RAW_CU": 61
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 6.074822708719862,
+          "effect_end": 6.074822708719862,
+          "requires": "G04"
+        },
+        {
+          "from": 47,
+          "to": 47,
+          "cost_start": {
+            "RAW_MY": 130,
+            "RAW_AG": 131,
+            "RAW_CU": 66
+          },
+          "cost_end": {
+            "RAW_MY": 130,
+            "RAW_AG": 131,
+            "RAW_CU": 66
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 6.317815617068656,
+          "effect_end": 6.317815617068656,
+          "requires": "G04"
+        },
+        {
+          "from": 48,
+          "to": 48,
+          "cost_start": {
+            "RAW_MY": 140,
+            "RAW_AG": 140,
+            "RAW_CU": 71
+          },
+          "cost_end": {
+            "RAW_MY": 140,
+            "RAW_AG": 140,
+            "RAW_CU": 71
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 6.570528241751402,
+          "effect_end": 6.570528241751402,
+          "requires": "G04"
+        },
+        {
+          "from": 49,
+          "to": 49,
+          "cost_start": {
+            "RAW_MY": 150,
+            "RAW_AG": 149,
+            "RAW_CU": 77
+          },
+          "cost_end": {
+            "RAW_MY": 150,
+            "RAW_AG": 149,
+            "RAW_CU": 77
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 6.833349371421459,
+          "effect_end": 6.833349371421459,
+          "requires": "G04"
+        },
+        {
+          "from": 50,
+          "to": 50,
+          "cost_start": {
+            "RAW_MY": 162,
+            "RAW_AG": 158,
+            "RAW_CU": 82
+          },
+          "cost_end": {
+            "RAW_MY": 162,
+            "RAW_AG": 158,
+            "RAW_CU": 82
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 7.106683346278317,
+          "effect_end": 7.106683346278317,
+          "requires": "G04"
+        },
+        {
+          "from": 51,
+          "to": 51,
+          "cost_start": {
+            "RAW_AS": 120,
+            "RAW_FE": 145,
+            "RAW_AG": 65
+          },
+          "cost_end": {
+            "RAW_AS": 120,
+            "RAW_FE": 145,
+            "RAW_AG": 65
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 7.390950680129451,
+          "effect_end": 7.390950680129451,
+          "requires": "G05"
+        },
+        {
+          "from": 52,
+          "to": 52,
+          "cost_start": {
+            "RAW_AS": 129,
+            "RAW_FE": 162,
+            "RAW_AG": 75
+          },
+          "cost_end": {
+            "RAW_AS": 129,
+            "RAW_FE": 162,
+            "RAW_AG": 75
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 7.686588707334629,
+          "effect_end": 7.686588707334629,
+          "requires": "G05"
+        },
+        {
+          "from": 53,
+          "to": 53,
+          "cost_start": {
+            "RAW_AS": 139,
+            "RAW_FE": 180,
+            "RAW_AG": 86
+          },
+          "cost_end": {
+            "RAW_AS": 139,
+            "RAW_FE": 180,
+            "RAW_AG": 86
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 7.994052255628014,
+          "effect_end": 7.994052255628014,
+          "requires": "G05"
+        },
+        {
+          "from": 54,
+          "to": 54,
+          "cost_start": {
+            "RAW_AS": 150,
+            "RAW_FE": 197,
+            "RAW_AG": 96
+          },
+          "cost_end": {
+            "RAW_AS": 150,
+            "RAW_FE": 197,
+            "RAW_AG": 96
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 8.313814345853135,
+          "effect_end": 8.313814345853135,
+          "requires": "G05"
+        },
+        {
+          "from": 55,
+          "to": 55,
+          "cost_start": {
+            "RAW_AS": 161,
+            "RAW_FE": 215,
+            "RAW_AG": 106
+          },
+          "cost_end": {
+            "RAW_AS": 161,
+            "RAW_FE": 215,
+            "RAW_AG": 106
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 8.64636691968726,
+          "effect_end": 8.64636691968726,
+          "requires": "G05"
+        },
+        {
+          "from": 56,
+          "to": 56,
+          "cost_start": {
+            "RAW_AS": 173,
+            "RAW_FE": 232,
+            "RAW_AG": 116
+          },
+          "cost_end": {
+            "RAW_AS": 173,
+            "RAW_FE": 232,
+            "RAW_AG": 116
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 8.992221596474751,
+          "effect_end": 8.992221596474751,
+          "requires": "G05"
+        },
+        {
+          "from": 57,
+          "to": 57,
+          "cost_start": {
+            "RAW_AS": 186,
+            "RAW_FE": 249,
+            "RAW_AG": 126
+          },
+          "cost_end": {
+            "RAW_AS": 186,
+            "RAW_FE": 249,
+            "RAW_AG": 126
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 9.351910460333741,
+          "effect_end": 9.351910460333741,
+          "requires": "G05"
+        },
+        {
+          "from": 58,
+          "to": 58,
+          "cost_start": {
+            "RAW_AS": 200,
+            "RAW_FE": 267,
+            "RAW_AG": 136
+          },
+          "cost_end": {
+            "RAW_AS": 200,
+            "RAW_FE": 267,
+            "RAW_AG": 136
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 9.725986878747092,
+          "effect_end": 9.725986878747092,
+          "requires": "G05"
+        },
+        {
+          "from": 59,
+          "to": 59,
+          "cost_start": {
+            "RAW_AS": 215,
+            "RAW_FE": 284,
+            "RAW_AG": 146
+          },
+          "cost_end": {
+            "RAW_AS": 215,
+            "RAW_FE": 284,
+            "RAW_AG": 146
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 10.115026353896976,
+          "effect_end": 10.115026353896976,
+          "requires": "G05"
+        },
+        {
+          "from": 60,
+          "to": 60,
+          "cost_start": {
+            "RAW_AS": 231,
+            "RAW_FE": 302,
+            "RAW_AG": 157
+          },
+          "cost_end": {
+            "RAW_AS": 231,
+            "RAW_FE": 302,
+            "RAW_AG": 157
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 10.519627408052855,
+          "effect_end": 10.519627408052855,
+          "requires": "G05"
+        },
+        {
+          "from": 61,
+          "to": 61,
+          "cost_start": {
+            "RAW_AS": 240,
+            "RAW_CU": 320,
+            "RAW_FE": 144,
+            "INGOT_AU": 10
+          },
+          "cost_end": {
+            "RAW_AS": 240,
+            "RAW_CU": 320,
+            "RAW_FE": 144,
+            "INGOT_AU": 10
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 10.94041250437497,
+          "effect_end": 10.94041250437497,
+          "requires": "G06 + глава мастерства 6 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 62,
+          "to": 62,
+          "cost_start": {
+            "RAW_AS": 267,
+            "RAW_CU": 358,
+            "RAW_FE": 166
+          },
+          "cost_end": {
+            "RAW_AS": 267,
+            "RAW_CU": 358,
+            "RAW_FE": 166
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 11.378029004549969,
+          "effect_end": 11.378029004549969,
+          "requires": "G06 + глава мастерства 6 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 63,
+          "to": 63,
+          "cost_start": {
+            "RAW_AS": 294,
+            "RAW_CU": 397,
+            "RAW_FE": 189
+          },
+          "cost_end": {
+            "RAW_AS": 294,
+            "RAW_CU": 397,
+            "RAW_FE": 189
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 11.833150164731968,
+          "effect_end": 11.833150164731968,
+          "requires": "G06 + глава мастерства 6 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 64,
+          "to": 64,
+          "cost_start": {
+            "RAW_AS": 320,
+            "RAW_CU": 435,
+            "RAW_FE": 211
+          },
+          "cost_end": {
+            "RAW_AS": 320,
+            "RAW_CU": 435,
+            "RAW_FE": 211
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 12.306476171321247,
+          "effect_end": 12.306476171321247,
+          "requires": "G06 + глава мастерства 6 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 65,
+          "to": 65,
+          "cost_start": {
+            "RAW_AS": 347,
+            "RAW_CU": 474,
+            "RAW_FE": 234
+          },
+          "cost_end": {
+            "RAW_AS": 347,
+            "RAW_CU": 474,
+            "RAW_FE": 234
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 12.798735218174098,
+          "effect_end": 12.798735218174098,
+          "requires": "G06 + глава мастерства 6 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 66,
+          "to": 66,
+          "cost_start": {
+            "RAW_AS": 374,
+            "RAW_CU": 512,
+            "RAW_FE": 256
+          },
+          "cost_end": {
+            "RAW_AS": 374,
+            "RAW_CU": 512,
+            "RAW_FE": 256
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 13.310684626901063,
+          "effect_end": 13.310684626901063,
+          "requires": "G06 + глава мастерства 6 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 67,
+          "to": 67,
+          "cost_start": {
+            "RAW_AS": 400,
+            "RAW_CU": 550,
+            "RAW_FE": 278
+          },
+          "cost_end": {
+            "RAW_AS": 400,
+            "RAW_CU": 550,
+            "RAW_FE": 278
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 13.843112011977105,
+          "effect_end": 13.843112011977105,
+          "requires": "G06 + глава мастерства 6 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 68,
+          "to": 68,
+          "cost_start": {
+            "RAW_AS": 427,
+            "RAW_CU": 589,
+            "RAW_FE": 301
+          },
+          "cost_end": {
+            "RAW_AS": 427,
+            "RAW_CU": 589,
+            "RAW_FE": 301
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 14.39683649245619,
+          "effect_end": 14.39683649245619,
+          "requires": "G06 + глава мастерства 6 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 69,
+          "to": 69,
+          "cost_start": {
+            "RAW_AS": 454,
+            "RAW_CU": 627,
+            "RAW_FE": 323
+          },
+          "cost_end": {
+            "RAW_AS": 454,
+            "RAW_CU": 627,
+            "RAW_FE": 323
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 14.972709952154437,
+          "effect_end": 14.972709952154437,
+          "requires": "G06 + глава мастерства 6 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 70,
+          "to": 70,
+          "cost_start": {
+            "RAW_AS": 480,
+            "RAW_CU": 666,
+            "RAW_FE": 346
+          },
+          "cost_end": {
+            "RAW_AS": 480,
+            "RAW_CU": 666,
+            "RAW_FE": 346
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 15.571618350240616,
+          "effect_end": 15.571618350240616,
+          "requires": "G06 + глава мастерства 6 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 71,
+          "to": 71,
+          "cost_start": {
+            "RAW_AS": 800,
+            "RAW_AG": 1050,
+            "RAW_CU": 472
+          },
+          "cost_end": {
+            "RAW_AS": 800,
+            "RAW_AG": 1050,
+            "RAW_CU": 472
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 16.19448308425024,
+          "effect_end": 16.19448308425024,
+          "requires": "G06 + глава мастерства 12 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 72,
+          "to": 72,
+          "cost_start": {
+            "RAW_AS": 923,
+            "RAW_AG": 1176,
+            "RAW_CU": 546
+          },
+          "cost_end": {
+            "RAW_AS": 923,
+            "RAW_AG": 1176,
+            "RAW_CU": 546
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 16.84226240762025,
+          "effect_end": 16.84226240762025,
+          "requires": "G06 + глава мастерства 12 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 73,
+          "to": 73,
+          "cost_start": {
+            "RAW_AS": 1045,
+            "RAW_AG": 1302,
+            "RAW_CU": 620
+          },
+          "cost_end": {
+            "RAW_AS": 1045,
+            "RAW_AG": 1302,
+            "RAW_CU": 620
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 17.51595290392506,
+          "effect_end": 17.51595290392506,
+          "requires": "G06 + глава мастерства 12 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 74,
+          "to": 74,
+          "cost_start": {
+            "RAW_AS": 1167,
+            "RAW_AG": 1428,
+            "RAW_CU": 693
+          },
+          "cost_end": {
+            "RAW_AS": 1167,
+            "RAW_AG": 1428,
+            "RAW_CU": 693
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 18.216591020082063,
+          "effect_end": 18.216591020082063,
+          "requires": "G06 + глава мастерства 12 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 75,
+          "to": 75,
+          "cost_start": {
+            "RAW_AS": 1289,
+            "RAW_AG": 1554,
+            "RAW_CU": 766
+          },
+          "cost_end": {
+            "RAW_AS": 1289,
+            "RAW_AG": 1554,
+            "RAW_CU": 766
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 18.945254660885347,
+          "effect_end": 18.945254660885347,
+          "requires": "G06 + глава мастерства 12 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 76,
+          "to": 76,
+          "cost_start": {
+            "RAW_AS": 1412,
+            "RAW_AG": 1680,
+            "RAW_CU": 840
+          },
+          "cost_end": {
+            "RAW_AS": 1412,
+            "RAW_AG": 1680,
+            "RAW_CU": 840
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 19.703064847320764,
+          "effect_end": 19.703064847320764,
+          "requires": "G06 + глава мастерства 12 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 77,
+          "to": 77,
+          "cost_start": {
+            "RAW_AS": 1534,
+            "RAW_AG": 1806,
+            "RAW_CU": 914
+          },
+          "cost_end": {
+            "RAW_AS": 1534,
+            "RAW_AG": 1806,
+            "RAW_CU": 914
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 20.491187441213594,
+          "effect_end": 20.491187441213594,
+          "requires": "G06 + глава мастерства 12 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 78,
+          "to": 78,
+          "cost_start": {
+            "RAW_AS": 1656,
+            "RAW_AG": 1932,
+            "RAW_CU": 987
+          },
+          "cost_end": {
+            "RAW_AS": 1656,
+            "RAW_AG": 1932,
+            "RAW_CU": 987
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 21.31083493886214,
+          "effect_end": 21.31083493886214,
+          "requires": "G06 + глава мастерства 12 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 79,
+          "to": 79,
+          "cost_start": {
+            "RAW_AS": 1778,
+            "RAW_AG": 2058,
+            "RAW_CU": 1060
+          },
+          "cost_end": {
+            "RAW_AS": 1778,
+            "RAW_AG": 2058,
+            "RAW_CU": 1060
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 22.163268336416625,
+          "effect_end": 22.163268336416625,
+          "requires": "G06 + глава мастерства 12 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 80,
+          "to": 80,
+          "cost_start": {
+            "RAW_AS": 1900,
+            "RAW_AG": 2184,
+            "RAW_CU": 1134
+          },
+          "cost_end": {
+            "RAW_AS": 1900,
+            "RAW_AG": 2184,
+            "RAW_CU": 1134
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 23.04979906987329,
+          "effect_end": 23.04979906987329,
+          "requires": "G06 + глава мастерства 12 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 81,
+          "to": 81,
+          "cost_start": {
+            "RAW_AS": 3600,
+            "RAW_FE": 3800,
+            "RAW_AG": 1710,
+            "INGOT_MY": 20
+          },
+          "cost_end": {
+            "RAW_AS": 3600,
+            "RAW_FE": 3800,
+            "RAW_AG": 1710,
+            "INGOT_MY": 20
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 23.97179103266822,
+          "effect_end": 23.97179103266822,
+          "requires": "G06 + глава мастерства 20 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 82,
+          "to": 82,
+          "cost_start": {
+            "RAW_AS": 4423,
+            "RAW_FE": 4256,
+            "RAW_AG": 1976
+          },
+          "cost_end": {
+            "RAW_AS": 4423,
+            "RAW_FE": 4256,
+            "RAW_AG": 1976
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 24.930662673974954,
+          "effect_end": 24.930662673974954,
+          "requires": "G06 + глава мастерства 20 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 83,
+          "to": 83,
+          "cost_start": {
+            "RAW_AS": 5245,
+            "RAW_FE": 4712,
+            "RAW_AG": 2242
+          },
+          "cost_end": {
+            "RAW_AS": 5245,
+            "RAW_FE": 4712,
+            "RAW_AG": 2242
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 25.927889180933953,
+          "effect_end": 25.927889180933953,
+          "requires": "G06 + глава мастерства 20 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 84,
+          "to": 84,
+          "cost_start": {
+            "RAW_AS": 6067,
+            "RAW_FE": 5168,
+            "RAW_AG": 2508
+          },
+          "cost_end": {
+            "RAW_AS": 6067,
+            "RAW_FE": 5168,
+            "RAW_AG": 2508
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 26.96500474817131,
+          "effect_end": 26.96500474817131,
+          "requires": "G06 + глава мастерства 20 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 85,
+          "to": 85,
+          "cost_start": {
+            "RAW_AS": 6889,
+            "RAW_FE": 5624,
+            "RAW_AG": 2774
+          },
+          "cost_end": {
+            "RAW_AS": 6889,
+            "RAW_FE": 5624,
+            "RAW_AG": 2774
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 28.043604938098163,
+          "effect_end": 28.043604938098163,
+          "requires": "G06 + глава мастерства 20 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 86,
+          "to": 86,
+          "cost_start": {
+            "RAW_AS": 7712,
+            "RAW_FE": 6080,
+            "RAW_AG": 3040
+          },
+          "cost_end": {
+            "RAW_AS": 7712,
+            "RAW_FE": 6080,
+            "RAW_AG": 3040
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 29.16534913562209,
+          "effect_end": 29.16534913562209,
+          "requires": "G06 + глава мастерства 20 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 87,
+          "to": 87,
+          "cost_start": {
+            "RAW_AS": 8534,
+            "RAW_FE": 6536,
+            "RAW_AG": 3306
+          },
+          "cost_end": {
+            "RAW_AS": 8534,
+            "RAW_FE": 6536,
+            "RAW_AG": 3306
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 30.331963101046977,
+          "effect_end": 30.331963101046977,
+          "requires": "G06 + глава мастерства 20 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 88,
+          "to": 88,
+          "cost_start": {
+            "RAW_AS": 9356,
+            "RAW_FE": 6992,
+            "RAW_AG": 3572
+          },
+          "cost_end": {
+            "RAW_AS": 9356,
+            "RAW_FE": 6992,
+            "RAW_AG": 3572
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 31.545241625088856,
+          "effect_end": 31.545241625088856,
+          "requires": "G06 + глава мастерства 20 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 89,
+          "to": 89,
+          "cost_start": {
+            "RAW_AS": 10178,
+            "RAW_FE": 7448,
+            "RAW_AG": 3838
+          },
+          "cost_end": {
+            "RAW_AS": 10178,
+            "RAW_FE": 7448,
+            "RAW_AG": 3838
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 32.80705129009241,
+          "effect_end": 32.80705129009241,
+          "requires": "G06 + глава мастерства 20 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 90,
+          "to": 90,
+          "cost_start": {
+            "RAW_AS": 11000,
+            "RAW_FE": 7904,
+            "RAW_AG": 4104
+          },
+          "cost_end": {
+            "RAW_AS": 11000,
+            "RAW_FE": 7904,
+            "RAW_AG": 4104
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 34.11933334169611,
+          "effect_end": 34.11933334169611,
+          "requires": "G06 + глава мастерства 20 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 91,
+          "to": 91,
+          "cost_start": {
+            "RAW_AS": 22000,
+            "RAW_CU": 16000,
+            "RAW_FE": 7200
+          },
+          "cost_end": {
+            "RAW_AS": 22000,
+            "RAW_CU": 16000,
+            "RAW_FE": 7200
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 35.484106675363954,
+          "effect_end": 35.484106675363954,
+          "requires": "G06 + глава мастерства 30 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 92,
+          "to": 92,
+          "cost_start": {
+            "RAW_AS": 27334,
+            "RAW_CU": 17920,
+            "RAW_FE": 8320
+          },
+          "cost_end": {
+            "RAW_AS": 27334,
+            "RAW_CU": 17920,
+            "RAW_FE": 8320
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 36.90347094237851,
+          "effect_end": 36.90347094237851,
+          "requires": "G06 + глава мастерства 30 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 93,
+          "to": 93,
+          "cost_start": {
+            "RAW_AS": 32667,
+            "RAW_CU": 19840,
+            "RAW_FE": 9440
+          },
+          "cost_end": {
+            "RAW_AS": 32667,
+            "RAW_CU": 19840,
+            "RAW_FE": 9440
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 38.37960978007366,
+          "effect_end": 38.37960978007366,
+          "requires": "G06 + глава мастерства 30 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 94,
+          "to": 94,
+          "cost_start": {
+            "RAW_AS": 38000,
+            "RAW_CU": 21760,
+            "RAW_FE": 10560
+          },
+          "cost_end": {
+            "RAW_AS": 38000,
+            "RAW_CU": 21760,
+            "RAW_FE": 10560
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 39.914794171276604,
+          "effect_end": 39.914794171276604,
+          "requires": "G06 + глава мастерства 30 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 95,
+          "to": 95,
+          "cost_start": {
+            "RAW_AS": 43334,
+            "RAW_CU": 23680,
+            "RAW_FE": 11680
+          },
+          "cost_end": {
+            "RAW_AS": 43334,
+            "RAW_CU": 23680,
+            "RAW_FE": 11680
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 41.51138593812767,
+          "effect_end": 41.51138593812767,
+          "requires": "G06 + глава мастерства 30 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 96,
+          "to": 96,
+          "cost_start": {
+            "RAW_AS": 48667,
+            "RAW_CU": 25600,
+            "RAW_FE": 12800
+          },
+          "cost_end": {
+            "RAW_AS": 48667,
+            "RAW_CU": 25600,
+            "RAW_FE": 12800
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 43.171841375652775,
+          "effect_end": 43.171841375652775,
+          "requires": "G06 + глава мастерства 30 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 97,
+          "to": 97,
+          "cost_start": {
+            "RAW_AS": 54000,
+            "RAW_CU": 27520,
+            "RAW_FE": 13920
+          },
+          "cost_end": {
+            "RAW_AS": 54000,
+            "RAW_CU": 27520,
+            "RAW_FE": 13920
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 44.89871503067889,
+          "effect_end": 44.89871503067889,
+          "requires": "G06 + глава мастерства 30 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 98,
+          "to": 98,
+          "cost_start": {
+            "RAW_AS": 59334,
+            "RAW_CU": 29440,
+            "RAW_FE": 15040
+          },
+          "cost_end": {
+            "RAW_AS": 59334,
+            "RAW_CU": 29440,
+            "RAW_FE": 15040
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 46.694663631906046,
+          "effect_end": 46.694663631906046,
+          "requires": "G06 + глава мастерства 30 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 99,
+          "to": 99,
+          "cost_start": {
+            "RAW_AS": 64667,
+            "RAW_CU": 31360,
+            "RAW_FE": 16160
+          },
+          "cost_end": {
+            "RAW_AS": 64667,
+            "RAW_CU": 31360,
+            "RAW_FE": 16160
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 48.56245017718229,
+          "effect_end": 48.56245017718229,
+          "requires": "G06 + глава мастерства 30 (привязка главы к встрече требует полного DAG)"
+        },
+        {
+          "from": 100,
+          "to": 100,
+          "cost_start": {
+            "RAW_AS": 70000,
+            "RAW_CU": 33280,
+            "RAW_FE": 17280
+          },
+          "cost_end": {
+            "RAW_AS": 70000,
+            "RAW_CU": 33280,
+            "RAW_FE": 17280
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 50.50494818426959,
+          "effect_end": 50.50494818426959,
+          "requires": "G06 + глава мастерства 30 (привязка главы к встрече требует полного DAG)"
+        }
+      ]
+    },
+    {
+      "id": "TW10",
+      "name": "Регенерация",
+      "max_level": 50,
+      "availability": "START",
+      "purpose": "Недорогая ранняя выживаемость",
+      "effect_description": "Накопительный реген от максимального HP в игровую секунду: 0.02% за шаг до 1%/с.",
+      "effect_unit": "доля maxHP / игровую секунду",
+      "stacking": "Все источники ≤2%/с; урон, превышающий HP одним ударом, не лечится задним числом.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 10,
+          "cost_start": {
+            "RAW_CU": 25
+          },
+          "cost_end": {
+            "RAW_CU": 75
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.0002,
+          "effect_end": 0.002,
+          "requires": "START"
+        },
+        {
+          "from": 11,
+          "to": 20,
+          "cost_start": {
+            "RAW_FE": 90,
+            "RAW_CU": 25
+          },
+          "cost_end": {
+            "RAW_FE": 200,
+            "RAW_CU": 85
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.0022,
+          "effect_end": 0.004,
+          "requires": "G01"
+        },
+        {
+          "from": 21,
+          "to": 30,
+          "cost_start": {
+            "RAW_AG": 260,
+            "RAW_FE": 160
+          },
+          "cost_end": {
+            "RAW_AG": 620,
+            "RAW_FE": 500
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.0042,
+          "effect_end": 0.006,
+          "requires": "G02"
+        },
+        {
+          "from": 31,
+          "to": 40,
+          "cost_start": {
+            "RAW_AU": 800,
+            "RAW_CU": 700
+          },
+          "cost_end": {
+            "RAW_AU": 2000,
+            "RAW_CU": 2200
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.0062,
+          "effect_end": 0.008,
+          "requires": "G03"
+        },
+        {
+          "from": 41,
+          "to": 50,
+          "cost_start": {
+            "RAW_AS": 2800,
+            "RAW_AG": 2200
+          },
+          "cost_end": {
+            "RAW_AS": 8500,
+            "RAW_AG": 7500
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.0082,
+          "effect_end": 0.01,
+          "requires": "G05"
+        }
+      ]
+    },
+    {
+      "id": "TW11",
+      "name": "Запас щита",
+      "max_level": 30,
+      "availability": "G01",
+      "purpose": "Постепенная защита от серии ударов",
+      "effect_description": "Дополнительный запас щита: 0.5% maxHP за уровень до 15%; восстановление начинается после 8 секунд без урона.",
+      "effect_unit": "доля maxHP",
+      "stacking": "С лабораторией и временными источниками постоянный щит ≤30% maxHP; не складывать бесконечно новые щиты.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 10,
+          "cost_start": {
+            "RAW_FE": 50,
+            "RAW_CU": 25
+          },
+          "cost_end": {
+            "RAW_FE": 200,
+            "RAW_CU": 100
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.005,
+          "effect_end": 0.05,
+          "requires": "G01"
+        },
+        {
+          "from": 11,
+          "to": 20,
+          "cost_start": {
+            "RAW_AG": 280,
+            "RAW_FE": 200
+          },
+          "cost_end": {
+            "RAW_AG": 900,
+            "RAW_FE": 700
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.055,
+          "effect_end": 0.1,
+          "requires": "G02"
+        },
+        {
+          "from": 21,
+          "to": 30,
+          "cost_start": {
+            "RAW_MY": 1300,
+            "RAW_CU": 1200
+          },
+          "cost_end": {
+            "RAW_MY": 4700,
+            "RAW_CU": 4600
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.105,
+          "effect_end": 0.15,
+          "requires": "G04"
+        }
+      ]
+    },
+    {
+      "id": "TW12",
+      "name": "Ответный урон",
+      "max_level": 20,
+      "availability": "G02",
+      "purpose": "Ситуационная ветка, не заменяет основной выстрел",
+      "effect_description": "Возвращает 0.5% принятого прямого урона за шаг, до 10%.",
+      "effect_unit": "доля принятого урона",
+      "stacking": "Итоговый reflect ≤20%; отражение не порождает отражение и не лечит башню. Рассчитывать по фактически принятому урону.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 10,
+          "cost_start": {
+            "RAW_AG": 50,
+            "RAW_FE": 90
+          },
+          "cost_end": {
+            "RAW_AG": 220,
+            "RAW_FE": 350
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.005,
+          "effect_end": 0.05,
+          "requires": "G02"
+        },
+        {
+          "from": 11,
+          "to": 20,
+          "cost_start": {
+            "RAW_AU": 330,
+            "RAW_CU": 1300
+          },
+          "cost_end": {
+            "RAW_AU": 1350,
+            "RAW_CU": 4000
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.055,
+          "effect_end": 0.1,
+          "requires": "G03"
+        }
+      ]
+    },
+    {
+      "id": "TW13",
+      "name": "Защита от всплеска",
+      "max_level": 30,
+      "availability": "G03; R_GATE04; первые 15 уровней до G04",
+      "purpose": "Основная постепенная подготовка защиты от больших ударов после открытия соответствующей оси.",
+      "effect_description": "После R_GATE04 значение 0. Каждый уровень уменьшает на 1 п.п. только часть одиночного удара сверх 25% maxHP, максимум 30 п.п.; первые 15 уровней доступны до G04.",
+      "effect_unit": "доля снижения опасной части",
+      "stacking": "Складывается с LAB_BURST/100 в общей оси, предел 60%. Итоговый урон D: min(D,0.25H)+max(0,D−0.25H)×(1−min(0.60,TW13+LAB_BURST/100)), H=maxHP. R_GATE04 только разрешает покупку и не уменьшает урон.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 15,
+          "cost_start": {
+            "RAW_AU": 70,
+            "RAW_AG": 90,
+            "RAW_FE": 120
+          },
+          "cost_end": {
+            "RAW_AU": 280,
+            "RAW_AG": 330,
+            "RAW_FE": 480
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.01,
+          "effect_end": 0.15,
+          "requires": "G03; R_GATE04"
+        },
+        {
+          "from": 16,
+          "to": 25,
+          "cost_start": {
+            "RAW_MY": 300,
+            "RAW_AU": 420,
+            "RAW_CU": 700
+          },
+          "cost_end": {
+            "RAW_MY": 1000,
+            "RAW_AU": 1500,
+            "RAW_CU": 2600
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.16,
+          "effect_end": 0.25,
+          "requires": "G04; R_GATE04"
+        },
+        {
+          "from": 26,
+          "to": 30,
+          "cost_start": {
+            "RAW_AS": 1400,
+            "RAW_AG": 3000,
+            "RAW_FE": 4200
+          },
+          "cost_end": {
+            "RAW_AS": 4200,
+            "RAW_AG": 9000,
+            "RAW_FE": 14000
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.26,
+          "effect_end": 0.3,
+          "requires": "G05; R_GATE04"
+        }
+      ]
+    },
+    {
+      "id": "TW14",
+      "name": "Устойчивость к помехам",
+      "max_level": 10,
+      "availability": "G02 + первое знакомство с M05",
+      "purpose": "Контрспециализация к модификатору",
+      "effect_description": "Сокращение добавленного врагом cooldown M05 на 2% за уровень, до20%. Свой базовый cooldown не сокращает.",
+      "effect_unit": "доля силы помехи",
+      "stacking": "С лабораторией ≤50%; не складывать с общим cooldown как двойное уменьшение базы.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 5,
+          "cost_start": {
+            "RAW_AG": 180,
+            "RAW_FE": 180
+          },
+          "cost_end": {
+            "RAW_AG": 480,
+            "RAW_FE": 620
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.02,
+          "effect_end": 0.1,
+          "requires": "G02 + M05 увиден"
+        },
+        {
+          "from": 6,
+          "to": 10,
+          "cost_start": {
+            "RAW_MY": 950,
+            "RAW_CU": 2600
+          },
+          "cost_end": {
+            "RAW_MY": 2600,
+            "RAW_CU": 8200
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.12,
+          "effect_end": 0.2,
+          "requires": "G04"
+        }
+      ]
+    },
+    {
+      "id": "TW15",
+      "name": "Добыча сырья",
+      "max_level": 20,
+      "availability": "START",
+      "purpose": "Небольшое хозяйственное решение с окупаемостью",
+      "effect_description": "+0.5% количества обычной руды за шаг до+10%, для каждого исходного вида отдельно.",
+      "effect_unit": "доля дополнительной руды",
+      "stacking": "Внутри общего combat economy cap35%; не увеличивает уголь, кристаллы, слитки, first-clear или спавн. При max окупаемость считать в конкретном маршруте.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 5,
+          "cost_start": {
+            "RAW_CU": 20
+          },
+          "cost_end": {
+            "RAW_CU": 60
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.005,
+          "effect_end": 0.025,
+          "requires": "START"
+        },
+        {
+          "from": 6,
+          "to": 10,
+          "cost_start": {
+            "RAW_FE": 100,
+            "RAW_CU": 35
+          },
+          "cost_end": {
+            "RAW_FE": 220,
+            "RAW_CU": 90
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.03,
+          "effect_end": 0.05,
+          "requires": "G01"
+        },
+        {
+          "from": 11,
+          "to": 15,
+          "cost_start": {
+            "RAW_AG": 350,
+            "RAW_FE": 140
+          },
+          "cost_end": {
+            "RAW_AG": 800,
+            "RAW_FE": 360
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.055,
+          "effect_end": 0.075,
+          "requires": "G02"
+        },
+        {
+          "from": 16,
+          "to": 20,
+          "cost_start": {
+            "RAW_MY": 1500,
+            "RAW_CU": 800
+          },
+          "cost_end": {
+            "RAW_MY": 4200,
+            "RAW_CU": 2400
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.08,
+          "effect_end": 0.1,
+          "requires": "G04"
+        }
+      ]
+    },
+    {
+      "id": "TW16",
+      "name": "Добыча угля",
+      "max_level": 20,
+      "availability": "G02",
+      "purpose": "Снабжение топлива, отдельное от руды",
+      "effect_description": "+0.5% размера угольной пачки за шаг до+10%.",
+      "effect_unit": "доля дополнительного угля",
+      "stacking": "Общий cap хозяйственных бонусов35%, только валидные убийства. Покупка за конкретную руду, уголь не тратится на эту ветку.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 5,
+          "cost_start": {
+            "RAW_AG": 35,
+            "RAW_CU": 80
+          },
+          "cost_end": {
+            "RAW_AG": 120,
+            "RAW_CU": 220
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.005,
+          "effect_end": 0.025,
+          "requires": "G02"
+        },
+        {
+          "from": 6,
+          "to": 10,
+          "cost_start": {
+            "RAW_AU": 200,
+            "RAW_FE": 300
+          },
+          "cost_end": {
+            "RAW_AU": 500,
+            "RAW_FE": 850
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.03,
+          "effect_end": 0.05,
+          "requires": "G03"
+        },
+        {
+          "from": 11,
+          "to": 15,
+          "cost_start": {
+            "RAW_MY": 850,
+            "RAW_CU": 1800
+          },
+          "cost_end": {
+            "RAW_MY": 2000,
+            "RAW_CU": 5200
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.055,
+          "effect_end": 0.075,
+          "requires": "G04"
+        },
+        {
+          "from": 16,
+          "to": 20,
+          "cost_start": {
+            "RAW_AS": 3200,
+            "RAW_AG": 4000
+          },
+          "cost_end": {
+            "RAW_AS": 9000,
+            "RAW_AG": 11000
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.08,
+          "effect_end": 0.1,
+          "requires": "G05"
+        }
+      ]
+    },
+    {
+      "id": "TW17",
+      "name": "Радиус подбора",
+      "max_level": 10,
+      "availability": "G01",
+      "purpose": "Удобство, без роста выдачи",
+      "effect_description": "Радиус взаимодействия с drop +2.5% за шаг, до+25%.",
+      "effect_unit": "множитель радиуса подбора",
+      "stacking": "Текущая ветка даёт до ×1.25; общий резервный предел ×1.5 для будущих явно назначенных эффектов. В текущем лабораторном каталоге дополнительного радиуса подбора нет. Пропущенные заработанные награды возвращаются бесплатно через TW19.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 5,
+          "cost_start": {
+            "RAW_FE": 30,
+            "RAW_CU": 30
+          },
+          "cost_end": {
+            "RAW_FE": 80,
+            "RAW_CU": 90
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.025,
+          "effect_end": 1.125,
+          "requires": "G01"
+        },
+        {
+          "from": 6,
+          "to": 10,
+          "cost_start": {
+            "RAW_AG": 120,
+            "RAW_FE": 140
+          },
+          "cost_end": {
+            "RAW_AG": 300,
+            "RAW_FE": 420
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.15,
+          "effect_end": 1.25,
+          "requires": "G02"
+        }
+      ]
+    },
+    {
+      "id": "TW18",
+      "name": "Предел безопасного offline-фарма",
+      "max_level": 2,
+      "availability": "Освоенный безопасный маршрут; G02",
+      "purpose": "Редкий функциональный рост автономности",
+      "effect_description": "Базовый предел8часов; две покупки дают12 затем24часа. Только уже проверенный маршрут и сохранённая сборка.",
+      "effect_unit": "часов",
+      "stacking": "Шахта имеет собственный склад; время лаборатории/кузницы эта ветка не ограничивает.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_AG": 20,
+            "INGOT_CU": 30
+          },
+          "cost_end": {
+            "INGOT_AG": 20,
+            "INGOT_CU": 30
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 12,
+          "effect_end": 12,
+          "requires": "G02 + безопасный маршрут"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_MY": 70,
+            "INGOT_FE": 100
+          },
+          "cost_end": {
+            "INGOT_MY": 70,
+            "INGOT_FE": 100
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 24,
+          "effect_end": 24,
+          "requires": "G04 + безопасный маршрут"
+        }
+      ]
+    },
+    {
+      "id": "TW19",
+      "name": "Возврат уже заработанной добычи",
+      "max_level": 1,
+      "availability": "START",
+      "purpose": "Бесплатная гарантия выдачи",
+      "effect_description": "Подсказка и восстановление пропущенных подтверждённых наград в итогах забега.",
+      "effect_unit": "доступная функция",
+      "stacking": "Стоимость0: нельзя продавать возвращение уже начисленного. Это системный контракт, не ветка силы.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {},
+          "cost_end": {},
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "START"
+        }
+      ]
+    },
+    {
+      "id": "TW20",
+      "name": "Планирование освоенных маршрутов",
+      "max_level": 1,
+      "availability": "G03 + три освоенных маршрута",
+      "purpose": "Бесплатное управление доступной автоматикой",
+      "effect_description": "Очередь из3 освоенных маршрутов, доступная после обучения безопасному фарму.",
+      "effect_unit": "доступная функция",
+      "stacking": "Не открывает новый биом, не играет unknown босса. Не продаётся повторно лабораторией или ратушей.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {},
+          "cost_end": {},
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G03 + три освоенных маршрута"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "source_size": [
+    1254,
+    1254
+  ],
+  "requested_logical_grid": [
+    96,
+    96
+  ],
+  "sample_cell_size": [
+    13.0625,
+    13.0625
+  ],
+  "output_size": [
+    96,
+    96
+  ],
+  "visible_bounds": [
+    23,
+    5,
+    82,
+    93
+  ],
+  "alpha_values": [
+    0,
+    255
+  ],
+  "opaque_colors": 19,
+  "palette_by_material": {
+    "outline": [
+      "#060e30",
+      "#071233"
+    ],
+    "cloth": [
+      "#4a335e",
+      "#604170",
+      "#7d5588",
+      "#80578a"
+    ],
+    "bone": [
+      "#a48b58",
+      "#d4b670",
+      "#f7e4a9",
+      "#fae9b1",
+      "#fbeab4"
+    ],
+    "wood": [
+      "#613b20",
+      "#704423",
+      "#8f5e30",
+      "#aa793e"
+    ],
+    "crystal": [
+      "#0e7173",
+      "#34a8a1",
+      "#4fc1b6",
+      "#a2e5d8"
+    ]
+  },
+  "teal_outside_crystal_yx": [],
+  "source_sha256": "03ad9a2eec585ff850506ada6e149150f56a2ddcf1b03e665005afcb2de03b27",
+  "output_sha256": "e96cbf79b24eb270f3dbccb1688ca7e598dedc21c3fc358081aef32ddde247b3",
+  "source_c2pa_actions": {
+    "actions": [
+      {
+        "action": "c2pa.created",
+        "when": "2026-09-09T00:00:00Z",
+        "softwareAgent": {
+          "name": "gpt-image",
+          "version": "2.0"
+        },
+        "digitalSourceType": "http://cv.iptc.org/newscodes/digitalsourcetype/trainedAlgorithmicMedia"
+      },
+      {
+        "action": "c2pa.converted",
+        "when": "2026-09-09T00:00:00Z"
+      },
+      {
+        "action": "c2pa.watermarked.unbound",
+        "when": "2026-09-09T00:00:00Z"
+      }
+    ],
+    "allActionsIncluded": false
+  },
+  "c2pa_signature_verified": false,
+  "unity_imported": false
+}

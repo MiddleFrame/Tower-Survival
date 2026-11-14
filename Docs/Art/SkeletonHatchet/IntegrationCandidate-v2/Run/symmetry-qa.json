@@ -1,0 +1,28 @@
+{
+  "source": "TestResults/ArtTrials/Skeleton/RemainingRun04HalfClean03",
+  "playbackSequence": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    3,
+    2,
+    1
+  ],
+  "closingFrame": 0,
+  "exactReversePairs": [
+    [
+      1,
+      7
+    ],
+    [
+      2,
+      6
+    ],
+    [
+      3,
+      5
+    ]
+  ]
+}

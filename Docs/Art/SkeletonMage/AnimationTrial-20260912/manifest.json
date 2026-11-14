@@ -1,0 +1,1060 @@
+{
+  "status": "art_trial_not_imported",
+  "pixel_palette": {
+    "outline": [
+      "#060e30",
+      "#071233"
+    ],
+    "cloth": [
+      "#4a335e",
+      "#604170",
+      "#7d5588",
+      "#80578a"
+    ],
+    "bone": [
+      "#a48b58",
+      "#d4b670",
+      "#f7e4a9",
+      "#fae9b1",
+      "#fbeab4"
+    ],
+    "wood": [
+      "#613b20",
+      "#704423",
+      "#8f5e30",
+      "#aa793e"
+    ],
+    "crystal": [
+      "#0e7173",
+      "#34a8a1",
+      "#4fc1b6",
+      "#a2e5d8"
+    ]
+  },
+  "coordinate_origin": "top_left",
+  "frame_order": "row_major",
+  "unity_imported": false,
+  "clips": [
+    {
+      "name": "idle-side",
+      "atlas": "Atlases/idle-side.png",
+      "cell_size": 96,
+      "columns": 3,
+      "frame_count": 6,
+      "frame_duration_ms": 150,
+      "loop": true,
+      "pivot_normalized": [
+        0.5,
+        0.5
+      ],
+      "suggested_release_frame_index": null,
+      "frames": [
+        {
+          "index": 0,
+          "rect": [
+            0,
+            0,
+            96,
+            96
+          ],
+          "staff_crystal_center_px": [
+            73.58,
+            32.16
+          ]
+        },
+        {
+          "index": 1,
+          "rect": [
+            96,
+            0,
+            96,
+            96
+          ],
+          "staff_crystal_center_px": [
+            73.81,
+            32.29
+          ]
+        },
+        {
+          "index": 2,
+          "rect": [
+            192,
+            0,
+            96,
+            96
+          ],
+          "staff_crystal_center_px": [
+            73.61,
+            32.23
+          ]
+        },
+        {
+          "index": 3,
+          "rect": [
+            0,
+            96,
+            96,
+            96
+          ],
+          "staff_crystal_center_px": [
+            73.64,
+            32.24
+          ]
+        },
+        {
+          "index": 4,
+          "rect": [
+            96,
+            96,
+            96,
+            96
+          ],
+          "staff_crystal_center_px": [
+            73.62,
+            32.17
+          ]
+        },
+        {
+          "index": 5,
+          "rect": [
+            192,
+            96,
+            96,
+            96
+          ],
+          "staff_crystal_center_px": [
+            73.65,
+            32.25
+          ]
+        }
+      ]
+    },
+    {
+      "name": "idle-front",
+      "atlas": "Atlases/idle-front.png",
+      "cell_size": 96,
+      "columns": 3,
+      "frame_count": 6,
+      "frame_duration_ms": 150,
+      "loop": true,
+      "pivot_normalized": [
+        0.5,
+        0.5
+      ],
+      "suggested_release_frame_index": null,
+      "frames": [
+        {
+          "index": 0,
+          "rect": [
+            0,
+            0,
+            96,
+            96
+          ],
+          "staff_crystal_center_px": [
+            71.58,
+            27.97
+          ]
+        },
+        {
+          "index": 1,
+          "rect": [
+            96,
+            0,
+            96,
+            96
+          ],
+          "staff_crystal_center_px": [
+            71.6,
+            27.61
+          ]
+        },
+        {
+          "index": 2,
+          "rect": [
+            192,
+            0,
+            96,
+            96
+          ],
+          "staff_crystal_center_px": [
+            71.6,
+            27.61
+          ]
+        },
+        {
+          "index": 3,
+          "rect": [
+            0,
+            96,
+            96,
+            96
+          ],
+          "staff_crystal_center_px": [
+            72.62,
+            26.55
+          ]
+        },
+        {
+          "index": 4,
+          "rect": [
+            96,
+            96,
+            96,
+            96
+          ],
+          "staff_crystal_center_px": [
+            72.63,
+            26.7
+          ]
+        },
+        {
+          "index": 5,
+          "rect": [
+            192,
+            96,
+            96,
+            96
+          ],
+          "staff_crystal_center_px": [
+            71.61,
+            26.64
+          ]
+        }
+      ]
+    },
+    {
+      "name": "idle-back",
+      "atlas": "Atlases/idle-back.png",
+      "cell_size": 96,
+      "columns": 3,
+      "frame_count": 6,
+      "frame_duration_ms": 150,
+      "loop": true,
+      "pivot_normalized": [
+        0.5,
+        0.5
+      ],
+      "suggested_release_frame_index": null,
+      "frames": [
+        {
+          "index": 0,
+          "rect": [
+            0,
+            0,
+            96,
+            96
+          ],
+          "staff_crystal_center_px": [
+            18.33,
+            25.35
+          ]
+        },
+        {
+          "index": 1,
+          "rect": [
+            96,
+            0,
+            96,
+            96
+          ],
+          "staff_crystal_center_px": [
+            18.37,
+            24.66
+          ]
+        },
+        {
+          "index": 2,
+          "rect": [
+            192,
+            0,
+            96,
+            96
+          ],
+          "staff_crystal_center_px": [
+            18.31,
+            24.71
+          ]
+        },
+        {
+          "index": 3,
+          "rect": [
+            0,
+            96,
+            96,
+            96
+          ],
+          "staff_crystal_center_px": [
+            18.32,
+            25.68
+          ]
+        },
+        {
+          "index": 4,
+          "rect": [
+            96,
+            96,
+            96,
+            96
+          ],
+          "staff_crystal_center_px": [
+            18.33,
+            24.88
+          ]
+        },
+        {
+          "index": 5,
+          "rect": [
+            192,
+            96,
+            96,
+            96
+          ],
+          "staff_crystal_center_px": [
+            18.3,
+            25.6
+          ]
+        }
+      ]
+    },
+    {
+      "name": "walk-side",
+      "atlas": "Atlases/walk-side.png",
+      "cell_size": 96,
+      "columns": 4,
+      "frame_count": 8,
+      "frame_duration_ms": 100,
+      "loop": true,
+      "pivot_normalized": [
+        0.5,
+        0.5
+      ],
+      "suggested_release_frame_index": null,
+      "frames": [
+        {
+          "index": 0,
+          "rect": [
+            0,
+            0,
+            96,
+            96
+          ],
+          "staff_crystal_center_px": [
+            62.98,
+            30.43
+          ]
+        },
+        {
+          "index": 1,
+          "rect": [
+            96,
+            0,
+            96,
+            96
+          ],
+          "staff_crystal_center_px": [
+            62.69,
+            29.74
+          ]
+        },
+        {
+          "index": 2,
+          "rect": [
+            192,
+            0,
+            96,
+            96
+          ],
+          "staff_crystal_center_px": [
+            65.51,
+            30.56
+          ]
+        },
+        {
+          "index": 3,
+          "rect": [
+            288,
+            0,
+            96,
+            96
+          ],
+          "staff_crystal_center_px": [
+            63.24,
+            28.22
+          ]
+        },
+        {
+          "index": 4,
+          "rect": [
+            0,
+            96,
+            96,
+            96
+          ],
+          "staff_crystal_center_px": [
+            61.87,
+            30.78
+          ]
+        },
+        {
+          "index": 5,
+          "rect": [
+            96,
+            96,
+            96,
+            96
+          ],
+          "staff_crystal_center_px": [
+            60.75,
+            29.02
+          ]
+        },
+        {
+          "index": 6,
+          "rect": [
+            192,
+            96,
+            96,
+            96
+          ],
+          "staff_crystal_center_px": [
+            62.65,
+            30.39
+          ]
+        },
+        {
+          "index": 7,
+          "rect": [
+            288,
+            96,
+            96,
+            96
+          ],
+          "staff_crystal_center_px": [
+            61.64,
+            28.24
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cast-side",
+      "atlas": "Atlases/cast-side.png",
+      "cell_size": 128,
+      "columns": 4,
+      "frame_count": 8,
+      "frame_duration_ms": 100,
+      "loop": false,
+      "pivot_normalized": [
+        0.5,
+        0.5
+      ],
+      "suggested_release_frame_index": 4,
+      "frames": [
+        {
+          "index": 0,
+          "rect": [
+            0,
+            0,
+            128,
+            128
+          ],
+          "staff_crystal_center_px": [
+            89.62,
+            46.5
+          ]
+        },
+        {
+          "index": 1,
+          "rect": [
+            128,
+            0,
+            128,
+            128
+          ],
+          "staff_crystal_center_px": [
+            90.63,
+            46.97
+          ]
+        },
+        {
+          "index": 2,
+          "rect": [
+            256,
+            0,
+            128,
+            128
+          ],
+          "staff_crystal_center_px": [
+            87.15,
+            20.71
+          ]
+        },
+        {
+          "index": 3,
+          "rect": [
+            384,
+            0,
+            128,
+            128
+          ],
+          "staff_crystal_center_px": [
+            87.43,
+            20.72
+          ]
+        },
+        {
+          "index": 4,
+          "rect": [
+            0,
+            128,
+            128,
+            128
+          ],
+          "staff_crystal_center_px": [
+            85.42,
+            20.34
+          ]
+        },
+        {
+          "index": 5,
+          "rect": [
+            128,
+            128,
+            128,
+            128
+          ],
+          "staff_crystal_center_px": [
+            85.44,
+            20.53
+          ]
+        },
+        {
+          "index": 6,
+          "rect": [
+            256,
+            128,
+            128,
+            128
+          ],
+          "staff_crystal_center_px": [
+            89.41,
+            41.39
+          ]
+        },
+        {
+          "index": 7,
+          "rect": [
+            384,
+            128,
+            128,
+            128
+          ],
+          "staff_crystal_center_px": [
+            89.73,
+            46.86
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cast-front",
+      "atlas": "Atlases/cast-front.png",
+      "cell_size": 128,
+      "columns": 4,
+      "frame_count": 8,
+      "frame_duration_ms": 100,
+      "loop": false,
+      "pivot_normalized": [
+        0.5,
+        0.5
+      ],
+      "suggested_release_frame_index": 4,
+      "frames": [
+        {
+          "index": 0,
+          "rect": [
+            0,
+            0,
+            128,
+            128
+          ],
+          "staff_crystal_center_px": [
+            87.69,
+            35.09
+          ]
+        },
+        {
+          "index": 1,
+          "rect": [
+            128,
+            0,
+            128,
+            128
+          ],
+          "staff_crystal_center_px": [
+            88.63,
+            38.85
+          ]
+        },
+        {
+          "index": 2,
+          "rect": [
+            256,
+            0,
+            128,
+            128
+          ],
+          "staff_crystal_center_px": [
+            88.19,
+            22.0
+          ]
+        },
+        {
+          "index": 3,
+          "rect": [
+            384,
+            0,
+            128,
+            128
+          ],
+          "staff_crystal_center_px": [
+            88.61,
+            21.01
+          ]
+        },
+        {
+          "index": 4,
+          "rect": [
+            0,
+            128,
+            128,
+            128
+          ],
+          "staff_crystal_center_px": [
+            88.29,
+            20.75
+          ]
+        },
+        {
+          "index": 5,
+          "rect": [
+            128,
+            128,
+            128,
+            128
+          ],
+          "staff_crystal_center_px": [
+            88.61,
+            22.57
+          ]
+        },
+        {
+          "index": 6,
+          "rect": [
+            256,
+            128,
+            128,
+            128
+          ],
+          "staff_crystal_center_px": [
+            88.7,
+            35.34
+          ]
+        },
+        {
+          "index": 7,
+          "rect": [
+            384,
+            128,
+            128,
+            128
+          ],
+          "staff_crystal_center_px": [
+            88.17,
+            35.11
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cast-back",
+      "atlas": "Atlases/cast-back.png",
+      "cell_size": 128,
+      "columns": 4,
+      "frame_count": 8,
+      "frame_duration_ms": 100,
+      "loop": false,
+      "pivot_normalized": [
+        0.5,
+        0.5
+      ],
+      "suggested_release_frame_index": 4,
+      "frames": [
+        {
+          "index": 0,
+          "rect": [
+            0,
+            0,
+            128,
+            128
+          ],
+          "staff_crystal_center_px": [
+            33.3,
+            36.55
+          ]
+        },
+        {
+          "index": 1,
+          "rect": [
+            128,
+            0,
+            128,
+            128
+          ],
+          "staff_crystal_center_px": [
+            32.92,
+            36.51
+          ]
+        },
+        {
+          "index": 2,
+          "rect": [
+            256,
+            0,
+            128,
+            128
+          ],
+          "staff_crystal_center_px": [
+            32.43,
+            22.23
+          ]
+        },
+        {
+          "index": 3,
+          "rect": [
+            384,
+            0,
+            128,
+            128
+          ],
+          "staff_crystal_center_px": [
+            32.72,
+            17.23
+          ]
+        },
+        {
+          "index": 4,
+          "rect": [
+            0,
+            128,
+            128,
+            128
+          ],
+          "staff_crystal_center_px": [
+            32.72,
+            17.23
+          ]
+        },
+        {
+          "index": 5,
+          "rect": [
+            128,
+            128,
+            128,
+            128
+          ],
+          "staff_crystal_center_px": [
+            32.73,
+            17.29
+          ]
+        },
+        {
+          "index": 6,
+          "rect": [
+            256,
+            128,
+            128,
+            128
+          ],
+          "staff_crystal_center_px": [
+            32.34,
+            31.84
+          ]
+        },
+        {
+          "index": 7,
+          "rect": [
+            384,
+            128,
+            128,
+            128
+          ],
+          "staff_crystal_center_px": [
+            32.21,
+            35.83
+          ]
+        }
+      ]
+    },
+    {
+      "name": "death-side",
+      "atlas": "Atlases/death-side.png",
+      "cell_size": 192,
+      "columns": 4,
+      "frame_count": 7,
+      "frame_duration_ms": 70,
+      "loop": false,
+      "pivot_normalized": [
+        0.5,
+        0.5
+      ],
+      "suggested_release_frame_index": null,
+      "frames": [
+        {
+          "index": 0,
+          "rect": [
+            0,
+            0,
+            192,
+            192
+          ],
+          "staff_crystal_center_px": [
+            121.58,
+            78.59
+          ]
+        },
+        {
+          "index": 1,
+          "rect": [
+            192,
+            0,
+            192,
+            192
+          ],
+          "staff_crystal_center_px": [
+            124.96,
+            79.47
+          ]
+        },
+        {
+          "index": 2,
+          "rect": [
+            384,
+            0,
+            192,
+            192
+          ],
+          "staff_crystal_center_px": [
+            137.23,
+            81.83
+          ]
+        },
+        {
+          "index": 3,
+          "rect": [
+            576,
+            0,
+            192,
+            192
+          ],
+          "staff_crystal_center_px": [
+            135.82,
+            118.81
+          ]
+        },
+        {
+          "index": 4,
+          "rect": [
+            0,
+            192,
+            192,
+            192
+          ],
+          "staff_crystal_center_px": [
+            140.36,
+            128.86
+          ]
+        },
+        {
+          "index": 5,
+          "rect": [
+            192,
+            192,
+            192,
+            192
+          ],
+          "staff_crystal_center_px": [
+            140.32,
+            129.25
+          ]
+        },
+        {
+          "index": 6,
+          "rect": [
+            384,
+            192,
+            192,
+            192
+          ],
+          "staff_crystal_center_px": [
+            139.49,
+            130.33
+          ]
+        }
+      ]
+    },
+    {
+      "name": "magic-projectile",
+      "atlas": "Atlases/magic-projectile.png",
+      "cell_size": 32,
+      "columns": 3,
+      "frame_count": 6,
+      "frame_duration_ms": 80,
+      "loop": true,
+      "pivot_normalized": [
+        0.5,
+        0.5
+      ],
+      "suggested_release_frame_index": null,
+      "frames": [
+        {
+          "index": 0,
+          "rect": [
+            0,
+            0,
+            32,
+            32
+          ],
+          "staff_crystal_center_px": null
+        },
+        {
+          "index": 1,
+          "rect": [
+            32,
+            0,
+            32,
+            32
+          ],
+          "staff_crystal_center_px": null
+        },
+        {
+          "index": 2,
+          "rect": [
+            64,
+            0,
+            32,
+            32
+          ],
+          "staff_crystal_center_px": null
+        },
+        {
+          "index": 3,
+          "rect": [
+            0,
+            32,
+            32,
+            32
+          ],
+          "staff_crystal_center_px": null
+        },
+        {
+          "index": 4,
+          "rect": [
+            32,
+            32,
+            32,
+            32
+          ],
+          "staff_crystal_center_px": null
+        },
+        {
+          "index": 5,
+          "rect": [
+            64,
+            32,
+            32,
+            32
+          ],
+          "staff_crystal_center_px": null
+        }
+      ]
+    },
+    {
+      "name": "magic-cast",
+      "atlas": "Atlases/magic-cast.png",
+      "cell_size": 32,
+      "columns": 3,
+      "frame_count": 6,
+      "frame_duration_ms": 70,
+      "loop": false,
+      "pivot_normalized": [
+        0.5,
+        0.5
+      ],
+      "suggested_release_frame_index": null,
+      "frames": [
+        {
+          "index": 0,
+          "rect": [
+            0,
+            0,
+            32,
+            32
+          ],
+          "staff_crystal_center_px": null
+        },
+        {
+          "index": 1,
+          "rect": [
+            32,
+            0,
+            32,
+            32
+          ],
+          "staff_crystal_center_px": null
+        },
+        {
+          "index": 2,
+          "rect": [
+            64,
+            0,
+            32,
+            32
+          ],
+          "staff_crystal_center_px": null
+        },
+        {
+          "index": 3,
+          "rect": [
+            0,
+            32,
+            32,
+            32
+          ],
+          "staff_crystal_center_px": null
+        },
+        {
+          "index": 4,
+          "rect": [
+            32,
+            32,
+            32,
+            32
+          ],
+          "staff_crystal_center_px": null
+        },
+        {
+          "index": 5,
+          "rect": [
+            64,
+            32,
+            32,
+            32
+          ],
+          "staff_crystal_center_px": null
+        }
+      ]
+    }
+  ]
+}

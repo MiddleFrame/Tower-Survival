@@ -1,0 +1,299 @@
+{
+  "attack-recorded-ai-clean_1proc": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 75,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "attack-recorded-ai-clean_2src": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 75,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "attack-recorded-ai-clean_3final": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 76,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "attack-recorded-ai_1proc": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 75,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "attack-recorded-ai_2src": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 75,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "attack-recorded-ai_3final": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 76,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "attack": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 76,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "clean-attack": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 76,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "clean-hurt": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 75,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "clean-idle": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 76,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "clean-run": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 75,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "clean-walk": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 76,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "hollow-attack": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 76,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "hollow-hurt": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 75,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "hollow-idle": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 76,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "hollow-run": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 75,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "hollow-walk": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 76,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "hurt": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 75,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "idle": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 76,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "run-recorded-ai-clean_1proc": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 75,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "run-recorded-ai-clean_2src": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 75,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "run-recorded-ai-clean_3final": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 75,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "run-recorded-ai_1proc": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 75,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "run-recorded-ai_2src": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 75,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "run-recorded-ai_3final": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 75,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "run": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 75,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "walk-recorded-ai-clean_1proc": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 76,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "walk-recorded-ai-clean_2src": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 76,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "walk-recorded-ai-clean_3final": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 74,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "walk-recorded-ai_1proc": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 76,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "walk-recorded-ai_2src": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 76,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "walk-recorded-ai_3final": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 74,
+    "alpha": [
+      0,
+      255
+    ]
+  },
+  "walk": {
+    "frames": 12,
+    "size": 160,
+    "opaque_colors": 76,
+    "alpha": [
+      0,
+      255
+    ]
+  }
+}

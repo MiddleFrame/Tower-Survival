@@ -1,0 +1,137 @@
+[
+  {
+    "file": "frame-00.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      22,
+      17,
+      90,
+      104
+    ],
+    "partialAlpha": 0,
+    "colors": 28,
+    "lowerRegionDiff": 0,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-01.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      23,
+      17,
+      91,
+      104
+    ],
+    "partialAlpha": 0,
+    "colors": 41,
+    "lowerRegionDiff": 60,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-02.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      41,
+      17,
+      89,
+      104
+    ],
+    "partialAlpha": 0,
+    "colors": 41,
+    "lowerRegionDiff": 235,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-03.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      47,
+      18,
+      103,
+      104
+    ],
+    "partialAlpha": 0,
+    "colors": 41,
+    "lowerRegionDiff": 241,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-04.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      47,
+      18,
+      105,
+      104
+    ],
+    "partialAlpha": 0,
+    "colors": 41,
+    "lowerRegionDiff": 245,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-05.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      47,
+      18,
+      106,
+      104
+    ],
+    "partialAlpha": 0,
+    "colors": 41,
+    "lowerRegionDiff": 253,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-06.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      38,
+      17,
+      86,
+      104
+    ],
+    "partialAlpha": 0,
+    "colors": 41,
+    "lowerRegionDiff": 154,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-07.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      27,
+      17,
+      91,
+      104
+    ],
+    "partialAlpha": 0,
+    "colors": 41,
+    "lowerRegionDiff": 40,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-08.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      22,
+      17,
+      90,
+      104
+    ],
+    "partialAlpha": 0,
+    "colors": 28,
+    "lowerRegionDiff": 0,
+    "edgeClipping": false
+  }
+]

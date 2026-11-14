@@ -192,7 +192,7 @@ internal static class BalanceSimulator
         result.p10PersistentLevels = Percentile(levels, 0.1f);
         result.p50PersistentLevels = Percentile(levels, 0.5f);
         result.p90PersistentLevels = Percentile(levels, 0.9f);
-        for (int tier = 0; tier < scenario.gameSettings.EnemySpawnSettings.Length; tier++)
+        for (int tier = 0; tier < scenario.gameSettings.Tiers.Length; tier++)
             result.tierReachRates.Add(result.playerResults.Count(x => x.highestTier >= tier) / (float)population.players);
 
         foreach (IGrouping<string, PlayerResult> group in result.playerResults.GroupBy(x => x.archetype))
@@ -220,7 +220,7 @@ internal static class BalanceSimulator
         int ore = population.startingOre;
         int gold = population.startingGold;
         int tier = population.progressThroughTiers ? 0 : scenario.tier;
-        int[] records = new int[scenario.gameSettings.EnemySpawnSettings.Length];
+        int[] records = new int[scenario.gameSettings.Tiers.Length];
         int[] pages = { scenario.attackPage, scenario.defencePage, scenario.utilityPage };
         int[] tierDays = Enumerable.Repeat(-1, records.Length).ToArray();
         tierDays[tier] = 0;
@@ -266,7 +266,7 @@ internal static class BalanceSimulator
                 if (population.progressThroughTiers)
                 {
                     while (tier + 1 < records.Length && records[tier] >=
-                           scenario.gameSettings.EnemySpawnSettings[tier + 1].RecordToOpen)
+                           scenario.gameSettings.Tiers[tier + 1].RecordToOpen)
                     {
                         tier++;
                         if (tierDays[tier] < 0) tierDays[tier] = day;
@@ -313,7 +313,7 @@ internal static class BalanceSimulator
         float temporaryPurchaseChance, float scrapReserveFraction)
     {
         var random = new System.Random(seed);
-        EnemySpawnSettings spawn = scenario.gameSettings.EnemySpawnSettings[tier];
+        EnemySpawnSettings spawn = EnemyTierEditorAssets.Load(scenario.gameSettings, tier);
         Dictionary<BalanceUpgradeKind, UpgradeInfo> upgrades = BuildUpgradeMap(scenario, persistentLevels);
         var enemies = new List<EnemyState>();
 
@@ -784,9 +784,9 @@ internal static class BalanceSimulator
     {
         if (scenario == null) throw new ArgumentNullException(nameof(scenario));
         if (scenario.gameSettings == null) throw new InvalidOperationException("Scenario has no Game Settings reference.");
-        if (scenario.gameSettings.EnemySpawnSettings == null || scenario.gameSettings.EnemySpawnSettings.Length == 0)
+        if (scenario.gameSettings.Tiers == null || scenario.gameSettings.Tiers.Length == 0)
             throw new InvalidOperationException("Game Settings has no enemy tiers.");
-        if (scenario.tier < 0 || scenario.tier >= scenario.gameSettings.EnemySpawnSettings.Length)
+        if (scenario.tier < 0 || scenario.tier >= scenario.gameSettings.Tiers.Length)
             throw new InvalidOperationException("Tier index is outside Game Settings.EnemySpawnSettings.");
     }
 
@@ -805,7 +805,7 @@ internal static class BalanceSimulator
         Dictionary<BalanceUpgradeKind, UpgradeInfo> upgrades = BuildUpgradeMap(scenario);
         if (TowerCooldown(scenario, upgrades) <= 0f)
             warnings.Add("Attack cooldown is zero or negative at the selected permanent level. The production formula is not clamped.");
-        foreach (StagesTier stage in scenario.gameSettings.EnemySpawnSettings[scenario.tier].stages)
+        foreach (StagesTier stage in EnemyTierEditorAssets.Load(scenario.gameSettings, scenario.tier).stages)
         {
             float sum = stage._enemyChances.Sum();
             if (Math.Abs(sum - 1f) > 0.001f)

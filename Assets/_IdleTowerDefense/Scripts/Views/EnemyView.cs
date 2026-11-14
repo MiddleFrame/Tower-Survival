@@ -33,6 +33,12 @@ public class EnemyView : MonoBehaviour
     [SerializeField]
     private GameObject deadAnim;
 
+    [SerializeField, Min(0.01f)]
+    private float deathVfxLifetime = 0.7f;
+
+    [SerializeField]
+    private bool alignDeathVfxToModel;
+
     [SerializeField]
     private LocalLightController[] localLights;
     
@@ -72,14 +78,31 @@ public class EnemyView : MonoBehaviour
         if (_deathVfxSpawned || deadAnim == null || DataController.IsGameplayEnding)
             return;
 
+        GameObject dead;
         if (InitData.sharedData?.ViewPools != null)
         {
-            InitData.sharedData.ViewPools.SpawnTimed(deadAnim, transform.position, Quaternion.identity, 0.7f);
+            dead = InitData.sharedData.ViewPools.SpawnTimed(deadAnim, transform.position, Quaternion.identity, deathVfxLifetime);
         }
         else
         {
-            var dead = Instantiate(deadAnim, transform.position, new Quaternion());
-            Destroy(dead, 0.7f);
+            dead = Instantiate(deadAnim, transform.position, Quaternion.identity);
+            Destroy(dead, deathVfxLifetime);
+        }
+
+        if (alignDeathVfxToModel && dead != null && model != null)
+        {
+            dead.transform.SetPositionAndRotation(model.transform.position, model.transform.rotation);
+            Vector3 parentScale = dead.transform.parent != null ? dead.transform.parent.lossyScale : Vector3.one;
+            Vector3 modelScale = model.transform.lossyScale;
+            dead.transform.localScale = new Vector3(modelScale.x / parentScale.x,
+                modelScale.y / parentScale.y, modelScale.z / parentScale.z);
+
+            if (model.TryGetComponent(out SpriteRenderer sourceRenderer) &&
+                dead.TryGetComponent(out SpriteRenderer deathRenderer))
+            {
+                deathRenderer.sortingLayerID = sourceRenderer.sortingLayerID;
+                deathRenderer.sortingOrder = sourceRenderer.sortingOrder;
+            }
         }
 
         _deathVfxSpawned = true;

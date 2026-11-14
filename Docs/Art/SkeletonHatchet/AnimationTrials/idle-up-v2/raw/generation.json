@@ -1,0 +1,26 @@
+{
+  "poseAttempt": {
+    "job": "b0235291-fdbf-491d-bcc8-bc113afcea5c",
+    "seed": 143838,
+    "prompt": "Correct ONLY facing: STRICT STRAIGHT BACK VIEW, facing 12 o'clock, zero three-quarter turn. Center the back of skull, neck, spine and pelvis on one vertical axis. Both rear shoulders and shoulder blades equally visible, level and equal width; symmetrical rear torso and legs, feet pointing straight away. No side cheek, jaw or facial profile. Keep same skeleton design, size, palette, pixel grid and low camera. Same axe in screen-left hand. Bare bones, no clothes, ground or shadow. Transparent.",
+    "status": "Rejected: residual three-quarter head and pelvis"
+  },
+  "pose": {
+    "job": "59006b01-2a6e-44d8-acd8-0af0d2f1c7b0",
+    "seed": 143840,
+    "prompt": "Show this skeleton DIRECTLY FROM BEHIND, exactly 180 degrees from the source front view. Orthographic straight rear view, NOT 3/4. Preserve the source's centered symmetric standing legs and level shoulders. Back of skull, neck, spine and pelvis vertically aligned at image center; both shoulder blades equally visible. No face or side profile. Feet point straight away. Axe now in screen-left hand. Same size, ivory palette, navy outline, low camera, crisp pixels. Transparent, no clothes or shadow.",
+    "source": "idle-down-v1/input.png"
+  },
+  "idle": {
+    "job": "7eeb528e-0859-41ea-8aa2-167f2e284cda",
+    "seed": 143841,
+    "frameCount": 6,
+    "prompt": "A subtle standing idle loop DIRECTLY FROM BEHIND, returning to the EXACT starting pose. Maintain a perfectly straight rear view throughout: back of skull, neck, spine and pelvis remain centered on the same vertical axis, level shoulders, both shoulder blades equally visible. ZERO rotation, yaw, head turn or three-quarter view in any frame. Gently settle and raise skull and ribcage by only 1-2 pixels with tiny vertical arm motion. Both feet, toes, heels and ankles are COMPLETELY FIXED pixel-for-pixel on the ground; no foot lifting, toe curling, leg shifting or stepping. Keep the same hatchet in the screen-left hand and free arm close to the ribs. Same size, bone proportions and palette. No attack, wave, jump, ground, shadow, glow, new objects or camera movement.",
+    "firstAndLastFrame": "59006b01-2a6e-44d8-acd8-0af0d2f1c7b0"
+  },
+  "size": [
+    96,
+    96
+  ],
+  "cost": 3
+}

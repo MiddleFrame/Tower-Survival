@@ -1,0 +1,121 @@
+{
+  "kind": "idle",
+  "frameWidth": 96,
+  "frameHeight": 96,
+  "frameCount": 7,
+  "firstAndLastMatch": true,
+  "report": [
+    {
+      "name": "frame-00.png",
+      "bounds": [
+        20,
+        4,
+        88,
+        90
+      ],
+      "colors": 35,
+      "partialAlpha": 0,
+      "borderPixels": 0,
+      "changedVisiblePixels": 0,
+      "changedAlphaPixels": 0,
+      "maxVisibleChannelDelta": 0,
+      "matchesApproved": true
+    },
+    {
+      "name": "frame-01.png",
+      "bounds": [
+        20,
+        5,
+        88,
+        90
+      ],
+      "colors": 52,
+      "partialAlpha": 0,
+      "borderPixels": 0,
+      "changedVisiblePixels": 1729,
+      "changedAlphaPixels": 222,
+      "maxVisibleChannelDelta": 255,
+      "matchesApproved": false
+    },
+    {
+      "name": "frame-02.png",
+      "bounds": [
+        19,
+        6,
+        87,
+        90
+      ],
+      "colors": 46,
+      "partialAlpha": 0,
+      "borderPixels": 0,
+      "changedVisiblePixels": 2052,
+      "changedAlphaPixels": 411,
+      "maxVisibleChannelDelta": 255,
+      "matchesApproved": false
+    },
+    {
+      "name": "frame-03.png",
+      "bounds": [
+        18,
+        7,
+        86,
+        90
+      ],
+      "colors": 53,
+      "partialAlpha": 0,
+      "borderPixels": 0,
+      "changedVisiblePixels": 2270,
+      "changedAlphaPixels": 658,
+      "maxVisibleChannelDelta": 255,
+      "matchesApproved": false
+    },
+    {
+      "name": "frame-04.png",
+      "bounds": [
+        19,
+        5,
+        87,
+        90
+      ],
+      "colors": 51,
+      "partialAlpha": 0,
+      "borderPixels": 0,
+      "changedVisiblePixels": 1523,
+      "changedAlphaPixels": 326,
+      "maxVisibleChannelDelta": 255,
+      "matchesApproved": false
+    },
+    {
+      "name": "frame-05.png",
+      "bounds": [
+        19,
+        5,
+        87,
+        90
+      ],
+      "colors": 52,
+      "partialAlpha": 0,
+      "borderPixels": 0,
+      "changedVisiblePixels": 1478,
+      "changedAlphaPixels": 268,
+      "maxVisibleChannelDelta": 255,
+      "matchesApproved": false
+    },
+    {
+      "name": "frame-06.png",
+      "bounds": [
+        20,
+        4,
+        88,
+        90
+      ],
+      "colors": 35,
+      "partialAlpha": 0,
+      "borderPixels": 0,
+      "changedVisiblePixels": 0,
+      "changedAlphaPixels": 0,
+      "maxVisibleChannelDelta": 0,
+      "matchesApproved": true
+    }
+  ]
+}

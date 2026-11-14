@@ -1,0 +1,82 @@
+[
+  {
+    "file": "frame-00.png",
+    "width": 128,
+    "height": 132,
+    "box": [
+      37,
+      19,
+      104,
+      107
+    ],
+    "partialAlpha": 0,
+    "colors": 63,
+    "lowerRegionDiff": 0,
+    "lowerMaskDiff": 0,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-01.png",
+    "width": 128,
+    "height": 132,
+    "box": [
+      35,
+      21,
+      103,
+      107
+    ],
+    "partialAlpha": 0,
+    "colors": 64,
+    "lowerRegionDiff": 128,
+    "lowerMaskDiff": 7,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-02.png",
+    "width": 128,
+    "height": 132,
+    "box": [
+      33,
+      22,
+      103,
+      107
+    ],
+    "partialAlpha": 0,
+    "colors": 63,
+    "lowerRegionDiff": 103,
+    "lowerMaskDiff": 7,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-03.png",
+    "width": 128,
+    "height": 132,
+    "box": [
+      35,
+      20,
+      104,
+      107
+    ],
+    "partialAlpha": 0,
+    "colors": 64,
+    "lowerRegionDiff": 104,
+    "lowerMaskDiff": 5,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-04.png",
+    "width": 128,
+    "height": 132,
+    "box": [
+      37,
+      19,
+      104,
+      107
+    ],
+    "partialAlpha": 0,
+    "colors": 63,
+    "lowerRegionDiff": 0,
+    "lowerMaskDiff": 0,
+    "edgeClipping": false
+  }
+]

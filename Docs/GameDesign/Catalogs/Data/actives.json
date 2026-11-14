@@ -1,0 +1,2899 @@
+{
+  "system": "actives",
+  "branches": [
+    {
+      "id": "A01_DURATION",
+      "name": "Плотность купола",
+      "max_level": 5,
+      "availability": "A01; учебная награда",
+      "purpose": "Пять небольших ступеней внутри общего окна защиты.",
+      "effect_description": "Личная добавка 1.2 с; LAB_DURATION при 10% даёт 0.4 с; карта 0.4 с; максимум 6 с.",
+      "effect_unit": "секунды добавки к 4 с",
+      "stacking": "durationSeconds = min(4 × 1.5, 4 + ownAddedSeconds + CARD_A01 + 4 × LAB_DURATION / 100). Личная добавка и указанная duration-карта хранят секунды; LAB_DURATION хранит 0…10 процентов базовых 4 с. Проверять только разрешённый эффект, не распространять формулу на лечение/урон/число целей.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "RAW_CU": 60
+          },
+          "cost_end": {
+            "RAW_CU": 60
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.24,
+          "effect_end": 0.24,
+          "requires": "старт"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "RAW_FE": 130,
+            "RAW_CU": 90
+          },
+          "cost_end": {
+            "RAW_FE": 130,
+            "RAW_CU": 90
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.48,
+          "effect_end": 0.48,
+          "requires": "G01"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "RAW_AG": 300,
+            "RAW_FE": 170
+          },
+          "cost_end": {
+            "RAW_AG": 300,
+            "RAW_FE": 170
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.72,
+          "effect_end": 0.72,
+          "requires": "G02"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "RAW_AU": 650,
+            "RAW_CU": 600,
+            "RAW_AG": 180
+          },
+          "cost_end": {
+            "RAW_AU": 650,
+            "RAW_CU": 600,
+            "RAW_AG": 180
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.96,
+          "effect_end": 0.96,
+          "requires": "G03"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "cost_start": {
+            "RAW_MY": 1500,
+            "RAW_FE": 1500,
+            "RAW_AG": 500
+          },
+          "cost_end": {
+            "RAW_MY": 1500,
+            "RAW_FE": 1500,
+            "RAW_AG": 500
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.2,
+          "effect_end": 1.2,
+          "requires": "G04"
+        }
+      ]
+    },
+    {
+      "id": "A01_COOLDOWN",
+      "name": "Стабилизация Эгиды",
+      "max_level": 10,
+      "availability": "A01; G01",
+      "purpose": "Десять умеренных улучшений удобства.",
+      "effect_description": "Личная ветвь−4 с; лаборатория до−2 с.",
+      "effect_unit": "секунды сокращения 20 с",
+      "stacking": "CD_seconds = max(0.6 × 20, 20 - ownReductionSeconds - 20 × LAB_COOLDOWN / 100). Личная ветвь хранит секунды сокращения, LAB_COOLDOWN — 0…10 процентов базы. Карта CD не изменяет; конечный запас зарядов не регенерирует.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 3,
+          "cost_start": {
+            "RAW_FE": 90,
+            "RAW_CU": 35
+          },
+          "cost_end": {
+            "RAW_FE": 200,
+            "RAW_CU": 85
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.4,
+          "effect_end": 1.2,
+          "requires": "G01"
+        },
+        {
+          "from": 4,
+          "to": 6,
+          "cost_start": {
+            "RAW_AG": 220,
+            "RAW_FE": 130
+          },
+          "cost_end": {
+            "RAW_AG": 550,
+            "RAW_FE": 300
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.6,
+          "effect_end": 2.4,
+          "requires": "G02"
+        },
+        {
+          "from": 7,
+          "to": 10,
+          "cost_start": {
+            "RAW_AU": 650,
+            "RAW_FE": 450,
+            "RAW_AG": 180
+          },
+          "cost_end": {
+            "RAW_AU": 1700,
+            "RAW_FE": 1100,
+            "RAW_AG": 440
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.8,
+          "effect_end": 4,
+          "requires": "G03"
+        }
+      ]
+    },
+    {
+      "id": "A01_CHARGES",
+      "name": "Дополнительные применения",
+      "max_level": 2,
+      "availability": "A01; G02; соответствующее разрешение LAB_CHARGES",
+      "purpose": "Сильная функциональная покупка, только два уровня.",
+      "effect_description": "Личный уровень 1 даёт +1, уровень 2 даёт всего +2 к базовому запасу за попытку. Требуется разрешение LAB_CHARGES соответствующего уровня; исследование само не добавляет зарядов.",
+      "effect_unit": "дополнительные заряды за попытку",
+      "stacking": "LAB_CHARGES:1/2 лишь разрешает личную покупку 1/2 и не выдаёт применения. Эта личная ветвь — единственный владелец добавочных +1/+2 зарядов; cap +2 за попытку. После разрешения её слитки оплачиваются отдельно. Карты не дают заряды; смена сборки не восполняет потраченный запас.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_AG": 20,
+            "INGOT_FE": 40
+          },
+          "cost_end": {
+            "INGOT_AG": 20,
+            "INGOT_FE": 40
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G02 + LAB_CHARGES:1"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_AS": 18,
+            "INGOT_MY": 30,
+            "INGOT_CU": 100
+          },
+          "cost_end": {
+            "INGOT_AS": 18,
+            "INGOT_MY": 30,
+            "INGOT_CU": 100
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2,
+          "effect_end": 2,
+          "requires": "G05 + LAB_CHARGES:2"
+        }
+      ]
+    },
+    {
+      "id": "A02_YIELD",
+      "name": "Сила резонанса",
+      "max_level": 15,
+      "availability": "A02; ранний детерминированный квест; G01",
+      "purpose": "Доходная специализация с заметной ценой.",
+      "effect_description": "База 15%; личная добавка до 8 п.п. Карта улучшает срок, не количество.",
+      "effect_unit": "процентные пункты к обычному количеству сырья/угля",
+      "stacking": "A02_YIELD хранит добавку в процентных пунктах к базовым 15%, не множитель. На отмеченной P02 цели общий бонус материала = min(35, otherMaterialLootBonusPercent + 20 + P02_BOUNTY + CARD_P02 + 15 + A02_YIELD); неактивное слагаемое эффекта равно 0. Множитель награды = 1 + общийБонус / 100. Башня/лаборатория входят в тот же предел 35%; кристаллы, слитки и first-clear исключены. Превью показывает фактический остаток до cap.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 5,
+          "cost_start": {
+            "RAW_FE": 120,
+            "RAW_CU": 75
+          },
+          "cost_end": {
+            "RAW_FE": 420,
+            "RAW_CU": 220
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.533333,
+          "effect_end": 2.666667,
+          "requires": "G01"
+        },
+        {
+          "from": 6,
+          "to": 10,
+          "cost_start": {
+            "RAW_AG": 500,
+            "RAW_FE": 350
+          },
+          "cost_end": {
+            "RAW_AG": 1600,
+            "RAW_FE": 1000
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3.2,
+          "effect_end": 5.333333,
+          "requires": "G02"
+        },
+        {
+          "from": 11,
+          "to": 15,
+          "cost_start": {
+            "RAW_AU": 1500,
+            "RAW_CU": 1800,
+            "RAW_AG": 450
+          },
+          "cost_end": {
+            "RAW_AU": 5200,
+            "RAW_CU": 7000,
+            "RAW_AG": 1600
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 5.866667,
+          "effect_end": 8,
+          "requires": "G03"
+        }
+      ]
+    },
+    {
+      "id": "A02_DURATION",
+      "name": "Окно резонанса",
+      "max_level": 12,
+      "availability": "A02; полученная первая копия",
+      "purpose": "Двенадцать небольших покупок времени добычи.",
+      "effect_description": "Личная ветвь+3.6 с; лаборатория+1.2 с; карта+1.2 с; итог≤18 с.",
+      "effect_unit": "секунды добавки к 12 с",
+      "stacking": "durationSeconds = min(12 × 1.5, 12 + ownAddedSeconds + CARD_A02 + 12 × LAB_DURATION / 100). Личная добавка и указанная duration-карта хранят секунды; LAB_DURATION хранит 0…10 процентов базовых 12 с. Проверять только разрешённый эффект, не распространять формулу на лечение/урон/число целей.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 4,
+          "cost_start": {
+            "RAW_CU": 80
+          },
+          "cost_end": {
+            "RAW_CU": 220
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.3,
+          "effect_end": 1.2,
+          "requires": "старт"
+        },
+        {
+          "from": 5,
+          "to": 8,
+          "cost_start": {
+            "RAW_FE": 300,
+            "RAW_CU": 150
+          },
+          "cost_end": {
+            "RAW_FE": 700,
+            "RAW_CU": 400
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.5,
+          "effect_end": 2.4,
+          "requires": "G01"
+        },
+        {
+          "from": 9,
+          "to": 12,
+          "cost_start": {
+            "RAW_AG": 800,
+            "RAW_CU": 700,
+            "RAW_FE": 200
+          },
+          "cost_end": {
+            "RAW_AG": 1800,
+            "RAW_CU": 1500,
+            "RAW_FE": 450
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.7,
+          "effect_end": 3.6,
+          "requires": "G02"
+        }
+      ]
+    },
+    {
+      "id": "A02_COOLDOWN",
+      "name": "Повтор резонанса",
+      "max_level": 8,
+      "availability": "A02; G02",
+      "purpose": "Меньше ожидания между конечными применениями.",
+      "effect_description": "Личная ветвь−5 с; лаборатория максимум−2.5 с.",
+      "effect_unit": "секунды сокращения 25 с",
+      "stacking": "CD_seconds = max(0.6 × 25, 25 - ownReductionSeconds - 25 × LAB_COOLDOWN / 100). Личная ветвь хранит секунды сокращения, LAB_COOLDOWN — 0…10 процентов базы. Карта CD не изменяет; конечный запас зарядов не регенерирует.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 4,
+          "cost_start": {
+            "RAW_AG": 250,
+            "RAW_FE": 140
+          },
+          "cost_end": {
+            "RAW_AG": 750,
+            "RAW_FE": 400
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.625,
+          "effect_end": 2.5,
+          "requires": "G02"
+        },
+        {
+          "from": 5,
+          "to": 8,
+          "cost_start": {
+            "RAW_AU": 900,
+            "RAW_FE": 750,
+            "RAW_AG": 160
+          },
+          "cost_end": {
+            "RAW_AU": 2600,
+            "RAW_FE": 2100,
+            "RAW_AG": 500
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3.125,
+          "effect_end": 5,
+          "requires": "G03"
+        }
+      ]
+    },
+    {
+      "id": "A02_CHARGES",
+      "name": "Дополнительные применения",
+      "max_level": 2,
+      "availability": "A02; G03; соответствующее разрешение LAB_CHARGES",
+      "purpose": "Сильная функциональная покупка, только два уровня.",
+      "effect_description": "Личный уровень 1 даёт +1, уровень 2 даёт всего +2 к базовому запасу за попытку. Требуется разрешение LAB_CHARGES соответствующего уровня; исследование само не добавляет зарядов.",
+      "effect_unit": "дополнительные заряды за попытку",
+      "stacking": "LAB_CHARGES:1/2 лишь разрешает личную покупку 1/2 и не выдаёт применения. Эта личная ветвь — единственный владелец добавочных +1/+2 зарядов; cap +2 за попытку. После разрешения её слитки оплачиваются отдельно. Карты не дают заряды; смена сборки не восполняет потраченный запас.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_AU": 16,
+            "INGOT_AG": 24
+          },
+          "cost_end": {
+            "INGOT_AU": 16,
+            "INGOT_AG": 24
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G03 + LAB_CHARGES:1"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_AS": 24,
+            "INGOT_MY": 40,
+            "INGOT_FE": 80
+          },
+          "cost_end": {
+            "INGOT_AS": 24,
+            "INGOT_MY": 40,
+            "INGOT_FE": 80
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2,
+          "effect_end": 2,
+          "requires": "G05 + LAB_CHARGES:2"
+        }
+      ]
+    },
+    {
+      "id": "A03_DAMAGE",
+      "name": "Сила небесного удара",
+      "max_level": 60,
+      "availability": "A03; цепочка доB01",
+      "purpose": "Длинная ветвь массового урона с отдельной базой против босса.",
+      "effect_description": "Личный множитель 1→2; босс сохраняет базу 2D, обычная цель 6D.",
+      "effect_unit": "множитель базовых 6D /2D",
+      "stacking": "Урон = baseDamage × min(3, ownMultiplier + cardFraction + labFraction), где baseDamage = 6D обычной цели либо 2D боссу. Значение личной ветви — множитель с уже включённой единицей; cardFraction берётся прямо из CARD_ID как доля 0…0.72. labFraction = min(0.28, LAB_SPELL_POWER / 100 + selectedProtocolBonusPercent / 100): LAB_SPELL_POWER хранит 0…16 процентов, выбранный допустимый протокол даёт 0…12 процентов. LAB_INTERACTION хранит число открытых протоколов, не процент бонуса. Множитель урона = min(3, ownMultiplier + cardFraction + labFraction). Не удаляет неуязвимость или фазовый переход.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 10,
+          "cost_start": {
+            "RAW_CU": 30
+          },
+          "cost_end": {
+            "RAW_CU": 100
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.016667,
+          "effect_end": 1.166667,
+          "requires": "старт"
+        },
+        {
+          "from": 11,
+          "to": 20,
+          "cost_start": {
+            "RAW_FE": 90,
+            "RAW_CU": 65
+          },
+          "cost_end": {
+            "RAW_FE": 310,
+            "RAW_CU": 220
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.183333,
+          "effect_end": 1.333333,
+          "requires": "G01"
+        },
+        {
+          "from": 21,
+          "to": 30,
+          "cost_start": {
+            "RAW_AG": 250,
+            "RAW_FE": 130
+          },
+          "cost_end": {
+            "RAW_AG": 950,
+            "RAW_FE": 500
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.35,
+          "effect_end": 1.5,
+          "requires": "G02"
+        },
+        {
+          "from": 31,
+          "to": 40,
+          "cost_start": {
+            "RAW_AU": 800,
+            "RAW_CU": 900,
+            "RAW_AG": 180
+          },
+          "cost_end": {
+            "RAW_AU": 3300,
+            "RAW_CU": 3600,
+            "RAW_AG": 750
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.516667,
+          "effect_end": 1.666667,
+          "requires": "G03"
+        },
+        {
+          "from": 41,
+          "to": 50,
+          "cost_start": {
+            "RAW_MY": 2700,
+            "RAW_FE": 2500,
+            "RAW_AU": 500
+          },
+          "cost_end": {
+            "RAW_MY": 12000,
+            "RAW_FE": 11000,
+            "RAW_AU": 2100
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.683333,
+          "effect_end": 1.833333,
+          "requires": "G04"
+        },
+        {
+          "from": 51,
+          "to": 60,
+          "cost_start": {
+            "RAW_AS": 10000,
+            "RAW_FE": 9000,
+            "RAW_AG": 2200
+          },
+          "cost_end": {
+            "RAW_AS": 48000,
+            "RAW_FE": 45000,
+            "RAW_AG": 10000
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.85,
+          "effect_end": 2,
+          "requires": "G05"
+        }
+      ]
+    },
+    {
+      "id": "A03_TARGETS",
+      "name": "Разветвление падения",
+      "max_level": 3,
+      "availability": "A03; G02",
+      "purpose": "Редкий структурный рост работы по рою.",
+      "effect_description": "База 12; уровни 14/16/18. Каждая цель поражается один раз.",
+      "effect_unit": "максимум отдельных целей",
+      "stacking": "Эффект указан накопительно; не умножать повторно другими ветвями.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_AG": 20
+          },
+          "cost_end": {
+            "INGOT_AG": 20
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 14,
+          "effect_end": 14,
+          "requires": "G02"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_AU": 35,
+            "INGOT_AG": 30
+          },
+          "cost_end": {
+            "INGOT_AU": 35,
+            "INGOT_AG": 30
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 16,
+          "effect_end": 16,
+          "requires": "G03"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "INGOT_MY": 45,
+            "INGOT_AU": 60,
+            "INGOT_FE": 50
+          },
+          "cost_end": {
+            "INGOT_MY": 45,
+            "INGOT_AU": 60,
+            "INGOT_FE": 50
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 18,
+          "effect_end": 18,
+          "requires": "G04"
+        }
+      ]
+    },
+    {
+      "id": "A03_RADIUS",
+      "name": "Ширина удара",
+      "max_level": 10,
+      "availability": "A03; G01",
+      "purpose": "Расширяет выбор точки, без роста лимита целей.",
+      "effect_description": "База 0.35R; личная ветвь до 0.429R. LAB_AREA добавляет до 0.021R (6% базы); совместный предел 0.45R.",
+      "effect_unit": "доля R; итоговый радиус",
+      "stacking": "Итоговый radiusInR = min(0.45, ownRadiusInR + 0.35 × LAB_AREA / 100). Личная ветвь уже хранит итоговый радиус в долях R; LAB_AREA хранит 0…6 процентов базового радиуса. Не умножать личный радиус на 1.06; карта радиус не изменяет. Число целей задаётся отдельной ветвью.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 5,
+          "cost_start": {
+            "RAW_FE": 100,
+            "RAW_CU": 85
+          },
+          "cost_end": {
+            "RAW_FE": 360,
+            "RAW_CU": 260
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.3579,
+          "effect_end": 0.3895,
+          "requires": "G01"
+        },
+        {
+          "from": 6,
+          "to": 10,
+          "cost_start": {
+            "RAW_AG": 450,
+            "RAW_CU": 380,
+            "RAW_FE": 180
+          },
+          "cost_end": {
+            "RAW_AG": 1600,
+            "RAW_CU": 1250,
+            "RAW_FE": 650
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.3974,
+          "effect_end": 0.429,
+          "requires": "G02"
+        }
+      ]
+    },
+    {
+      "id": "A03_COOLDOWN",
+      "name": "Повтор падения",
+      "max_level": 6,
+      "availability": "A03; G02",
+      "purpose": "Небольшой темп между имеющимися зарядами.",
+      "effect_description": "Личная ветвь−3 с; лаборатория максимум−1.5 с.",
+      "effect_unit": "секунды сокращения 15 с",
+      "stacking": "CD_seconds = max(0.6 × 15, 15 - ownReductionSeconds - 15 × LAB_COOLDOWN / 100). Личная ветвь хранит секунды сокращения, LAB_COOLDOWN — 0…10 процентов базы. Карта CD не изменяет; конечный запас зарядов не регенерирует.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 3,
+          "cost_start": {
+            "RAW_AG": 400,
+            "RAW_FE": 180
+          },
+          "cost_end": {
+            "RAW_AG": 900,
+            "RAW_FE": 400
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.5,
+          "effect_end": 1.5,
+          "requires": "G02"
+        },
+        {
+          "from": 4,
+          "to": 6,
+          "cost_start": {
+            "RAW_AU": 1100,
+            "RAW_AG": 450,
+            "RAW_CU": 500
+          },
+          "cost_end": {
+            "RAW_AU": 2600,
+            "RAW_AG": 1000,
+            "RAW_CU": 1200
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2,
+          "effect_end": 3,
+          "requires": "G03"
+        }
+      ]
+    },
+    {
+      "id": "A03_CHARGES",
+      "name": "Дополнительные применения",
+      "max_level": 2,
+      "availability": "A03; G03; соответствующее разрешение LAB_CHARGES",
+      "purpose": "Сильная функциональная покупка, только два уровня.",
+      "effect_description": "Личный уровень 1 даёт +1, уровень 2 даёт всего +2 к базовому запасу за попытку. Требуется разрешение LAB_CHARGES соответствующего уровня; исследование само не добавляет зарядов.",
+      "effect_unit": "дополнительные заряды за попытку",
+      "stacking": "LAB_CHARGES:1/2 лишь разрешает личную покупку 1/2 и не выдаёт применения. Эта личная ветвь — единственный владелец добавочных +1/+2 зарядов; cap +2 за попытку. После разрешения её слитки оплачиваются отдельно. Карты не дают заряды; смена сборки не восполняет потраченный запас.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_AU": 25,
+            "INGOT_AG": 40
+          },
+          "cost_end": {
+            "INGOT_AU": 25,
+            "INGOT_AG": 40
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G03 + LAB_CHARGES:1"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_AS": 36,
+            "INGOT_MY": 60,
+            "INGOT_FE": 120
+          },
+          "cost_end": {
+            "INGOT_AS": 36,
+            "INGOT_MY": 60,
+            "INGOT_FE": 120
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2,
+          "effect_end": 2,
+          "requires": "G05 + LAB_CHARGES:2"
+        }
+      ]
+    },
+    {
+      "id": "A04_LOCKOUT",
+      "name": "Срок подавления",
+      "max_level": 6,
+      "availability": "A04; три учебных задания доB02",
+      "purpose": "Удобное окно решения после рассеивания.",
+      "effect_description": "Личная ветвь+1.8 с; LAB_DURATION при 10% даёт+0.6 с; карта+0.6 с; максимум 9 с.",
+      "effect_unit": "секунды добавки к 6 с запрета buff",
+      "stacking": "durationSeconds = min(6 × 1.5, 6 + ownAddedSeconds + CARD_A04 + 6 × LAB_DURATION / 100). Личная добавка и указанная duration-карта хранят секунды; LAB_DURATION хранит 0…10 процентов базовых 6 с. Проверять только разрешённый эффект, не распространять формулу на лечение/урон/число целей.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 3,
+          "cost_start": {
+            "RAW_FE": 80,
+            "RAW_CU": 35
+          },
+          "cost_end": {
+            "RAW_FE": 200,
+            "RAW_CU": 100
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.3,
+          "effect_end": 0.9,
+          "requires": "G01"
+        },
+        {
+          "from": 4,
+          "to": 6,
+          "cost_start": {
+            "RAW_AG": 260,
+            "RAW_FE": 130
+          },
+          "cost_end": {
+            "RAW_AG": 700,
+            "RAW_FE": 340
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.2,
+          "effect_end": 1.8,
+          "requires": "G02"
+        }
+      ]
+    },
+    {
+      "id": "A04_TARGETS",
+      "name": "Широкое рассеивание",
+      "max_level": 3,
+      "availability": "A04; G01",
+      "purpose": "Каждая ступень расширяет выбор, не стирает все виды защиты.",
+      "effect_description": "База 5→6→7→8; по одному снимаемому buff на цель.",
+      "effect_unit": "максимум отдельных целей",
+      "stacking": "Структурная броня G02 и расовая черта не dispellable. Не заменяет R_GATE02.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_FE": 15
+          },
+          "cost_end": {
+            "INGOT_FE": 15
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 6,
+          "effect_end": 6,
+          "requires": "G01"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_AG": 24,
+            "INGOT_FE": 16
+          },
+          "cost_end": {
+            "INGOT_AG": 24,
+            "INGOT_FE": 16
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 7,
+          "effect_end": 7,
+          "requires": "G02"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "INGOT_AU": 30,
+            "INGOT_AG": 35,
+            "INGOT_CU": 28
+          },
+          "cost_end": {
+            "INGOT_AU": 30,
+            "INGOT_AG": 35,
+            "INGOT_CU": 28
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 8,
+          "effect_end": 8,
+          "requires": "G03"
+        }
+      ]
+    },
+    {
+      "id": "A04_COOLDOWN",
+      "name": "Повтор рассеивания",
+      "max_level": 8,
+      "availability": "A04; G01",
+      "purpose": "Умеренное сокращение ожидания.",
+      "effect_description": "Личный максимум 4 с; LAB_COOLDOWN при 10% даёт 2 с.",
+      "effect_unit": "секунды сокращения 20 с",
+      "stacking": "CD_seconds = max(0.6 × 20, 20 - ownReductionSeconds - 20 × LAB_COOLDOWN / 100). Личная ветвь хранит секунды сокращения, LAB_COOLDOWN — 0…10 процентов базы. Карта CD не изменяет; конечный запас зарядов не регенерирует.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 4,
+          "cost_start": {
+            "RAW_FE": 90,
+            "RAW_CU": 50
+          },
+          "cost_end": {
+            "RAW_FE": 260,
+            "RAW_CU": 135
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.5,
+          "effect_end": 2,
+          "requires": "G01"
+        },
+        {
+          "from": 5,
+          "to": 8,
+          "cost_start": {
+            "RAW_AG": 300,
+            "RAW_CU": 250,
+            "RAW_FE": 80
+          },
+          "cost_end": {
+            "RAW_AG": 850,
+            "RAW_CU": 650,
+            "RAW_FE": 220
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.5,
+          "effect_end": 4,
+          "requires": "G02"
+        }
+      ]
+    },
+    {
+      "id": "A04_CHARGES",
+      "name": "Дополнительные применения",
+      "max_level": 2,
+      "availability": "A04; G02; соответствующее разрешение LAB_CHARGES",
+      "purpose": "Сильная функциональная покупка, только два уровня.",
+      "effect_description": "Личный уровень 1 даёт +1, уровень 2 даёт всего +2 к базовому запасу за попытку. Требуется разрешение LAB_CHARGES соответствующего уровня; исследование само не добавляет зарядов.",
+      "effect_unit": "дополнительные заряды за попытку",
+      "stacking": "LAB_CHARGES:1/2 лишь разрешает личную покупку 1/2 и не выдаёт применения. Эта личная ветвь — единственный владелец добавочных +1/+2 зарядов; cap +2 за попытку. После разрешения её слитки оплачиваются отдельно. Карты не дают заряды; смена сборки не восполняет потраченный запас.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_AG": 12,
+            "INGOT_FE": 30
+          },
+          "cost_end": {
+            "INGOT_AG": 12,
+            "INGOT_FE": 30
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G02 + LAB_CHARGES:1"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_MY": 24,
+            "INGOT_AU": 40,
+            "INGOT_FE": 50
+          },
+          "cost_end": {
+            "INGOT_MY": 24,
+            "INGOT_AU": 40,
+            "INGOT_FE": 50
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2,
+          "effect_end": 2,
+          "requires": "G04 + LAB_CHARGES:2"
+        }
+      ]
+    },
+    {
+      "id": "A05_SLOW",
+      "name": "Плотность стужи",
+      "max_level": 5,
+      "availability": "A05; G02/L03",
+      "purpose": "Пять небольших ступеней против быстрых врагов.",
+      "effect_description": "База 45%→50%; босс остаётся 20%, без наследования этого бонуса.",
+      "effect_unit": "процентные пункты замедления обычных целей",
+      "stacking": "normalSlowFraction = (45 + A05_SLOW) / 100: A05_SLOW хранит только добавочные 1…5 процентных пунктов; bossSlowFraction = 20 / 100. Несколько slow не перемножаются: применяется самое сильное разрешённое значение.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "RAW_AG": 100,
+            "RAW_FE": 55
+          },
+          "cost_end": {
+            "RAW_AG": 100,
+            "RAW_FE": 55
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G02"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "RAW_AG": 180,
+            "RAW_FE": 100
+          },
+          "cost_end": {
+            "RAW_AG": 180,
+            "RAW_FE": 100
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2,
+          "effect_end": 2,
+          "requires": "G02"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "RAW_AG": 320,
+            "RAW_FE": 180
+          },
+          "cost_end": {
+            "RAW_AG": 320,
+            "RAW_FE": 180
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3,
+          "effect_end": 3,
+          "requires": "G02"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "RAW_AG": 540,
+            "RAW_FE": 300
+          },
+          "cost_end": {
+            "RAW_AG": 540,
+            "RAW_FE": 300
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 4,
+          "effect_end": 4,
+          "requires": "G02"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "cost_start": {
+            "RAW_AG": 900,
+            "RAW_FE": 500
+          },
+          "cost_end": {
+            "RAW_AG": 900,
+            "RAW_FE": 500
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 5,
+          "effect_end": 5,
+          "requires": "G02"
+        }
+      ]
+    },
+    {
+      "id": "A05_DURATION",
+      "name": "Стойкость стужи",
+      "max_level": 9,
+      "availability": "A05; G02",
+      "purpose": "Девять постепенных улучшений окна.",
+      "effect_description": "Личный максимум 1.8 с; лаборатория 0.6 с; карта 0.6 с; итог 9 с.",
+      "effect_unit": "секунды добавки к 6 с",
+      "stacking": "durationSeconds = min(6 × 1.5, 6 + ownAddedSeconds + CARD_A05 + 6 × LAB_DURATION / 100). Личная добавка и указанная duration-карта хранят секунды; LAB_DURATION хранит 0…10 процентов базовых 6 с. Проверять только разрешённый эффект, не распространять формулу на лечение/урон/число целей.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 3,
+          "cost_start": {
+            "RAW_AG": 120,
+            "RAW_CU": 100
+          },
+          "cost_end": {
+            "RAW_AG": 350,
+            "RAW_CU": 280
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.2,
+          "effect_end": 0.6,
+          "requires": "G02"
+        },
+        {
+          "from": 4,
+          "to": 6,
+          "cost_start": {
+            "RAW_AU": 400,
+            "RAW_AG": 150
+          },
+          "cost_end": {
+            "RAW_AU": 1000,
+            "RAW_AG": 420
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.8,
+          "effect_end": 1.2,
+          "requires": "G03"
+        },
+        {
+          "from": 7,
+          "to": 9,
+          "cost_start": {
+            "RAW_MY": 1200,
+            "RAW_FE": 850,
+            "RAW_AU": 320
+          },
+          "cost_end": {
+            "RAW_MY": 3500,
+            "RAW_FE": 2400,
+            "RAW_AU": 850
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.4,
+          "effect_end": 1.8,
+          "requires": "G04"
+        }
+      ]
+    },
+    {
+      "id": "A05_COOLDOWN",
+      "name": "Возврат стужи",
+      "max_level": 10,
+      "availability": "A05; G02",
+      "purpose": "Сокращает ожидание, не создаёт постоянную заморозку.",
+      "effect_description": "Личная ветвь 5 с; лаборатория 2.5 с.",
+      "effect_unit": "секунды сокращения 25 с",
+      "stacking": "CD_seconds = max(0.6 × 25, 25 - ownReductionSeconds - 25 × LAB_COOLDOWN / 100). Личная ветвь хранит секунды сокращения, LAB_COOLDOWN — 0…10 процентов базы. Карта CD не изменяет; конечный запас зарядов не регенерирует.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 5,
+          "cost_start": {
+            "RAW_AG": 180,
+            "RAW_FE": 80
+          },
+          "cost_end": {
+            "RAW_AG": 650,
+            "RAW_FE": 300
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.5,
+          "effect_end": 2.5,
+          "requires": "G02"
+        },
+        {
+          "from": 6,
+          "to": 10,
+          "cost_start": {
+            "RAW_AU": 800,
+            "RAW_CU": 1100,
+            "RAW_AG": 180
+          },
+          "cost_end": {
+            "RAW_AU": 2800,
+            "RAW_CU": 3800,
+            "RAW_AG": 600
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3,
+          "effect_end": 5,
+          "requires": "G03"
+        }
+      ]
+    },
+    {
+      "id": "A05_CHARGES",
+      "name": "Дополнительные применения",
+      "max_level": 2,
+      "availability": "A05; G03; соответствующее разрешение LAB_CHARGES",
+      "purpose": "Сильная функциональная покупка, только два уровня.",
+      "effect_description": "Личный уровень 1 даёт +1, уровень 2 даёт всего +2 к базовому запасу за попытку. Требуется разрешение LAB_CHARGES соответствующего уровня; исследование само не добавляет зарядов.",
+      "effect_unit": "дополнительные заряды за попытку",
+      "stacking": "LAB_CHARGES:1/2 лишь разрешает личную покупку 1/2 и не выдаёт применения. Эта личная ветвь — единственный владелец добавочных +1/+2 зарядов; cap +2 за попытку. После разрешения её слитки оплачиваются отдельно. Карты не дают заряды; смена сборки не восполняет потраченный запас.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_AU": 22,
+            "INGOT_AG": 30
+          },
+          "cost_end": {
+            "INGOT_AU": 22,
+            "INGOT_AG": 30
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G03 + LAB_CHARGES:1"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_AS": 22,
+            "INGOT_MY": 35,
+            "INGOT_CU": 120
+          },
+          "cost_end": {
+            "INGOT_AS": 22,
+            "INGOT_MY": 35,
+            "INGOT_CU": 120
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2,
+          "effect_end": 2,
+          "requires": "G05 + LAB_CHARGES:2"
+        }
+      ]
+    },
+    {
+      "id": "A06_DAMAGE",
+      "name": "Удар по разлому",
+      "max_level": 30,
+      "availability": "A06; G02/L03 доB05",
+      "purpose": "Недорогая длинная вспомогательная ветвь урона.",
+      "effect_description": "Личный множитель 1→1.60; не усиливает одновременно снятие брони.",
+      "effect_unit": "множитель базового 1D",
+      "stacking": "Урон = baseDamage × min(3, ownMultiplier + cardFraction + labFraction), где baseDamage = 1D. Значение личной ветви — множитель с уже включённой единицей; cardFraction берётся прямо из CARD_ID как доля 0…0.72. labFraction = min(0.28, LAB_SPELL_POWER / 100 + selectedProtocolBonusPercent / 100): LAB_SPELL_POWER хранит 0…16 процентов, выбранный допустимый протокол даёт 0…12 процентов. LAB_INTERACTION хранит число открытых протоколов, не процент бонуса. Множитель урона = min(3, ownMultiplier + cardFraction + labFraction). Armor shred задаётся отдельно и не получает этот множитель.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 10,
+          "cost_start": {
+            "RAW_AG": 55,
+            "RAW_FE": 30
+          },
+          "cost_end": {
+            "RAW_AG": 180,
+            "RAW_FE": 90
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.02,
+          "effect_end": 1.2,
+          "requires": "G02"
+        },
+        {
+          "from": 11,
+          "to": 20,
+          "cost_start": {
+            "RAW_AU": 170,
+            "RAW_FE": 130
+          },
+          "cost_end": {
+            "RAW_AU": 600,
+            "RAW_FE": 440
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.22,
+          "effect_end": 1.4,
+          "requires": "G03"
+        },
+        {
+          "from": 21,
+          "to": 30,
+          "cost_start": {
+            "RAW_MY": 550,
+            "RAW_FE": 550,
+            "RAW_AG": 140
+          },
+          "cost_end": {
+            "RAW_MY": 2100,
+            "RAW_FE": 2100,
+            "RAW_AG": 550
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.42,
+          "effect_end": 1.6,
+          "requires": "G04"
+        }
+      ]
+    },
+    {
+      "id": "A06_SHRED",
+      "name": "Глубина разлома",
+      "max_level": 5,
+      "availability": "A06; G02",
+      "purpose": "Пять дорогих улучшений тактической роли.",
+      "effect_description": "База 30 п.п.; итог 32/34/36/38/40 п.п.; итоговая броня не ниже 0.",
+      "effect_unit": "процентные пункты снимаемой брони",
+      "stacking": "Ветвь хранит итоговые 32…40 процентных пунктов снятия, с уже включённой базой 30. armorAfterShredPercent = max(0, targetArmorPercent - A06_SHRED); без покупки используется 30. Повторный A06 обновляет срок, не суммирует снятие. P04 затем умножает остаток на(1 - P04_PENETRATION / 100).",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "RAW_AG": 180,
+            "RAW_FE": 80
+          },
+          "cost_end": {
+            "RAW_AG": 180,
+            "RAW_FE": 80
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 32,
+          "effect_end": 32,
+          "requires": "G02"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "RAW_AU": 420,
+            "RAW_AG": 160
+          },
+          "cost_end": {
+            "RAW_AU": 420,
+            "RAW_AG": 160
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 34,
+          "effect_end": 34,
+          "requires": "G03"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "RAW_AU": 1000,
+            "RAW_AG": 380
+          },
+          "cost_end": {
+            "RAW_AU": 1000,
+            "RAW_AG": 380
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 36,
+          "effect_end": 36,
+          "requires": "G03"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "RAW_MY": 1800,
+            "RAW_FE": 1400,
+            "RAW_AU": 300
+          },
+          "cost_end": {
+            "RAW_MY": 1800,
+            "RAW_FE": 1400,
+            "RAW_AU": 300
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 38,
+          "effect_end": 38,
+          "requires": "G04"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "cost_start": {
+            "RAW_AS": 3200,
+            "RAW_FE": 2600,
+            "RAW_MY": 650
+          },
+          "cost_end": {
+            "RAW_AS": 3200,
+            "RAW_FE": 2600,
+            "RAW_MY": 650
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 40,
+          "effect_end": 40,
+          "requires": "G05"
+        }
+      ]
+    },
+    {
+      "id": "A06_DURATION",
+      "name": "Открытая трещина",
+      "max_level": 8,
+      "availability": "A06; G02",
+      "purpose": "Сильнее польза всей сборки в ограниченном окне.",
+      "effect_description": "Личная ветвь+3.2 с; LAB_DURATION при 10% даёт+0.8 с; карта длительность не меняет; итог≤12 с.",
+      "effect_unit": "секунды добавки к 8 с",
+      "stacking": "durationSeconds = min(8 × 1.5, 8 + ownAddedSeconds + 0 + 8 × LAB_DURATION / 100). Личная добавка и указанная duration-карта хранят секунды; LAB_DURATION хранит 0…10 процентов базовых 8 с. Карта этой способности длительность не меняет. Проверять только разрешённый эффект, не распространять формулу на лечение/урон/число целей.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 4,
+          "cost_start": {
+            "RAW_AG": 170,
+            "RAW_CU": 120
+          },
+          "cost_end": {
+            "RAW_AG": 520,
+            "RAW_CU": 350
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.4,
+          "effect_end": 1.6,
+          "requires": "G02"
+        },
+        {
+          "from": 5,
+          "to": 8,
+          "cost_start": {
+            "RAW_AU": 700,
+            "RAW_AG": 280,
+            "RAW_FE": 230
+          },
+          "cost_end": {
+            "RAW_AU": 2200,
+            "RAW_AG": 850,
+            "RAW_FE": 700
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2,
+          "effect_end": 3.2,
+          "requires": "G03"
+        }
+      ]
+    },
+    {
+      "id": "A06_COOLDOWN",
+      "name": "Возврат разлома",
+      "max_level": 8,
+      "availability": "A06; G03",
+      "purpose": "Умеренное сокращение ожидания.",
+      "effect_description": "Личная ветвь−5 с; лаборатория−2.5 с.",
+      "effect_unit": "секунды сокращения 25 с",
+      "stacking": "CD_seconds = max(0.6 × 25, 25 - ownReductionSeconds - 25 × LAB_COOLDOWN / 100). Личная ветвь хранит секунды сокращения, LAB_COOLDOWN — 0…10 процентов базы. Карта CD не изменяет; конечный запас зарядов не регенерирует.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 4,
+          "cost_start": {
+            "RAW_AU": 320,
+            "RAW_AG": 160
+          },
+          "cost_end": {
+            "RAW_AU": 1000,
+            "RAW_AG": 480
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.625,
+          "effect_end": 2.5,
+          "requires": "G03"
+        },
+        {
+          "from": 5,
+          "to": 8,
+          "cost_start": {
+            "RAW_MY": 1300,
+            "RAW_FE": 950,
+            "RAW_AU": 250
+          },
+          "cost_end": {
+            "RAW_MY": 4300,
+            "RAW_FE": 3000,
+            "RAW_AU": 800
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3.125,
+          "effect_end": 5,
+          "requires": "G04"
+        }
+      ]
+    },
+    {
+      "id": "A06_CHARGES",
+      "name": "Дополнительные применения",
+      "max_level": 2,
+      "availability": "A06; G03; соответствующее разрешение LAB_CHARGES",
+      "purpose": "Сильная функциональная покупка, только два уровня.",
+      "effect_description": "Личный уровень 1 даёт +1, уровень 2 даёт всего +2 к базовому запасу за попытку. Требуется разрешение LAB_CHARGES соответствующего уровня; исследование само не добавляет зарядов.",
+      "effect_unit": "дополнительные заряды за попытку",
+      "stacking": "LAB_CHARGES:1/2 лишь разрешает личную покупку 1/2 и не выдаёт применения. Эта личная ветвь — единственный владелец добавочных +1/+2 зарядов; cap +2 за попытку. После разрешения её слитки оплачиваются отдельно. Карты не дают заряды; смена сборки не восполняет потраченный запас.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_AU": 28,
+            "INGOT_AG": 40
+          },
+          "cost_end": {
+            "INGOT_AU": 28,
+            "INGOT_AG": 40
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G03 + LAB_CHARGES:1"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_AS": 28,
+            "INGOT_MY": 50,
+            "INGOT_FE": 110
+          },
+          "cost_end": {
+            "INGOT_AS": 28,
+            "INGOT_MY": 50,
+            "INGOT_FE": 110
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2,
+          "effect_end": 2,
+          "requires": "G05 + LAB_CHARGES:2"
+        }
+      ]
+    },
+    {
+      "id": "A07_DAMAGE",
+      "name": "Напряжение цепи",
+      "max_level": 50,
+      "availability": "A07; G03/L04 доB07",
+      "purpose": "Длинная ветвь урона, с половинной силой вторичных попаданий.",
+      "effect_description": "Личный множитель 1→1.90 для исходной и вторичных целей.",
+      "effect_unit": "множитель базовых 1.5D /0.75D",
+      "stacking": "Урон = baseDamage × min(3, ownMultiplier + cardFraction + labFraction), где baseDamage = 1.5D исходной либо 0.75D вторичной цели. Значение личной ветви — множитель с уже включённой единицей; cardFraction берётся прямо из CARD_ID как доля 0…0.72. labFraction = min(0.28, LAB_SPELL_POWER / 100 + selectedProtocolBonusPercent / 100): LAB_SPELL_POWER хранит 0…16 процентов, выбранный допустимый протокол даёт 0…12 процентов. LAB_INTERACTION хранит число открытых протоколов, не процент бонуса. Множитель урона = min(3, ownMultiplier + cardFraction + labFraction). Один враг не получает повторных отскоков.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 15,
+          "cost_start": {
+            "RAW_AU": 140,
+            "RAW_AG": 85
+          },
+          "cost_end": {
+            "RAW_AU": 650,
+            "RAW_AG": 350
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.018,
+          "effect_end": 1.27,
+          "requires": "G03"
+        },
+        {
+          "from": 16,
+          "to": 30,
+          "cost_start": {
+            "RAW_MY": 650,
+            "RAW_FE": 650,
+            "RAW_AU": 120
+          },
+          "cost_end": {
+            "RAW_MY": 3300,
+            "RAW_FE": 3200,
+            "RAW_AU": 600
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.288,
+          "effect_end": 1.54,
+          "requires": "G04"
+        },
+        {
+          "from": 31,
+          "to": 50,
+          "cost_start": {
+            "RAW_AS": 2800,
+            "RAW_FE": 2800,
+            "RAW_AU": 650
+          },
+          "cost_end": {
+            "RAW_AS": 22000,
+            "RAW_FE": 22000,
+            "RAW_AU": 4900
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.558,
+          "effect_end": 1.9,
+          "requires": "G05"
+        }
+      ]
+    },
+    {
+      "id": "A07_TARGETS",
+      "name": "Новые отводы",
+      "max_level": 3,
+      "availability": "A07; G03",
+      "purpose": "Три структурных шага против роя.",
+      "effect_description": "База 6→7→8→9; исходная цель входит в число.",
+      "effect_unit": "общее число отдельных целей",
+      "stacking": "Эффект указан накопительно; не умножать повторно другими ветвями.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_AU": 28
+          },
+          "cost_end": {
+            "INGOT_AU": 28
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 7,
+          "effect_end": 7,
+          "requires": "G03"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_MY": 40,
+            "INGOT_AU": 45,
+            "INGOT_FE": 55
+          },
+          "cost_end": {
+            "INGOT_MY": 40,
+            "INGOT_AU": 45,
+            "INGOT_FE": 55
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 8,
+          "effect_end": 8,
+          "requires": "G04"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "INGOT_AS": 38,
+            "INGOT_MY": 65,
+            "INGOT_FE": 100
+          },
+          "cost_end": {
+            "INGOT_AS": 38,
+            "INGOT_MY": 65,
+            "INGOT_FE": 100
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 9,
+          "effect_end": 9,
+          "requires": "G05"
+        }
+      ]
+    },
+    {
+      "id": "A07_COOLDOWN",
+      "name": "Разрядка катушки",
+      "max_level": 12,
+      "availability": "A07; G03",
+      "purpose": "Двенадцать небольших улучшений темпа.",
+      "effect_description": "Личный максимум 4 с; лаборатория 2 с.",
+      "effect_unit": "секунды сокращения 20 с",
+      "stacking": "CD_seconds = max(0.6 × 20, 20 - ownReductionSeconds - 20 × LAB_COOLDOWN / 100). Личная ветвь хранит секунды сокращения, LAB_COOLDOWN — 0…10 процентов базы. Карта CD не изменяет; конечный запас зарядов не регенерирует.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 4,
+          "cost_start": {
+            "RAW_AU": 220,
+            "RAW_CU": 220
+          },
+          "cost_end": {
+            "RAW_AU": 650,
+            "RAW_CU": 650
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.333333,
+          "effect_end": 1.333333,
+          "requires": "G03"
+        },
+        {
+          "from": 5,
+          "to": 8,
+          "cost_start": {
+            "RAW_MY": 800,
+            "RAW_FE": 500,
+            "RAW_AG": 180
+          },
+          "cost_end": {
+            "RAW_MY": 2400,
+            "RAW_FE": 1500,
+            "RAW_AG": 540
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.666667,
+          "effect_end": 2.666667,
+          "requires": "G04"
+        },
+        {
+          "from": 9,
+          "to": 12,
+          "cost_start": {
+            "RAW_AS": 3000,
+            "RAW_CU": 4300,
+            "RAW_MY": 650
+          },
+          "cost_end": {
+            "RAW_AS": 9000,
+            "RAW_CU": 13000,
+            "RAW_MY": 1900
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3,
+          "effect_end": 4,
+          "requires": "G05"
+        }
+      ]
+    },
+    {
+      "id": "A07_CHARGES",
+      "name": "Дополнительные применения",
+      "max_level": 2,
+      "availability": "A07; G04; соответствующее разрешение LAB_CHARGES",
+      "purpose": "Сильная функциональная покупка, только два уровня.",
+      "effect_description": "Личный уровень 1 даёт +1, уровень 2 даёт всего +2 к базовому запасу за попытку. Требуется разрешение LAB_CHARGES соответствующего уровня; исследование само не добавляет зарядов.",
+      "effect_unit": "дополнительные заряды за попытку",
+      "stacking": "LAB_CHARGES:1/2 лишь разрешает личную покупку 1/2 и не выдаёт применения. Эта личная ветвь — единственный владелец добавочных +1/+2 зарядов; cap +2 за попытку. После разрешения её слитки оплачиваются отдельно. Карты не дают заряды; смена сборки не восполняет потраченный запас.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_MY": 35,
+            "INGOT_AU": 50,
+            "INGOT_CU": 90
+          },
+          "cost_end": {
+            "INGOT_MY": 35,
+            "INGOT_AU": 50,
+            "INGOT_CU": 90
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G04 + LAB_CHARGES:1"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_AS": 45,
+            "INGOT_MY": 75,
+            "INGOT_CU": 200
+          },
+          "cost_end": {
+            "INGOT_AS": 45,
+            "INGOT_MY": 75,
+            "INGOT_CU": 200
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2,
+          "effect_end": 2,
+          "requires": "G05 + LAB_CHARGES:2"
+        }
+      ]
+    },
+    {
+      "id": "A08_HASTE",
+      "name": "Мощность перегрузки",
+      "max_level": 20,
+      "availability": "A08; G03/L04",
+      "purpose": "Двадцать малых ступеней временной атаки.",
+      "effect_description": "База 35%; личная ветвь+10 п.п., карта+9 п.п.; итог 54%, до общего cap атак.",
+      "effect_unit": "процентные пункты к скорости атаки во время эффекта",
+      "stacking": "temporaryHasteFraction = (35 + A08_HASTE + CARD_A08) / 100; личная ветвь и карта хранят добавочные процентные пункты. Эту долю прибавить один раз к общей доле бонуса скорости атаки. Итоговый интервал атаки не ниже 0.15 с; превью показывает реальный DPS при текущем cap.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 10,
+          "cost_start": {
+            "RAW_AU": 180,
+            "RAW_FE": 150
+          },
+          "cost_end": {
+            "RAW_AU": 900,
+            "RAW_FE": 720
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.5,
+          "effect_end": 5,
+          "requires": "G03"
+        },
+        {
+          "from": 11,
+          "to": 20,
+          "cost_start": {
+            "RAW_MY": 1000,
+            "RAW_FE": 900,
+            "RAW_AU": 200
+          },
+          "cost_end": {
+            "RAW_MY": 5600,
+            "RAW_FE": 4900,
+            "RAW_AU": 1100
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 5.5,
+          "effect_end": 10,
+          "requires": "G04"
+        }
+      ]
+    },
+    {
+      "id": "A08_DURATION",
+      "name": "Выдержка перегрузки",
+      "max_level": 8,
+      "availability": "A08; G03",
+      "purpose": "Восемь небольших прибавок длины окна.",
+      "effect_description": "Личный максимум 3.2 с; лаборатория 0.8 с; карта длительность не меняет; итог 12 с.",
+      "effect_unit": "секунды добавки к 8 с",
+      "stacking": "durationSeconds = min(8 × 1.5, 8 + ownAddedSeconds + 0 + 8 × LAB_DURATION / 100). Личная добавка и указанная duration-карта хранят секунды; LAB_DURATION хранит 0…10 процентов базовых 8 с. Карта этой способности длительность не меняет. Проверять только разрешённый эффект, не распространять формулу на лечение/урон/число целей.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 4,
+          "cost_start": {
+            "RAW_AU": 260,
+            "RAW_CU": 230
+          },
+          "cost_end": {
+            "RAW_AU": 800,
+            "RAW_CU": 680
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.4,
+          "effect_end": 1.6,
+          "requires": "G03"
+        },
+        {
+          "from": 5,
+          "to": 8,
+          "cost_start": {
+            "RAW_MY": 1000,
+            "RAW_CU": 1200,
+            "RAW_AG": 200
+          },
+          "cost_end": {
+            "RAW_MY": 3300,
+            "RAW_CU": 3800,
+            "RAW_AG": 650
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2,
+          "effect_end": 3.2,
+          "requires": "G04"
+        }
+      ]
+    },
+    {
+      "id": "A08_COOLDOWN",
+      "name": "Остывание ядра",
+      "max_level": 10,
+      "availability": "A08; G03",
+      "purpose": "Десять улучшений ожидания.",
+      "effect_description": "Личная ветвь 6 с; лаборатория 3 с.",
+      "effect_unit": "секунды сокращения 30 с",
+      "stacking": "CD_seconds = max(0.6 × 30, 30 - ownReductionSeconds - 30 × LAB_COOLDOWN / 100). Личная ветвь хранит секунды сокращения, LAB_COOLDOWN — 0…10 процентов базы. Карта CD не изменяет; конечный запас зарядов не регенерирует.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 5,
+          "cost_start": {
+            "RAW_AU": 350,
+            "RAW_FE": 250
+          },
+          "cost_end": {
+            "RAW_AU": 1400,
+            "RAW_FE": 1000
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.6,
+          "effect_end": 3,
+          "requires": "G03"
+        },
+        {
+          "from": 6,
+          "to": 10,
+          "cost_start": {
+            "RAW_MY": 1800,
+            "RAW_FE": 1300,
+            "RAW_AU": 400
+          },
+          "cost_end": {
+            "RAW_MY": 6500,
+            "RAW_FE": 4600,
+            "RAW_AU": 1400
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3.6,
+          "effect_end": 6,
+          "requires": "G04"
+        }
+      ]
+    },
+    {
+      "id": "A08_CHARGES",
+      "name": "Дополнительные применения",
+      "max_level": 2,
+      "availability": "A08; G04; соответствующее разрешение LAB_CHARGES",
+      "purpose": "Сильная функциональная покупка, только два уровня.",
+      "effect_description": "Личный уровень 1 даёт +1, уровень 2 даёт всего +2 к базовому запасу за попытку. Требуется разрешение LAB_CHARGES соответствующего уровня; исследование само не добавляет зарядов.",
+      "effect_unit": "дополнительные заряды за попытку",
+      "stacking": "LAB_CHARGES:1/2 лишь разрешает личную покупку 1/2 и не выдаёт применения. Эта личная ветвь — единственный владелец добавочных +1/+2 зарядов; cap +2 за попытку. После разрешения её слитки оплачиваются отдельно. Карты не дают заряды; смена сборки не восполняет потраченный запас.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_MY": 40,
+            "INGOT_AU": 55,
+            "INGOT_FE": 70
+          },
+          "cost_end": {
+            "INGOT_MY": 40,
+            "INGOT_AU": 55,
+            "INGOT_FE": 70
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G04 + LAB_CHARGES:1"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_AS": 50,
+            "INGOT_MY": 80,
+            "INGOT_FE": 160
+          },
+          "cost_end": {
+            "INGOT_AS": 50,
+            "INGOT_MY": 80,
+            "INGOT_FE": 160
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2,
+          "effect_end": 2,
+          "requires": "G05 + LAB_CHARGES:2"
+        }
+      ]
+    },
+    {
+      "id": "A09_HEAL",
+      "name": "Запас восстановления",
+      "max_level": 20,
+      "availability": "A09; G03/L04 доB08",
+      "purpose": "Двадцать малых улучшений выживания.",
+      "effect_description": "База 24%H: 12% сразу+12% за 6 с. Личная ветвь добавляет 6 п.п.; карта 4.5 п.п.; максимум 34.5%H. Половина каждой добавки мгновенная, половина распределённая.",
+      "effect_unit": "процентные пункты максимального H за полный cast",
+      "stacking": "totalHeal = H × (24 + A09_HEAL + CARD_A09) / 100; обе ветви хранят добавочные процентные пункты H. Половина лечения мгновенная, половина за 6 с. LAB_SPELL_POWER/LAB_DURATION исключены. Overheal исчезает, эффект не воскрешает и не дублирует уже выданную часть.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 10,
+          "cost_start": {
+            "RAW_AU": 160,
+            "RAW_CU": 180
+          },
+          "cost_end": {
+            "RAW_AU": 800,
+            "RAW_CU": 850
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.3,
+          "effect_end": 3,
+          "requires": "G03"
+        },
+        {
+          "from": 11,
+          "to": 20,
+          "cost_start": {
+            "RAW_MY": 900,
+            "RAW_CU": 1400,
+            "RAW_AG": 240
+          },
+          "cost_end": {
+            "RAW_MY": 5000,
+            "RAW_CU": 7200,
+            "RAW_AG": 1300
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3.3,
+          "effect_end": 6,
+          "requires": "G04"
+        }
+      ]
+    },
+    {
+      "id": "A09_COOLDOWN",
+      "name": "Повтор восстановления",
+      "max_level": 15,
+      "availability": "A09; G03",
+      "purpose": "Пятнадцать небольших улучшений темпа лечения.",
+      "effect_description": "Личный максимум 6 с; лаборатория 3 с.",
+      "effect_unit": "секунды сокращения 30 с",
+      "stacking": "CD_seconds = max(0.6 × 30, 30 - ownReductionSeconds - 30 × LAB_COOLDOWN / 100). Личная ветвь хранит секунды сокращения, LAB_COOLDOWN — 0…10 процентов базы. Карта CD не изменяет; конечный запас зарядов не регенерирует.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 5,
+          "cost_start": {
+            "RAW_AU": 200,
+            "RAW_AG": 100
+          },
+          "cost_end": {
+            "RAW_AU": 750,
+            "RAW_AG": 340
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.4,
+          "effect_end": 2,
+          "requires": "G03"
+        },
+        {
+          "from": 6,
+          "to": 10,
+          "cost_start": {
+            "RAW_MY": 900,
+            "RAW_FE": 700,
+            "RAW_AU": 160
+          },
+          "cost_end": {
+            "RAW_MY": 3600,
+            "RAW_FE": 2600,
+            "RAW_AU": 650
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.4,
+          "effect_end": 4,
+          "requires": "G04"
+        },
+        {
+          "from": 11,
+          "to": 15,
+          "cost_start": {
+            "RAW_AS": 4200,
+            "RAW_FE": 5000,
+            "RAW_AG": 700
+          },
+          "cost_end": {
+            "RAW_AS": 17000,
+            "RAW_FE": 19000,
+            "RAW_AG": 3000
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 4.4,
+          "effect_end": 6,
+          "requires": "G05"
+        }
+      ]
+    },
+    {
+      "id": "A09_CHARGES",
+      "name": "Дополнительные применения",
+      "max_level": 2,
+      "availability": "A09; G04; соответствующее разрешение LAB_CHARGES",
+      "purpose": "Сильная функциональная покупка, только два уровня.",
+      "effect_description": "Личный уровень 1 даёт +1, уровень 2 даёт всего +2 к базовому запасу за попытку. Требуется разрешение LAB_CHARGES соответствующего уровня; исследование само не добавляет зарядов.",
+      "effect_unit": "дополнительные заряды за попытку",
+      "stacking": "LAB_CHARGES:1/2 лишь разрешает личную покупку 1/2 и не выдаёт применения. Эта личная ветвь — единственный владелец добавочных +1/+2 зарядов; cap +2 за попытку. После разрешения её слитки оплачиваются отдельно. Карты не дают заряды; смена сборки не восполняет потраченный запас.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_MY": 32,
+            "INGOT_AU": 48,
+            "INGOT_CU": 85
+          },
+          "cost_end": {
+            "INGOT_MY": 32,
+            "INGOT_AU": 48,
+            "INGOT_CU": 85
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G04 + LAB_CHARGES:1"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_AS": 42,
+            "INGOT_MY": 70,
+            "INGOT_CU": 180
+          },
+          "cost_end": {
+            "INGOT_AS": 42,
+            "INGOT_MY": 70,
+            "INGOT_CU": 180
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2,
+          "effect_end": 2,
+          "requires": "G05 + LAB_CHARGES:2"
+        }
+      ]
+    },
+    {
+      "id": "A10_CAPACITY",
+      "name": "Плотность перехвата",
+      "max_level": 4,
+      "availability": "A10; G04/L05 доB09",
+      "purpose": "Четыре дискретные структурные ступени.",
+      "effect_description": "База 12→14→16→18→20.",
+      "effect_unit": "количество перехватов обычных снарядов за cast",
+      "stacking": "Один снаряд списывается один раз; тяжёлые телеграфированные снаряды не удаляются и не превращаются в обычные.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_MY": 18,
+            "INGOT_FE": 14
+          },
+          "cost_end": {
+            "INGOT_MY": 18,
+            "INGOT_FE": 14
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 14,
+          "effect_end": 14,
+          "requires": "G04"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_MY": 38,
+            "INGOT_FE": 30
+          },
+          "cost_end": {
+            "INGOT_MY": 38,
+            "INGOT_FE": 30
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 16,
+          "effect_end": 16,
+          "requires": "G04"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "INGOT_AS": 24,
+            "INGOT_MY": 45,
+            "INGOT_FE": 65
+          },
+          "cost_end": {
+            "INGOT_AS": 24,
+            "INGOT_MY": 45,
+            "INGOT_FE": 65
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 18,
+          "effect_end": 18,
+          "requires": "G05"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "INGOT_AS": 55,
+            "INGOT_MY": 80,
+            "INGOT_FE": 140
+          },
+          "cost_end": {
+            "INGOT_AS": 55,
+            "INGOT_MY": 80,
+            "INGOT_FE": 140
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 20,
+          "effect_end": 20,
+          "requires": "G05"
+        }
+      ]
+    },
+    {
+      "id": "A10_MITIGATION",
+      "name": "Рассеивание тяжёлого удара",
+      "max_level": 10,
+      "availability": "A10; G04",
+      "purpose": "Десять небольших ступеней специальной защиты.",
+      "effect_description": "База 40%; личная ветвь+10 п.п.; карта+9 п.п.; итог 59%, специальный cap60%.",
+      "effect_unit": "процентные пункты снижения урона тяжёлых снарядов",
+      "stacking": "heavyReductionFraction = min(60, 40 + A10_MITIGATION + CARD_A10) / 100; личная ветвь и карта хранят добавочные процентные пункты. Урон тяжёлого снаряда после этой защиты = входящийУрон × (1 - heavyReductionFraction). Другие типы защиты учитываются отдельно в EHP; эта формула не означает постоянного снижения всех источников.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 5,
+          "cost_start": {
+            "RAW_MY": 220,
+            "RAW_FE": 180,
+            "RAW_AU": 50
+          },
+          "cost_end": {
+            "RAW_MY": 1000,
+            "RAW_FE": 800,
+            "RAW_AU": 220
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1,
+          "effect_end": 5,
+          "requires": "G04"
+        },
+        {
+          "from": 6,
+          "to": 10,
+          "cost_start": {
+            "RAW_AS": 1400,
+            "RAW_FE": 1700,
+            "RAW_MY": 240
+          },
+          "cost_end": {
+            "RAW_AS": 6500,
+            "RAW_FE": 7600,
+            "RAW_MY": 1100
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 6,
+          "effect_end": 10,
+          "requires": "G05"
+        }
+      ]
+    },
+    {
+      "id": "A10_DURATION",
+      "name": "Стойкость завесы",
+      "max_level": 8,
+      "availability": "A10; G04",
+      "purpose": "Продолжительность полезна лишь пока есть запас перехвата.",
+      "effect_description": "Личная ветвь+2 с; LAB_DURATION при 10% даёт+0.5 с; карта длительность не меняет; итог 7.5 с.",
+      "effect_unit": "секунды добавки к 5 с",
+      "stacking": "durationSeconds = min(5 × 1.5, 5 + ownAddedSeconds + 0 + 5 × LAB_DURATION / 100). Личная добавка и указанная duration-карта хранят секунды; LAB_DURATION хранит 0…10 процентов базовых 5 с. Карта этой способности длительность не меняет. Проверять только разрешённый эффект, не распространять формулу на лечение/урон/число целей.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 4,
+          "cost_start": {
+            "RAW_MY": 250,
+            "RAW_CU": 330
+          },
+          "cost_end": {
+            "RAW_MY": 900,
+            "RAW_CU": 1100
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.25,
+          "effect_end": 1,
+          "requires": "G04"
+        },
+        {
+          "from": 5,
+          "to": 8,
+          "cost_start": {
+            "RAW_AS": 1300,
+            "RAW_CU": 2000,
+            "RAW_AG": 300
+          },
+          "cost_end": {
+            "RAW_AS": 4400,
+            "RAW_CU": 6500,
+            "RAW_AG": 1000
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.25,
+          "effect_end": 2,
+          "requires": "G05"
+        }
+      ]
+    },
+    {
+      "id": "A10_COOLDOWN",
+      "name": "Повтор завесы",
+      "max_level": 8,
+      "availability": "A10; G04",
+      "purpose": "Восемь небольших улучшений.",
+      "effect_description": "Личный максимум 5 с; лаборатория 2.5 с.",
+      "effect_unit": "секунды сокращения 25 с",
+      "stacking": "CD_seconds = max(0.6 × 25, 25 - ownReductionSeconds - 25 × LAB_COOLDOWN / 100). Личная ветвь хранит секунды сокращения, LAB_COOLDOWN — 0…10 процентов базы. Карта CD не изменяет; конечный запас зарядов не регенерирует.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 4,
+          "cost_start": {
+            "RAW_MY": 400,
+            "RAW_FE": 320
+          },
+          "cost_end": {
+            "RAW_MY": 1500,
+            "RAW_FE": 1200
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.625,
+          "effect_end": 2.5,
+          "requires": "G04"
+        },
+        {
+          "from": 5,
+          "to": 8,
+          "cost_start": {
+            "RAW_AS": 2000,
+            "RAW_FE": 2400,
+            "RAW_MY": 350
+          },
+          "cost_end": {
+            "RAW_AS": 7200,
+            "RAW_FE": 8200,
+            "RAW_MY": 1300
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3.125,
+          "effect_end": 5,
+          "requires": "G05"
+        }
+      ]
+    },
+    {
+      "id": "A10_CHARGES",
+      "name": "Дополнительные применения",
+      "max_level": 2,
+      "availability": "A10; G05; соответствующее разрешение LAB_CHARGES",
+      "purpose": "Сильная функциональная покупка, только два уровня.",
+      "effect_description": "Личный уровень 1 даёт +1, уровень 2 даёт всего +2 к базовому запасу за попытку. Требуется разрешение LAB_CHARGES соответствующего уровня; исследование само не добавляет зарядов.",
+      "effect_unit": "дополнительные заряды за попытку",
+      "stacking": "LAB_CHARGES:1/2 лишь разрешает личную покупку 1/2 и не выдаёт применения. Эта личная ветвь — единственный владелец добавочных +1/+2 зарядов; cap +2 за попытку. После разрешения её слитки оплачиваются отдельно. Карты не дают заряды; смена сборки не восполняет потраченный запас.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_AS": 22,
+            "INGOT_MY": 45,
+            "INGOT_FE": 80
+          },
+          "cost_end": {
+            "INGOT_AS": 22,
+            "INGOT_MY": 45,
+            "INGOT_FE": 80
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G05 + LAB_CHARGES:1"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_AS": 65,
+            "INGOT_MY": 110,
+            "INGOT_FE": 220
+          },
+          "cost_end": {
+            "INGOT_AS": 65,
+            "INGOT_MY": 110,
+            "INGOT_FE": 220
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2,
+          "effect_end": 2,
+          "requires": "G06 + LAB_CHARGES:2"
+        }
+      ]
+    },
+    {
+      "id": "A11_DAMAGE",
+      "name": "Сила приговора",
+      "max_level": 25,
+      "availability": "A11; G05/L06 доB11",
+      "purpose": "Короткая, более дорогая поздняя ветвь добивания.",
+      "effect_description": "Личный множитель 1→2; условный 7D только ниже 25%HP. Boss cap5% исходного HP применяется после всех бонусов.",
+      "effect_unit": "множитель базовых 4D /7D",
+      "stacking": "Урон = baseDamage × min(3, ownMultiplier + cardFraction + labFraction), где baseDamage = 4D либо 7D. Значение личной ветви — множитель с уже включённой единицей; cardFraction берётся прямо из CARD_ID как доля 0…0.72. labFraction = min(0.28, LAB_SPELL_POWER / 100 + selectedProtocolBonusPercent / 100): LAB_SPELL_POWER хранит 0…16 процентов, выбранный допустимый протокол даёт 0…12 процентов. LAB_INTERACTION хранит число открытых протоколов, не процент бонуса. Множитель урона = min(3, ownMultiplier + cardFraction + labFraction). После множителя боссовый урон ограничен originalBossHP × 5 / 100; фазу и неуязвимость не обходит.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 10,
+          "cost_start": {
+            "RAW_AS": 600,
+            "RAW_FE": 850,
+            "RAW_AU": 130
+          },
+          "cost_end": {
+            "RAW_AS": 3200,
+            "RAW_FE": 4400,
+            "RAW_AU": 650
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.04,
+          "effect_end": 1.4,
+          "requires": "G05"
+        },
+        {
+          "from": 11,
+          "to": 20,
+          "cost_start": {
+            "RAW_AS": 4000,
+            "RAW_FE": 5500,
+            "RAW_AU": 800
+          },
+          "cost_end": {
+            "RAW_AS": 18000,
+            "RAW_FE": 24000,
+            "RAW_AU": 3800
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.44,
+          "effect_end": 1.8,
+          "requires": "G05; G06"
+        },
+        {
+          "from": 21,
+          "to": 25,
+          "cost_start": {
+            "RAW_AS": 23000,
+            "RAW_FE": 32000,
+            "RAW_MY": 3000
+          },
+          "cost_end": {
+            "RAW_AS": 50000,
+            "RAW_FE": 68000,
+            "RAW_MY": 6500
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.84,
+          "effect_end": 2,
+          "requires": "G05; L06/T10"
+        }
+      ]
+    },
+    {
+      "id": "A11_THRESHOLD",
+      "name": "Уверенное завершение",
+      "max_level": 2,
+      "availability": "A11; G05",
+      "purpose": "Два дорогих свойства, меняющих момент применения.",
+      "effect_description": "База 25%→27.5%→30%. Боссовый 5%damagecap неизменен.",
+      "effect_unit": "процент HP, ниже которого доступен 7D",
+      "stacking": "Ветвь хранит итоговый порог 27.5/30 процентовHP, уже включая базовый 25. Условие усиленного удара: currentHP / maxHP < thresholdPercent / 100. При отсутствии покупки thresholdPercent=25. Боссовый предел 5% исходногоHP остаётся отдельным ограничением.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_AS": 35,
+            "INGOT_MY": 65,
+            "INGOT_FE": 120
+          },
+          "cost_end": {
+            "INGOT_AS": 35,
+            "INGOT_MY": 65,
+            "INGOT_FE": 120
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 27.5,
+          "effect_end": 27.5,
+          "requires": "G05"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_AS": 90,
+            "INGOT_MY": 150,
+            "INGOT_FE": 280
+          },
+          "cost_end": {
+            "INGOT_AS": 90,
+            "INGOT_MY": 150,
+            "INGOT_FE": 280
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 30,
+          "effect_end": 30,
+          "requires": "G06"
+        }
+      ]
+    },
+    {
+      "id": "A11_COOLDOWN",
+      "name": "Повтор приговора",
+      "max_level": 10,
+      "availability": "A11; G05",
+      "purpose": "Десять малых ступеней позднего темпа.",
+      "effect_description": "Личный максимум 5 с; лаборатория 2.5 с.",
+      "effect_unit": "секунды сокращения 25 с",
+      "stacking": "CD_seconds = max(0.6 × 25, 25 - ownReductionSeconds - 25 × LAB_COOLDOWN / 100). Личная ветвь хранит секунды сокращения, LAB_COOLDOWN — 0…10 процентов базы. Карта CD не изменяет; конечный запас зарядов не регенерирует.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 5,
+          "cost_start": {
+            "RAW_AS": 900,
+            "RAW_CU": 1700,
+            "RAW_AG": 180
+          },
+          "cost_end": {
+            "RAW_AS": 4200,
+            "RAW_CU": 7800,
+            "RAW_AG": 850
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.5,
+          "effect_end": 2.5,
+          "requires": "G05"
+        },
+        {
+          "from": 6,
+          "to": 10,
+          "cost_start": {
+            "RAW_AS": 5500,
+            "RAW_CU": 10000,
+            "RAW_AG": 1100
+          },
+          "cost_end": {
+            "RAW_AS": 24000,
+            "RAW_CU": 44000,
+            "RAW_AG": 4800
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3,
+          "effect_end": 5,
+          "requires": "G05; G06"
+        }
+      ]
+    },
+    {
+      "id": "A11_CHARGES",
+      "name": "Дополнительные применения",
+      "max_level": 2,
+      "availability": "A11; G05; соответствующее разрешение LAB_CHARGES",
+      "purpose": "Сильная функциональная покупка, только два уровня.",
+      "effect_description": "Личный уровень 1 даёт +1, уровень 2 даёт всего +2 к базовому запасу за попытку. Требуется разрешение LAB_CHARGES соответствующего уровня; исследование само не добавляет зарядов.",
+      "effect_unit": "дополнительные заряды за попытку",
+      "stacking": "LAB_CHARGES:1/2 лишь разрешает личную покупку 1/2 и не выдаёт применения. Эта личная ветвь — единственный владелец добавочных +1/+2 зарядов; cap +2 за попытку. После разрешения её слитки оплачиваются отдельно. Карты не дают заряды; смена сборки не восполняет потраченный запас.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_AS": 38,
+            "INGOT_MY": 70,
+            "INGOT_CU": 160
+          },
+          "cost_end": {
+            "INGOT_AS": 38,
+            "INGOT_MY": 70,
+            "INGOT_CU": 160
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G05 + LAB_CHARGES:1"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_AS": 110,
+            "INGOT_MY": 180,
+            "INGOT_CU": 400
+          },
+          "cost_end": {
+            "INGOT_AS": 110,
+            "INGOT_MY": 180,
+            "INGOT_CU": 400
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2,
+          "effect_end": 2,
+          "requires": "G06 + LAB_CHARGES:2"
+        }
+      ]
+    },
+    {
+      "id": "A12_ROOT",
+      "name": "Удержание якоря",
+      "max_level": 5,
+      "availability": "A12; G05/L06 доB12",
+      "purpose": "Пять точных ступеней контроля, без общей формулы spellpower.",
+      "effect_description": "База 2 с; личная добавка 0.5 с; карта 0.5 с; итог 3 с. Для босса каждая добавка делится на 4: 0.5→0.75 с.",
+      "effect_unit": "секунды добавки root обычной цели",
+      "stacking": "normalRootSeconds = min(3, 2 + A12_ROOT + CARD_A12); bossRootSeconds = normalRootSeconds / 4. Обе ветви хранят добавочные секунды обычной цели, не проценты. LAB_DURATION исключена; boss interrupt immunity8 с не сокращается.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "RAW_AS": 450,
+            "RAW_FE": 650
+          },
+          "cost_end": {
+            "RAW_AS": 450,
+            "RAW_FE": 650
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.1,
+          "effect_end": 0.1,
+          "requires": "G05"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "RAW_AS": 900,
+            "RAW_FE": 1200
+          },
+          "cost_end": {
+            "RAW_AS": 900,
+            "RAW_FE": 1200
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.2,
+          "effect_end": 0.2,
+          "requires": "G05"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "RAW_AS": 1700,
+            "RAW_FE": 2400,
+            "RAW_MY": 180
+          },
+          "cost_end": {
+            "RAW_AS": 1700,
+            "RAW_FE": 2400,
+            "RAW_MY": 180
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.30000000000000004,
+          "effect_end": 0.30000000000000004,
+          "requires": "G05"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "RAW_AS": 3200,
+            "RAW_FE": 4500,
+            "RAW_MY": 350
+          },
+          "cost_end": {
+            "RAW_AS": 3200,
+            "RAW_FE": 4500,
+            "RAW_MY": 350
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.4,
+          "effect_end": 0.4,
+          "requires": "G05"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "cost_start": {
+            "RAW_AS": 6000,
+            "RAW_FE": 8000,
+            "RAW_MY": 650
+          },
+          "cost_end": {
+            "RAW_AS": 6000,
+            "RAW_FE": 8000,
+            "RAW_MY": 650
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.5,
+          "effect_end": 0.5,
+          "requires": "G05"
+        }
+      ]
+    },
+    {
+      "id": "A12_RADIUS",
+      "name": "Охват якоря",
+      "max_level": 6,
+      "availability": "A12; G05",
+      "purpose": "Шесть небольших улучшений выбора зоны.",
+      "effect_description": "Предложение базы 0.25R→0.35R; одновременно не более 8 обычных/1 босса.",
+      "effect_unit": "доля R; итоговый радиус",
+      "stacking": "Новая численная база зоны требует отдельной проверки UX; длительность/interrupt не множатся на число целей.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 3,
+          "cost_start": {
+            "RAW_AS": 650,
+            "RAW_CU": 1200,
+            "RAW_AG": 140
+          },
+          "cost_end": {
+            "RAW_AS": 2200,
+            "RAW_CU": 3800,
+            "RAW_AG": 450
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.266667,
+          "effect_end": 0.3,
+          "requires": "G05"
+        },
+        {
+          "from": 4,
+          "to": 6,
+          "cost_start": {
+            "RAW_AS": 3000,
+            "RAW_CU": 5200,
+            "RAW_AG": 600
+          },
+          "cost_end": {
+            "RAW_AS": 9500,
+            "RAW_CU": 16000,
+            "RAW_AG": 1900
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.316667,
+          "effect_end": 0.35,
+          "requires": "G05; G06"
+        }
+      ]
+    },
+    {
+      "id": "A12_COOLDOWN",
+      "name": "Повтор якоря",
+      "max_level": 8,
+      "availability": "A12; G05",
+      "purpose": "Восемь небольших ступеней ожидания.",
+      "effect_description": "Личный максимум 5 с; лаборатория 2.5 с.",
+      "effect_unit": "секунды сокращения 25 с",
+      "stacking": "CD_seconds = max(0.6 × 25, 25 - ownReductionSeconds - 25 × LAB_COOLDOWN / 100). Личная ветвь хранит секунды сокращения, LAB_COOLDOWN — 0…10 процентов базы. Карта CD не изменяет; конечный запас зарядов не регенерирует.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 4,
+          "cost_start": {
+            "RAW_AS": 900,
+            "RAW_FE": 1100,
+            "RAW_AU": 180
+          },
+          "cost_end": {
+            "RAW_AS": 4000,
+            "RAW_FE": 5000,
+            "RAW_AU": 800
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.625,
+          "effect_end": 2.5,
+          "requires": "G05"
+        },
+        {
+          "from": 5,
+          "to": 8,
+          "cost_start": {
+            "RAW_AS": 5500,
+            "RAW_FE": 6500,
+            "RAW_AU": 1100
+          },
+          "cost_end": {
+            "RAW_AS": 22000,
+            "RAW_FE": 26000,
+            "RAW_AU": 4500
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3.125,
+          "effect_end": 5,
+          "requires": "G05; G06"
+        }
+      ]
+    },
+    {
+      "id": "A12_CHARGES",
+      "name": "Дополнительные применения",
+      "max_level": 2,
+      "availability": "A12; G05; соответствующее разрешение LAB_CHARGES",
+      "purpose": "Сильная функциональная покупка, только два уровня.",
+      "effect_description": "Личный уровень 1 даёт +1, уровень 2 даёт всего +2 к базовому запасу за попытку. Требуется разрешение LAB_CHARGES соответствующего уровня; исследование само не добавляет зарядов.",
+      "effect_unit": "дополнительные заряды за попытку",
+      "stacking": "LAB_CHARGES:1/2 лишь разрешает личную покупку 1/2 и не выдаёт применения. Эта личная ветвь — единственный владелец добавочных +1/+2 зарядов; cap +2 за попытку. После разрешения её слитки оплачиваются отдельно. Карты не дают заряды; смена сборки не восполняет потраченный запас.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_AS": 30,
+            "INGOT_MY": 55,
+            "INGOT_FE": 100
+          },
+          "cost_end": {
+            "INGOT_AS": 30,
+            "INGOT_MY": 55,
+            "INGOT_FE": 100
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G05 + LAB_CHARGES:1"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_AS": 100,
+            "INGOT_MY": 160,
+            "INGOT_FE": 300
+          },
+          "cost_end": {
+            "INGOT_AS": 100,
+            "INGOT_MY": 160,
+            "INGOT_FE": 300
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2,
+          "effect_end": 2,
+          "requires": "G06 + LAB_CHARGES:2"
+        }
+      ]
+    }
+  ]
+}

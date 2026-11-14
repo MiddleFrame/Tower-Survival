@@ -1,6 +1,8 @@
 using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
@@ -31,5 +33,40 @@ public sealed class RuntimeSmokeTests
             "The localization catalog is missing from runtime Resources.");
         Assert.That(catalog.text, Does.StartWith("key\ten\tru"),
             "The localization catalog lost its English/Russian header.");
+    }
+
+    [UnityTest]
+    public IEnumerator Runtime_LoadsLocalSpellDetailsAndReleasesHandle()
+    {
+        AsyncOperationHandle<GameObject> handle = Addressables.LoadAssetAsync<GameObject>("ui/spells/detail-card");
+        try
+        {
+            yield return handle;
+            Assert.That(handle.Status, Is.EqualTo(AsyncOperationStatus.Succeeded));
+            Assert.That(handle.Result.GetComponent("CombatSpellDetailView"), Is.Not.Null);
+        }
+        finally
+        {
+            if (handle.IsValid())
+                Addressables.Release(handle);
+        }
+    }
+
+    [UnityTest]
+    public IEnumerator Runtime_LoadsSelectedEnemyTierFromLocalCatalog()
+    {
+        AsyncOperationHandle<ScriptableObject> handle =
+            Addressables.LoadAssetAsync<ScriptableObject>("tiers/2/spawn-settings");
+        try
+        {
+            yield return handle;
+            Assert.That(handle.Status, Is.EqualTo(AsyncOperationStatus.Succeeded));
+            Assert.That(handle.Result.name, Is.EqualTo("Tier 2"));
+        }
+        finally
+        {
+            if (handle.IsValid())
+                Addressables.Release(handle);
+        }
     }
 }

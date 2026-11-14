@@ -1,0 +1,775 @@
+{
+  "date": "2026-10-05",
+  "sourceSha256": "e96cbf79b24eb270f3dbccb1688ca7e598dedc21c3fc358081aef32ddde247b3",
+  "sourceUnchanged": true,
+  "cellSize": [
+    128,
+    128
+  ],
+  "sourceSize": [
+    96,
+    96
+  ],
+  "padding": [
+    16,
+    16
+  ],
+  "status": "Aseprite-native-edit candidate; user motion acceptance and Unity validation pending",
+  "totalFrames": 31,
+  "exports": [
+    {
+      "clip": "idle",
+      "frameCount": 7,
+      "colorCount": 19,
+      "partialAlphaPixels": 0
+    },
+    {
+      "clip": "cast-hand-enter",
+      "frameCount": 6,
+      "colorCount": 19,
+      "partialAlphaPixels": 0
+    },
+    {
+      "clip": "cast-hand-hold",
+      "frameCount": 7,
+      "colorCount": 19,
+      "partialAlphaPixels": 0
+    },
+    {
+      "clip": "cast-hand-release",
+      "frameCount": 5,
+      "colorCount": 19,
+      "partialAlphaPixels": 0
+    },
+    {
+      "clip": "cast-hand-exit",
+      "frameCount": 6,
+      "colorCount": 19,
+      "partialAlphaPixels": 0
+    }
+  ],
+  "boundaryDifferences": {
+    "idleSource": 0,
+    "castStartSource": 0,
+    "castExitSource": 0,
+    "enterHold": 0,
+    "holdReleaseCanonical": 0,
+    "releaseExit": 0
+  },
+  "footChecks": [
+    {
+      "clip": "idle",
+      "frame": 1,
+      "footPixelsDifference": 0
+    },
+    {
+      "clip": "idle",
+      "frame": 2,
+      "footPixelsDifference": 0
+    },
+    {
+      "clip": "idle",
+      "frame": 3,
+      "footPixelsDifference": 0
+    },
+    {
+      "clip": "idle",
+      "frame": 4,
+      "footPixelsDifference": 0
+    },
+    {
+      "clip": "idle",
+      "frame": 5,
+      "footPixelsDifference": 0
+    },
+    {
+      "clip": "idle",
+      "frame": 6,
+      "footPixelsDifference": 0
+    },
+    {
+      "clip": "idle",
+      "frame": 7,
+      "footPixelsDifference": 0
+    },
+    {
+      "clip": "cast-hand-hold",
+      "frame": 1,
+      "footPixelsDifference": 0
+    },
+    {
+      "clip": "cast-hand-hold",
+      "frame": 2,
+      "footPixelsDifference": 0
+    },
+    {
+      "clip": "cast-hand-hold",
+      "frame": 3,
+      "footPixelsDifference": 0
+    },
+    {
+      "clip": "cast-hand-hold",
+      "frame": 4,
+      "footPixelsDifference": 0
+    },
+    {
+      "clip": "cast-hand-hold",
+      "frame": 5,
+      "footPixelsDifference": 0
+    },
+    {
+      "clip": "cast-hand-hold",
+      "frame": 6,
+      "footPixelsDifference": 0
+    },
+    {
+      "clip": "cast-hand-hold",
+      "frame": 7,
+      "footPixelsDifference": 0
+    }
+  ],
+  "frameChecks": [
+    {
+      "clip": "idle",
+      "frame": 1,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2925
+      ],
+      "fragments": [],
+      "bounds": [
+        39,
+        21,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "idle",
+      "frame": 2,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2901
+      ],
+      "fragments": [],
+      "bounds": [
+        39,
+        22,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "idle",
+      "frame": 3,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2897
+      ],
+      "fragments": [],
+      "bounds": [
+        40,
+        22,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "idle",
+      "frame": 4,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2900
+      ],
+      "fragments": [],
+      "bounds": [
+        40,
+        21,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "idle",
+      "frame": 5,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2925
+      ],
+      "fragments": [],
+      "bounds": [
+        39,
+        21,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "idle",
+      "frame": 6,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2908
+      ],
+      "fragments": [],
+      "bounds": [
+        37,
+        21,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "idle",
+      "frame": 7,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2888
+      ],
+      "fragments": [],
+      "bounds": [
+        37,
+        22,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "cast-hand-enter",
+      "frame": 1,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2925
+      ],
+      "fragments": [],
+      "bounds": [
+        39,
+        21,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "cast-hand-enter",
+      "frame": 2,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2841
+      ],
+      "fragments": [],
+      "bounds": [
+        36,
+        22,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "cast-hand-enter",
+      "frame": 3,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2765
+      ],
+      "fragments": [],
+      "bounds": [
+        38,
+        22,
+        97,
+        107
+      ]
+    },
+    {
+      "clip": "cast-hand-enter",
+      "frame": 4,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2715
+      ],
+      "fragments": [],
+      "bounds": [
+        39,
+        22,
+        97,
+        107
+      ]
+    },
+    {
+      "clip": "cast-hand-enter",
+      "frame": 5,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2696
+      ],
+      "fragments": [],
+      "bounds": [
+        43,
+        21,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "cast-hand-enter",
+      "frame": 6,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2636
+      ],
+      "fragments": [],
+      "bounds": [
+        42,
+        21,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "cast-hand-hold",
+      "frame": 1,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2636
+      ],
+      "fragments": [],
+      "bounds": [
+        42,
+        21,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "cast-hand-hold",
+      "frame": 2,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2627
+      ],
+      "fragments": [],
+      "bounds": [
+        43,
+        21,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "cast-hand-hold",
+      "frame": 3,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2619
+      ],
+      "fragments": [],
+      "bounds": [
+        42,
+        22,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "cast-hand-hold",
+      "frame": 4,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2623
+      ],
+      "fragments": [],
+      "bounds": [
+        44,
+        22,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "cast-hand-hold",
+      "frame": 5,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2641
+      ],
+      "fragments": [],
+      "bounds": [
+        41,
+        21,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "cast-hand-hold",
+      "frame": 6,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2639
+      ],
+      "fragments": [],
+      "bounds": [
+        41,
+        21,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "cast-hand-hold",
+      "frame": 7,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2637
+      ],
+      "fragments": [],
+      "bounds": [
+        41,
+        21,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "cast-hand-release",
+      "frame": 1,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2636
+      ],
+      "fragments": [],
+      "bounds": [
+        42,
+        21,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "cast-hand-release",
+      "frame": 2,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2630
+      ],
+      "fragments": [],
+      "bounds": [
+        42,
+        22,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "cast-hand-release",
+      "frame": 3,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2634
+      ],
+      "fragments": [],
+      "bounds": [
+        45,
+        21,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "cast-hand-release",
+      "frame": 4,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2618
+      ],
+      "fragments": [],
+      "bounds": [
+        44,
+        22,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "cast-hand-release",
+      "frame": 5,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2636
+      ],
+      "fragments": [],
+      "bounds": [
+        42,
+        21,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "cast-hand-exit",
+      "frame": 1,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2636
+      ],
+      "fragments": [],
+      "bounds": [
+        42,
+        21,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "cast-hand-exit",
+      "frame": 2,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2659
+      ],
+      "fragments": [],
+      "bounds": [
+        42,
+        22,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "cast-hand-exit",
+      "frame": 3,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2712
+      ],
+      "fragments": [],
+      "bounds": [
+        40,
+        22,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "cast-hand-exit",
+      "frame": 4,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2758
+      ],
+      "fragments": [],
+      "bounds": [
+        40,
+        22,
+        97,
+        107
+      ]
+    },
+    {
+      "clip": "cast-hand-exit",
+      "frame": 5,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2906
+      ],
+      "fragments": [],
+      "bounds": [
+        39,
+        21,
+        97,
+        108
+      ]
+    },
+    {
+      "clip": "cast-hand-exit",
+      "frame": 6,
+      "eyeDifference": 0,
+      "staffDifference": 0,
+      "exportDifference": 0,
+      "componentSizes": [
+        2925
+      ],
+      "fragments": [],
+      "bounds": [
+        39,
+        21,
+        97,
+        108
+      ]
+    }
+  ],
+  "maskRepairs": {
+    "skullRimTransferredFromStaff": [
+      {
+        "x": 62,
+        "y": 22,
+        "hex": "#071233"
+      },
+      {
+        "x": 63,
+        "y": 22,
+        "hex": "#071233"
+      },
+      {
+        "x": 62,
+        "y": 23,
+        "hex": "#060e30"
+      },
+      {
+        "x": 62,
+        "y": 24,
+        "hex": "#071233"
+      },
+      {
+        "x": 62,
+        "y": 25,
+        "hex": "#060e30"
+      }
+    ],
+    "gripAndArmTransferredFromBody": [
+      {
+        "x": 73,
+        "y": 54,
+        "hex": "#fae9b1"
+      },
+      {
+        "x": 73,
+        "y": 55,
+        "hex": "#d4b670"
+      },
+      {
+        "x": 56,
+        "y": 56,
+        "hex": "#060e30"
+      },
+      {
+        "x": 56,
+        "y": 57,
+        "hex": "#071233"
+      },
+      {
+        "x": 57,
+        "y": 58,
+        "hex": "#060e30"
+      },
+      {
+        "x": 58,
+        "y": 59,
+        "hex": "#060e30"
+      },
+      {
+        "x": 59,
+        "y": 59,
+        "hex": "#060e30"
+      }
+    ],
+    "loinOutlineTransferredFromLegs": [
+      {
+        "hex": "#060e30",
+        "x": 46,
+        "y": 76
+      },
+      {
+        "hex": "#071233",
+        "x": 46,
+        "y": 77
+      },
+      {
+        "hex": "#060e30",
+        "x": 46,
+        "y": 78
+      },
+      {
+        "hex": "#071233",
+        "x": 47,
+        "y": 78
+      },
+      {
+        "hex": "#060e30",
+        "x": 48,
+        "y": 78
+      },
+      {
+        "hex": "#071233",
+        "x": 47,
+        "y": 79
+      }
+    ]
+  },
+  "visualReview": {
+    "allFramesAt1x": true,
+    "allFramesNearestEnlargement": true,
+    "fullAnimationMotionAcceptance": false,
+    "browserPlayback": "blocked: file protocol not allowed; no workaround attempted",
+    "viewerJavascriptSyntax": "passed"
+  },
+  "notImplemented": [
+    "walk",
+    "staff strike: trajectory remains unspecified",
+    "two-handed ritual",
+    "two circles and fire charge",
+    "other directions",
+    "independent spell effects",
+    "handoff from every arbitrary hold phase",
+    "Unity import and animation events"
+  ]
+}

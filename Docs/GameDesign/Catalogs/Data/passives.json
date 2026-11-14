@@ -1,0 +1,1195 @@
+{
+  "system": "passives",
+  "branches": [
+    {
+      "id": "P01_DAMAGE",
+      "name": "Сила точного удара",
+      "max_level": 30,
+      "availability": "Старт; первая копия P01 бесплатна",
+      "purpose": "Частые небольшие покупки; каждый последующий материал требует также заранее открытого сырья.",
+      "effect_description": "Уровень L: личный множитель 1+0.015L; максимум 1.45. Для полного боя складывается с карточным и лабораторным бонусом внутри общего бюджета, а не умножается на них.",
+      "effect_unit": "множитель базового урона 0.8D",
+      "stacking": "Урон = baseDamage × min(3, ownMultiplier + cardFraction + labFraction), где baseDamage = 0.8D. Значение личной ветви — множитель с уже включённой единицей; cardFraction берётся прямо из CARD_ID как доля 0…0.72. labFraction = min(0.28, LAB_SPELL_POWER / 100 + selectedProtocolBonusPercent / 100): LAB_SPELL_POWER хранит 0…16 процентов, выбранный допустимый протокол даёт 0…12 процентов. LAB_INTERACTION хранит число открытых протоколов, не процент бонуса. Множитель урона = min(3, ownMultiplier + cardFraction + labFraction). Фактический вклад оценивается в общей боевой симуляции; прежний агрегированный коэффициент не подтверждает эти новые цены.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "RAW_CU": 10
+          },
+          "cost_end": {
+            "RAW_CU": 10
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.015,
+          "effect_end": 1.015,
+          "requires": "старт"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "RAW_CU": 12
+          },
+          "cost_end": {
+            "RAW_CU": 12
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.03,
+          "effect_end": 1.03,
+          "requires": "старт"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "RAW_CU": 13
+          },
+          "cost_end": {
+            "RAW_CU": 13
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.045,
+          "effect_end": 1.045,
+          "requires": "старт"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "RAW_CU": 15
+          },
+          "cost_end": {
+            "RAW_CU": 15
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.06,
+          "effect_end": 1.06,
+          "requires": "старт"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "cost_start": {
+            "RAW_CU": 16
+          },
+          "cost_end": {
+            "RAW_CU": 16
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.075,
+          "effect_end": 1.075,
+          "requires": "старт"
+        },
+        {
+          "from": 6,
+          "to": 6,
+          "cost_start": {
+            "RAW_FE": 18,
+            "RAW_CU": 8
+          },
+          "cost_end": {
+            "RAW_FE": 18,
+            "RAW_CU": 8
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.09,
+          "effect_end": 1.09,
+          "requires": "G01"
+        },
+        {
+          "from": 7,
+          "to": 7,
+          "cost_start": {
+            "RAW_FE": 21,
+            "RAW_CU": 9
+          },
+          "cost_end": {
+            "RAW_FE": 21,
+            "RAW_CU": 9
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.105,
+          "effect_end": 1.105,
+          "requires": "G01"
+        },
+        {
+          "from": 8,
+          "to": 8,
+          "cost_start": {
+            "RAW_FE": 23,
+            "RAW_CU": 10
+          },
+          "cost_end": {
+            "RAW_FE": 23,
+            "RAW_CU": 10
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.12,
+          "effect_end": 1.12,
+          "requires": "G01"
+        },
+        {
+          "from": 9,
+          "to": 9,
+          "cost_start": {
+            "RAW_FE": 26,
+            "RAW_CU": 12
+          },
+          "cost_end": {
+            "RAW_FE": 26,
+            "RAW_CU": 12
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.135,
+          "effect_end": 1.135,
+          "requires": "G01"
+        },
+        {
+          "from": 10,
+          "to": 10,
+          "cost_start": {
+            "RAW_FE": 29,
+            "RAW_CU": 14
+          },
+          "cost_end": {
+            "RAW_FE": 29,
+            "RAW_CU": 14
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.15,
+          "effect_end": 1.15,
+          "requires": "G01"
+        },
+        {
+          "from": 11,
+          "to": 11,
+          "cost_start": {
+            "RAW_AG": 30,
+            "RAW_FE": 14
+          },
+          "cost_end": {
+            "RAW_AG": 30,
+            "RAW_FE": 14
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.165,
+          "effect_end": 1.165,
+          "requires": "G02"
+        },
+        {
+          "from": 12,
+          "to": 12,
+          "cost_start": {
+            "RAW_AG": 34,
+            "RAW_FE": 16
+          },
+          "cost_end": {
+            "RAW_AG": 34,
+            "RAW_FE": 16
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.18,
+          "effect_end": 1.18,
+          "requires": "G02"
+        },
+        {
+          "from": 13,
+          "to": 13,
+          "cost_start": {
+            "RAW_AG": 38,
+            "RAW_FE": 18
+          },
+          "cost_end": {
+            "RAW_AG": 38,
+            "RAW_FE": 18
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.195,
+          "effect_end": 1.195,
+          "requires": "G02"
+        },
+        {
+          "from": 14,
+          "to": 14,
+          "cost_start": {
+            "RAW_AG": 43,
+            "RAW_FE": 20
+          },
+          "cost_end": {
+            "RAW_AG": 43,
+            "RAW_FE": 20
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.21,
+          "effect_end": 1.21,
+          "requires": "G02"
+        },
+        {
+          "from": 15,
+          "to": 15,
+          "cost_start": {
+            "RAW_AG": 48,
+            "RAW_FE": 23
+          },
+          "cost_end": {
+            "RAW_AG": 48,
+            "RAW_FE": 23
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.225,
+          "effect_end": 1.225,
+          "requires": "G02"
+        },
+        {
+          "from": 16,
+          "to": 16,
+          "cost_start": {
+            "RAW_AU": 45,
+            "RAW_CU": 35,
+            "RAW_AG": 8
+          },
+          "cost_end": {
+            "RAW_AU": 45,
+            "RAW_CU": 35,
+            "RAW_AG": 8
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.24,
+          "effect_end": 1.24,
+          "requires": "G03"
+        },
+        {
+          "from": 17,
+          "to": 17,
+          "cost_start": {
+            "RAW_AU": 51,
+            "RAW_CU": 40,
+            "RAW_AG": 9
+          },
+          "cost_end": {
+            "RAW_AU": 51,
+            "RAW_CU": 40,
+            "RAW_AG": 9
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.255,
+          "effect_end": 1.255,
+          "requires": "G03"
+        },
+        {
+          "from": 18,
+          "to": 18,
+          "cost_start": {
+            "RAW_AU": 57,
+            "RAW_CU": 46,
+            "RAW_AG": 10
+          },
+          "cost_end": {
+            "RAW_AU": 57,
+            "RAW_CU": 46,
+            "RAW_AG": 10
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.27,
+          "effect_end": 1.27,
+          "requires": "G03"
+        },
+        {
+          "from": 19,
+          "to": 19,
+          "cost_start": {
+            "RAW_AU": 64,
+            "RAW_CU": 52,
+            "RAW_AG": 11
+          },
+          "cost_end": {
+            "RAW_AU": 64,
+            "RAW_CU": 52,
+            "RAW_AG": 11
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.285,
+          "effect_end": 1.285,
+          "requires": "G03"
+        },
+        {
+          "from": 20,
+          "to": 20,
+          "cost_start": {
+            "RAW_AU": 71,
+            "RAW_CU": 58,
+            "RAW_AG": 12
+          },
+          "cost_end": {
+            "RAW_AU": 71,
+            "RAW_CU": 58,
+            "RAW_AG": 12
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.3,
+          "effect_end": 1.3,
+          "requires": "G03"
+        },
+        {
+          "from": 21,
+          "to": 21,
+          "cost_start": {
+            "RAW_MY": 65,
+            "RAW_FE": 35
+          },
+          "cost_end": {
+            "RAW_MY": 65,
+            "RAW_FE": 35
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.315,
+          "effect_end": 1.315,
+          "requires": "G04"
+        },
+        {
+          "from": 22,
+          "to": 22,
+          "cost_start": {
+            "RAW_MY": 73,
+            "RAW_FE": 40
+          },
+          "cost_end": {
+            "RAW_MY": 73,
+            "RAW_FE": 40
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.33,
+          "effect_end": 1.33,
+          "requires": "G04"
+        },
+        {
+          "from": 23,
+          "to": 23,
+          "cost_start": {
+            "RAW_MY": 82,
+            "RAW_FE": 45
+          },
+          "cost_end": {
+            "RAW_MY": 82,
+            "RAW_FE": 45
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.345,
+          "effect_end": 1.345,
+          "requires": "G04"
+        },
+        {
+          "from": 24,
+          "to": 24,
+          "cost_start": {
+            "RAW_MY": 92,
+            "RAW_FE": 50
+          },
+          "cost_end": {
+            "RAW_MY": 92,
+            "RAW_FE": 50
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.36,
+          "effect_end": 1.36,
+          "requires": "G04"
+        },
+        {
+          "from": 25,
+          "to": 25,
+          "cost_start": {
+            "RAW_MY": 103,
+            "RAW_FE": 57
+          },
+          "cost_end": {
+            "RAW_MY": 103,
+            "RAW_FE": 57
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.375,
+          "effect_end": 1.375,
+          "requires": "G04"
+        },
+        {
+          "from": 26,
+          "to": 26,
+          "cost_start": {
+            "RAW_AS": 90,
+            "RAW_CU": 60,
+            "RAW_FE": 35
+          },
+          "cost_end": {
+            "RAW_AS": 90,
+            "RAW_CU": 60,
+            "RAW_FE": 35
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.39,
+          "effect_end": 1.39,
+          "requires": "G05"
+        },
+        {
+          "from": 27,
+          "to": 27,
+          "cost_start": {
+            "RAW_AS": 101,
+            "RAW_CU": 66,
+            "RAW_FE": 39
+          },
+          "cost_end": {
+            "RAW_AS": 101,
+            "RAW_CU": 66,
+            "RAW_FE": 39
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.405,
+          "effect_end": 1.405,
+          "requires": "G05"
+        },
+        {
+          "from": 28,
+          "to": 28,
+          "cost_start": {
+            "RAW_AS": 113,
+            "RAW_CU": 73,
+            "RAW_FE": 43
+          },
+          "cost_end": {
+            "RAW_AS": 113,
+            "RAW_CU": 73,
+            "RAW_FE": 43
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.42,
+          "effect_end": 1.42,
+          "requires": "G05"
+        },
+        {
+          "from": 29,
+          "to": 29,
+          "cost_start": {
+            "RAW_AS": 127,
+            "RAW_CU": 82,
+            "RAW_FE": 49
+          },
+          "cost_end": {
+            "RAW_AS": 127,
+            "RAW_CU": 82,
+            "RAW_FE": 49
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.435,
+          "effect_end": 1.435,
+          "requires": "G05"
+        },
+        {
+          "from": 30,
+          "to": 30,
+          "cost_start": {
+            "RAW_AS": 142,
+            "RAW_CU": 90,
+            "RAW_FE": 55
+          },
+          "cost_end": {
+            "RAW_AS": 142,
+            "RAW_CU": 90,
+            "RAW_FE": 55
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.45,
+          "effect_end": 1.45,
+          "requires": "G05"
+        }
+      ]
+    },
+    {
+      "id": "P01_AIM",
+      "name": "Помощь прицеливания",
+      "max_level": 6,
+      "availability": "P01; старт",
+      "purpose": "Удобство касания без прироста силы по одной цели.",
+      "effect_description": "Базовая зона помощи 0.10R; до 0.16R. Не расширяет боевую дальность и не пробивает UI.",
+      "effect_unit": "доля R; итоговый радиус помощи",
+      "stacking": "Эффект указан накопительно; не умножать повторно другими ветвями.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 3,
+          "cost_start": {
+            "RAW_CU": 35
+          },
+          "cost_end": {
+            "RAW_CU": 85
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.11,
+          "effect_end": 0.13,
+          "requires": "старт"
+        },
+        {
+          "from": 4,
+          "to": 6,
+          "cost_start": {
+            "RAW_FE": 80,
+            "RAW_CU": 45
+          },
+          "cost_end": {
+            "RAW_FE": 190,
+            "RAW_CU": 95
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.14,
+          "effect_end": 0.16,
+          "requires": "G01"
+        }
+      ]
+    },
+    {
+      "id": "P01_CADENCE",
+      "name": "Ритм клика",
+      "max_level": 8,
+      "availability": "P01; G01",
+      "purpose": "Умеренная частота действий, без требования частого спама.",
+      "effect_description": "Личная ветвь сокращает 0.8 с на 0.02 с за уровень, максимум 0.16 с; итог 0.64 с. LAB_COOLDOWN действует только на активные и эту пассивку не изменяет.",
+      "effect_unit": "секунды сокращения базового CD",
+      "stacking": "Карта и лаборатория не уменьшают CD P01. Итоговая частота 1.5625 активаций/с, не зависит от числа касаний сверхлимита.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 4,
+          "cost_start": {
+            "RAW_FE": 75,
+            "RAW_CU": 30
+          },
+          "cost_end": {
+            "RAW_FE": 200,
+            "RAW_CU": 80
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.02,
+          "effect_end": 0.08,
+          "requires": "G01"
+        },
+        {
+          "from": 5,
+          "to": 8,
+          "cost_start": {
+            "RAW_AG": 180,
+            "RAW_FE": 85
+          },
+          "cost_end": {
+            "RAW_AG": 440,
+            "RAW_FE": 220
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.1,
+          "effect_end": 0.16,
+          "requires": "G02"
+        }
+      ]
+    },
+    {
+      "id": "P02_BOUNTY",
+      "name": "Точность добычи",
+      "max_level": 12,
+      "availability": "P02; первая победа; G01",
+      "purpose": "Доход ценой отказа от боевой пассивной.",
+      "effect_description": "База +20%; личная ветвь добавляет максимум +6 п.п. Карта добавляет до +2.25 п.п.",
+      "effect_unit": "процентные пункты к обычному количеству сырья/угля",
+      "stacking": "markBonusPercent = 20 + P02_BOUNTY + CARD_P02: два улучшения хранят процентные пункты. activeResonancePercent = 15 + A02_YIELD, только пока A02 действует. Для каждого материала rewardMultiplier = 1 + min(35, otherMaterialLootBonusPercent + markBonusPercent + activeResonancePercent) / 100; неактивный эффект даёт 0. В otherMaterialLootBonusPercent входят допустимые бонусы башни и лаборатории этого ресурса. Кристаллы/слитки/first-clear и призванные без наград цели исключены; один proc на естественную смерть.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 4,
+          "cost_start": {
+            "RAW_FE": 90,
+            "RAW_CU": 40
+          },
+          "cost_end": {
+            "RAW_FE": 230,
+            "RAW_CU": 120
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.5,
+          "effect_end": 2,
+          "requires": "G01"
+        },
+        {
+          "from": 5,
+          "to": 8,
+          "cost_start": {
+            "RAW_AG": 180,
+            "RAW_FE": 90
+          },
+          "cost_end": {
+            "RAW_AG": 520,
+            "RAW_FE": 260
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.5,
+          "effect_end": 4,
+          "requires": "G02"
+        },
+        {
+          "from": 9,
+          "to": 12,
+          "cost_start": {
+            "RAW_AU": 450,
+            "RAW_CU": 400,
+            "RAW_AG": 140
+          },
+          "cost_end": {
+            "RAW_AU": 1100,
+            "RAW_CU": 1200,
+            "RAW_AG": 380
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 4.5,
+          "effect_end": 6,
+          "requires": "G03"
+        }
+      ]
+    },
+    {
+      "id": "P02_DURATION",
+      "name": "Устойчивость метки",
+      "max_level": 8,
+      "availability": "P02; первая победа",
+      "purpose": "Увеличивает время на добивание, без дополнительной выдачи.",
+      "effect_description": "Личная добавка до 4 с; итоговый срок 8→12 с. P02 исключена из LAB_DURATION; карта улучшает количество добычи.",
+      "effect_unit": "секунды добавки к 8 с",
+      "stacking": "Общий предел 12 с; карточный эффект не меняет длительность, повторная метка не складывается.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 4,
+          "cost_start": {
+            "RAW_CU": 45
+          },
+          "cost_end": {
+            "RAW_CU": 180
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.5,
+          "effect_end": 2,
+          "requires": "старт"
+        },
+        {
+          "from": 5,
+          "to": 8,
+          "cost_start": {
+            "RAW_FE": 160,
+            "RAW_CU": 120
+          },
+          "cost_end": {
+            "RAW_FE": 520,
+            "RAW_CU": 360
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.5,
+          "effect_end": 4,
+          "requires": "G01"
+        }
+      ]
+    },
+    {
+      "id": "P02_TARGETS",
+      "name": "Несколько меток",
+      "max_level": 2,
+      "availability": "P02; G01",
+      "purpose": "Отдельные редкие функциональные покупки.",
+      "effect_description": "Базовые 3; первая покупка 4, вторая 5.",
+      "effect_unit": "число одновременно помеченных целей",
+      "stacking": "Больше целей не увеличивает награду одной цели; общий loot cap сохраняется.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_FE": 12
+          },
+          "cost_end": {
+            "INGOT_FE": 12
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 4,
+          "effect_end": 4,
+          "requires": "G01; BLD06"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_AG": 18,
+            "INGOT_FE": 20,
+            "INGOT_CU": 12
+          },
+          "cost_end": {
+            "INGOT_AG": 18,
+            "INGOT_FE": 20,
+            "INGOT_CU": 12
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 5,
+          "effect_end": 5,
+          "requires": "G02; BLD06"
+        }
+      ]
+    },
+    {
+      "id": "P03_DAMAGE",
+      "name": "Сила эха",
+      "max_level": 40,
+      "availability": "P03; G02/L03",
+      "purpose": "Постепенный прирост урона по группе.",
+      "effect_description": "Личный множитель до 1.60. Применяется отдельно к каждому из ограниченного количества допустимых врагов.",
+      "effect_unit": "множитель базового урона 0.35D",
+      "stacking": "Урон = baseDamage × min(3, ownMultiplier + cardFraction + labFraction), где baseDamage = 0.35D. Значение личной ветви — множитель с уже включённой единицей; cardFraction берётся прямо из CARD_ID как доля 0…0.72. labFraction = min(0.28, LAB_SPELL_POWER / 100 + selectedProtocolBonusPercent / 100): LAB_SPELL_POWER хранит 0…16 процентов, выбранный допустимый протокол даёт 0…12 процентов. LAB_INTERACTION хранит число открытых протоколов, не процент бонуса. Множитель урона = min(3, ownMultiplier + cardFraction + labFraction). Дополнительные цели не создают повторных попаданий по одному боссу.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 10,
+          "cost_start": {
+            "RAW_AG": 65,
+            "RAW_FE": 40
+          },
+          "cost_end": {
+            "RAW_AG": 210,
+            "RAW_FE": 130
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.015,
+          "effect_end": 1.15,
+          "requires": "G02"
+        },
+        {
+          "from": 11,
+          "to": 20,
+          "cost_start": {
+            "RAW_AU": 170,
+            "RAW_AG": 110
+          },
+          "cost_end": {
+            "RAW_AU": 600,
+            "RAW_AG": 350
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.165,
+          "effect_end": 1.3,
+          "requires": "G03"
+        },
+        {
+          "from": 21,
+          "to": 30,
+          "cost_start": {
+            "RAW_MY": 420,
+            "RAW_CU": 400,
+            "RAW_FE": 180
+          },
+          "cost_end": {
+            "RAW_MY": 1600,
+            "RAW_CU": 1500,
+            "RAW_FE": 650
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.315,
+          "effect_end": 1.45,
+          "requires": "G04"
+        },
+        {
+          "from": 31,
+          "to": 40,
+          "cost_start": {
+            "RAW_AS": 1100,
+            "RAW_FE": 1300,
+            "RAW_AG": 450
+          },
+          "cost_end": {
+            "RAW_AS": 4800,
+            "RAW_FE": 5800,
+            "RAW_AG": 1800
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.465,
+          "effect_end": 1.6,
+          "requires": "G05"
+        }
+      ]
+    },
+    {
+      "id": "P03_TARGETS",
+      "name": "Расхождение эха",
+      "max_level": 3,
+      "availability": "P03; G02",
+      "purpose": "Три дорогих дискретных прибавки покрытия роя.",
+      "effect_description": "Базовые 5→6→7→8.",
+      "effect_unit": "максимум отдельных целей",
+      "stacking": "Эффект указан накопительно; не умножать повторно другими ветвями.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_AG": 18
+          },
+          "cost_end": {
+            "INGOT_AG": 18
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 6,
+          "effect_end": 6,
+          "requires": "G02"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_AU": 25,
+            "INGOT_AG": 30
+          },
+          "cost_end": {
+            "INGOT_AU": 25,
+            "INGOT_AG": 30
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 7,
+          "effect_end": 7,
+          "requires": "G03"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "INGOT_MY": 30,
+            "INGOT_AU": 45,
+            "INGOT_FE": 35
+          },
+          "cost_end": {
+            "INGOT_MY": 30,
+            "INGOT_AU": 45,
+            "INGOT_FE": 35
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 8,
+          "effect_end": 8,
+          "requires": "G04"
+        }
+      ]
+    },
+    {
+      "id": "P03_RADIUS",
+      "name": "Охват импульса",
+      "max_level": 6,
+      "availability": "P03; G02",
+      "purpose": "Увеличивает реальную область, но не предел целей.",
+      "effect_description": "База 0.45R; личная ветвь до 0.573R. LAB_AREA добавляет максимум 0.027R (6% базы); совместный предел 0.60R.",
+      "effect_unit": "доля R; итоговый радиус",
+      "stacking": "Итоговый radiusInR = min(0.60, ownRadiusInR + 0.45 × LAB_AREA / 100). Личная ветвь уже хранит итоговый радиус в долях R; LAB_AREA хранит 0…6 процентов базового радиуса. Не умножать личный радиус на 1.06; карта радиус не изменяет. Число целей задаётся отдельной ветвью.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 3,
+          "cost_start": {
+            "RAW_AG": 140,
+            "RAW_CU": 180
+          },
+          "cost_end": {
+            "RAW_AG": 340,
+            "RAW_CU": 400
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.4705,
+          "effect_end": 0.5115,
+          "requires": "G02"
+        },
+        {
+          "from": 4,
+          "to": 6,
+          "cost_start": {
+            "RAW_AU": 400,
+            "RAW_CU": 500,
+            "RAW_AG": 90
+          },
+          "cost_end": {
+            "RAW_AU": 950,
+            "RAW_CU": 1300,
+            "RAW_AG": 240
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.532,
+          "effect_end": 0.573,
+          "requires": "G03"
+        }
+      ]
+    },
+    {
+      "id": "P04_DAMAGE",
+      "name": "Сила прокола",
+      "max_level": 45,
+      "availability": "P04; G04/L05",
+      "purpose": "Много обычных уровней поздней пассивной.",
+      "effect_description": "Личный множитель 1→1.75; одинаково масштабирует обычный и третий удар.",
+      "effect_unit": "множитель базовых 0.6D /1.2D",
+      "stacking": "Урон = baseDamage × min(3, ownMultiplier + cardFraction + labFraction), где baseDamage = 0.6D либо 1.2D. Значение личной ветви — множитель с уже включённой единицей; cardFraction берётся прямо из CARD_ID как доля 0…0.72. labFraction = min(0.28, LAB_SPELL_POWER / 100 + selectedProtocolBonusPercent / 100): LAB_SPELL_POWER хранит 0…16 процентов, выбранный допустимый протокол даёт 0…12 процентов. LAB_INTERACTION хранит число открытых протоколов, не процент бонуса. Множитель урона = min(3, ownMultiplier + cardFraction + labFraction). Счётчик не вызывает отдельные loot/on-hit эффекты.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 15,
+          "cost_start": {
+            "RAW_MY": 180,
+            "RAW_AU": 100,
+            "RAW_FE": 80
+          },
+          "cost_end": {
+            "RAW_MY": 1000,
+            "RAW_AU": 550,
+            "RAW_FE": 430
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.016667,
+          "effect_end": 1.25,
+          "requires": "G04"
+        },
+        {
+          "from": 16,
+          "to": 30,
+          "cost_start": {
+            "RAW_AS": 700,
+            "RAW_FE": 1100
+          },
+          "cost_end": {
+            "RAW_AS": 4500,
+            "RAW_FE": 7000
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.266667,
+          "effect_end": 1.5,
+          "requires": "G05"
+        },
+        {
+          "from": 31,
+          "to": 45,
+          "cost_start": {
+            "RAW_AS": 5000,
+            "RAW_FE": 7200,
+            "RAW_AU": 1200
+          },
+          "cost_end": {
+            "RAW_AS": 21000,
+            "RAW_FE": 30000,
+            "RAW_AU": 5000
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.516667,
+          "effect_end": 1.75,
+          "requires": "G05; G06"
+        }
+      ]
+    },
+    {
+      "id": "P04_PENETRATION",
+      "name": "Глубина прокола",
+      "max_level": 5,
+      "availability": "P04; G04",
+      "purpose": "Пять редких улучшений роли против брони.",
+      "effect_description": "База 40%; итоги 44/48/52/56/60%. Не вычитание 60 п.п. брони; броня 60% при 60% игнорирования становится 24%.",
+      "effect_unit": "процент игнорируемой брони цели",
+      "stacking": "armorAfterShredPercent = max(0, targetArmorPercent - activeA06ShredPoints), затем effectiveArmorFraction = armorAfterShredPercent / 100 × (1 - P04_PENETRATION / 100). P04_PENETRATION хранит итоговые 44…60 процентов, не добавку к базовым 40. При отсутствии покупки используется базовое 40. При броне 60%, без A06 и с P04=60% остаётся 0.24, то есть 24% поглощения. Не относится ко всем атакам башни. TW06 и LAB_PIERCING относятся только к выстрелам башни; их величина не добавляется к локальному пробиванию P04.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "RAW_MY": 220,
+            "RAW_FE": 120
+          },
+          "cost_end": {
+            "RAW_MY": 220,
+            "RAW_FE": 120
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 44,
+          "effect_end": 44,
+          "requires": "G04"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "RAW_MY": 480,
+            "RAW_FE": 270
+          },
+          "cost_end": {
+            "RAW_MY": 480,
+            "RAW_FE": 270
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 48,
+          "effect_end": 48,
+          "requires": "G04"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "RAW_MY": 950,
+            "RAW_AG": 450
+          },
+          "cost_end": {
+            "RAW_MY": 950,
+            "RAW_AG": 450
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 52,
+          "effect_end": 52,
+          "requires": "G04"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "RAW_AS": 1400,
+            "RAW_MY": 450,
+            "RAW_FE": 600
+          },
+          "cost_end": {
+            "RAW_AS": 1400,
+            "RAW_MY": 450,
+            "RAW_FE": 600
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 56,
+          "effect_end": 56,
+          "requires": "G05"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "cost_start": {
+            "RAW_AS": 3600,
+            "RAW_MY": 1100,
+            "RAW_FE": 1500
+          },
+          "cost_end": {
+            "RAW_AS": 3600,
+            "RAW_MY": 1100,
+            "RAW_FE": 1500
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 60,
+          "effect_end": 60,
+          "requires": "G05"
+        }
+      ]
+    },
+    {
+      "id": "P04_RETENTION",
+      "name": "Память руны",
+      "max_level": 2,
+      "availability": "P04; G04",
+      "purpose": "Новый способ планировать клики; не добавляет урон сам по себе.",
+      "effect_description": "При смене цели сохраняет счётчик только прежней цели 0.5/1 с; новые попадания по другой цели начинают её счётчик с нуля. Хранится максимум одна старая цель.",
+      "effect_unit": "секунды хранения счётчика прежней цели",
+      "stacking": "Не суммируется с generic LAB_DURATION; смерть/исчезновение цели удаляет запись.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_MY": 24,
+            "INGOT_AU": 40,
+            "INGOT_FE": 32
+          },
+          "cost_end": {
+            "INGOT_MY": 24,
+            "INGOT_AU": 40,
+            "INGOT_FE": 32
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.5,
+          "effect_end": 0.5,
+          "requires": "G04"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_AS": 22,
+            "INGOT_MY": 50,
+            "INGOT_FE": 70
+          },
+          "cost_end": {
+            "INGOT_AS": 22,
+            "INGOT_MY": 50,
+            "INGOT_FE": 70
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G05"
+        }
+      ]
+    }
+  ]
+}

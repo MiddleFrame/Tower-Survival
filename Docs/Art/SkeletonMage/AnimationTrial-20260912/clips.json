@@ -1,0 +1,91 @@
+[
+  {
+    "name": "idle-side",
+    "frames": 6,
+    "cols": 3,
+    "cell": 96,
+    "ms": 150,
+    "loop": true
+  },
+  {
+    "name": "idle-front",
+    "frames": 6,
+    "cols": 3,
+    "cell": 96,
+    "ms": 150,
+    "loop": true,
+    "brief": "SIX frames in THREE columns and TWO rows. Logical canvas 288x192, cells96x96; enlarged4x if necessary. Facing DIRECTLY TOWARD VIEWER, frontal down direction, symmetric skull with TWO equal complete eye sockets. Feet on y91, hood top y5; height86 pixels. Staff image RIGHT, free hand image left. Six subtle idle phases neutral, inhale1px, inhale2px, exhale1px, neutral, cape settles. Keep both feet AND staff tip planted at exactly same coordinates."
+  },
+  {
+    "name": "idle-back",
+    "frames": 6,
+    "cols": 3,
+    "cell": 96,
+    "ms": 150,
+    "loop": true,
+    "brief": "SIX frames in THREE columns and TWO rows. Logical canvas288x192, cells96x96; enlarged4x if necessary. STRICT DIRECT REAR VIEW, facing straight AWAY from viewer/up. Show BACK of purple hood and short cape, NO face, eyes, nose or mouth. Neck spine and hood seam centered vertically; both shoulders symmetrical. Staff now on image LEFT (same character hand as frontal staff on image right). Feet on y91 hoodtop y5 height86px. Six subtle idle phases: neutral, rise1px, rise2px, fall1px, neutral, settle; both feet and staff tip precisely planted."
+  },
+  {
+    "name": "walk-side",
+    "frames": 8,
+    "cols": 4,
+    "cell": 96,
+    "ms": 100,
+    "loop": true,
+    "brief": "EIGHT distinct frames in FOUR columns and TWO rows. Logical canvas384x192, cells96x96; enlarged4x if necessary. Original RIGHT-FACING THREE-QUARTER SIDE VIEW. Walk-in-place cycle with actual alternating LEG motion: 1 left foot forward/right back CONTACT; 2 left support DOWN; 3 right leg passes left PASSING; 4 right foot swings forward UP; 5 right foot forward/left back CONTACT; 6 right support DOWN; 7 left leg passes right PASSING; 8 left foot swings forward UP, seamlessly returns to1. Same torso x position allframes, bob maximum2logicalpixels. No translating character across cell. Feet ground y91, standing height86px. Carry staff in image-right hand; staff follows arm slightly, does not change shape. Cape trails a little with gait. Each frame must have a distinct gait pose."
+  },
+  {
+    "name": "cast-side",
+    "frames": 8,
+    "cols": 4,
+    "cell": 128,
+    "ms": 100,
+    "loop": false,
+    "brief": "EIGHT consecutive spell-casting frames FOUR columns TWO rows. Logical canvas512x256, cells128x128; enlarged3x ifnecessary. RIGHT-FACING THREE-QUARTER original view. Fixed small skeleton height86px, groundliney107, bodycenterx64. Body occupies only middle two thirds ofeachcell, with top andside margins16px minimum. \nSpell action: staff remains FULL LENGTH and nearly VERTICAL throughout, like a solid rigid object; casting through a raised crystal and free-hand gesture. Never point staff horizontally or foreshorten it. This avoids changing weapon length. Frame1 neutral uprightstaff;2 freehand draws to ribs, crouch2px;3 lift staff STRAIGHT UP6px, freehand rises;4 liftstaff10px, freehand opens toward target;5 release gesture freehand extended, staff raised8px;6 hold release;7 lowerstaff4px, retractfreehand;8 returnneutral. Feet planted at same coordinates. Keep crystal attached and exactlysame size, fullstaff visible down tobottom in everypose. Staff barely tilts maximum10degrees. NO magical light/glow/projectile baked into character. No frame crosses its own squarecell. Preserve skull and identity; do NOT inflate character tofill128cell."
+  },
+  {
+    "name": "cast-front",
+    "frames": 8,
+    "cols": 4,
+    "cell": 128,
+    "ms": 100,
+    "loop": false,
+    "brief": "EIGHT consecutive spell-casting frames FOUR columns TWO rows. Logical canvas512x256, cells128x128; enlarged3x ifnecessary. STRICT FRONT VIEW facing the viewer, two full symmetric eye sockets, staff on image RIGHT. Fixed small skeleton height86px, groundliney107, bodycenterx64. Body occupies only middle two thirds ofeachcell, with top andside margins16px minimum. \nSpell action: staff remains FULL LENGTH and nearly VERTICAL throughout, like a solid rigid object; casting through a raised crystal and free-hand gesture. Never point staff horizontally or foreshorten it. This avoids changing weapon length. Frame1 neutral uprightstaff;2 freehand draws to ribs, crouch2px;3 lift staff STRAIGHT UP6px, freehand rises;4 liftstaff10px, freehand opens toward target;5 release gesture freehand extended, staff raised8px;6 hold release;7 lowerstaff4px, retractfreehand;8 returnneutral. Feet planted at same coordinates. Keep crystal attached and exactlysame size, fullstaff visible down tobottom in everypose. Staff barely tilts maximum10degrees. NO magical light/glow/projectile baked into character. No frame crosses its own squarecell. Preserve skull and identity; do NOT inflate character tofill128cell."
+  },
+  {
+    "name": "cast-back",
+    "frames": 8,
+    "cols": 4,
+    "cell": 128,
+    "ms": 100,
+    "loop": false,
+    "brief": "EIGHT consecutive spell-casting frames FOUR columns TWO rows. Logical canvas512x256, cells128x128; enlarged3x ifnecessary. STRICT DIRECT REAR VIEW facing straight AWAY/up, NO eyes or face, staff on image LEFT. Fixed small skeleton height86px, groundliney107, bodycenterx64. Body occupies only middle two thirds ofeachcell, with top andside margins16px minimum. \nSpell action: staff remains FULL LENGTH and nearly VERTICAL throughout, like a solid rigid object; casting through a raised crystal and free-hand gesture. Never point staff horizontally or foreshorten it. This avoids changing weapon length. Frame1 neutral uprightstaff;2 freehand draws to ribs, crouch2px;3 lift staff STRAIGHT UP6px, freehand rises;4 liftstaff10px, freehand opens toward target;5 release gesture freehand extended, staff raised8px;6 hold release;7 lowerstaff4px, retractfreehand;8 returnneutral. Feet planted at same coordinates. Keep crystal attached and exactlysame size, fullstaff visible down tobottom in everypose. Staff barely tilts maximum10degrees. NO magical light/glow/projectile baked into character. No frame crosses its own squarecell. Preserve skull and identity; do NOT inflate character tofill128cell."
+  },
+  {
+    "name": "death-side",
+    "frames": 7,
+    "cols": 4,
+    "cell": 192,
+    "ms": 70,
+    "loop": false,
+    "brief": "SEVEN animation frames in FOUR columns by TWO rows, cell8 EMPTY. Logicalcanvas768x384 cells192x192, enlarged2x ifnecessary. Original RIGHT-FACING THREE-QUARTER view, skeleton body86logicalpixels tall, feet at y139, bodycenterx96; wide emptyspace for debris. Death is abrupt SKELETON DISASSEMBLY under impact, NOT voluntarily kneeling or lying down. Frame1 intactidle;2 skull tilts, joints suddenly separate, cape loosens;3 skull ribs arms legs and staff disconnect and drop, dramatic horizontal spread, NO intact torso;4 bones collide with ground making low pile, skull and staff bounce a little;5 almostsettled pile;6 tiny finalsettle;7 completely still pile. Cloth collapses amongst bones. Same identifiable skull/hood/staff/crystal and same palette. Nothing vanishes inexplicably; no blood, no smoke, no glow, no exploded magic. Keep ground y139 constant, debris cannot sink belowground. Final pile <=25logicalpixelheight. Scale skeleton to86px, NOT giant filling192cell."
+  },
+  {
+    "name": "magic-projectile",
+    "frames": 6,
+    "cols": 3,
+    "cell": 32,
+    "ms": 80,
+    "loop": true,
+    "brief": "Separate EFFECT ONLY, NO character, skull, bones, staff or clothing. SIX frames THREE columns TWO rows. Logicalcanvas96x64 cells32x32, enlarged12x if necessary. Small teal magical bolt traveling RIGHT but animated IN PLACE at center of eachcell. Head nearx22y16, short angular wake tox5, totalwidth24height12. Bright pale turquoise small core, teal midtone and darkteal jagged edge; NO purple. Frame phases flowingtail: compressed, stretched, forked, compressed, stretched, settle. Same position/direction/scale everyframe, no movement across sheet. Hard-edged pixel-art light effect, no soft gradients or antialias. Genuinely transparent background ideally; otherwise pure magenta."
+  },
+  {
+    "name": "magic-cast",
+    "frames": 6,
+    "cols": 3,
+    "cell": 32,
+    "ms": 70,
+    "loop": false,
+    "brief": "Separate CASTING GLOW EFFECT ONLY, NO character or staff drawn. SIX frames THREE columns TWO rows, logicalcanvas96x64 cells32x32, enlarged12x ifnecessary. Effect centeredx16y16 allframes. Pixel-art turquoise magic ignition around a staff-crystal attachment point:1 tiny dim4px diamond;2 growing8px angular glow;3 bright12px star;4 brief20px jagged releaseburst;5 fading12px broken rays;6 few tiny6px teal flecks that disappear after clip. One teal/pale-cyan/darkteal palette matching referencecrystal. Hard pixel edges, no smooth blur, no circles made of tiny smooth pixels. Genuine alpha ideally, otherwise puremagenta. No purple, no checkerboard. Effect only: let game position it onstaff."
+  }
+]

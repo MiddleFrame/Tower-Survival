@@ -56,17 +56,18 @@ public class GameplayViewPools : MonoBehaviour
         pool.Inactive.Push(instance);
     }
 
-    public void SpawnTimed(GameObject prefab, Vector3 position, Quaternion rotation, float lifetime)
+    public GameObject SpawnTimed(GameObject prefab, Vector3 position, Quaternion rotation, float lifetime)
     {
         GameObject instance = Spawn(prefab, position, rotation);
         if (instance == null)
-            return;
+            return null;
 
         int version = _instanceVersions.TryGetValue(instance, out int currentVersion)
             ? currentVersion
             : 0;
 
         StartCoroutine(ReleaseAfterDelay(instance, version, lifetime));
+        return instance;
     }
 
     private IEnumerator ReleaseAfterDelay(GameObject instance, int version, float lifetime)

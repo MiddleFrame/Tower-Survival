@@ -1,3 +1,4 @@
+using System.Collections;
 using Leopotam.EcsLite;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,13 +31,46 @@ public class World : MonoBehaviour
     private EcsWorld _world;
     public IEcsSystems System => _systems;
     private IEcsSystems _systems;
+    private AssetLease<EnemySpawnSettings> _localTierLease;
+    public bool InitializationFailed { get; private set; }
 
-    void Awake()
+    private IEnumerator Start()
     {
-
-        _world = new EcsWorld();
-
         SharedData sharedData = InitData.sharedData;
+        if (sharedData == null || sharedData.Settings == null || sharedData.Settings.Tiers == null ||
+            DataController.tier < 0 || DataController.tier >= sharedData.Settings.Tiers.Length)
+        {
+            InitializationFailed = true;
+            Debug.LogError("Game tier is not configured.", this);
+            yield break;
+        }
+
+        EnemySpawnSettings selectedTier = SceneTransitionController.Instance != null &&
+                                          SceneTransitionController.Instance.LoadedTierIndex == DataController.tier
+            ? SceneTransitionController.Instance.LoadedTierSettings
+            : null;
+        if (selectedTier == null)
+        {
+            var reference = sharedData.Settings.Tiers[DataController.tier].SpawnSettings;
+            if (reference == null || !reference.RuntimeKeyIsValid())
+            {
+                InitializationFailed = true;
+                Debug.LogError("Game tier Addressables reference is missing.", this);
+                yield break;
+            }
+            _localTierLease = new AddressableAssetsLoader().Acquire<EnemySpawnSettings>(reference);
+            yield return _localTierLease.Wait();
+            selectedTier = _localTierLease.Asset;
+        }
+        if (selectedTier == null)
+        {
+            InitializationFailed = true;
+            Debug.LogError($"Game tier could not load: {_localTierLease?.Error}", this);
+            yield break;
+        }
+
+        sharedData.SetSelectedEnemyTier(selectedTier);
+        _world = new EcsWorld();
         if (_viewPools == null)
         {
             var poolsGo = new GameObject("GameplayViewPools");
@@ -88,5 +122,6 @@ public class World : MonoBehaviour
             _world.Destroy ();
             _world = null;
         }
+        _localTierLease?.Dispose();
     }
 }

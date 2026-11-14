@@ -1,0 +1,22 @@
+=== walk fixtures/sdpose_chosen_walk.json: coverage 93 %, profile ratio 0,11, roughness 28, swing 85 deg, seam 3,7 deg, facing left, 5 limb swaps -> quality 0,54
+  procedural : foot step max 7,2 px (frame 2), hip step max 3,0 px, hip height range 7,0 px, leg extension min 80 % (frame 6), stance slide max 0,0 px, spike max 6 deg (LegNearLower, frame 0), joint step max 24 deg, weapon gap 0,00 px, weapon below ground 0,0 px, visible upper-body motion 19,3 px
+  AI source  : foot step max 8,3 px (frame 3), hip step max 4,1 px, hip height range 1,0 px, leg extension min 85 % (frame 5), stance slide max 0,0 px, spike max 43 deg (ArmFarUpper, frame 3), joint step max 46 deg, weapon gap 0,00 px, weapon below ground 0,0 px, visible upper-body motion 17,8 px
+  AI final   : foot step max 3,7 px (frame 11), hip step max 2,0 px, hip height range 8,0 px, leg extension min 75 % (frame 4), stance slide max 0,0 px, spike max 16 deg (ArmNearUpper, frame 3), joint step max 29 deg, weapon gap 0,00 px, weapon below ground 0,0 px, visible upper-body motion 17,3 px
+  contribution: source 29,5 deg -> final 18,7 deg (Significant); movement 9,5, stance 16,3; range 23 vs 32
+  OK (corrected): 50/204 values repaired
+    repaired: 14 impossible joint angle(s) (far outside the walk range) discarded and interpolated
+    repaired: 35 joint angle(s) clamped to the walk range
+    repaired: 1 frame(s): root/hop restricted (no vertical movement: feet stay on the ground line)
+    validation report (walk, 12 frames):
+      max foot displacement: 3.7 px/frame (AI source 8.3, limit 13.5)
+      max root (hip) displacement: 2.0 px/frame (AI source 4.1); root-x step limit 1.2
+      foot slide while planted: 0.0 px/frame (AI source 0.0); leg extension min 75 % (source 85 %); largest single-frame spike 16 deg (source 43); weapon gap 0.00 px; visible upper-body motion 17.3 px (AI source 17.8)
+      largest change of a joint by validation/constraints: 77.1 deg (LegFarLower, frame 1)
+      frames corrected: 12 of 12 (100%), frames rejected: 0
+      - impossible angle (discarded): 14 value(s) in 0 frame(s)
+      - joint range clamp: 35 value(s) in 0 frame(s)
+      - root/hop range: 1 value(s) in 1 frame(s)
+      - single-frame spikes: 7 value(s) in 6 frame(s)
+      - gait balance (lopsided stride): 36 value(s) in 12 frame(s)
+      - leg extension limit: 3 value(s) in 3 frame(s)
+      - root movement limit: 12 value(s) in 12 frame(s)

@@ -1,0 +1,2580 @@
+{
+  "system": "laboratory",
+  "branches": [
+    {
+      "id": "LAB_DAMAGE",
+      "name": "Точная навеска пороха",
+      "max_level": 100,
+      "availability": "G01; BLD04",
+      "purpose": "Частая дешёвая числовая покупка с видимым малым результатом.",
+      "effect_description": "+0,1 процентного пункта урона башни за уровень; максимум +10%. Доступны первые 20 уровней до G02.",
+      "effect_unit": "проценты урона башни",
+      "stacking": "Складывается с указанной общей осью; не перемножать с каждым уровнем. Значение строки — весь накопленный бонус этой ветви.",
+      "segments": [
+        {
+          "to": 20,
+          "cost_start": {
+            "RAW_CU": 20
+          },
+          "cost_end": {
+            "RAW_CU": 80
+          },
+          "minutes_start": 1,
+          "minutes_end": 2,
+          "effect_start": 0.1,
+          "effect_end": 2,
+          "requires": "G01; BLD04",
+          "from": 1
+        },
+        {
+          "to": 50,
+          "cost_start": {
+            "RAW_FE": 45,
+            "RAW_CU": 25
+          },
+          "cost_end": {
+            "RAW_FE": 140,
+            "RAW_CU": 70
+          },
+          "minutes_start": 3,
+          "minutes_end": 5,
+          "effect_start": 2.1,
+          "effect_end": 5,
+          "requires": "G02",
+          "from": 21
+        },
+        {
+          "to": 80,
+          "cost_start": {
+            "RAW_AG": 80,
+            "RAW_CU": 160
+          },
+          "cost_end": {
+            "RAW_AG": 240,
+            "RAW_CU": 480
+          },
+          "minutes_start": 8,
+          "minutes_end": 12,
+          "effect_start": 5.1,
+          "effect_end": 8,
+          "requires": "G04",
+          "from": 51
+        },
+        {
+          "to": 100,
+          "cost_start": {
+            "RAW_AU": 180,
+            "RAW_FE": 350,
+            "RAW_CU": 220
+          },
+          "cost_end": {
+            "RAW_AU": 430,
+            "RAW_FE": 900,
+            "RAW_CU": 600
+          },
+          "minutes_start": 15,
+          "minutes_end": 20,
+          "effect_start": 8.1,
+          "effect_end": 10,
+          "requires": "G05",
+          "from": 81
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_CRIT",
+      "name": "Критическая геометрия",
+      "max_level": 40,
+      "availability": "G02; BLD04",
+      "purpose": "Небольшая прибавка среднего урона и поддержка критической сборки.",
+      "effect_description": "Добавляет до 4 п.п. вероятности крита; не меняет критический множитель.",
+      "effect_unit": "процентные пункты шанса крита",
+      "stacking": "Складывается с указанной общей осью; не перемножать с каждым уровнем. Значение строки — весь накопленный бонус этой ветви. Общий шанс крита с башней и эффектами ≤60%.",
+      "segments": [
+        {
+          "to": 10,
+          "cost_start": {
+            "RAW_FE": 60,
+            "RAW_CU": 40
+          },
+          "cost_end": {
+            "RAW_FE": 180,
+            "RAW_CU": 120
+          },
+          "minutes_start": 10,
+          "minutes_end": 30,
+          "effect_start": 0.1,
+          "effect_end": 1,
+          "requires": "G02",
+          "from": 1
+        },
+        {
+          "to": 25,
+          "cost_start": {
+            "RAW_AG": 220,
+            "RAW_FE": 250
+          },
+          "cost_end": {
+            "RAW_AG": 720,
+            "RAW_FE": 900
+          },
+          "minutes_start": 60,
+          "minutes_end": 240,
+          "effect_start": 1.1,
+          "effect_end": 2.5,
+          "requires": "G03",
+          "from": 11
+        },
+        {
+          "to": 40,
+          "cost_start": {
+            "RAW_MY": 450,
+            "RAW_AG": 1400,
+            "RAW_CU": 2200
+          },
+          "cost_end": {
+            "RAW_MY": 2000,
+            "RAW_AG": 5500,
+            "RAW_CU": 9000
+          },
+          "minutes_start": 360,
+          "minutes_end": 1440,
+          "effect_start": 2.6,
+          "effect_end": 4,
+          "requires": "G05",
+          "from": 26
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "R_GATE02",
+      "name": "Чертёж бронебойного снаряда",
+      "max_level": 1,
+      "availability": "G01; BLD04; до G02",
+      "purpose": "Открывает ось пробивания для дальнейшей постепенной подготовки к B02.",
+      "effect_description": "Открывает покупку TW06 и LAB_PIERCING. Само исследование даёт 0 п.п. пробивания и не меняет DPS; после открытия обе ветви имеют уровень 0.",
+      "effect_unit": "непосредственный числовой бонус: 0; право покупки ветвей открыто",
+      "stacking": "Пробивание появляется только от оплаченных числовых уровней TW06 и LAB_PIERCING. Для выстрела: поглощение=max(0, базовое поглощение−TW06−LAB_PIERCING/100). Нельзя дополнительно применять множитель 1,65; M06 и неуязвимость не снимаются.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_CU": 4,
+            "INGOT_FE": 3,
+            "RAW_CU": 40,
+            "RAW_FE": 60
+          },
+          "cost_end": {
+            "INGOT_CU": 4,
+            "INGOT_FE": 3,
+            "RAW_CU": 40,
+            "RAW_FE": 60
+          },
+          "minutes_start": 180,
+          "minutes_end": 180,
+          "effect_start": 0,
+          "effect_end": 0,
+          "requires": "G01; BLD04"
+        }
+      ],
+      "mode": "unlock",
+      "unlock_target": "TW06; LAB_PIERCING"
+    },
+    {
+      "id": "LAB_PIERCING",
+      "name": "Углублённая металлургия снаряда",
+      "max_level": 30,
+      "availability": "G01; BLD04; R_GATE02; первые 10 уровней до G02",
+      "purpose": "Плавное исследование общей оси пробивания параллельно с личными уровнями TW06.",
+      "effect_description": "Уровни 1–10 дают по +0,6 п.п. пробивания (6 п.п. суммарно); уровни 11–30 — по +0,4 п.п., максимум 14 п.п. Само R_GATE02 не даёт ни одного пункта.",
+      "effect_unit": "процентные пункты игнорируемого поглощения",
+      "stacking": "Складывается с TW06 в одной оси игнорируемого структурного поглощения выстрела. Итоговое поглощение не ниже 0. Пробивание пассивки P04 применяется к её собственному попаданию, не добавляется к выстрелу башни. M06, неуязвимость и недосягаемость не меняются.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 10,
+          "cost_start": {
+            "RAW_CU": 12,
+            "RAW_FE": 20
+          },
+          "cost_end": {
+            "RAW_CU": 40,
+            "RAW_FE": 80
+          },
+          "minutes_start": 3,
+          "minutes_end": 12,
+          "effect_start": 0.6,
+          "effect_end": 6,
+          "requires": "G01; BLD04; R_GATE02"
+        },
+        {
+          "from": 11,
+          "to": 20,
+          "cost_start": {
+            "RAW_AG": 120,
+            "RAW_FE": 180
+          },
+          "cost_end": {
+            "RAW_AG": 700,
+            "RAW_FE": 900
+          },
+          "minutes_start": 60,
+          "minutes_end": 720,
+          "effect_start": 6.4,
+          "effect_end": 10,
+          "requires": "G02; R_GATE02"
+        },
+        {
+          "from": 21,
+          "to": 30,
+          "cost_start": {
+            "RAW_AS": 500,
+            "RAW_AG": 1100,
+            "RAW_CU": 1600
+          },
+          "cost_end": {
+            "RAW_AS": 4200,
+            "RAW_AG": 8000,
+            "RAW_CU": 16000
+          },
+          "minutes_start": 2880,
+          "minutes_end": 10080,
+          "effect_start": 10.4,
+          "effect_end": 14,
+          "requires": "G05; R_GATE02"
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_RANGE",
+      "name": "Геометрия огневого круга",
+      "max_level": 5,
+      "availability": "G02; BLD04",
+      "purpose": "Редкие пространственные изменения, влияющие на позиционные задачи.",
+      "effect_description": "Пять ступеней дают суммарно +2/+4/+6/+8/+10% радиуса башни. Не достаёт врагов, явно отмеченных фазой недосягаемости.",
+      "effect_unit": "проценты радиуса башни",
+      "stacking": "Суммируется с бонусом радиуса TW03; общий радиус всех источников ≤×1,5 базового. Личные +15% и лабораторные +10% дают ×1,25 и оставляют запас для временных эффектов. Не добавляет новую цель и не отменяет недосягаемую фазу босса.",
+      "segments": [
+        {
+          "to": 1,
+          "cost_start": {
+            "RAW_FE": 80,
+            "RAW_CU": 160
+          },
+          "cost_end": {
+            "RAW_FE": 80,
+            "RAW_CU": 160
+          },
+          "minutes_start": 120,
+          "minutes_end": 120,
+          "effect_start": 2,
+          "effect_end": 2,
+          "requires": "G02",
+          "from": 1
+        },
+        {
+          "to": 2,
+          "cost_start": {
+            "RAW_AG": 180,
+            "RAW_FE": 300
+          },
+          "cost_end": {
+            "RAW_AG": 180,
+            "RAW_FE": 300
+          },
+          "minutes_start": 720,
+          "minutes_end": 720,
+          "effect_start": 4,
+          "effect_end": 4,
+          "requires": "G03",
+          "from": 2
+        },
+        {
+          "to": 3,
+          "cost_start": {
+            "RAW_AU": 400,
+            "RAW_CU": 1200
+          },
+          "cost_end": {
+            "RAW_AU": 400,
+            "RAW_CU": 1200
+          },
+          "minutes_start": 2880,
+          "minutes_end": 2880,
+          "effect_start": 6,
+          "effect_end": 6,
+          "requires": "G04",
+          "from": 3
+        },
+        {
+          "to": 4,
+          "cost_start": {
+            "RAW_MY": 900,
+            "RAW_AG": 1800,
+            "RAW_FE": 2400
+          },
+          "cost_end": {
+            "RAW_MY": 900,
+            "RAW_AG": 1800,
+            "RAW_FE": 2400
+          },
+          "minutes_start": 10080,
+          "minutes_end": 10080,
+          "effect_start": 8,
+          "effect_end": 8,
+          "requires": "G05",
+          "from": 4
+        },
+        {
+          "to": 5,
+          "cost_start": {
+            "RAW_AS": 1600,
+            "RAW_AG": 3200,
+            "RAW_CU": 5000
+          },
+          "cost_end": {
+            "RAW_AS": 1600,
+            "RAW_AG": 3200,
+            "RAW_CU": 5000
+          },
+          "minutes_start": 43200,
+          "minutes_end": 43200,
+          "effect_start": 10,
+          "effect_end": 10,
+          "requires": "G06",
+          "from": 5
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_SECONDARY",
+      "name": "Рикошетная камора",
+      "max_level": 36,
+      "availability": "G03; BLD06_L2",
+      "purpose": "Открывает рикошетную ось, затем постепенно повышает долю урона её единственной вторичной цели.",
+      "effect_description": "Покупка 1 за слитки только открывает настройку рикошета с долей 0%. Покупки 2–36 добавляют по 1 п.п. доли первичного урона единственной вторичной цели; максимум 35%. Открытие само не добавляет урон.",
+      "effect_unit": "проценты урона единственной вторичной цели; на покупке 1 — 0",
+      "stacking": "Рикошет активен только с выбранной рикошетной настройкой и положительной купленной долей. Рикошет не создаёт следующий рикошет; не действует одновременно с LAB_RESONANT. Первая покупка есть открытие оси, последующие 35 — её числовые уровни.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_AG": 12,
+            "INGOT_FE": 20,
+            "INGOT_CU": 30
+          },
+          "cost_end": {
+            "INGOT_AG": 12,
+            "INGOT_FE": 20,
+            "INGOT_CU": 30
+          },
+          "minutes_start": 1440,
+          "minutes_end": 1440,
+          "effect_start": 0,
+          "effect_end": 0,
+          "requires": "G03; BLD06_L2"
+        },
+        {
+          "from": 2,
+          "to": 11,
+          "cost_start": {
+            "RAW_AG": 120,
+            "RAW_FE": 200
+          },
+          "cost_end": {
+            "RAW_AG": 480,
+            "RAW_FE": 800
+          },
+          "minutes_start": 30,
+          "minutes_end": 180,
+          "effect_start": 1,
+          "effect_end": 10,
+          "requires": "G03; LAB_SECONDARY 1"
+        },
+        {
+          "from": 12,
+          "to": 21,
+          "cost_start": {
+            "RAW_AU": 500,
+            "RAW_CU": 1800
+          },
+          "cost_end": {
+            "RAW_AU": 1500,
+            "RAW_CU": 5400
+          },
+          "minutes_start": 360,
+          "minutes_end": 1440,
+          "effect_start": 11,
+          "effect_end": 20,
+          "requires": "G04; LAB_SECONDARY 1"
+        },
+        {
+          "from": 22,
+          "to": 31,
+          "cost_start": {
+            "RAW_MY": 1600,
+            "RAW_AG": 3200,
+            "RAW_FE": 4800
+          },
+          "cost_end": {
+            "RAW_MY": 4800,
+            "RAW_AG": 9600,
+            "RAW_FE": 14000
+          },
+          "minutes_start": 4320,
+          "minutes_end": 10080,
+          "effect_start": 21,
+          "effect_end": 30,
+          "requires": "G05; LAB_SECONDARY 1"
+        },
+        {
+          "from": 32,
+          "to": 36,
+          "cost_start": {
+            "RAW_AS": 5000,
+            "RAW_AU": 7000,
+            "RAW_CU": 20000
+          },
+          "cost_end": {
+            "RAW_AS": 16000,
+            "RAW_AU": 22000,
+            "RAW_CU": 65000
+          },
+          "minutes_start": 20160,
+          "minutes_end": 43200,
+          "effect_start": 31,
+          "effect_end": 35,
+          "requires": "G06; LAB_SECONDARY 1"
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_CLASS",
+      "name": "Сравнительная анатомия",
+      "max_level": 40,
+      "availability": "G02; BLD04",
+      "purpose": "Усиление выбранной контрсборки вместо одновременного бонуса ко всем врагам.",
+      "effect_description": "До +16% урона одному выбранному классу: быстрый, сильный, живучий или стреляющий; класс выбирается бесплатно вне боя.",
+      "effect_unit": "проценты урона выбранному классу",
+      "stacking": "Складывается с указанной общей осью; не перемножать с каждым уровнем. Значение строки — весь накопленный бонус этой ветви. Выбор класса один; раса не считается вторым множителем.",
+      "segments": [
+        {
+          "to": 10,
+          "cost_start": {
+            "RAW_FE": 80,
+            "RAW_CU": 50
+          },
+          "cost_end": {
+            "RAW_FE": 260,
+            "RAW_CU": 180
+          },
+          "minutes_start": 15,
+          "minutes_end": 60,
+          "effect_start": 0.4,
+          "effect_end": 4,
+          "requires": "G02",
+          "from": 1
+        },
+        {
+          "to": 25,
+          "cost_start": {
+            "RAW_AG": 260,
+            "RAW_FE": 450
+          },
+          "cost_end": {
+            "RAW_AG": 1100,
+            "RAW_FE": 1600
+          },
+          "minutes_start": 120,
+          "minutes_end": 720,
+          "effect_start": 4.4,
+          "effect_end": 10,
+          "requires": "G04",
+          "from": 11
+        },
+        {
+          "to": 40,
+          "cost_start": {
+            "RAW_MY": 1200,
+            "RAW_AG": 2500,
+            "RAW_CU": 4200
+          },
+          "cost_end": {
+            "RAW_MY": 4100,
+            "RAW_AG": 8800,
+            "RAW_CU": 16000
+          },
+          "minutes_start": 1440,
+          "minutes_end": 4320,
+          "effect_start": 10.4,
+          "effect_end": 16,
+          "requires": "G06",
+          "from": 26
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_STABILITY",
+      "name": "Стабильность залпа",
+      "max_level": 20,
+      "availability": "G03; BLD04",
+      "purpose": "Снижение разброса боевого результата без нового среднего множителя силы.",
+      "effect_description": "Сужает случайный разброс выстрела на 20% относительно исходного разброса: для базовых ±10% итог ±8%. Средний урон не меняется.",
+      "effect_unit": "проценты сокращения амплитуды разброса",
+      "stacking": "Если в реализации урон детерминирован, ветка отключается и не выставляется на продажу.",
+      "segments": [
+        {
+          "to": 10,
+          "cost_start": {
+            "RAW_AG": 65,
+            "RAW_CU": 140
+          },
+          "cost_end": {
+            "RAW_AG": 320,
+            "RAW_CU": 700
+          },
+          "minutes_start": 20,
+          "minutes_end": 180,
+          "effect_start": 1,
+          "effect_end": 10,
+          "requires": "G03",
+          "from": 1
+        },
+        {
+          "to": 20,
+          "cost_start": {
+            "RAW_AU": 420,
+            "RAW_FE": 700,
+            "RAW_CU": 500
+          },
+          "cost_end": {
+            "RAW_AU": 1200,
+            "RAW_FE": 2200,
+            "RAW_CU": 1500
+          },
+          "minutes_start": 360,
+          "minutes_end": 1440,
+          "effect_start": 11,
+          "effect_end": 20,
+          "requires": "G05",
+          "from": 11
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_HEALTH",
+      "name": "Кладка с перевязкой",
+      "max_level": 100,
+      "availability": "G01; BLD04",
+      "purpose": "Вторая дешёвая ранняя ось, позволяющая выбирать между атакой и живучестью.",
+      "effect_description": "По +0,15 п.п. максимального здоровья за уровень; максимум +15%.",
+      "effect_unit": "проценты максимального здоровья",
+      "stacking": "Складывается с указанной общей осью; не перемножать с каждым уровнем. Значение строки — весь накопленный бонус этой ветви.",
+      "segments": [
+        {
+          "to": 20,
+          "cost_start": {
+            "RAW_CU": 18
+          },
+          "cost_end": {
+            "RAW_CU": 70
+          },
+          "minutes_start": 1,
+          "minutes_end": 3,
+          "effect_start": 0.15,
+          "effect_end": 3,
+          "requires": "G01; BLD04",
+          "from": 1
+        },
+        {
+          "to": 50,
+          "cost_start": {
+            "RAW_FE": 42,
+            "RAW_CU": 22
+          },
+          "cost_end": {
+            "RAW_FE": 125,
+            "RAW_CU": 64
+          },
+          "minutes_start": 4,
+          "minutes_end": 7,
+          "effect_start": 3.15,
+          "effect_end": 7.5,
+          "requires": "G02",
+          "from": 21
+        },
+        {
+          "to": 80,
+          "cost_start": {
+            "RAW_AG": 72,
+            "RAW_FE": 140
+          },
+          "cost_end": {
+            "RAW_AG": 210,
+            "RAW_FE": 430
+          },
+          "minutes_start": 10,
+          "minutes_end": 18,
+          "effect_start": 7.65,
+          "effect_end": 12,
+          "requires": "G04",
+          "from": 51
+        },
+        {
+          "to": 100,
+          "cost_start": {
+            "RAW_AU": 150,
+            "RAW_CU": 380,
+            "RAW_FE": 260
+          },
+          "cost_end": {
+            "RAW_AU": 380,
+            "RAW_CU": 1000,
+            "RAW_FE": 650
+          },
+          "minutes_start": 20,
+          "minutes_end": 30,
+          "effect_start": 12.15,
+          "effect_end": 15,
+          "requires": "G05",
+          "from": 81
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_REGEN",
+      "name": "Капиллярный ремонт",
+      "max_level": 60,
+      "availability": "G02; BLD04",
+      "purpose": "Поддержка длинного фарма; не лечит мгновенную гибель от рывка.",
+      "effect_description": "До +12% к имеющемуся базовому регену. Если реген башни ещё не открыт, исследование заранее показывает эту зависимость.",
+      "effect_unit": "проценты базовой скорости регенерации",
+      "stacking": "Складывается с указанной общей осью; не перемножать с каждым уровнем. Значение строки — весь накопленный бонус этой ветви. Не создаёт реген с нулевой базой.",
+      "segments": [
+        {
+          "to": 20,
+          "cost_start": {
+            "RAW_FE": 32,
+            "RAW_CU": 30
+          },
+          "cost_end": {
+            "RAW_FE": 120,
+            "RAW_CU": 110
+          },
+          "minutes_start": 5,
+          "minutes_end": 30,
+          "effect_start": 0.2,
+          "effect_end": 4,
+          "requires": "G02; открыта ветка регенерации башни",
+          "from": 1
+        },
+        {
+          "to": 40,
+          "cost_start": {
+            "RAW_AG": 220,
+            "RAW_CU": 700
+          },
+          "cost_end": {
+            "RAW_AG": 700,
+            "RAW_CU": 2100
+          },
+          "minutes_start": 60,
+          "minutes_end": 240,
+          "effect_start": 4.2,
+          "effect_end": 8,
+          "requires": "G04",
+          "from": 21
+        },
+        {
+          "to": 60,
+          "cost_start": {
+            "RAW_MY": 550,
+            "RAW_AG": 1100,
+            "RAW_FE": 2000
+          },
+          "cost_end": {
+            "RAW_MY": 1600,
+            "RAW_AG": 3600,
+            "RAW_FE": 6400
+          },
+          "minutes_start": 480,
+          "minutes_end": 1440,
+          "effect_start": 8.2,
+          "effect_end": 12,
+          "requires": "G06",
+          "from": 41
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_SHIELD",
+      "name": "Ёмкость постоянного барьера",
+      "max_level": 40,
+      "availability": "G03; BLD04; TW11 1",
+      "purpose": "Увеличивает отдельный запас барьера башни TW11, сохраняя задержку восстановления и конечную ёмкость.",
+      "effect_description": "Добавляет к ёмкости постоянного барьера TW11 до 12 процентных пунктов максимального HP башни. Например, TW11 на 15% HP вместе с полным исследованием даёт барьер 27% HP. Не меняет 8-секундную задержку восстановления, активные способности или R_GATE04.",
+      "effect_unit": "процентные пункты максимального HP в ёмкости барьера TW11",
+      "stacking": "Суммируется только с ёмкостью TW11; общий барьер ≤30% максимального HP. Не увеличивает неуязвимость A01 или количество перехватов A10. Требует реально открытого TW11.",
+      "segments": [
+        {
+          "to": 10,
+          "cost_start": {
+            "RAW_AG": 60,
+            "RAW_FE": 140
+          },
+          "cost_end": {
+            "RAW_AG": 320,
+            "RAW_FE": 700
+          },
+          "minutes_start": 20,
+          "minutes_end": 120,
+          "effect_start": 0.3,
+          "effect_end": 3,
+          "requires": "G03; TW11 1",
+          "from": 1
+        },
+        {
+          "to": 25,
+          "cost_start": {
+            "RAW_MY": 800,
+            "RAW_AG": 1200,
+            "RAW_CU": 2800
+          },
+          "cost_end": {
+            "RAW_MY": 2800,
+            "RAW_AG": 4200,
+            "RAW_CU": 9800
+          },
+          "minutes_start": 240,
+          "minutes_end": 1440,
+          "effect_start": 3.3,
+          "effect_end": 7.5,
+          "requires": "G05",
+          "from": 11
+        },
+        {
+          "to": 40,
+          "cost_start": {
+            "RAW_AS": 1600,
+            "RAW_FE": 6400,
+            "RAW_AG": 3600
+          },
+          "cost_end": {
+            "RAW_AS": 4900,
+            "RAW_FE": 20000,
+            "RAW_AG": 11000
+          },
+          "minutes_start": 2880,
+          "minutes_end": 10080,
+          "effect_start": 7.8,
+          "effect_end": 12,
+          "requires": "G06",
+          "from": 26
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_REFLECT",
+      "name": "Шипованный сплав",
+      "max_level": 35,
+      "availability": "G03; отражение башни открыто",
+      "purpose": "Ситуативная отдача от контактной обороны.",
+      "effect_description": "До +14% к базовому отражаемому урону. Отражение не запускает себя и срабатывания «при попадании».",
+      "effect_unit": "проценты базового отражения",
+      "stacking": "Складывается с указанной общей осью; не перемножать с каждым уровнем. Значение строки — весь накопленный бонус этой ветви. Общий урон отражением ограничивается отдельным бюджетом башни, не даёт добычу за призванные без наград копии.",
+      "segments": [
+        {
+          "to": 10,
+          "cost_start": {
+            "RAW_AG": 90,
+            "RAW_FE": 160
+          },
+          "cost_end": {
+            "RAW_AG": 330,
+            "RAW_FE": 620
+          },
+          "minutes_start": 30,
+          "minutes_end": 180,
+          "effect_start": 0.4,
+          "effect_end": 4,
+          "requires": "G03",
+          "from": 1
+        },
+        {
+          "to": 25,
+          "cost_start": {
+            "RAW_AU": 700,
+            "RAW_CU": 2200
+          },
+          "cost_end": {
+            "RAW_AU": 2400,
+            "RAW_CU": 7200
+          },
+          "minutes_start": 360,
+          "minutes_end": 1440,
+          "effect_start": 4.4,
+          "effect_end": 10,
+          "requires": "G05",
+          "from": 11
+        },
+        {
+          "to": 35,
+          "cost_start": {
+            "RAW_MY": 1600,
+            "RAW_AG": 3000,
+            "RAW_FE": 4500
+          },
+          "cost_end": {
+            "RAW_MY": 4000,
+            "RAW_AG": 8000,
+            "RAW_FE": 12000
+          },
+          "minutes_start": 2880,
+          "minutes_end": 7200,
+          "effect_start": 10.4,
+          "effect_end": 14,
+          "requires": "G06",
+          "from": 26
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "R_GATE04",
+      "name": "Чертёж распределителя импульса",
+      "max_level": 1,
+      "availability": "G03; BLD04_L2; до G04",
+      "purpose": "Открывает отдельную ось защиты от превышающей порог части большого удара.",
+      "effect_description": "Открывает TW13 и LAB_BURST на уровне 0. Исследование само не поглощает урон, не выдаёт щит и не увеличивает EHP.",
+      "effect_unit": "непосредственный числовой бонус: 0; ветви защиты открыты",
+      "stacking": "Обе числовые ветви складываются в одной оси защиты опасной части. Для H=maxHP, входящего D и b=TW13+LAB_BURST/100: итог=min(D,0.25H)+max(0,D−0.25H)×(1−min(0.60,b)). Никакого дополнительного множителя EHP за открытие.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_AG": 12,
+            "INGOT_FE": 20,
+            "INGOT_AU": 6,
+            "RAW_CU": 240
+          },
+          "cost_end": {
+            "INGOT_AG": 12,
+            "INGOT_FE": 20,
+            "INGOT_AU": 6,
+            "RAW_CU": 240
+          },
+          "minutes_start": 480,
+          "minutes_end": 480,
+          "effect_start": 0,
+          "effect_end": 0,
+          "requires": "G03; BLD04_L2"
+        }
+      ],
+      "mode": "unlock",
+      "unlock_target": "TW13; LAB_BURST"
+    },
+    {
+      "id": "LAB_BURST",
+      "name": "Аварийные контуры",
+      "max_level": 25,
+      "availability": "G03; BLD04_L2; R_GATE04; первые 10 уровней до G04",
+      "purpose": "Плавно улучшает открытую защиту опасной части удара, поддерживая основную ветвь TW13.",
+      "effect_description": "По +1 п.п. снижения части одиночного удара сверх 25% maxHP на уровень, максимум 25 п.п. Первые 10 уровней доступны до G04; R_GATE04 имеет нулевой числовой эффект.",
+      "effect_unit": "процентные пункты снижения опасной части одиночного удара",
+      "stacking": "Складывается с TW13; общий предел этой оси 60%. Применяется только к части сверх 25% maxHP, поэтому не равно общему EHP-множителю. Не создаёт отдельное дополнительное срабатывание щита.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 10,
+          "cost_start": {
+            "RAW_AG": 80,
+            "RAW_FE": 140,
+            "RAW_AU": 35
+          },
+          "cost_end": {
+            "RAW_AG": 240,
+            "RAW_FE": 420,
+            "RAW_AU": 100
+          },
+          "minutes_start": 15,
+          "minutes_end": 90,
+          "effect_start": 1,
+          "effect_end": 10,
+          "requires": "G03; R_GATE04"
+        },
+        {
+          "from": 11,
+          "to": 20,
+          "cost_start": {
+            "RAW_MY": 250,
+            "RAW_AG": 600,
+            "RAW_CU": 1000
+          },
+          "cost_end": {
+            "RAW_MY": 1000,
+            "RAW_AG": 2400,
+            "RAW_CU": 4000
+          },
+          "minutes_start": 720,
+          "minutes_end": 4320,
+          "effect_start": 11,
+          "effect_end": 20,
+          "requires": "G04; R_GATE04"
+        },
+        {
+          "from": 21,
+          "to": 25,
+          "cost_start": {
+            "RAW_AS": 1800,
+            "RAW_AU": 2400,
+            "RAW_FE": 6000
+          },
+          "cost_end": {
+            "RAW_AS": 7000,
+            "RAW_AU": 9000,
+            "RAW_FE": 24000
+          },
+          "minutes_start": 10080,
+          "minutes_end": 43200,
+          "effect_start": 21,
+          "effect_end": 25,
+          "requires": "G05; R_GATE04"
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_RECOVERY",
+      "name": "Ремонт между волнами",
+      "max_level": 30,
+      "availability": "G02; BLD04",
+      "purpose": "Восстановление в паузе поддерживает длинный забег, но не решает burst-порог.",
+      "effect_description": "По завершении боевой волны восстанавливает до 3% максимального HP. Требует настоящего перехода волны; не срабатывает на перезапуск сохранения.",
+      "effect_unit": "проценты максимального здоровья за завершённую волну",
+      "stacking": "Суммируется до общего предела лечения между волнами 10% HP; не действует внутри бесконечной волны рейтинга.",
+      "segments": [
+        {
+          "to": 10,
+          "cost_start": {
+            "RAW_FE": 70,
+            "RAW_CU": 80
+          },
+          "cost_end": {
+            "RAW_FE": 250,
+            "RAW_CU": 280
+          },
+          "minutes_start": 15,
+          "minutes_end": 90,
+          "effect_start": 0.1,
+          "effect_end": 1,
+          "requires": "G02",
+          "from": 1
+        },
+        {
+          "to": 20,
+          "cost_start": {
+            "RAW_AG": 300,
+            "RAW_CU": 800
+          },
+          "cost_end": {
+            "RAW_AG": 1100,
+            "RAW_CU": 2900
+          },
+          "minutes_start": 180,
+          "minutes_end": 720,
+          "effect_start": 1.1,
+          "effect_end": 2,
+          "requires": "G04",
+          "from": 11
+        },
+        {
+          "to": 30,
+          "cost_start": {
+            "RAW_MY": 1000,
+            "RAW_AU": 1400,
+            "RAW_FE": 3800
+          },
+          "cost_end": {
+            "RAW_MY": 2700,
+            "RAW_AU": 4200,
+            "RAW_FE": 11000
+          },
+          "minutes_start": 1440,
+          "minutes_end": 4320,
+          "effect_start": 2.1,
+          "effect_end": 3,
+          "requires": "G06",
+          "from": 21
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_CONTROL_RESIST",
+      "name": "Инерционная подвеска",
+      "max_level": 20,
+      "availability": "G03; BLD04",
+      "purpose": "Сокращает вражеское подавление башни, сохраняя необходимость реакции.",
+      "effect_description": "До 20% уменьшения длительности оглушения или замедления башни. Не уменьшает M05 у активных заклинаний.",
+      "effect_unit": "проценты сокращения длительности контроля",
+      "stacking": "В общий предел сокращения контроля 50%; разные исследования не доводят длительность до нуля.",
+      "segments": [
+        {
+          "to": 10,
+          "cost_start": {
+            "RAW_AG": 90,
+            "RAW_FE": 180
+          },
+          "cost_end": {
+            "RAW_AG": 500,
+            "RAW_FE": 900
+          },
+          "minutes_start": 30,
+          "minutes_end": 180,
+          "effect_start": 1,
+          "effect_end": 10,
+          "requires": "G03",
+          "from": 1
+        },
+        {
+          "to": 20,
+          "cost_start": {
+            "RAW_MY": 700,
+            "RAW_CU": 2600,
+            "RAW_AG": 1500
+          },
+          "cost_end": {
+            "RAW_MY": 2400,
+            "RAW_CU": 9100,
+            "RAW_AG": 5000
+          },
+          "minutes_start": 720,
+          "minutes_end": 4320,
+          "effect_start": 11,
+          "effect_end": 20,
+          "requires": "G05",
+          "from": 11
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_PROJECTILE_BLOCK",
+      "name": "Противоснарядная сетка",
+      "max_level": 15,
+      "availability": "G04; BLD04_L2",
+      "purpose": "Особая защитная специализация против стрелков.",
+      "effect_description": "До 15% вероятности блокировать обычный вражеский снаряд; лучи, контакт и отмеченные атаки боссов не блокируются.",
+      "effect_unit": "проценты шанса блока обычного снаряда",
+      "stacking": "В общий предел вероятности блока 30%; блок считается один раз и не отражает заблокированный урон.",
+      "segments": [
+        {
+          "to": 5,
+          "cost_start": {
+            "RAW_AU": 180,
+            "RAW_FE": 440
+          },
+          "cost_end": {
+            "RAW_AU": 640,
+            "RAW_FE": 1600
+          },
+          "minutes_start": 60,
+          "minutes_end": 360,
+          "effect_start": 1,
+          "effect_end": 5,
+          "requires": "G04",
+          "from": 1
+        },
+        {
+          "to": 10,
+          "cost_start": {
+            "RAW_MY": 900,
+            "RAW_AG": 2100,
+            "RAW_CU": 3200
+          },
+          "cost_end": {
+            "RAW_MY": 2400,
+            "RAW_AG": 5200,
+            "RAW_CU": 8000
+          },
+          "minutes_start": 720,
+          "minutes_end": 2880,
+          "effect_start": 6,
+          "effect_end": 10,
+          "requires": "G05",
+          "from": 6
+        },
+        {
+          "to": 15,
+          "cost_start": {
+            "RAW_AS": 1600,
+            "RAW_FE": 7000,
+            "RAW_AG": 4200
+          },
+          "cost_end": {
+            "RAW_AS": 5000,
+            "RAW_FE": 22000,
+            "RAW_AG": 13000
+          },
+          "minutes_start": 5760,
+          "minutes_end": 20160,
+          "effect_start": 11,
+          "effect_end": 15,
+          "requires": "G06",
+          "from": 11
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_SPELL_POWER",
+      "name": "Точные магические пропорции",
+      "max_level": 80,
+      "availability": "G02; BLD06 и BLD04",
+      "purpose": "Много недорогих небольших усилений заклинаний.",
+      "effect_description": "По +0,2 п.п. прямого урона заклинания за уровень; максимум +16%. Не меняет лечение, щит, добычу, броню, замедление, заряды, cooldown, область или длительность контроля.",
+      "effect_unit": "проценты основной числовой силы заклинания",
+      "stacking": "Складывается с указанной общей осью; не перемножать с каждым уровнем. Значение строки — весь накопленный бонус этой ветви. Совместно с другими лабораторными усилениями выбранной оси не выше +28%.",
+      "segments": [
+        {
+          "to": 20,
+          "cost_start": {
+            "RAW_FE": 25,
+            "RAW_CU": 20
+          },
+          "cost_end": {
+            "RAW_FE": 80,
+            "RAW_CU": 70
+          },
+          "minutes_start": 2,
+          "minutes_end": 6,
+          "effect_start": 0.2,
+          "effect_end": 4,
+          "requires": "G02",
+          "from": 1
+        },
+        {
+          "to": 40,
+          "cost_start": {
+            "RAW_AG": 100,
+            "RAW_FE": 180
+          },
+          "cost_end": {
+            "RAW_AG": 340,
+            "RAW_FE": 600
+          },
+          "minutes_start": 10,
+          "minutes_end": 25,
+          "effect_start": 4.2,
+          "effect_end": 8,
+          "requires": "G03",
+          "from": 21
+        },
+        {
+          "to": 60,
+          "cost_start": {
+            "RAW_MY": 400,
+            "RAW_CU": 1300,
+            "RAW_AG": 700
+          },
+          "cost_end": {
+            "RAW_MY": 1200,
+            "RAW_CU": 4100,
+            "RAW_AG": 2300
+          },
+          "minutes_start": 30,
+          "minutes_end": 90,
+          "effect_start": 8.2,
+          "effect_end": 12,
+          "requires": "G05",
+          "from": 41
+        },
+        {
+          "to": 80,
+          "cost_start": {
+            "RAW_AS": 900,
+            "RAW_AG": 2400,
+            "RAW_FE": 3800
+          },
+          "cost_end": {
+            "RAW_AS": 2400,
+            "RAW_AG": 6500,
+            "RAW_FE": 10000
+          },
+          "minutes_start": 120,
+          "minutes_end": 360,
+          "effect_start": 12.2,
+          "effect_end": 16,
+          "requires": "G06",
+          "from": 61
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_COOLDOWN",
+      "name": "Быстрое связывание рун",
+      "max_level": 25,
+      "availability": "G03; BLD04",
+      "purpose": "Умеренно уплотняет расход конечных зарядов, не восстанавливая их.",
+      "effect_description": "До 10% сокращения интервала между применениями только активных заклинаний. Пассивные кликовые P01–P04 не получают этот лабораторный бонус.",
+      "effect_unit": "проценты сокращения базового cooldown",
+      "stacking": "Суммируется с личной веткой до общего сокращения 40%; итоговый cooldown ≥60% базы.",
+      "segments": [
+        {
+          "to": 10,
+          "cost_start": {
+            "RAW_AG": 130,
+            "RAW_FE": 240
+          },
+          "cost_end": {
+            "RAW_AG": 650,
+            "RAW_FE": 1200
+          },
+          "minutes_start": 30,
+          "minutes_end": 240,
+          "effect_start": 0.4,
+          "effect_end": 4,
+          "requires": "G03",
+          "from": 1
+        },
+        {
+          "to": 20,
+          "cost_start": {
+            "RAW_MY": 1800,
+            "RAW_CU": 6500,
+            "RAW_AG": 3600
+          },
+          "cost_end": {
+            "RAW_MY": 5600,
+            "RAW_CU": 20000,
+            "RAW_AG": 11000
+          },
+          "minutes_start": 720,
+          "minutes_end": 2880,
+          "effect_start": 4.4,
+          "effect_end": 8,
+          "requires": "G05",
+          "from": 11
+        },
+        {
+          "to": 25,
+          "cost_start": {
+            "RAW_AS": 3600,
+            "RAW_FE": 14000,
+            "RAW_AG": 9000
+          },
+          "cost_end": {
+            "RAW_AS": 7800,
+            "RAW_FE": 32000,
+            "RAW_AG": 20000
+          },
+          "minutes_start": 10080,
+          "minutes_end": 43200,
+          "effect_start": 8.4,
+          "effect_end": 10,
+          "requires": "G06",
+          "from": 21
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_DURATION",
+      "name": "Удержание безопасных эффектов",
+      "max_level": 30,
+      "availability": "G03; BLD04",
+      "purpose": "Помогает длительным защитным и уронным эффектам без бесконечного контроля.",
+      "effect_description": "До +10% базовой длительности только A01/A02/A04/A05/A06/A08/A10. Для A01 это ровно +0,4 секунды к базовым 4 секундам: с личными +30% и карточными +10% итог не выше 6 секунд. A12 с жёстким контролем, лечение A09 и все прочие эффекты вне этого списка лабораторный бонус длительности не получают.",
+      "effect_unit": "проценты длительности разрешённого эффекта",
+      "stacking": "Складывается с указанной общей осью; не перемножать с каждым уровнем. Значение строки — весь накопленный бонус этой ветви. Общий множитель длительности допустимых эффектов ≤1,5.",
+      "segments": [
+        {
+          "to": 10,
+          "cost_start": {
+            "RAW_AG": 90,
+            "RAW_CU": 250
+          },
+          "cost_end": {
+            "RAW_AG": 430,
+            "RAW_CU": 1100
+          },
+          "minutes_start": 30,
+          "minutes_end": 180,
+          "effect_start": 0.333333,
+          "effect_end": 3.333333,
+          "requires": "G03",
+          "from": 1
+        },
+        {
+          "to": 20,
+          "cost_start": {
+            "RAW_AU": 700,
+            "RAW_FE": 1600
+          },
+          "cost_end": {
+            "RAW_AU": 2600,
+            "RAW_FE": 5600
+          },
+          "minutes_start": 360,
+          "minutes_end": 1440,
+          "effect_start": 3.666667,
+          "effect_end": 6.666667,
+          "requires": "G05",
+          "from": 11
+        },
+        {
+          "to": 30,
+          "cost_start": {
+            "RAW_MY": 1600,
+            "RAW_AG": 3200,
+            "RAW_CU": 5800
+          },
+          "cost_end": {
+            "RAW_MY": 4400,
+            "RAW_AG": 9200,
+            "RAW_CU": 16000
+          },
+          "minutes_start": 2880,
+          "minutes_end": 10080,
+          "effect_start": 7,
+          "effect_end": 10,
+          "requires": "G06",
+          "from": 21
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_AREA",
+      "name": "Контуры распространения",
+      "max_level": 12,
+      "availability": "G03; BLD04",
+      "purpose": "Умеренное повышение охвата урона ценнее линейной прибавки радиуса.",
+      "effect_description": "До +6% базового радиуса только P03 и A03; площадь растёт нелинейно. Для P03 личный максимум 0,573R плюс 6% от базы 0,45R даёт 0,60R; для A03 личный максимум 0,429R плюс 6% от базы 0,35R даёт 0,45R. Не увеличивает число целей, контроль или добычу.",
+      "effect_unit": "проценты радиуса области",
+      "stacking": "Для P03 итоговый радиус ≤0,60R, для A03 ≤0,45R. Лабораторные 6% считаются от исходных 0,45R и 0,35R соответственно, после деления табличного процента на 100. Общего предела +20% для этих двух способностей нет; добывающие зоны не усиливаются.",
+      "segments": [
+        {
+          "to": 4,
+          "cost_start": {
+            "RAW_AG": 150,
+            "RAW_FE": 320
+          },
+          "cost_end": {
+            "RAW_AG": 700,
+            "RAW_FE": 1500
+          },
+          "minutes_start": 60,
+          "minutes_end": 240,
+          "effect_start": 0.5,
+          "effect_end": 2,
+          "requires": "G03",
+          "from": 1
+        },
+        {
+          "to": 8,
+          "cost_start": {
+            "RAW_MY": 1300,
+            "RAW_CU": 4600,
+            "RAW_AG": 2800
+          },
+          "cost_end": {
+            "RAW_MY": 4100,
+            "RAW_CU": 14000,
+            "RAW_AG": 8000
+          },
+          "minutes_start": 720,
+          "minutes_end": 2880,
+          "effect_start": 2.5,
+          "effect_end": 4,
+          "requires": "G05",
+          "from": 5
+        },
+        {
+          "to": 12,
+          "cost_start": {
+            "RAW_AS": 2400,
+            "RAW_FE": 11000,
+            "RAW_AG": 6500
+          },
+          "cost_end": {
+            "RAW_AS": 6000,
+            "RAW_FE": 28000,
+            "RAW_AG": 16000
+          },
+          "minutes_start": 10080,
+          "minutes_end": 43200,
+          "effect_start": 4.5,
+          "effect_end": 6,
+          "requires": "G06",
+          "from": 9
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_ACCURACY",
+      "name": "Стабильный захват цели",
+      "max_level": 10,
+      "availability": "G02; BLD04",
+      "purpose": "Небольшая контрмера против уклонения с ранним ограниченным доступом.",
+      "effect_description": "Снижает шанс уклонения от прицельных атак, включая P04, до 4 п.п. Не действует на P01 с гарантированным попаданием, площадные гарантированные попадания или фазы неуязвимости.",
+      "effect_unit": "процентные пункты подавления уклонения",
+      "stacking": "Враг не получает отрицательный шанс уклонения. Не добавляет попадания башне автоматически.",
+      "segments": [
+        {
+          "to": 3,
+          "cost_start": {
+            "RAW_FE": 85,
+            "RAW_CU": 110
+          },
+          "cost_end": {
+            "RAW_FE": 280,
+            "RAW_CU": 360
+          },
+          "minutes_start": 30,
+          "minutes_end": 120,
+          "effect_start": 0.4,
+          "effect_end": 1.2,
+          "requires": "G02",
+          "from": 1
+        },
+        {
+          "to": 7,
+          "cost_start": {
+            "RAW_AG": 450,
+            "RAW_CU": 1200
+          },
+          "cost_end": {
+            "RAW_AG": 1500,
+            "RAW_CU": 4200
+          },
+          "minutes_start": 240,
+          "minutes_end": 1440,
+          "effect_start": 1.6,
+          "effect_end": 2.8,
+          "requires": "G04",
+          "from": 4
+        },
+        {
+          "to": 10,
+          "cost_start": {
+            "RAW_MY": 1500,
+            "RAW_AG": 3000,
+            "RAW_FE": 4500
+          },
+          "cost_end": {
+            "RAW_MY": 3300,
+            "RAW_AG": 6800,
+            "RAW_FE": 10000
+          },
+          "minutes_start": 4320,
+          "minutes_end": 10080,
+          "effect_start": 3.2,
+          "effect_end": 4,
+          "requires": "G06",
+          "from": 8
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_CHARGES",
+      "name": "Запасной рунический контейнер",
+      "max_level": 2,
+      "availability": "G02; BLD04; BLD06",
+      "purpose": "Открывает доступ к личным ступеням запаса активных заклинаний без собственной выдачи зарядов.",
+      "effect_description": "Исследование 1 разрешает покупку первой личной ступени Axx_CHARGES, исследование 2 — второй. Ни одно исследование само не добавляет заряда; после допуска нужно отдельно оплатить соответствующую ветвь выбранной способности.",
+      "effect_unit": "непосредственные дополнительные заряды: 0; ступень допуска указана номером исследования",
+      "stacking": "Единственный числовой источник дополнительных зарядов — личные Axx_CHARGES. Их общий предел +2 на способность сохраняется; лабораторного добавочного слагаемого больше нет. Доступ не открывает несуществующую ветвь у способности без Axx_CHARGES.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_FE": 8,
+            "INGOT_CU": 12,
+            "RAW_AG": 60
+          },
+          "cost_end": {
+            "INGOT_FE": 8,
+            "INGOT_CU": 12,
+            "RAW_AG": 60
+          },
+          "minutes_start": 360,
+          "minutes_end": 360,
+          "effect_start": 0,
+          "effect_end": 0,
+          "requires": "G02; BLD04; BLD06"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_MY": 12,
+            "INGOT_AG": 24,
+            "INGOT_CU": 40,
+            "RAW_FE": 400
+          },
+          "cost_end": {
+            "INGOT_MY": 12,
+            "INGOT_AG": 24,
+            "INGOT_CU": 40,
+            "RAW_FE": 400
+          },
+          "minutes_start": 2880,
+          "minutes_end": 2880,
+          "effect_start": 0,
+          "effect_end": 0,
+          "requires": "G04; LAB_CHARGES 1; BLD04_L2"
+        }
+      ],
+      "mode": "unlock",
+      "unlock_target": "A01_CHARGES; A02_CHARGES; A03_CHARGES; A04_CHARGES; A05_CHARGES; A06_CHARGES; A07_CHARGES; A08_CHARGES; A09_CHARGES; A10_CHARGES; A11_CHARGES; A12_CHARGES"
+    },
+    {
+      "id": "LAB_INTERACTION",
+      "name": "Парные рунические протоколы",
+      "max_level": 6,
+      "availability": "G03; BLD04; LAB_SLOTS 1",
+      "purpose": "Горизонтальные сочетания, требующие осознанной сборки двух способностей.",
+      "effect_description": "Последовательно открывает 6 предложенных протоколов: метка+выстрел; замедление+точечный удар; щит+контратака; поле+цепь; рассеивание+залп; барьер+импульс. Одновременно выбран один протокол. Числовой выигрыш не выше +12% соответствующей оси.",
+      "effect_unit": "число доступных протоколов взаимодействия",
+      "stacking": "Протокол даёт новую условную связь, не суммарный бонус за все открытые пары; сочетания и конкретные способности подлежат обсуждению.",
+      "segments": [
+        {
+          "to": 1,
+          "cost_start": {
+            "INGOT_AG": 24
+          },
+          "cost_end": {
+            "INGOT_AG": 24
+          },
+          "minutes_start": 2880,
+          "minutes_end": 2880,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G03; LAB_SLOTS 1",
+          "from": 1
+        },
+        {
+          "to": 2,
+          "cost_start": {
+            "INGOT_AU": 32,
+            "INGOT_FE": 30
+          },
+          "cost_end": {
+            "INGOT_AU": 32,
+            "INGOT_FE": 30
+          },
+          "minutes_start": 10080,
+          "minutes_end": 10080,
+          "effect_start": 2,
+          "effect_end": 2,
+          "requires": "G04",
+          "from": 2
+        },
+        {
+          "to": 3,
+          "cost_start": {
+            "INGOT_MY": 50,
+            "INGOT_CU": 80
+          },
+          "cost_end": {
+            "INGOT_MY": 50,
+            "INGOT_CU": 80
+          },
+          "minutes_start": 43200,
+          "minutes_end": 43200,
+          "effect_start": 3,
+          "effect_end": 3,
+          "requires": "G05",
+          "from": 3
+        },
+        {
+          "to": 4,
+          "cost_start": {
+            "INGOT_MY": 100,
+            "INGOT_AS": 40,
+            "INGOT_AG": 120
+          },
+          "cost_end": {
+            "INGOT_MY": 100,
+            "INGOT_AS": 40,
+            "INGOT_AG": 120
+          },
+          "minutes_start": 86400,
+          "minutes_end": 86400,
+          "effect_start": 4,
+          "effect_end": 4,
+          "requires": "G06",
+          "from": 4
+        },
+        {
+          "to": 5,
+          "cost_start": {
+            "INGOT_AS": 120,
+            "INGOT_MY": 160,
+            "INGOT_FE": 180
+          },
+          "cost_end": {
+            "INGOT_AS": 120,
+            "INGOT_MY": 160,
+            "INGOT_FE": 180
+          },
+          "minutes_start": 172800,
+          "minutes_end": 172800,
+          "effect_start": 5,
+          "effect_end": 5,
+          "requires": "G06; завершён проект мастерства 12",
+          "from": 5
+        },
+        {
+          "to": 6,
+          "cost_start": {
+            "INGOT_AS": 240,
+            "INGOT_MY": 300,
+            "INGOT_CU": 300
+          },
+          "cost_end": {
+            "INGOT_AS": 240,
+            "INGOT_MY": 300,
+            "INGOT_CU": 300
+          },
+          "minutes_start": 345600,
+          "minutes_end": 345600,
+          "effect_start": 6,
+          "effect_end": 6,
+          "requires": "G06; завершён проект мастерства 24",
+          "from": 6
+        }
+      ],
+      "mode": "unlock",
+      "unlock_target": "PROTOCOL_1; PROTOCOL_2; PROTOCOL_3; PROTOCOL_4; PROTOCOL_5; PROTOCOL_6"
+    },
+    {
+      "id": "LAB_INTERFERENCE",
+      "name": "Экранирование помех",
+      "max_level": 15,
+      "availability": "G04; BLD04_L2",
+      "purpose": "Смягчает M05, не отменяя построение контрсборки.",
+      "effect_description": "До 30% сокращает только добавочную задержку от M05. Например, штраф +50% становится +35%, базовый cooldown не уменьшается.",
+      "effect_unit": "проценты уменьшения дополнительного штрафа M05",
+      "stacking": "Не умножать сокращение на весь cooldown. Вместе с другими источниками штраф M05 уменьшается не более чем на 50%.",
+      "segments": [
+        {
+          "to": 5,
+          "cost_start": {
+            "RAW_AU": 210,
+            "RAW_FE": 500
+          },
+          "cost_end": {
+            "RAW_AU": 800,
+            "RAW_FE": 1800
+          },
+          "minutes_start": 60,
+          "minutes_end": 360,
+          "effect_start": 2,
+          "effect_end": 10,
+          "requires": "G04",
+          "from": 1
+        },
+        {
+          "to": 10,
+          "cost_start": {
+            "RAW_MY": 1300,
+            "RAW_AG": 3000,
+            "RAW_CU": 5200
+          },
+          "cost_end": {
+            "RAW_MY": 3800,
+            "RAW_AG": 8600,
+            "RAW_CU": 15000
+          },
+          "minutes_start": 720,
+          "minutes_end": 2880,
+          "effect_start": 12,
+          "effect_end": 20,
+          "requires": "G05",
+          "from": 6
+        },
+        {
+          "to": 15,
+          "cost_start": {
+            "RAW_AS": 3300,
+            "RAW_FE": 14000,
+            "RAW_AG": 8200
+          },
+          "cost_end": {
+            "RAW_AS": 7900,
+            "RAW_FE": 32000,
+            "RAW_AG": 20000
+          },
+          "minutes_start": 7200,
+          "minutes_end": 20160,
+          "effect_start": 22,
+          "effect_end": 30,
+          "requires": "G06",
+          "from": 11
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_SLOTS",
+      "name": "Дополнительная печать заклинания",
+      "max_level": 2,
+      "availability": "G02; BLD04; BLD06",
+      "purpose": "Один из главных игровых переломов: больше одновременно взятых активных способностей.",
+      "effect_description": "Начальный один активный слот становится двумя после уровня 1 и тремя после уровня 2. Количество пассивных слотов остаётся 1.",
+      "effect_unit": "общее число активных слотов после исследования",
+      "stacking": "Единственный владелец активных слотов. Арканум, карты, герои и другие исследования не продают эти же два слота повторно.",
+      "segments": [
+        {
+          "to": 1,
+          "cost_start": {
+            "INGOT_FE": 30,
+            "INGOT_AG": 12
+          },
+          "cost_end": {
+            "INGOT_FE": 30,
+            "INGOT_AG": 12
+          },
+          "minutes_start": 1440,
+          "minutes_end": 1440,
+          "effect_start": 2,
+          "effect_end": 2,
+          "requires": "G02; BLD04; BLD06",
+          "from": 1
+        },
+        {
+          "to": 2,
+          "cost_start": {
+            "INGOT_MY": 80,
+            "INGOT_AS": 40,
+            "INGOT_CU": 100
+          },
+          "cost_end": {
+            "INGOT_MY": 80,
+            "INGOT_AS": 40,
+            "INGOT_CU": 100
+          },
+          "minutes_start": 43200,
+          "minutes_end": 43200,
+          "effect_start": 3,
+          "effect_end": 3,
+          "requires": "G05; LAB_SLOTS 1; BLD04_L3",
+          "from": 2
+        }
+      ],
+      "mode": "unlock",
+      "unlock_target": "ACTIVE_SLOT_2; ACTIVE_SLOT_3"
+    },
+    {
+      "id": "R_GATE06",
+      "name": "Чертёж фокусирующей решётки",
+      "max_level": 1,
+      "availability": "G05; BLD04_L3; до G06",
+      "purpose": "Открывает числовую ветвь фокусировки для настройки сборки перед B11.",
+      "effect_description": "Открывает LAB_RESONANT на уровне 0. Само исследование не усиливает урон, не продлевает окно и не отменяет недосягаемость; результат появится после постепенных покупок LAB_RESONANT.",
+      "effect_unit": "непосредственный числовой бонус: 0; ветвь фокусировки открыта",
+      "stacking": "Нет отдельного множителя резонанса. Фокусировка и рикошет выбираются взаимоисключающе вне боя; число изученных ветвей само по себе не усиливает бой.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_AS": 8,
+            "INGOT_MY": 12,
+            "INGOT_AG": 30,
+            "INGOT_CU": 60,
+            "RAW_AU": 240
+          },
+          "cost_end": {
+            "INGOT_AS": 8,
+            "INGOT_MY": 12,
+            "INGOT_AG": 30,
+            "INGOT_CU": 60,
+            "RAW_AU": 240
+          },
+          "minutes_start": 1440,
+          "minutes_end": 1440,
+          "effect_start": 0,
+          "effect_end": 0,
+          "requires": "G05; BLD04_L3"
+        }
+      ],
+      "mode": "unlock",
+      "unlock_target": "LAB_RESONANT"
+    },
+    {
+      "id": "LAB_RESONANT",
+      "name": "Фокусирующая решётка",
+      "max_level": 20,
+      "availability": "G05; R_GATE06; первые 10 уровней до G06",
+      "purpose": "Постепенное развитие выбранной специализации одиночного урона.",
+      "effect_description": "По +1 п.п. базового урона выстрела выбранной одиночной цели на уровень; максимум +20%. Первые 10 уровней доступны до G06. После R_GATE06 бонус ещё 0%.",
+      "effect_unit": "проценты урона по одиночной цели",
+      "stacking": "Бонус складывается с LAB_DAMAGE и другими явно относящимися к урону башни аддитивными прибавками, не является множителем каждой ступени. Выбор фокусировки отключает LAB_SECONDARY; изучить обе ветви и менять выбор вне боя можно бесплатно.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 10,
+          "cost_start": {
+            "RAW_AS": 120,
+            "RAW_MY": 180,
+            "RAW_AG": 300
+          },
+          "cost_end": {
+            "RAW_AS": 420,
+            "RAW_MY": 600,
+            "RAW_AG": 1000
+          },
+          "minutes_start": 30,
+          "minutes_end": 240,
+          "effect_start": 1,
+          "effect_end": 10,
+          "requires": "G05; R_GATE06"
+        },
+        {
+          "from": 11,
+          "to": 15,
+          "cost_start": {
+            "RAW_AS": 800,
+            "RAW_AU": 1800,
+            "RAW_FE": 3200
+          },
+          "cost_end": {
+            "RAW_AS": 2400,
+            "RAW_AU": 5200,
+            "RAW_FE": 9600
+          },
+          "minutes_start": 2880,
+          "minutes_end": 10080,
+          "effect_start": 11,
+          "effect_end": 15,
+          "requires": "G06; R_GATE06"
+        },
+        {
+          "from": 16,
+          "to": 20,
+          "cost_start": {
+            "RAW_AS": 4000,
+            "RAW_MY": 6000,
+            "RAW_CU": 12000
+          },
+          "cost_end": {
+            "RAW_AS": 14000,
+            "RAW_MY": 18000,
+            "RAW_CU": 42000
+          },
+          "minutes_start": 20160,
+          "minutes_end": 86400,
+          "effect_start": 16,
+          "effect_end": 20,
+          "requires": "G06; завершён проект мастерства 12; R_GATE06"
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_YIELD_CU",
+      "name": "Разбор медного лома",
+      "max_level": 40,
+      "availability": "G01; BLD04",
+      "purpose": "Недорогая ранняя производственная специализация, полезная для возврата за медью.",
+      "effect_description": "До +12% ожидаемого выхода RAW_CU в разрешённых боевых наградах; не повышает шанс кристалла.",
+      "effect_unit": "проценты ожидаемого выхода RAW_CU",
+      "stacking": "В общем пределе бонуса добычи конкретного материала +35%. Дробная добавка выдаётся накопителем остатка, не через ceil каждого врага. Перед покупкой показывать эффективный прирост в выбранной сборке после общего cap; при нулевом приросте предложить другую сборку или бесплатное перераспределение, не обещая несуществующей добычи.",
+      "segments": [
+        {
+          "to": 10,
+          "cost_start": {
+            "RAW_CU": 80
+          },
+          "cost_end": {
+            "RAW_CU": 220
+          },
+          "minutes_start": 5,
+          "minutes_end": 20,
+          "effect_start": 0.3,
+          "effect_end": 3,
+          "requires": "G01; BLD04",
+          "from": 1
+        },
+        {
+          "to": 25,
+          "cost_start": {
+            "RAW_CU": 400,
+            "RAW_FE": 150
+          },
+          "cost_end": {
+            "RAW_CU": 1400,
+            "RAW_FE": 700
+          },
+          "minutes_start": 60,
+          "minutes_end": 360,
+          "effect_start": 3.3,
+          "effect_end": 7.5,
+          "requires": "G03",
+          "from": 11
+        },
+        {
+          "to": 40,
+          "cost_start": {
+            "RAW_CU": 2500,
+            "RAW_AU": 700,
+            "RAW_AG": 350
+          },
+          "cost_end": {
+            "RAW_CU": 8000,
+            "RAW_AU": 2500,
+            "RAW_AG": 1800
+          },
+          "minutes_start": 720,
+          "minutes_end": 2880,
+          "effect_start": 7.8,
+          "effect_end": 12,
+          "requires": "G05",
+          "from": 26
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_YIELD_FE",
+      "name": "Сортировка железной руды",
+      "max_level": 35,
+      "availability": "G02; BLD04",
+      "purpose": "Снимает нагрузку массовых железных рецептов, не заменяя кузницу.",
+      "effect_description": "До +10,5% ожидаемого выхода RAW_FE.",
+      "effect_unit": "проценты ожидаемого выхода RAW_FE",
+      "stacking": "Общий предел добычи материала +35%; накопитель дробной добавки. Перед покупкой показывать эффективный прирост в выбранной сборке после общего cap; при нулевом приросте предложить другую сборку или бесплатное перераспределение, не обещая несуществующей добычи.",
+      "segments": [
+        {
+          "to": 10,
+          "cost_start": {
+            "RAW_FE": 100
+          },
+          "cost_end": {
+            "RAW_FE": 300
+          },
+          "minutes_start": 10,
+          "minutes_end": 45,
+          "effect_start": 0.3,
+          "effect_end": 3,
+          "requires": "G02",
+          "from": 1
+        },
+        {
+          "to": 25,
+          "cost_start": {
+            "RAW_FE": 600,
+            "RAW_AG": 150,
+            "RAW_CU": 250
+          },
+          "cost_end": {
+            "RAW_FE": 2200,
+            "RAW_AG": 650,
+            "RAW_CU": 1100
+          },
+          "minutes_start": 120,
+          "minutes_end": 720,
+          "effect_start": 3.3,
+          "effect_end": 7.5,
+          "requires": "G04",
+          "from": 11
+        },
+        {
+          "to": 35,
+          "cost_start": {
+            "RAW_FE": 3500,
+            "RAW_MY": 1200,
+            "RAW_AG": 600
+          },
+          "cost_end": {
+            "RAW_FE": 9000,
+            "RAW_MY": 4000,
+            "RAW_AG": 2500
+          },
+          "minutes_start": 1440,
+          "minutes_end": 5760,
+          "effect_start": 7.8,
+          "effect_end": 10.5,
+          "requires": "G06",
+          "from": 26
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_YIELD_AG",
+      "name": "Серебряная селекция",
+      "max_level": 30,
+      "availability": "G03; BLD04",
+      "purpose": "Инвестиция в средние функциональные открытия.",
+      "effect_description": "До +9% ожидаемого выхода RAW_AG.",
+      "effect_unit": "проценты ожидаемого выхода RAW_AG",
+      "stacking": "Общий предел добычи материала +35%; накопитель дробной добавки. Перед покупкой показывать эффективный прирост в выбранной сборке после общего cap; при нулевом приросте предложить другую сборку или бесплатное перераспределение, не обещая несуществующей добычи.",
+      "segments": [
+        {
+          "to": 10,
+          "cost_start": {
+            "RAW_AG": 160
+          },
+          "cost_end": {
+            "RAW_AG": 500
+          },
+          "minutes_start": 20,
+          "minutes_end": 120,
+          "effect_start": 0.3,
+          "effect_end": 3,
+          "requires": "G03",
+          "from": 1
+        },
+        {
+          "to": 20,
+          "cost_start": {
+            "RAW_AG": 1000,
+            "RAW_AU": 300,
+            "RAW_FE": 400
+          },
+          "cost_end": {
+            "RAW_AG": 3500,
+            "RAW_AU": 1200,
+            "RAW_FE": 1600
+          },
+          "minutes_start": 360,
+          "minutes_end": 1440,
+          "effect_start": 3.3,
+          "effect_end": 6,
+          "requires": "G05",
+          "from": 11
+        },
+        {
+          "to": 30,
+          "cost_start": {
+            "RAW_AG": 5000,
+            "RAW_AS": 1600,
+            "RAW_CU": 1100
+          },
+          "cost_end": {
+            "RAW_AG": 14000,
+            "RAW_AS": 5000,
+            "RAW_CU": 5200
+          },
+          "minutes_start": 2880,
+          "minutes_end": 10080,
+          "effect_start": 6.3,
+          "effect_end": 9,
+          "requires": "G06",
+          "from": 21
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_YIELD_AU",
+      "name": "Золотое выщелачивание",
+      "max_level": 25,
+      "availability": "G04; BLD04_L2",
+      "purpose": "Более дорогая инвестиция с меньшим числом ступеней для золота.",
+      "effect_description": "До +10% ожидаемого выхода RAW_AU.",
+      "effect_unit": "проценты ожидаемого выхода RAW_AU",
+      "stacking": "Общий предел добычи материала +35%; накопитель дробной добавки. Перед покупкой показывать эффективный прирост в выбранной сборке после общего cap; при нулевом приросте предложить другую сборку или бесплатное перераспределение, не обещая несуществующей добычи.",
+      "segments": [
+        {
+          "to": 8,
+          "cost_start": {
+            "RAW_AU": 220
+          },
+          "cost_end": {
+            "RAW_AU": 750
+          },
+          "minutes_start": 30,
+          "minutes_end": 180,
+          "effect_start": 0.4,
+          "effect_end": 3.2,
+          "requires": "G04",
+          "from": 1
+        },
+        {
+          "to": 17,
+          "cost_start": {
+            "RAW_AU": 1600,
+            "RAW_MY": 400,
+            "RAW_CU": 650
+          },
+          "cost_end": {
+            "RAW_AU": 5000,
+            "RAW_MY": 1600,
+            "RAW_CU": 2600
+          },
+          "minutes_start": 720,
+          "minutes_end": 2880,
+          "effect_start": 3.6,
+          "effect_end": 6.8,
+          "requires": "G05",
+          "from": 9
+        },
+        {
+          "to": 25,
+          "cost_start": {
+            "RAW_AU": 8000,
+            "RAW_AS": 2400,
+            "RAW_AG": 1800
+          },
+          "cost_end": {
+            "RAW_AU": 22000,
+            "RAW_AS": 7500,
+            "RAW_AG": 7200
+          },
+          "minutes_start": 5760,
+          "minutes_end": 20160,
+          "effect_start": 7.2,
+          "effect_end": 10,
+          "requires": "G06",
+          "from": 18
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_YIELD_MY",
+      "name": "Мифрильная сепарация",
+      "max_level": 20,
+      "availability": "G05; BLD04_L3",
+      "purpose": "Поздняя инвестиция под дорогие конструкционные компоненты.",
+      "effect_description": "До +10% ожидаемого выхода RAW_MY.",
+      "effect_unit": "проценты ожидаемого выхода RAW_MY",
+      "stacking": "Общий предел добычи материала +35%; накопитель дробной добавки. Перед покупкой показывать эффективный прирост в выбранной сборке после общего cap; при нулевом приросте предложить другую сборку или бесплатное перераспределение, не обещая несуществующей добычи.",
+      "segments": [
+        {
+          "to": 6,
+          "cost_start": {
+            "RAW_MY": 350,
+            "RAW_FE": 500
+          },
+          "cost_end": {
+            "RAW_MY": 1300,
+            "RAW_FE": 1900
+          },
+          "minutes_start": 60,
+          "minutes_end": 360,
+          "effect_start": 0.5,
+          "effect_end": 3,
+          "requires": "G05",
+          "from": 1
+        },
+        {
+          "to": 13,
+          "cost_start": {
+            "RAW_MY": 2500,
+            "RAW_AU": 1500,
+            "RAW_FE": 1100
+          },
+          "cost_end": {
+            "RAW_MY": 8000,
+            "RAW_AU": 5000,
+            "RAW_FE": 4400
+          },
+          "minutes_start": 1440,
+          "minutes_end": 5760,
+          "effect_start": 3.5,
+          "effect_end": 6.5,
+          "requires": "G06",
+          "from": 7
+        },
+        {
+          "to": 20,
+          "cost_start": {
+            "RAW_MY": 14000,
+            "RAW_AS": 4500,
+            "RAW_CU": 4000
+          },
+          "cost_end": {
+            "RAW_MY": 40000,
+            "RAW_AS": 14000,
+            "RAW_CU": 18000
+          },
+          "minutes_start": 10080,
+          "minutes_end": 43200,
+          "effect_start": 7,
+          "effect_end": 10,
+          "requires": "G06; завершён проект мастерства 12",
+          "from": 14
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_YIELD_AS",
+      "name": "Астральная спектроскопия",
+      "max_level": 15,
+      "availability": "G06; BLD04_L3",
+      "purpose": "Глубокая добывающая ветка: короткий список более крупных ступеней.",
+      "effect_description": "До +12% ожидаемого выхода RAW_AS.",
+      "effect_unit": "проценты ожидаемого выхода RAW_AS",
+      "stacking": "Общий предел добычи материала +35%; накопитель дробной добавки. Перед покупкой показывать эффективный прирост в выбранной сборке после общего cap; при нулевом приросте предложить другую сборку или бесплатное перераспределение, не обещая несуществующей добычи.",
+      "segments": [
+        {
+          "to": 5,
+          "cost_start": {
+            "RAW_AS": 600,
+            "RAW_AG": 750
+          },
+          "cost_end": {
+            "RAW_AS": 2200,
+            "RAW_AG": 2800
+          },
+          "minutes_start": 120,
+          "minutes_end": 720,
+          "effect_start": 0.8,
+          "effect_end": 4,
+          "requires": "G06",
+          "from": 1
+        },
+        {
+          "to": 10,
+          "cost_start": {
+            "RAW_AS": 5000,
+            "RAW_MY": 4000,
+            "RAW_AG": 3000
+          },
+          "cost_end": {
+            "RAW_AS": 16000,
+            "RAW_MY": 14000,
+            "RAW_AG": 12000
+          },
+          "minutes_start": 2880,
+          "minutes_end": 10080,
+          "effect_start": 4.8,
+          "effect_end": 8,
+          "requires": "G06; завершён проект мастерства 12",
+          "from": 6
+        },
+        {
+          "to": 15,
+          "cost_start": {
+            "RAW_AS": 28000,
+            "RAW_MY": 25000,
+            "RAW_FE": 12000
+          },
+          "cost_end": {
+            "RAW_AS": 80000,
+            "RAW_MY": 70000,
+            "RAW_FE": 45000
+          },
+          "minutes_start": 20160,
+          "minutes_end": 86400,
+          "effect_start": 8.8,
+          "effect_end": 12,
+          "requires": "G06; завершён проект мастерства 24",
+          "from": 11
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_YIELD_COAL",
+      "name": "Углеродный отбор",
+      "max_level": 30,
+      "availability": "G01; BLD04",
+      "purpose": "Поддержка топлива с ранней ценой, окупаемой реальной потребностью кузницы.",
+      "effect_description": "До +15% ожидаемого боевого выхода COAL. Не повышает скорость шахты и не действует на купленный уголь.",
+      "effect_unit": "проценты ожидаемого выхода COAL",
+      "stacking": "Общий предел бонуса добычи COAL +35%; накопитель дробной добавки. Перед покупкой показывать эффективный прирост в выбранной сборке после общего cap; при нулевом приросте предложить другую сборку или бесплатное перераспределение, не обещая несуществующей добычи.",
+      "segments": [
+        {
+          "to": 5,
+          "cost_start": {
+            "RAW_CU": 100,
+            "COAL": 30
+          },
+          "cost_end": {
+            "RAW_CU": 250,
+            "COAL": 80
+          },
+          "minutes_start": 5,
+          "minutes_end": 20,
+          "effect_start": 0.5,
+          "effect_end": 2.5,
+          "requires": "G01; BLD04",
+          "from": 1
+        },
+        {
+          "to": 15,
+          "cost_start": {
+            "RAW_FE": 220,
+            "COAL": 180
+          },
+          "cost_end": {
+            "RAW_FE": 900,
+            "COAL": 600
+          },
+          "minutes_start": 60,
+          "minutes_end": 360,
+          "effect_start": 3,
+          "effect_end": 7.5,
+          "requires": "G03",
+          "from": 6
+        },
+        {
+          "to": 25,
+          "cost_start": {
+            "RAW_AU": 1600,
+            "COAL": 1200,
+            "RAW_CU": 1500
+          },
+          "cost_end": {
+            "RAW_AU": 6000,
+            "COAL": 4000,
+            "RAW_CU": 6500
+          },
+          "minutes_start": 720,
+          "minutes_end": 2880,
+          "effect_start": 8,
+          "effect_end": 12.5,
+          "requires": "G05",
+          "from": 16
+        },
+        {
+          "to": 30,
+          "cost_start": {
+            "RAW_AS": 8000,
+            "COAL": 6000,
+            "RAW_AG": 4000
+          },
+          "cost_end": {
+            "RAW_AS": 18000,
+            "COAL": 14000,
+            "RAW_AG": 10000
+          },
+          "minutes_start": 10080,
+          "minutes_end": 43200,
+          "effect_start": 13,
+          "effect_end": 15,
+          "requires": "G06",
+          "from": 26
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_FORGE_SPEED",
+      "name": "Тепловой режим печи",
+      "max_level": 8,
+      "availability": "G03; BLD04",
+      "purpose": "Немного дорогих улучшений полезнее сотни ничтожных ускорений производства.",
+      "effect_description": "Итоговый лабораторный множитель времени производства — от ×1,025 до ×1,25 производительности.",
+      "effect_unit": "множитель производительности кузницы",
+      "stacking": "Умножается на скорость здания не более ×1,6; итог min(×2, здание × лаборатория). Очередь и число печей здесь не продаются.",
+      "segments": [
+        {
+          "to": 3,
+          "cost_start": {
+            "RAW_AG": 500,
+            "COAL": 500
+          },
+          "cost_end": {
+            "RAW_AG": 2200,
+            "COAL": 1800
+          },
+          "minutes_start": 360,
+          "minutes_end": 1440,
+          "effect_start": 1.025,
+          "effect_end": 1.075,
+          "requires": "G03",
+          "from": 1
+        },
+        {
+          "to": 6,
+          "cost_start": {
+            "RAW_MY": 4000,
+            "COAL": 3500,
+            "RAW_FE": 1000
+          },
+          "cost_end": {
+            "RAW_MY": 14000,
+            "COAL": 12000,
+            "RAW_FE": 3600
+          },
+          "minutes_start": 4320,
+          "minutes_end": 20160,
+          "effect_start": 1.1,
+          "effect_end": 1.175,
+          "requires": "G05",
+          "from": 4
+        },
+        {
+          "to": 8,
+          "cost_start": {
+            "RAW_AS": 20000,
+            "COAL": 18000,
+            "RAW_CU": 4000
+          },
+          "cost_end": {
+            "RAW_AS": 50000,
+            "COAL": 40000,
+            "RAW_CU": 12000
+          },
+          "minutes_start": 43200,
+          "minutes_end": 129600,
+          "effect_start": 1.21,
+          "effect_end": 1.25,
+          "requires": "G06",
+          "from": 7
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_RAW_EFFICIENCY",
+      "name": "Сохранение полезного вещества",
+      "max_level": 15,
+      "availability": "G03; BLD04",
+      "purpose": "Отдельно снижает потребность в руде, не повышая число готовых слитков.",
+      "effect_description": "До 6% сокращения сырья в будущих рецептах; применимо ко всем открытым материалам.",
+      "effect_unit": "проценты сокращения сырья рецепта",
+      "stacking": "Для допустимой партии n слитков: ceil(n × базовое сырьё × (1−бонус/100)); минимум n. Округление применяется к партии, а не отдельно к каждому слитку. Входной вектор списывается до начала, выход остаётся ровно n слитков. Уголь не уменьшается этой веткой. Изменение рецепта после запуска не пересчитывает оплаченный заказ.",
+      "segments": [
+        {
+          "to": 5,
+          "cost_start": {
+            "RAW_AG": 350
+          },
+          "cost_end": {
+            "RAW_AG": 1200
+          },
+          "minutes_start": 120,
+          "minutes_end": 720,
+          "effect_start": 0.4,
+          "effect_end": 2,
+          "requires": "G03",
+          "from": 1
+        },
+        {
+          "to": 10,
+          "cost_start": {
+            "RAW_AU": 2000,
+            "RAW_MY": 500,
+            "RAW_FE": 800
+          },
+          "cost_end": {
+            "RAW_AU": 7000,
+            "RAW_MY": 2000,
+            "RAW_FE": 3500
+          },
+          "minutes_start": 1440,
+          "minutes_end": 5760,
+          "effect_start": 2.4,
+          "effect_end": 4,
+          "requires": "G05",
+          "from": 6
+        },
+        {
+          "to": 15,
+          "cost_start": {
+            "RAW_AS": 8000,
+            "RAW_MY": 6000,
+            "RAW_CU": 6000
+          },
+          "cost_end": {
+            "RAW_AS": 24000,
+            "RAW_MY": 18000,
+            "RAW_CU": 22000
+          },
+          "minutes_start": 10080,
+          "minutes_end": 43200,
+          "effect_start": 4.4,
+          "effect_end": 6,
+          "requires": "G06",
+          "from": 11
+        }
+      ],
+      "mode": "stat"
+    },
+    {
+      "id": "LAB_COAL_EFFICIENCY",
+      "name": "Закрытый топливный цикл",
+      "max_level": 20,
+      "availability": "G02; BLD04",
+      "purpose": "Снижает только топливную нагрузку, особенно заметно на дорогих материалах.",
+      "effect_description": "До 10% сокращения COAL будущего рецепта; расход сырья и время не изменяются.",
+      "effect_unit": "проценты сокращения угля рецепта",
+      "stacking": "Для допустимой партии n слитков: ceil(n × базовый уголь × (1−бонус/100)); минимум n. Целочисленное округление применяется к партии. UI показывает фактическую экономию; слишком маленькая партия может экономить 0 единиц. Разделение партии не увеличивает скидку. Изменение исследования после запуска не пересчитывает оплаченный заказ.",
+      "segments": [
+        {
+          "to": 5,
+          "cost_start": {
+            "RAW_FE": 240,
+            "COAL": 100
+          },
+          "cost_end": {
+            "RAW_FE": 800,
+            "COAL": 300
+          },
+          "minutes_start": 60,
+          "minutes_end": 360,
+          "effect_start": 0.5,
+          "effect_end": 2.5,
+          "requires": "G02",
+          "from": 1
+        },
+        {
+          "to": 12,
+          "cost_start": {
+            "RAW_AG": 1200,
+            "COAL": 700,
+            "RAW_CU": 900
+          },
+          "cost_end": {
+            "RAW_AG": 4500,
+            "COAL": 2400,
+            "RAW_CU": 3600
+          },
+          "minutes_start": 720,
+          "minutes_end": 2880,
+          "effect_start": 3,
+          "effect_end": 6,
+          "requires": "G04",
+          "from": 6
+        },
+        {
+          "to": 20,
+          "cost_start": {
+            "RAW_AS": 6000,
+            "COAL": 5000,
+            "RAW_AG": 5000
+          },
+          "cost_end": {
+            "RAW_AS": 20000,
+            "COAL": 16000,
+            "RAW_AG": 18000
+          },
+          "minutes_start": 5760,
+          "minutes_end": 30240,
+          "effect_start": 6.5,
+          "effect_end": 10,
+          "requires": "G06",
+          "from": 13
+        }
+      ],
+      "mode": "stat"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "purpose": "Audit of prior trial; no fixes applied",
+  "metric_caveat": "RGBA differences at fixed canvas positions include both intended motion and redraw noise. They are not a pure texture-flicker metric.",
+  "clips": [
+    {
+      "name": "idle-side",
+      "opaque_pixels": [
+        3117,
+        3107,
+        3113,
+        3114,
+        3131,
+        3118
+      ],
+      "changed_pixels_to_next_frame_including_loop": [
+        1447,
+        1120,
+        1015,
+        956,
+        971,
+        1097
+      ]
+    },
+    {
+      "name": "walk-side",
+      "opaque_pixels": [
+        2928,
+        2843,
+        2785,
+        2991,
+        2839,
+        2847,
+        2821,
+        3009
+      ],
+      "changed_pixels_to_next_frame_including_loop": [
+        2343,
+        2726,
+        2918,
+        2870,
+        2626,
+        2521,
+        2881,
+        2926
+      ]
+    },
+    {
+      "name": "cast-side",
+      "opaque_pixels": [
+        3009,
+        2786,
+        2903,
+        3025,
+        2980,
+        2998,
+        2848,
+        2944
+      ],
+      "changed_pixels_to_next_frame_including_loop": [
+        2381,
+        2781,
+        2147,
+        2708,
+        1992,
+        2736,
+        2532,
+        1689
+      ]
+    }
+  ]
+}

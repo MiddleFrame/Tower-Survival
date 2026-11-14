@@ -1,0 +1,49 @@
+Loading text encoder
+WARNING:root:clip missing: ['text_model.encoder.layers.23.layer_norm1.weight', 'text_model.encoder.layers.23.layer_norm1.bias', 'text_model.encoder.layers.23.self_attn.q_proj.weight', 'text_model.encoder.layers.23.self_attn.q_proj.bias', 'text_model.encoder.layers.23.self_attn.k_proj.weight', 'text_model.encoder.layers.23.self_attn.k_proj.bias', 'text_model.encoder.layers.23.self_attn.v_proj.weight', 'text_model.encoder.layers.23.self_attn.v_proj.bias', 'text_model.encoder.layers.23.self_attn.out_proj.weight', 'text_model.encoder.layers.23.self_attn.out_proj.bias', 'text_model.encoder.layers.23.layer_norm2.weight', 'text_model.encoder.layers.23.layer_norm2.bias', 'text_model.encoder.layers.23.mlp.fc1.weight', 'text_model.encoder.layers.23.mlp.fc1.bias', 'text_model.encoder.layers.23.mlp.fc2.weight', 'text_model.encoder.layers.23.mlp.fc2.bias', 'text_projection.weight']
+Loading vision encoder
+Constructing ToonCrafter
+W1028 22:26:38.979000 27956 venv\Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+WARNING:tooncrafter-wrapper.lvdm.modules.attention_svd:no module 'xformers'. Processing without...
+AE working on z of shape (1, 4, 32, 32) = 4096 dimensions.
+vanilla
+cross-attn-fusion
+cross-attn-fusion
+Sampling
+VAE using dtype: torch.float32
+Using random noise
+
+DDIM Sampler:   0%|          | 0/20 [00:00<?, ?it/s]Sigmas: tensor([0.0221, 0.0434, 0.1736, 0.2224, 0.2609, 0.2951, 0.3284, 0.3605, 0.3923,
+        0.4236, 0.4561, 0.4878, 0.5213, 0.5551, 0.5916, 0.6307, 0.6758, 0.7292,
+        0.7988, 0.8969], device='cuda:0', dtype=torch.float64)
+
+DDIM Sampler:   5%|▌         | 1/20 [00:01<00:20,  1.08s/it]
+DDIM Sampler:  10%|█         | 2/20 [00:02<00:18,  1.02s/it]
+DDIM Sampler:  15%|█▌        | 3/20 [00:03<00:18,  1.07s/it]
+DDIM Sampler:  20%|██        | 4/20 [00:04<00:16,  1.03s/it]
+DDIM Sampler:  25%|██▌       | 5/20 [00:05<00:15,  1.01s/it]
+DDIM Sampler:  30%|███       | 6/20 [00:06<00:14,  1.00s/it]
+DDIM Sampler:  35%|███▌      | 7/20 [00:07<00:12,  1.01it/s]
+DDIM Sampler:  40%|████      | 8/20 [00:08<00:11,  1.01it/s]
+DDIM Sampler:  45%|████▌     | 9/20 [00:09<00:10,  1.02it/s]
+DDIM Sampler:  50%|█████     | 10/20 [00:10<00:09,  1.02it/s]
+DDIM Sampler:  55%|█████▌    | 11/20 [00:11<00:08,  1.02it/s]
+DDIM Sampler:  60%|██████    | 12/20 [00:11<00:07,  1.02it/s]
+DDIM Sampler:  65%|██████▌   | 13/20 [00:12<00:06,  1.02it/s]
+DDIM Sampler:  70%|███████   | 14/20 [00:13<00:05,  1.02it/s]
+DDIM Sampler:  75%|███████▌  | 15/20 [00:14<00:04,  1.02it/s]
+DDIM Sampler:  80%|████████  | 16/20 [00:15<00:03,  1.02it/s]
+DDIM Sampler:  85%|████████▌ | 17/20 [00:16<00:02,  1.02it/s]
+DDIM Sampler:  90%|█████████ | 18/20 [00:17<00:01,  1.02it/s]
+DDIM Sampler:  95%|█████████▌| 19/20 [00:18<00:00,  1.02it/s]
+DDIM Sampler: 100%|██████████| 20/20 [00:19<00:00,  1.02it/s]
+DDIM Sampler: 100%|██████████| 20/20 [00:19<00:00,  1.01it/s]
+Sampled 1 out of 1
+Decoding
+VAE using dtype: torch.float32
+Decoding frames 0 - 16 out of 16 using xformers
+Finished walk
+Exception ignored in: <function ModelPatcher.__del__ at 0x000001725E60C360>
+Traceback (most recent call last):
+  File "A:\AI\StabilityMatrix\Data\Packages\ComfyUI\comfy\model_patcher.py", line 1747, in __del__
+  File "A:\AI\StabilityMatrix\Data\Packages\ComfyUI\comfy\model_patcher.py", line 1300, in detach
+AttributeError: 'NoneType' object has no attribute 'ON_DETACH'

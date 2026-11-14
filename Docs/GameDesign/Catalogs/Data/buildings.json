@@ -1,0 +1,1556 @@
+{
+  "system": "buildings",
+  "branches": [
+    {
+      "id": "BLD01",
+      "name": "Башня / мастерская: стартовая постройка",
+      "max_level": 1,
+      "availability": "START; MVP",
+      "purpose": "Старт боя и управление параметрами башни",
+      "effect_description": "Башня и окно мастерской доступны сразу. Покупка отмечает единственное бесплатное стартовое состояние; не добавляет множитель силы.",
+      "effect_unit": "доступ: 0 или 1",
+      "stacking": "Однократная выдача; не числовая ветвь силы.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {},
+          "cost_end": {},
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "START"
+        }
+      ]
+    },
+    {
+      "id": "BLD01_MODULE",
+      "name": "Модуль залпового огня",
+      "max_level": 1,
+      "availability": "G04; версия 1.0",
+      "purpose": "Обязательный инструмент против плотной волны G05",
+      "effect_description": "Открывает режим залпового огня. Параметры доступного режима улучшаются в каталоге башни. Боевой вклад зависит от целей, частоты и выбранной сборки; само открытие не умножает все источники урона.",
+      "effect_unit": "доступ: 0 или 1",
+      "stacking": "Однократное функциональное открытие. Числовой эффект определяется фактической механикой и не учитывается второй раз.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_AU": 32,
+            "INGOT_MY": 14,
+            "INGOT_FE": 40
+          },
+          "cost_end": {
+            "INGOT_AU": 32,
+            "INGOT_MY": 14,
+            "INGOT_FE": 40
+          },
+          "minutes_start": 720,
+          "minutes_end": 720,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G04 + BLD01"
+        }
+      ]
+    },
+    {
+      "id": "BLD02",
+      "name": "Кузница: первая печь",
+      "max_level": 1,
+      "availability": "Учебный мини-босс; MVP",
+      "purpose": "Разомкнуть цепочку сырьё → первый готовый материал",
+      "effect_description": "Одна печь, скорость ×1, партия до 4 слитков, очередь на 30 минут; гарантированный учебный комплект 80 RAW_CU + 40 COAL покрывает постройку. Рецепты доступны по открытию соответствующего сырья.",
+      "effect_unit": "одновременные печи",
+      "stacking": "Базовое состояние; следующие печи задаёт BLD02_SLOTS.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "RAW_CU": 80,
+            "COAL": 40
+          },
+          "cost_end": {
+            "RAW_CU": 80,
+            "COAL": 40
+          },
+          "minutes_start": 1,
+          "minutes_end": 1,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "Учебный мини-босс"
+        }
+      ]
+    },
+    {
+      "id": "BLD02_SLOTS",
+      "name": "Кузница: дополнительные печи",
+      "max_level": 3,
+      "availability": "G02; после MVP",
+      "purpose": "Сильные скачки общей мощности и параллельная работа с разными рудами",
+      "effect_description": "Покупки дают всего 2, 3 и 4 одновременно работающие печи. Число печей не меняет скорость отдельного заказа и требует отдельного топлива для каждой.",
+      "effect_unit": "одновременные печи",
+      "stacking": "Заменяет общий предел 1 → 2 → 3 → 4; не прибавлять каждое значение.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_CU": 28,
+            "INGOT_FE": 16,
+            "INGOT_AG": 4
+          },
+          "cost_end": {
+            "INGOT_CU": 28,
+            "INGOT_FE": 16,
+            "INGOT_AG": 4
+          },
+          "minutes_start": 120,
+          "minutes_end": 120,
+          "effect_start": 2,
+          "effect_end": 2,
+          "requires": "G02 + BLD02"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_AG": 48,
+            "INGOT_AU": 20,
+            "INGOT_CU": 60
+          },
+          "cost_end": {
+            "INGOT_AG": 48,
+            "INGOT_AU": 20,
+            "INGOT_CU": 60
+          },
+          "minutes_start": 720,
+          "minutes_end": 720,
+          "effect_start": 3,
+          "effect_end": 3,
+          "requires": "G03 + BLD02_SLOTS:1"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "INGOT_AU": 120,
+            "INGOT_MY": 80,
+            "INGOT_AS": 24,
+            "INGOT_FE": 120
+          },
+          "cost_end": {
+            "INGOT_AU": 120,
+            "INGOT_MY": 80,
+            "INGOT_AS": 24,
+            "INGOT_FE": 120
+          },
+          "minutes_start": 4320,
+          "minutes_end": 4320,
+          "effect_start": 4,
+          "effect_end": 4,
+          "requires": "G05 + BLD02_SLOTS:2"
+        }
+      ]
+    },
+    {
+      "id": "BLD02_SPEED",
+      "name": "Кузница: футеровка и меха",
+      "max_level": 12,
+      "availability": "G02; после MVP",
+      "purpose": "Малые частые улучшения производительности одной печи",
+      "effect_description": "Скорость отдельной печи ×1.05…×1.60. При полном LAB_FORGE_SPEED ×1.25 итог ровно ×2; не даёт дополнительного слитка и не уменьшает рецепт.",
+      "effect_unit": "множитель скорости одной печи",
+      "stacking": "BLD02_SPEED × LAB_FORGE_SPEED; общий предел ×2, число печей учитывается отдельно.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 4,
+          "cost_start": {
+            "INGOT_CU": 10,
+            "INGOT_FE": 4
+          },
+          "cost_end": {
+            "INGOT_CU": 34,
+            "INGOT_FE": 16
+          },
+          "minutes_start": 15,
+          "minutes_end": 60,
+          "effect_start": 1.05,
+          "effect_end": 1.2,
+          "requires": "G02 + BLD02"
+        },
+        {
+          "from": 5,
+          "to": 8,
+          "cost_start": {
+            "INGOT_AG": 12,
+            "INGOT_AU": 4,
+            "INGOT_CU": 16
+          },
+          "cost_end": {
+            "INGOT_AG": 40,
+            "INGOT_AU": 18,
+            "INGOT_CU": 55
+          },
+          "minutes_start": 120,
+          "minutes_end": 720,
+          "effect_start": 1.25,
+          "effect_end": 1.4,
+          "requires": "G03 + BLD02_SPEED:4"
+        },
+        {
+          "from": 9,
+          "to": 12,
+          "cost_start": {
+            "INGOT_MY": 30,
+            "INGOT_AS": 8,
+            "INGOT_FE": 40
+          },
+          "cost_end": {
+            "INGOT_MY": 120,
+            "INGOT_AS": 48,
+            "INGOT_FE": 160
+          },
+          "minutes_start": 1440,
+          "minutes_end": 4320,
+          "effect_start": 1.45,
+          "effect_end": 1.6,
+          "requires": "G05 + BLD02_SPEED:8"
+        }
+      ]
+    },
+    {
+      "id": "BLD02_QUEUE",
+      "name": "Кузница: длина очереди",
+      "max_level": 4,
+      "availability": "G01; MVP допускает первую покупку",
+      "purpose": "Автономность между возвращениями",
+      "effect_description": "Лимит будущей работы на одну печь растёт с 30 минут до 2, 8, 12 и 24 часов. Это реальная длительность при текущей скорости. Уже оплаченный заказ не отбрасывается при изменении скорости. Одна единица открытого рецепта разрешена, даже если её время больше лимита очереди.",
+      "effect_unit": "минуты автономной работы на печь",
+      "stacking": "Абсолютный предел: 120 / 480 / 720 / 1440 минут; не производственный множитель.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_CU": 6,
+            "INGOT_FE": 2
+          },
+          "cost_end": {
+            "INGOT_CU": 6,
+            "INGOT_FE": 2
+          },
+          "minutes_start": 10,
+          "minutes_end": 10,
+          "effect_start": 120,
+          "effect_end": 120,
+          "requires": "G01 + BLD02"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_FE": 20,
+            "INGOT_AG": 6
+          },
+          "cost_end": {
+            "INGOT_FE": 20,
+            "INGOT_AG": 6
+          },
+          "minutes_start": 45,
+          "minutes_end": 45,
+          "effect_start": 480,
+          "effect_end": 480,
+          "requires": "G02 + BLD02_QUEUE:1"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "INGOT_AG": 24,
+            "INGOT_AU": 8
+          },
+          "cost_end": {
+            "INGOT_AG": 24,
+            "INGOT_AU": 8
+          },
+          "minutes_start": 120,
+          "minutes_end": 120,
+          "effect_start": 720,
+          "effect_end": 720,
+          "requires": "G03 + BLD02_QUEUE:2"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "INGOT_MY": 24,
+            "INGOT_AS": 8,
+            "INGOT_CU": 80
+          },
+          "cost_end": {
+            "INGOT_MY": 24,
+            "INGOT_AS": 8,
+            "INGOT_CU": 80
+          },
+          "minutes_start": 720,
+          "minutes_end": 720,
+          "effect_start": 1440,
+          "effect_end": 1440,
+          "requires": "G05 + BLD02_QUEUE:3"
+        }
+      ]
+    },
+    {
+      "id": "BLD02_BATCH",
+      "name": "Кузница: ёмкость одного заказа",
+      "max_level": 4,
+      "availability": "G02; после MVP",
+      "purpose": "Меньше ручных одинаковых заказов",
+      "effect_description": "Один заказ включает до 12, 36, 120, 240 слитков вместо начальных 4. Оплачивается каждая единица; длина очереди остаётся отдельным ограничением. Несколько небольших заказов можно поставить в ту же очередь.",
+      "effect_unit": "слитки в одном заказе",
+      "stacking": "Абсолютный предел размера партии; скорость и выход рецепта не изменяются. Вход партии считается ceil(n × base × (1 − saving)) отдельно для RAW и COAL; выход ровно n. Неизменяемые входные доли единиц задаются разностью округлённых префиксов. Отмена возвращает только записанные доли ещё не начатого суффикса, без пересчёта по новому рецепту или скидке; обработка по порядку, выборочная отмена долей запрещена.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_CU": 12,
+            "INGOT_FE": 8
+          },
+          "cost_end": {
+            "INGOT_CU": 12,
+            "INGOT_FE": 8
+          },
+          "minutes_start": 15,
+          "minutes_end": 15,
+          "effect_start": 12,
+          "effect_end": 12,
+          "requires": "G02 + BLD02"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_FE": 30,
+            "INGOT_AG": 10
+          },
+          "cost_end": {
+            "INGOT_FE": 30,
+            "INGOT_AG": 10
+          },
+          "minutes_start": 60,
+          "minutes_end": 60,
+          "effect_start": 36,
+          "effect_end": 36,
+          "requires": "G02 + BLD02_BATCH:1"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "INGOT_AG": 35,
+            "INGOT_AU": 12
+          },
+          "cost_end": {
+            "INGOT_AG": 35,
+            "INGOT_AU": 12
+          },
+          "minutes_start": 180,
+          "minutes_end": 180,
+          "effect_start": 120,
+          "effect_end": 120,
+          "requires": "G03 + BLD02_BATCH:2"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "INGOT_MY": 40,
+            "INGOT_AS": 12,
+            "INGOT_FE": 60
+          },
+          "cost_end": {
+            "INGOT_MY": 40,
+            "INGOT_AS": 12,
+            "INGOT_FE": 60
+          },
+          "minutes_start": 720,
+          "minutes_end": 720,
+          "effect_start": 240,
+          "effect_end": 240,
+          "requires": "G05 + BLD02_BATCH:3"
+        }
+      ]
+    },
+    {
+      "id": "BLD03",
+      "name": "Шахта: первый участок",
+      "max_level": 1,
+      "availability": "G01 / B01 tier1; MVP",
+      "purpose": "Постоянный независимый источник открытой руды или угля",
+      "effect_description": "Один участок, склад на 4 часа. База за час выбранного режима: CU 60; FE 42; AG 28; AU 18; MY 10; AS 6; уголь 35. Участок работает только в одном режиме. Закрытые ресурсы недоступны.",
+      "effect_unit": "участки",
+      "stacking": "Базовое состояние; скорости разных руд не взаимозаменяемы.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_CU": 8
+          },
+          "cost_end": {
+            "INGOT_CU": 8
+          },
+          "minutes_start": 10,
+          "minutes_end": 10,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G01 + BLD02"
+        }
+      ]
+    },
+    {
+      "id": "BLD03_PLOTS",
+      "name": "Шахта: дополнительные участки",
+      "max_level": 2,
+      "availability": "G02; после MVP",
+      "purpose": "Одновременно снабжать кузницу топливом и конкретной рудой",
+      "effect_description": "Первое улучшение даёт всего 2 участка, второе — 3. Каждый имеет отдельный выбранный режим; склады общие по ресурсному ID с одинаковым временным лимитом.",
+      "effect_unit": "участки",
+      "stacking": "Абсолютное число 2 / 3; не умножать добычу одного участка на число выбранных ресурсов.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_CU": 24,
+            "INGOT_FE": 20,
+            "INGOT_AG": 6
+          },
+          "cost_end": {
+            "INGOT_CU": 24,
+            "INGOT_FE": 20,
+            "INGOT_AG": 6
+          },
+          "minutes_start": 120,
+          "minutes_end": 120,
+          "effect_start": 2,
+          "effect_end": 2,
+          "requires": "G02 + BLD03"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_AG": 45,
+            "INGOT_AU": 20,
+            "INGOT_MY": 8,
+            "INGOT_FE": 40
+          },
+          "cost_end": {
+            "INGOT_AG": 45,
+            "INGOT_AU": 20,
+            "INGOT_MY": 8,
+            "INGOT_FE": 40
+          },
+          "minutes_start": 720,
+          "minutes_end": 720,
+          "effect_start": 3,
+          "effect_end": 3,
+          "requires": "G04 + BLD03_PLOTS:1"
+        }
+      ]
+    },
+    {
+      "id": "BLD03_ORE",
+      "name": "Шахта: добывающий инструмент",
+      "max_level": 20,
+      "availability": "G01; первая ступень MVP",
+      "purpose": "Частые небольшие улучшения именно добычи руды шахтой",
+      "effect_description": "Накопительный бонус к базовой скорости выбранной руды +3%…+60%. Не влияет на боевой drop, квесты, уголь и слитки. Общий производственный коэффициент одного участка учитывает этот бонус один раз.",
+      "effect_unit": "накопительные процентные пункты скорости руды",
+      "stacking": "Коэффициент 1 + BLD03_ORE/100. Бонусы лаборатории шахте входят в тот же аддитивный процентный бюджет; предел требуется согласовать в общей экономике.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 5,
+          "cost_start": {
+            "INGOT_CU": 2
+          },
+          "cost_end": {
+            "INGOT_CU": 10
+          },
+          "minutes_start": 5,
+          "minutes_end": 25,
+          "effect_start": 3,
+          "effect_end": 15,
+          "requires": "G01 + BLD03"
+        },
+        {
+          "from": 6,
+          "to": 10,
+          "cost_start": {
+            "INGOT_FE": 4,
+            "INGOT_AG": 1
+          },
+          "cost_end": {
+            "INGOT_FE": 16,
+            "INGOT_AG": 5
+          },
+          "minutes_start": 30,
+          "minutes_end": 90,
+          "effect_start": 18,
+          "effect_end": 30,
+          "requires": "G02 + BLD03_ORE:5"
+        },
+        {
+          "from": 11,
+          "to": 15,
+          "cost_start": {
+            "INGOT_AG": 8,
+            "INGOT_AU": 2,
+            "INGOT_CU": 10
+          },
+          "cost_end": {
+            "INGOT_AG": 24,
+            "INGOT_AU": 8,
+            "INGOT_CU": 32
+          },
+          "minutes_start": 120,
+          "minutes_end": 360,
+          "effect_start": 33,
+          "effect_end": 45,
+          "requires": "G03 + BLD03_ORE:10"
+        },
+        {
+          "from": 16,
+          "to": 20,
+          "cost_start": {
+            "INGOT_MY": 10,
+            "INGOT_AS": 2,
+            "INGOT_FE": 18
+          },
+          "cost_end": {
+            "INGOT_MY": 35,
+            "INGOT_AS": 12,
+            "INGOT_FE": 55
+          },
+          "minutes_start": 720,
+          "minutes_end": 2160,
+          "effect_start": 48,
+          "effect_end": 60,
+          "requires": "G05 + BLD03_ORE:15"
+        }
+      ]
+    },
+    {
+      "id": "BLD03_COAL",
+      "name": "Шахта: угольный штрек",
+      "max_level": 10,
+      "availability": "G01; первая ступень MVP",
+      "purpose": "Опциональный ответ на топливный дефицит без блокировки угольного режима",
+      "effect_description": "Накопительный бонус добычи угля на участке +5%…+50%. Угольный режим существует до покупки; не требует угля, который сам должен открыть.",
+      "effect_unit": "накопительные процентные пункты скорости угля",
+      "stacking": "Коэффициент 1 + BLD03_COAL/100; не умножает добычу руды и не создаёт параллельный угольный поток.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 4,
+          "cost_start": {
+            "INGOT_CU": 3,
+            "INGOT_FE": 1
+          },
+          "cost_end": {
+            "INGOT_CU": 12,
+            "INGOT_FE": 5
+          },
+          "minutes_start": 10,
+          "minutes_end": 40,
+          "effect_start": 5,
+          "effect_end": 20,
+          "requires": "G01 + BLD03"
+        },
+        {
+          "from": 5,
+          "to": 7,
+          "cost_start": {
+            "INGOT_FE": 12,
+            "INGOT_AG": 3
+          },
+          "cost_end": {
+            "INGOT_FE": 24,
+            "INGOT_AG": 8
+          },
+          "minutes_start": 90,
+          "minutes_end": 180,
+          "effect_start": 25,
+          "effect_end": 35,
+          "requires": "G02 + BLD03_COAL:4"
+        },
+        {
+          "from": 8,
+          "to": 10,
+          "cost_start": {
+            "INGOT_AU": 12,
+            "INGOT_MY": 4,
+            "INGOT_CU": 24
+          },
+          "cost_end": {
+            "INGOT_AU": 30,
+            "INGOT_MY": 12,
+            "INGOT_CU": 65
+          },
+          "minutes_start": 360,
+          "minutes_end": 720,
+          "effect_start": 40,
+          "effect_end": 50,
+          "requires": "G04 + BLD03_COAL:7"
+        }
+      ]
+    },
+    {
+      "id": "BLD03_STORAGE",
+      "name": "Шахта: склад добытого",
+      "max_level": 3,
+      "availability": "G01; первая ступень MVP",
+      "purpose": "Сократить потери при длинном отсутствии",
+      "effect_description": "Склад на 8, 12 и 24 часа вместо 4. Лимит вычисляется для текущего режима участка; уже заработанное не удаляется при смене назначения. Offline боевой фарм регулируется TW18 отдельно.",
+      "effect_unit": "часы накопления шахты",
+      "stacking": "Абсолютный предел хранения. Это не дополнительная скорость и не лимит исследования.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_CU": 8,
+            "INGOT_FE": 4
+          },
+          "cost_end": {
+            "INGOT_CU": 8,
+            "INGOT_FE": 4
+          },
+          "minutes_start": 15,
+          "minutes_end": 15,
+          "effect_start": 8,
+          "effect_end": 8,
+          "requires": "G01 + BLD03"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_FE": 18,
+            "INGOT_AG": 6
+          },
+          "cost_end": {
+            "INGOT_FE": 18,
+            "INGOT_AG": 6
+          },
+          "minutes_start": 60,
+          "minutes_end": 60,
+          "effect_start": 12,
+          "effect_end": 12,
+          "requires": "G02 + BLD03_STORAGE:1"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "INGOT_AG": 28,
+            "INGOT_AU": 12,
+            "INGOT_CU": 30
+          },
+          "cost_end": {
+            "INGOT_AG": 28,
+            "INGOT_AU": 12,
+            "INGOT_CU": 30
+          },
+          "minutes_start": 240,
+          "minutes_end": 240,
+          "effect_start": 24,
+          "effect_end": 24,
+          "requires": "G03 + BLD03_STORAGE:2"
+        }
+      ]
+    },
+    {
+      "id": "BLD04",
+      "name": "Лаборатория: первый корпус",
+      "max_level": 1,
+      "availability": "G01; MVP",
+      "purpose": "Доступ к дешёвым первым исследованиям и обязательному R_GATE02",
+      "effect_description": "Один исследовательский слот, скорость ×1, учебное исследование и отдельная обязательная технология доступны по своим ценам. Корпус не выдаёт R_GATE02 бесплатно.",
+      "effect_unit": "доступ: 0 или 1",
+      "stacking": "Однократный доступ; R_GATE02 оплачивается только в каталоге лаборатории.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_CU": 20,
+            "INGOT_FE": 10
+          },
+          "cost_end": {
+            "INGOT_CU": 20,
+            "INGOT_FE": 10
+          },
+          "minutes_start": 30,
+          "minutes_end": 30,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G01 + BLD02"
+        }
+      ]
+    },
+    {
+      "id": "BLD04_L2",
+      "name": "Лаборатория: второй корпус",
+      "max_level": 1,
+      "availability": "G03; версия 1.0",
+      "purpose": "Доступ к технологиям щита и второй школе сложных исследований",
+      "effect_description": "Итоговый корпус лаборатории становится 2. Открывает возможность исследовать R_GATE04; не добавляет исследовательский слот и не выдаёт эффект щита.",
+      "effect_unit": "итоговая ступень корпуса",
+      "stacking": "Устанавливает корпус 2; самостоятельная ветка с одной покупкой.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_AG": 30,
+            "INGOT_AU": 10,
+            "INGOT_CU": 36
+          },
+          "cost_end": {
+            "INGOT_AG": 30,
+            "INGOT_AU": 10,
+            "INGOT_CU": 36
+          },
+          "minutes_start": 240,
+          "minutes_end": 240,
+          "effect_start": 2,
+          "effect_end": 2,
+          "requires": "G03 + BLD04"
+        }
+      ]
+    },
+    {
+      "id": "BLD04_L3",
+      "name": "Лаборатория: резонансный корпус",
+      "max_level": 1,
+      "availability": "G05; версия 1.0",
+      "purpose": "Доступ к поздним технологиям и R_GATE06",
+      "effect_description": "Итоговый корпус лаборатории становится 3. R_GATE06 и остальные исследования оплачиваются отдельно. Не даёт слот активного заклинания или дополнительный исследовательский слот.",
+      "effect_unit": "итоговая ступень корпуса",
+      "stacking": "Устанавливает корпус 3; самостоятельная ветка с одной покупкой.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_MY": 20,
+            "INGOT_AS": 10,
+            "INGOT_FE": 40
+          },
+          "cost_end": {
+            "INGOT_MY": 20,
+            "INGOT_AS": 10,
+            "INGOT_FE": 40
+          },
+          "minutes_start": 360,
+          "minutes_end": 360,
+          "effect_start": 3,
+          "effect_end": 3,
+          "requires": "G05 + BLD04_L2"
+        }
+      ]
+    },
+    {
+      "id": "BLD04_SLOTS",
+      "name": "Лаборатория: исследовательские места",
+      "max_level": 5,
+      "availability": "G02; после MVP",
+      "purpose": "Очень сильное ускорение параллельного освоения разных ветвей",
+      "effect_description": "Пять покупок дают всего 2…6 одновременно работающих исследовательских слотов. Нельзя исследовать два уровня одной последовательной ветки одновременно. Новый слот не ускоряет уже идущий job.",
+      "effect_unit": "одновременные исследовательские слоты",
+      "stacking": "Абсолютное число слотов, максимум 6. Это иной объект, чем LAB_SLOTS активных заклинаний.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_CU": 36,
+            "INGOT_FE": 24,
+            "INGOT_AG": 8
+          },
+          "cost_end": {
+            "INGOT_CU": 36,
+            "INGOT_FE": 24,
+            "INGOT_AG": 8
+          },
+          "minutes_start": 120,
+          "minutes_end": 120,
+          "effect_start": 2,
+          "effect_end": 2,
+          "requires": "G02 + BLD04"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_AG": 60,
+            "INGOT_AU": 20,
+            "INGOT_CU": 50
+          },
+          "cost_end": {
+            "INGOT_AG": 60,
+            "INGOT_AU": 20,
+            "INGOT_CU": 50
+          },
+          "minutes_start": 720,
+          "minutes_end": 720,
+          "effect_start": 3,
+          "effect_end": 3,
+          "requires": "G03 + BLD04_L2 + BLD04_SLOTS:1"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "INGOT_AU": 140,
+            "INGOT_MY": 60,
+            "INGOT_FE": 120
+          },
+          "cost_end": {
+            "INGOT_AU": 140,
+            "INGOT_MY": 60,
+            "INGOT_FE": 120
+          },
+          "minutes_start": 1440,
+          "minutes_end": 1440,
+          "effect_start": 4,
+          "effect_end": 4,
+          "requires": "G04 + BLD04_L2 + BLD04_SLOTS:2"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "INGOT_MY": 280,
+            "INGOT_AS": 100,
+            "INGOT_CU": 450,
+            "INGOT_FE": 220
+          },
+          "cost_end": {
+            "INGOT_MY": 280,
+            "INGOT_AS": 100,
+            "INGOT_CU": 450,
+            "INGOT_FE": 220
+          },
+          "minutes_start": 2880,
+          "minutes_end": 2880,
+          "effect_start": 5,
+          "effect_end": 5,
+          "requires": "G05 + BLD04_L3 + BLD04_SLOTS:3"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "cost_start": {
+            "INGOT_MY": 1200,
+            "INGOT_AS": 600,
+            "INGOT_CU": 1800,
+            "INGOT_FE": 900
+          },
+          "cost_end": {
+            "INGOT_MY": 1200,
+            "INGOT_AS": 600,
+            "INGOT_CU": 1800,
+            "INGOT_FE": 900
+          },
+          "minutes_start": 4320,
+          "minutes_end": 4320,
+          "effect_start": 6,
+          "effect_end": 6,
+          "requires": "G06 + BLD04_L3 + BLD04_SLOTS:4 + глава мастерства 18"
+        }
+      ]
+    },
+    {
+      "id": "BLD04_SPEED",
+      "name": "Лаборатория: исследовательское оборудование",
+      "max_level": 8,
+      "availability": "G02; после MVP",
+      "purpose": "Неравномерные крупные инвестиции в работу всех исследовательских слотов",
+      "effect_description": "Полная скорость исследования ×1.10, ×1.25, ×1.50, ×1.80, ×2.20, ×2.70, ×3.30, ×4.00. Таймер самого строительства не ускоряется исследовательским оборудованием.",
+      "effect_unit": "множитель исследовательской скорости",
+      "stacking": "Абсолютный множитель, общий cap ×4. Другие системы не добавляют скорость сверх ×4. Платный пропуск времени считается отдельно.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_CU": 16,
+            "INGOT_FE": 12,
+            "INGOT_AG": 4
+          },
+          "cost_end": {
+            "INGOT_CU": 16,
+            "INGOT_FE": 12,
+            "INGOT_AG": 4
+          },
+          "minutes_start": 30,
+          "minutes_end": 30,
+          "effect_start": 1.1,
+          "effect_end": 1.1,
+          "requires": "G02 + BLD04"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_FE": 35,
+            "INGOT_AG": 14
+          },
+          "cost_end": {
+            "INGOT_FE": 35,
+            "INGOT_AG": 14
+          },
+          "minutes_start": 120,
+          "minutes_end": 120,
+          "effect_start": 1.25,
+          "effect_end": 1.25,
+          "requires": "G02 + BLD04_SPEED:1"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "INGOT_AG": 55,
+            "INGOT_AU": 20,
+            "INGOT_CU": 36
+          },
+          "cost_end": {
+            "INGOT_AG": 55,
+            "INGOT_AU": 20,
+            "INGOT_CU": 36
+          },
+          "minutes_start": 360,
+          "minutes_end": 360,
+          "effect_start": 1.5,
+          "effect_end": 1.5,
+          "requires": "G03 + BLD04_L2 + BLD04_SPEED:2"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "INGOT_AU": 120,
+            "INGOT_MY": 40,
+            "INGOT_FE": 90
+          },
+          "cost_end": {
+            "INGOT_AU": 120,
+            "INGOT_MY": 40,
+            "INGOT_FE": 90
+          },
+          "minutes_start": 720,
+          "minutes_end": 720,
+          "effect_start": 1.8,
+          "effect_end": 1.8,
+          "requires": "G04 + BLD04_L2 + BLD04_SPEED:3"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "cost_start": {
+            "INGOT_MY": 220,
+            "INGOT_AS": 70,
+            "INGOT_CU": 220
+          },
+          "cost_end": {
+            "INGOT_MY": 220,
+            "INGOT_AS": 70,
+            "INGOT_CU": 220
+          },
+          "minutes_start": 1440,
+          "minutes_end": 1440,
+          "effect_start": 2.2,
+          "effect_end": 2.2,
+          "requires": "G05 + BLD04_L3 + BLD04_SPEED:4"
+        },
+        {
+          "from": 6,
+          "to": 6,
+          "cost_start": {
+            "INGOT_MY": 500,
+            "INGOT_AS": 220,
+            "INGOT_FE": 360
+          },
+          "cost_end": {
+            "INGOT_MY": 500,
+            "INGOT_AS": 220,
+            "INGOT_FE": 360
+          },
+          "minutes_start": 2160,
+          "minutes_end": 2160,
+          "effect_start": 2.7,
+          "effect_end": 2.7,
+          "requires": "G06 + BLD04_L3 + BLD04_SPEED:5 + глава мастерства 12"
+        },
+        {
+          "from": 7,
+          "to": 7,
+          "cost_start": {
+            "INGOT_MY": 1100,
+            "INGOT_AS": 650,
+            "INGOT_CU": 1100,
+            "INGOT_FE": 650
+          },
+          "cost_end": {
+            "INGOT_MY": 1100,
+            "INGOT_AS": 650,
+            "INGOT_CU": 1100,
+            "INGOT_FE": 650
+          },
+          "minutes_start": 2880,
+          "minutes_end": 2880,
+          "effect_start": 3.3,
+          "effect_end": 3.3,
+          "requires": "BLD04_SPEED:6 + глава мастерства 24"
+        },
+        {
+          "from": 8,
+          "to": 8,
+          "cost_start": {
+            "INGOT_MY": 2200,
+            "INGOT_AS": 1600,
+            "INGOT_CU": 2400,
+            "INGOT_FE": 1600
+          },
+          "cost_end": {
+            "INGOT_MY": 2200,
+            "INGOT_AS": 1600,
+            "INGOT_CU": 2400,
+            "INGOT_FE": 1600
+          },
+          "minutes_start": 4320,
+          "minutes_end": 4320,
+          "effect_start": 4.0,
+          "effect_end": 4.0,
+          "requires": "BLD04_SPEED:7 + глава мастерства 36"
+        }
+      ]
+    },
+    {
+      "id": "BLD05",
+      "name": "Гильдия заданий: открытие",
+      "max_level": 1,
+      "availability": "G02 + учебное исследование; после MVP",
+      "purpose": "Доступ к дополнительным задачам и контролируемым ресурсным наградам",
+      "effect_description": "Три ежедневных задания, сюжетные цепочки и один бесплатный переброс задания в день; прогресс и выдача не требуют отдельной платной кнопки. Длительные контракты открываются отдельной веткой.",
+      "effect_unit": "доступ: 0 или 1",
+      "stacking": "Однократный доступ; цепочки далее открываются прохождением.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_CU": 12,
+            "INGOT_FE": 12
+          },
+          "cost_end": {
+            "INGOT_CU": 12,
+            "INGOT_FE": 12
+          },
+          "minutes_start": 20,
+          "minutes_end": 20,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G02 + завершено учебное исследование"
+        }
+      ]
+    },
+    {
+      "id": "BLD05_CONTRACTS",
+      "name": "Гильдия: длительные контракты",
+      "max_level": 2,
+      "availability": "G02; после MVP",
+      "purpose": "Самостоятельные цели на несколько посещений",
+      "effect_description": "Первая покупка открывает один параллельный контракт, вторая — два. Контракт занимает 12–24 реальных часа и требует явно указанной задачи; само ожидание без условия не создаёт награду. Базовые 3 daily остаются отдельно.",
+      "effect_unit": "одновременно активные длительные контракты",
+      "stacking": "Абсолютное число 1 / 2; не дополнительные случайные daily.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_FE": 18,
+            "INGOT_AG": 6
+          },
+          "cost_end": {
+            "INGOT_FE": 18,
+            "INGOT_AG": 6
+          },
+          "minutes_start": 60,
+          "minutes_end": 60,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G02 + BLD05"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_AU": 60,
+            "INGOT_MY": 24,
+            "INGOT_FE": 48
+          },
+          "cost_end": {
+            "INGOT_AU": 60,
+            "INGOT_MY": 24,
+            "INGOT_FE": 48
+          },
+          "minutes_start": 720,
+          "minutes_end": 720,
+          "effect_start": 2,
+          "effect_end": 2,
+          "requires": "G04 + BLD05_CONTRACTS:1"
+        }
+      ]
+    },
+    {
+      "id": "BLD05_REWARDS",
+      "name": "Гильдия: снабжение контрактов",
+      "max_level": 12,
+      "availability": "G02; после MVP",
+      "purpose": "Малый предсказуемый бонус к наградам ресурсных задач",
+      "effect_description": "Накопительный бонус к сырью и углю в наградах контрактов +2%…+24%. Не повышает кристаллы, рекламные жетоны, карточки, уникальные награды и не выдаёт готовые материалы.",
+      "effect_unit": "накопительные процентные пункты награды",
+      "stacking": "Аддитивный бонус внутри награды контракта; округление один раз после всех применимых бонусов.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 4,
+          "cost_start": {
+            "INGOT_FE": 6,
+            "INGOT_AG": 2
+          },
+          "cost_end": {
+            "INGOT_FE": 20,
+            "INGOT_AG": 6
+          },
+          "minutes_start": 15,
+          "minutes_end": 60,
+          "effect_start": 2,
+          "effect_end": 8,
+          "requires": "G02 + BLD05_CONTRACTS:1"
+        },
+        {
+          "from": 5,
+          "to": 8,
+          "cost_start": {
+            "INGOT_AG": 12,
+            "INGOT_AU": 4,
+            "INGOT_CU": 16
+          },
+          "cost_end": {
+            "INGOT_AG": 32,
+            "INGOT_AU": 12,
+            "INGOT_CU": 40
+          },
+          "minutes_start": 120,
+          "minutes_end": 360,
+          "effect_start": 10,
+          "effect_end": 16,
+          "requires": "G03 + BLD05_REWARDS:4"
+        },
+        {
+          "from": 9,
+          "to": 12,
+          "cost_start": {
+            "INGOT_AU": 30,
+            "INGOT_MY": 12,
+            "INGOT_CU": 50
+          },
+          "cost_end": {
+            "INGOT_AU": 72,
+            "INGOT_MY": 30,
+            "INGOT_CU": 125
+          },
+          "minutes_start": 720,
+          "minutes_end": 1440,
+          "effect_start": 18,
+          "effect_end": 24,
+          "requires": "G04 + BLD05_REWARDS:8"
+        }
+      ]
+    },
+    {
+      "id": "BLD05_REROLL",
+      "name": "Гильдия: дополнительные бесплатные перебросы",
+      "max_level": 2,
+      "availability": "G03; версия 1.0",
+      "purpose": "Меньше неподходящих целей, без покупки награды",
+      "effect_description": "Суммарно два, затем три бесплатных переброса обычного daily в сутки вместо одного. Не обновляет уже полученные награды, сезонный бюджет и гарантированный обязательный контрпредмет.",
+      "effect_unit": "бесплатные перебросы в сутки",
+      "stacking": "Абсолютное число 2 / 3; переброс не должен давать второй набор оплаченных daily.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_AG": 18,
+            "INGOT_AU": 6
+          },
+          "cost_end": {
+            "INGOT_AG": 18,
+            "INGOT_AU": 6
+          },
+          "minutes_start": 120,
+          "minutes_end": 120,
+          "effect_start": 2,
+          "effect_end": 2,
+          "requires": "G03 + BLD05"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_AU": 45,
+            "INGOT_MY": 15,
+            "INGOT_FE": 32
+          },
+          "cost_end": {
+            "INGOT_AU": 45,
+            "INGOT_MY": 15,
+            "INGOT_FE": 32
+          },
+          "minutes_start": 360,
+          "minutes_end": 360,
+          "effect_start": 3,
+          "effect_end": 3,
+          "requires": "G04 + BLD05_REROLL:1"
+        }
+      ]
+    },
+    {
+      "id": "BLD06",
+      "name": "Арканум: открытие",
+      "max_level": 1,
+      "availability": "Первый медный слиток; MVP",
+      "purpose": "Доступ к управляемым способностям и прорыву G01",
+      "effect_description": "Открывает применение и улучшение способностей; стартовый активный слот один. Покупка не выдаёт числовой множитель урона: результат зависит от доступных способностей и применения.",
+      "effect_unit": "доступ: 0 или 1",
+      "stacking": "Однократное функциональное открытие. Числовой эффект определяется фактической механикой и не учитывается второй раз.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_CU": 4
+          },
+          "cost_end": {
+            "INGOT_CU": 4
+          },
+          "minutes_start": 2,
+          "minutes_end": 2,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "BLD02 + получен первый медный слиток"
+        }
+      ]
+    },
+    {
+      "id": "BLD06_L2",
+      "name": "Арканум: усилитель",
+      "max_level": 1,
+      "availability": "G02; после MVP",
+      "purpose": "Обязательная развилка модификаторов против осады G03",
+      "effect_description": "Открывает первую функциональную развилку усилителей способностей. Конкретные модификаторы и их условия требуют отдельного описания и боевого прогона; доказанного общего множителя DPS у здания нет. Покупка не добавляет активный слот.",
+      "effect_unit": "доступ: 0 или 1",
+      "stacking": "Однократное функциональное открытие. Числовой эффект определяется фактической механикой и не учитывается второй раз.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_FE": 30,
+            "INGOT_AG": 12,
+            "INGOT_CU": 24
+          },
+          "cost_end": {
+            "INGOT_FE": 30,
+            "INGOT_AG": 12,
+            "INGOT_CU": 24
+          },
+          "minutes_start": 120,
+          "minutes_end": 120,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G02 + BLD06"
+        }
+      ]
+    },
+    {
+      "id": "BLD07",
+      "name": "Архив карточек",
+      "max_level": 1,
+      "availability": "G02 + получены 6 способностей; после MVP",
+      "purpose": "Сбор карточек и управляемая случайность",
+      "effect_description": "Сразу доступны список карточек, целевой баннер, опубликованные шансы, pity, безопасная выдача, история результатов и ранги. Цены призывов и рангов находятся только в каталоге карточек.",
+      "effect_unit": "доступ: 0 или 1",
+      "stacking": "Одна постройка; нет платы за интерфейс гарантий или дублирующего 60-уровневого развития архива.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_FE": 20,
+            "INGOT_AG": 6
+          },
+          "cost_end": {
+            "INGOT_FE": 20,
+            "INGOT_AG": 6
+          },
+          "minutes_start": 60,
+          "minutes_end": 60,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G02 + получены 6 способностей"
+        }
+      ]
+    },
+    {
+      "id": "BLD08",
+      "name": "Таверна",
+      "max_level": 1,
+      "availability": "G02 + завершено обучение наградам; после MVP",
+      "purpose": "Единое окно рекламного обмена",
+      "effect_description": "Четыре ежедневных предложения и постоянный обмен. Нет платных уровней, увеличивающих обязательный просмотр рекламы. Условия no-ads и цены товаров хранятся в монетизации, не в цене здания.",
+      "effect_unit": "доступ: 0 или 1",
+      "stacking": "Одна постройка; обновление витрины и проверка покупок не отдельные улучшения.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_FE": 16,
+            "INGOT_AG": 8
+          },
+          "cost_end": {
+            "INGOT_FE": 16,
+            "INGOT_AG": 8
+          },
+          "minutes_start": 60,
+          "minutes_end": 60,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G02 + завершено обучение наградам"
+        }
+      ]
+    },
+    {
+      "id": "BLD09",
+      "name": "Портал испытаний",
+      "max_level": 1,
+      "availability": "G02 + 3 обучающих задания вне портала; вертикальный срез",
+      "purpose": "Доступ к самостоятельным задачам на контрсборки",
+      "effect_description": "Открывает первые 10 постоянных испытаний; далее до 60 в версии 1.0 через победы. A04 и обязательная контрмера G02 доступны до портала. Отдельной оплаты каждого следующего экрана нет.",
+      "effect_unit": "доступ: 0 или 1",
+      "stacking": "Одна постройка; новые испытания — контент и условия прохождения, не уровни мощности портала.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_CU": 12
+          },
+          "cost_end": {
+            "INGOT_CU": 12
+          },
+          "minutes_start": 15,
+          "minutes_end": 15,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G02 + 3 обучающих задания вне портала"
+        }
+      ]
+    },
+    {
+      "id": "BLD10",
+      "name": "Обсерватория",
+      "max_level": 1,
+      "availability": "G02 + 10 постоянных испытаний; версия 1.0",
+      "purpose": "Еженедельные задачи с заранее видимыми условиями",
+      "effect_description": "Пять испытаний по пять одноразовых этапов в неделю. Предпросмотр модификаторов, правила наград, расписание и история выдачи включены в здание.",
+      "effect_unit": "доступ: 0 или 1",
+      "stacking": "Одна постройка; прогноз угроз не делится на фиктивные уровни исследования.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_FE": 24,
+            "INGOT_AG": 12
+          },
+          "cost_end": {
+            "INGOT_FE": 24,
+            "INGOT_AG": 12
+          },
+          "minutes_start": 120,
+          "minutes_end": 120,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G02 + пройдены 10 постоянных испытаний"
+        }
+      ]
+    },
+    {
+      "id": "BLD11",
+      "name": "Арена",
+      "max_level": 1,
+      "availability": "G03 + 3 контрсборки + готова сетевая инфраструктура; версия 1.0",
+      "purpose": "Сравнение тактических результатов при нормализованной силе",
+      "effect_description": "Доступ к daily endless, рейтингу, нормализации и серверной проверке награды. Готовность инфраструктуры — условие выпуска функции, никогда не цена для игрока. Нет платного усиления рейтинговой сборки через здание.",
+      "effect_unit": "доступ: 0 или 1",
+      "stacking": "Одна постройка; антимошенничество, восстановление наград и нормализация бесплатны.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_AG": 20,
+            "INGOT_AU": 8,
+            "INGOT_FE": 18
+          },
+          "cost_end": {
+            "INGOT_AG": 20,
+            "INGOT_AU": 8,
+            "INGOT_FE": 18
+          },
+          "minutes_start": 240,
+          "minutes_end": 240,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G03 + освоены 3 контрсборки; функция выпущена"
+        }
+      ]
+    },
+    {
+      "id": "BLD12",
+      "name": "Ратуша",
+      "max_level": 1,
+      "availability": "G03 + глава мастерства 6; версия 1.0",
+      "purpose": "Управление доктриной и структурными главами прогрессии",
+      "effect_description": "Открывает управление главами мастерства и первую доктрину. Смена доступной доктрины и 3 пресета бесплатны вне боя. Главы не взимают повторную цену за уже купленные конкретные улучшения.",
+      "effect_unit": "доступ: 0 или 1",
+      "stacking": "Одна постройка; численные эффекты доктрин описаны у башни.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_AG": 30,
+            "INGOT_AU": 12,
+            "INGOT_CU": 28
+          },
+          "cost_end": {
+            "INGOT_AG": 30,
+            "INGOT_AU": 12,
+            "INGOT_CU": 28
+          },
+          "minutes_start": 360,
+          "minutes_end": 360,
+          "effect_start": 1,
+          "effect_end": 1,
+          "requires": "G03 + завершена глава мастерства 6"
+        }
+      ]
+    },
+    {
+      "id": "BLD12_DOCTRINES",
+      "name": "Ратуша: дополнительные доктрины",
+      "max_level": 2,
+      "availability": "G03; версия 1.0",
+      "purpose": "Новые варианты сборки с взаимоисключающим выбором",
+      "effect_description": "Открывает всего две, затем три доступные доктрины. Экипируется одна. Покупка не складывает бонусы всех доктрин и не берёт повторную плату за смену.",
+      "effect_unit": "доступные доктрины",
+      "stacking": "Абсолютный выбор 2 / 3, одновременно действует ровно 1.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_AG": 48,
+            "INGOT_AU": 18
+          },
+          "cost_end": {
+            "INGOT_AG": 48,
+            "INGOT_AU": 18
+          },
+          "minutes_start": 240,
+          "minutes_end": 240,
+          "effect_start": 2,
+          "effect_end": 2,
+          "requires": "G03 + BLD12"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "INGOT_AU": 90,
+            "INGOT_MY": 36,
+            "INGOT_FE": 70
+          },
+          "cost_end": {
+            "INGOT_AU": 90,
+            "INGOT_MY": 36,
+            "INGOT_FE": 70
+          },
+          "minutes_start": 1440,
+          "minutes_end": 1440,
+          "effect_start": 3,
+          "effect_end": 3,
+          "requires": "G04 + BLD12_DOCTRINES:1"
+        }
+      ]
+    },
+    {
+      "id": "BLD12_CONSTRUCTION",
+      "name": "Ратуша: вторая строительная очередь",
+      "max_level": 1,
+      "availability": "G04 + глава мастерства 12; версия 1.0",
+      "purpose": "Параллельная стройка без эксклюзивного платного доступа",
+      "effect_description": "Даёт всего две строительные очереди вместо одной. Одна постройка не может строить два последовательных уровня одновременно. Ресурсы каждого задания списываются отдельно.",
+      "effect_unit": "строительные очереди",
+      "stacking": "Абсолютный предел 2; не множитель таймера отдельной стройки.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "INGOT_AU": 60,
+            "INGOT_MY": 20,
+            "INGOT_CU": 80,
+            "INGOT_FE": 50
+          },
+          "cost_end": {
+            "INGOT_AU": 60,
+            "INGOT_MY": 20,
+            "INGOT_CU": 80,
+            "INGOT_FE": 50
+          },
+          "minutes_start": 1440,
+          "minutes_end": 1440,
+          "effect_start": 2,
+          "effect_end": 2,
+          "requires": "G04 + BLD12 + завершена глава мастерства 12"
+        }
+      ]
+    }
+  ]
+}

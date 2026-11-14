@@ -41,7 +41,7 @@ public class EnemySpawnSystem : IEcsPreInitSystem, IEcsRunSystem, IEcsInitSystem
         _stage = 0;
         _sharedData = systems.GetShared<SharedData>();
         _world = systems.GetWorld();
-        _spawnSettings = _sharedData.Settings.EnemySpawnSettings[DataController.tier];
+        _spawnSettings = _sharedData.SelectedEnemyTier;
         _enemySpawnDelay = _spawnSettings.stages[_stage].enemySpawnRate;
         if (_sharedData.Tutorial != null)
             _enemySpawnDelay *= _sharedData.Tutorial.SpawnDelayMultiplier;
@@ -127,8 +127,7 @@ public class EnemySpawnSystem : IEcsPreInitSystem, IEcsRunSystem, IEcsInitSystem
         // Setup View
         movement.transform = enemyView.transform;
 
-        var enemyBaseStats = _sharedData.Settings.EnemySpawnSettings[DataController.tier]
-            ._stats[(int) enemyView.enemyNumber];
+        var enemyBaseStats = _spawnSettings._stats[(int) enemyView.enemyNumber];
 
         // Init Components
         position = randomPosition;

@@ -1,0 +1,168 @@
+[
+  {
+    "name": "Hit-v3-frame-04",
+    "source": "Hit-v2/frame-04.png",
+    "seed": 919601,
+    "job_id": "01faec15-c6d6-4f89-bfb1-6973906938b3",
+    "cost": 1,
+    "prompt": "Repair ONLY the skull's eye sockets. Remove ALL white or light pixels inside both sockets. They must be hollow solid dark cavities, open and round, with a rigid bone rim. No eyeballs, pupils, eyelids, blinking, squinting, eyebrows or facial expression. Preserve the exact head position and tilt, helmet, jaw, armour, hatchet, hands, body pose, feet, canvas, palette and pixel scale. Transparent background. Do not add anything.",
+    "status": "completed",
+    "review": "Selected eye-region patch only; body outside rectangle preserved"
+  },
+  {
+    "name": "Hit-v3-frame-02",
+    "source": "Hit-v2/frame-02.png",
+    "seed": 919602,
+    "job_id": "2a08164f-3136-4bb9-8c51-d8f2e66ac353",
+    "cost": 1,
+    "prompt": "Repair ONLY the skull's eye sockets. Remove ALL white or light pixels inside both sockets. They must be hollow solid dark cavities, open and round, with a rigid bone rim. No eyeballs, pupils, eyelids, blinking, squinting, eyebrows or facial expression. Preserve the exact head position and tilt, helmet, jaw, armour, hatchet, hands, body pose, feet, canvas, palette and pixel scale. Transparent background. Do not add anything.",
+    "status": "completed",
+    "response": "id: 2a08164f-3136-4bb9-8c51-d8f2e66ac353\njob_id: 2a08164f-3136-4bb9-8c51-d8f2e66ac353\nmodel: pixen\nedit: Repair ONLY the skull's eye sockets. Remove ALL white or light pixels inside both sockets. They must be hollow solid dark cavities, open and round, with a rigid bone rim. No eyeballs, pupils, eyelids, blinking, squinting, eyebrows or facial expression. Preserve the exact head position and tilt, helmet, jaw, armour, hatchet, hands, body pose, feet, canvas, palette and pixel scale. Transparent background. Do not add anything.\nsource: 128x128px\nsize: 128x128px\ntransparent: True\nseed: 919602\ncost: 1 generation\nstatus: processing (~10-40s)\n\nhint: get_image(job_id=\"2a08164f-3136-4bb9-8c51-d8f2e66ac353\")",
+    "review": "Selected eye-region patch only; body outside rectangle preserved"
+  },
+  {
+    "name": "Hit-v3-frame-03",
+    "source": "Hit-v2/frame-03.png",
+    "seed": 919603,
+    "job_id": "8e4433f5-3cfa-4a2b-9f1a-f63af74c7c84",
+    "cost": 1,
+    "prompt": "Repair ONLY the skull's eye sockets. Remove ALL white or light pixels inside both sockets. They must be hollow solid dark cavities, open and round, with a rigid bone rim. No eyeballs, pupils, eyelids, blinking, squinting, eyebrows or facial expression. Preserve the exact head position and tilt, helmet, jaw, armour, hatchet, hands, body pose, feet, canvas, palette and pixel scale. Transparent background. Do not add anything.",
+    "status": "completed",
+    "response": "id: 8e4433f5-3cfa-4a2b-9f1a-f63af74c7c84\njob_id: 8e4433f5-3cfa-4a2b-9f1a-f63af74c7c84\nmodel: pixen\nedit: Repair ONLY the skull's eye sockets. Remove ALL white or light pixels inside both sockets. They must be hollow solid dark cavities, open and round, with a rigid bone rim. No eyeballs, pupils, eyelids, blinking, squinting, eyebrows or facial expression. Preserve the exact head position and tilt, helmet, jaw, armour, hatchet, hands, body pose, feet, canvas, palette and pixel scale. Transparent background. Do not add anything.\nsource: 128x128px\nsize: 128x128px\ntransparent: True\nseed: 919603\ncost: 1 generation\nstatus: processing (~10-40s)\n\nhint: get_image(job_id=\"8e4433f5-3cfa-4a2b-9f1a-f63af74c7c84\")",
+    "review": "Selected eye-region patch only; body outside rectangle preserved"
+  },
+  {
+    "name": "HitUp-v3-frame-03",
+    "source": "HitUp-v2/frame-03.png",
+    "seed": 919604,
+    "job_id": "f5d6935e-de77-4dba-a5b5-393c6260dbc1",
+    "cost": 1,
+    "prompt": "Erase only the small white floating slash to the right of the helmet. Replace it with transparent background. Keep every part of the skeleton, helmet, armor, hatchet, limbs and pose exactly unchanged. Same 128x128 canvas, native pixel scale, palette and hard pixel edges. No new objects or effects.",
+    "status": "completed",
+    "response": "id: f5d6935e-de77-4dba-a5b5-393c6260dbc1\njob_id: f5d6935e-de77-4dba-a5b5-393c6260dbc1\nmodel: pixen\nedit: Erase only the small white floating slash to the right of the helmet. Replace it with transparent background. Keep every part of the skeleton, helmet, armor, hatchet, limbs and pose exactly unchanged. Same 128x128 canvas, native pixel scale, palette and hard pixel edges. No new objects or effects.\nsource: 128x128px\nsize: 128x128px\ntransparent: True\nseed: 919604\ncost: 1 generation\nstatus: processing (~10-40s)\n\nhint: get_image(job_id=\"f5d6935e-de77-4dba-a5b5-393c6260dbc1\")",
+    "review": "Selected isolated slash-region patch; original motion preserved"
+  },
+  {
+    "name": "Hit-v3-frame-05",
+    "source": "Hit-v2/frame-05.png",
+    "seed": 919605,
+    "job_id": "2514dc76-feb7-4b12-bf89-80bfe8d871d5",
+    "cost": 1,
+    "prompt": "Repair ONLY the skull's eye sockets. Remove ALL white or light pixels inside both sockets. They must be hollow solid dark cavities, open and round, with a rigid bone rim. No eyeballs, pupils, eyelids, blinking, squinting, eyebrows or facial expression. Preserve the exact head position and tilt, helmet, jaw, armour, hatchet, hands, body pose, feet, canvas, palette and pixel scale. Transparent background. Do not add anything.",
+    "status": "completed",
+    "response": "id: 2514dc76-feb7-4b12-bf89-80bfe8d871d5\njob_id: 2514dc76-feb7-4b12-bf89-80bfe8d871d5\nmodel: pixen\nedit: Repair ONLY the skull's eye sockets. Remove ALL white or light pixels inside both sockets. They must be hollow solid dark cavities, open and round, with a rigid bone rim. No eyeballs, pupils, eyelids, blinking, squinting, eyebrows or facial expression. Preserve the exact head position and tilt, helmet, jaw, armour, hatchet, hands, body pose, feet, canvas, palette and pixel scale. Transparent background. Do not add anything.\nsource: 128x128px\nsize: 128x128px\ntransparent: True\nseed: 919605\ncost: 1 generation\nstatus: processing (~10-40s)\n\nhint: get_image(job_id=\"2514dc76-feb7-4b12-bf89-80bfe8d871d5\")",
+    "review": "Selected eye-region patch only; body outside rectangle preserved"
+  },
+  {
+    "name": "Hit-v3-frame-06",
+    "source": "Hit-v2/frame-06.png",
+    "seed": 919606,
+    "job_id": "b023d208-1067-4ec0-98d4-55ed36e26507",
+    "cost": 1,
+    "prompt": "Repair ONLY the skull's eye sockets. Remove ALL white or light pixels inside both sockets. They must be hollow solid dark cavities, open and round, with a rigid bone rim. No eyeballs, pupils, eyelids, blinking, squinting, eyebrows or facial expression. Preserve the exact head position and tilt, helmet, jaw, armour, hatchet, hands, body pose, feet, canvas, palette and pixel scale. Transparent background. Do not add anything.",
+    "status": "completed",
+    "response": "id: b023d208-1067-4ec0-98d4-55ed36e26507\njob_id: b023d208-1067-4ec0-98d4-55ed36e26507\nmodel: pixen\nedit: Repair ONLY the skull's eye sockets. Remove ALL white or light pixels inside both sockets. They must be hollow solid dark cavities, open and round, with a rigid bone rim. No eyeballs, pupils, eyelids, blinking, squinting, eyebrows or facial expression. Preserve the exact head position and tilt, helmet, jaw, armour, hatchet, hands, body pose, feet, canvas, palette and pixel scale. Transparent background. Do not add anything.\nsource: 128x128px\nsize: 128x128px\ntransparent: True\nseed: 919606\ncost: 1 generation\nstatus: processing (~10-40s)\n\nhint: get_image(job_id=\"b023d208-1067-4ec0-98d4-55ed36e26507\")",
+    "review": "Selected eye-region patch only; body outside rectangle preserved"
+  },
+  {
+    "name": "Hit-v3-frame-07",
+    "source": "Hit-v2/frame-07.png",
+    "seed": 919607,
+    "job_id": "7048ab66-f88a-4221-b4c7-818b0ee223da",
+    "cost": 1,
+    "prompt": "Repair ONLY the skull's eye sockets. Remove ALL white or light pixels inside both sockets. They must be hollow solid dark cavities, open and round, with a rigid bone rim. No eyeballs, pupils, eyelids, blinking, squinting, eyebrows or facial expression. Preserve the exact head position and tilt, helmet, jaw, armour, hatchet, hands, body pose, feet, canvas, palette and pixel scale. Transparent background. Do not add anything.",
+    "status": "completed",
+    "response": "id: 7048ab66-f88a-4221-b4c7-818b0ee223da\njob_id: 7048ab66-f88a-4221-b4c7-818b0ee223da\nmodel: pixen\nedit: Repair ONLY the skull's eye sockets. Remove ALL white or light pixels inside both sockets. They must be hollow solid dark cavities, open and round, with a rigid bone rim. No eyeballs, pupils, eyelids, blinking, squinting, eyebrows or facial expression. Preserve the exact head position and tilt, helmet, jaw, armour, hatchet, hands, body pose, feet, canvas, palette and pixel scale. Transparent background. Do not add anything.\nsource: 128x128px\nsize: 128x128px\ntransparent: True\nseed: 919607\ncost: 1 generation\nstatus: processing (~10-40s)\n\nhint: get_image(job_id=\"7048ab66-f88a-4221-b4c7-818b0ee223da\")",
+    "review": "Selected eye-region patch only; body outside rectangle preserved"
+  },
+  {
+    "name": "HitDown-v2-frame-02",
+    "source": "HitDown-v1/frame-02.png",
+    "seed": 919608,
+    "job_id": "d938bef4-0904-4ea0-a41e-0b58f22d2a4d",
+    "cost": 1,
+    "prompt": "Remove ONLY the large white curved slash around the character. Restore transparent background where the slash was. Preserve the skeleton, empty black eye sockets, helmet, armour, one-handed hatchet, grip, pose, feet and their exact positions. No motion trails, flashes, dust, new objects or background. Keep native pixel grid, palette and canvas size.",
+    "status": "completed",
+    "response": "id: d938bef4-0904-4ea0-a41e-0b58f22d2a4d\njob_id: d938bef4-0904-4ea0-a41e-0b58f22d2a4d\nmodel: pixen\nedit: Remove ONLY the large white curved slash around the character. Restore transparent background where the slash was. Preserve the skeleton, empty black eye sockets, helmet, armour, one-handed hatchet, grip, pose, feet and their exact positions. No motion trails, flashes, dust, new objects or background. Keep native pixel grid, palette and canvas size.\nsource: 128x128px\nsize: 128x128px\ntransparent: True\nseed: 919608\ncost: 1 generation\nstatus: processing (~10-40s)\n\nhint: get_image(job_id=\"d938bef4-0904-4ea0-a41e-0b58f22d2a4d\")",
+    "review": "Rejected: weapon shape drift and/or generated effects; not selected for integration"
+  },
+  {
+    "name": "HitDown-v2-frame-03",
+    "source": "HitDown-v1/frame-03.png",
+    "seed": 919609,
+    "job_id": "d25646fd-62d5-44c9-aa8d-50d4a6f7a09b",
+    "cost": 1,
+    "prompt": "Remove ONLY the large white circular slash encircling the character. Restore transparent background outside the body; reconstruct any covered armour and the single-bladed small hatchet. Keep the skeleton's empty black eye sockets, helmet, body pose, grip, feet, scale and exact placement. No trails, flashes, dust, background or extra blades. Same pixel art style.",
+    "status": "completed",
+    "response": "id: d25646fd-62d5-44c9-aa8d-50d4a6f7a09b\njob_id: d25646fd-62d5-44c9-aa8d-50d4a6f7a09b\nmodel: pixen\nedit: Remove ONLY the large white circular slash encircling the character. Restore transparent background outside the body; reconstruct any covered armour and the single-bladed small hatchet. Keep the skeleton's empty black eye sockets, helmet, body pose, grip, feet, scale and exact placement. No trails, flashes, dust, background or extra blades. Same pixel art style.\nsource: 128x128px\nsize: 128x128px\ntransparent: True\nseed: 919609\ncost: 1 generation\nstatus: processing (~10-40s)\n\nhint: get_image(job_id=\"d25646fd-62d5-44c9-aa8d-50d4a6f7a09b\")",
+    "review": "Rejected: weapon shape drift and/or generated effects; not selected for integration"
+  },
+  {
+    "name": "HitDown-v2-frame-04",
+    "source": "HitDown-v1/frame-04.png",
+    "seed": 919610,
+    "job_id": "5be10584-31c3-4011-99ff-244dbde54c8e",
+    "cost": 1,
+    "prompt": "Fix ONLY the weapon: change the double-headed axe into a small SINGLE-bladed hatchet. Keep the forward cutting blade, remove the opposite second blade; short brown wooden handle, small dark metal back. Preserve exact weapon angle, hand grip, swing pose, skull, empty dark sockets, armour, feet, canvas and pixel scale. No effects, white trails, new objects or background.",
+    "status": "completed",
+    "response": "id: 5be10584-31c3-4011-99ff-244dbde54c8e\njob_id: 5be10584-31c3-4011-99ff-244dbde54c8e\nmodel: pixen\nedit: Fix ONLY the weapon: change the double-headed axe into a small SINGLE-bladed hatchet. Keep the forward cutting blade, remove the opposite second blade; short brown wooden handle, small dark metal back. Preserve exact weapon angle, hand grip, swing pose, skull, empty dark sockets, armour, feet, canvas and pixel scale. No effects, white trails, new objects or background.\nsource: 128x128px\nsize: 128x128px\ntransparent: True\nseed: 919610\ncost: 1 generation\nstatus: processing (~10-40s)\n\nhint: get_image(job_id=\"5be10584-31c3-4011-99ff-244dbde54c8e\")",
+    "review": "Rejected: weapon shape drift and/or generated effects; not selected for integration"
+  },
+  {
+    "name": "HitDown-hatchet-frame-04",
+    "source": "HitDown-v1/frame-04.png",
+    "seed": 919611,
+    "job_id": "c3f21492-1989-4f13-9cd1-f3dc87e9d9f3",
+    "cost": 1,
+    "prompt": "Replace ONLY the axe head with a SMALL plain woodcutter's hatchet head: a short rectangular grey iron wedge with ONE straight cutting edge, about 10 pixels wide and 12 pixels tall. Small flat poll on opposite side of the wooden handle. No crescent, spikes, second blade or giant battleaxe. Preserve the wooden handle, grip, pose, skeleton, armor, empty dark eye sockets, scale and canvas. Transparent background.",
+    "status": "completed",
+    "response": "id: c3f21492-1989-4f13-9cd1-f3dc87e9d9f3\njob_id: c3f21492-1989-4f13-9cd1-f3dc87e9d9f3\nmodel: pixen\nedit: Replace ONLY the axe head with a SMALL plain woodcutter's hatchet head: a short rectangular grey iron wedge with ONE straight cutting edge, about 10 pixels wide and 12 pixels tall. Small flat poll on opposite side of the wooden handle. No crescent, spikes, second blade or giant battleaxe. Preserve the wooden handle, grip, pose, skeleton, armor, empty dark eye sockets, scale and canvas. Transparent background.\nsource: 128x128px\nsize: 128x128px\ntransparent: True\nseed: 919611\ncost: 1 generation\nstatus: processing (~10-40s)\n\nhint: get_image(job_id=\"c3f21492-1989-4f13-9cd1-f3dc87e9d9f3\")",
+    "review": "Rejected: weapon shape drift and/or generated effects; not selected for integration"
+  },
+  {
+    "name": "HitDown-hatchet-frame-05",
+    "source": "HitDown-v1/frame-05.png",
+    "seed": 919612,
+    "job_id": "c76d9bcd-26da-4d24-b281-0038730b3856",
+    "cost": 1,
+    "prompt": "Replace ONLY the axe head with a SMALL plain woodcutter's hatchet head: a short rectangular grey iron wedge with ONE straight cutting edge, about 10 pixels wide and 12 pixels tall. Small flat poll on opposite side of the wooden handle. No crescent, spikes, second blade or giant battleaxe. Preserve the wooden handle, grip, pose, skeleton, armor, empty dark eye sockets, scale and canvas. Transparent background.",
+    "status": "completed",
+    "response": "id: c76d9bcd-26da-4d24-b281-0038730b3856\njob_id: c76d9bcd-26da-4d24-b281-0038730b3856\nmodel: pixen\nedit: Replace ONLY the axe head with a SMALL plain woodcutter's hatchet head: a short rectangular grey iron wedge with ONE straight cutting edge, about 10 pixels wide and 12 pixels tall. Small flat poll on opposite side of the wooden handle. No crescent, spikes, second blade or giant battleaxe. Preserve the wooden handle, grip, pose, skeleton, armor, empty dark eye sockets, scale and canvas. Transparent background.\nsource: 128x128px\nsize: 128x128px\ntransparent: True\nseed: 919612\ncost: 1 generation\nstatus: processing (~10-40s)\n\nhint: get_image(job_id=\"c76d9bcd-26da-4d24-b281-0038730b3856\")",
+    "review": "Rejected: weapon shape drift and/or generated effects; not selected for integration"
+  },
+  {
+    "name": "HitDown-hatchet-frame-06",
+    "source": "HitDown-v1/frame-06.png",
+    "seed": 919613,
+    "job_id": "11fe8a81-7b4b-402e-ac81-ca66f26ce69a",
+    "cost": 1,
+    "prompt": "Replace ONLY the axe head with a SMALL plain woodcutter's hatchet head: a short rectangular grey iron wedge with ONE straight cutting edge, about 10 pixels wide and 12 pixels tall. Small flat poll on opposite side of the wooden handle. No crescent, spikes, second blade or giant battleaxe. Preserve the wooden handle, grip, pose, skeleton, armor, empty dark eye sockets, scale and canvas. Transparent background.",
+    "status": "completed",
+    "response": "id: 11fe8a81-7b4b-402e-ac81-ca66f26ce69a\njob_id: 11fe8a81-7b4b-402e-ac81-ca66f26ce69a\nmodel: pixen\nedit: Replace ONLY the axe head with a SMALL plain woodcutter's hatchet head: a short rectangular grey iron wedge with ONE straight cutting edge, about 10 pixels wide and 12 pixels tall. Small flat poll on opposite side of the wooden handle. No crescent, spikes, second blade or giant battleaxe. Preserve the wooden handle, grip, pose, skeleton, armor, empty dark eye sockets, scale and canvas. Transparent background.\nsource: 128x128px\nsize: 128x128px\ntransparent: True\nseed: 919613\ncost: 1 generation\nstatus: processing (~10-40s)\n\nhint: get_image(job_id=\"11fe8a81-7b4b-402e-ac81-ca66f26ce69a\")",
+    "review": "Rejected: weapon shape drift and/or generated effects; not selected for integration"
+  },
+  {
+    "name": "Idle-v2",
+    "source": "Base-v1/armored-skeleton-128.png",
+    "seed": 919614,
+    "job_id": "39fe2f28-e9e1-49df-a3cb-c199d10720d6",
+    "cost": 1,
+    "prompt": "Subtle idle loop. Both entire feet and greaves are pinned motionless to exactly the same pixels as the first frame. Legs and pelvis stay completely still. Only a very small shoulder and arm settling movement, hatchet held firmly. Skull is rigid bone with permanently open empty dark sockets: absolutely no blinking, eyelids, eye highlights, eyebrows, pupils, expression, mouth opening or face deformation. Same helmet and armor shape, scale, outline, camera and baseline. No swaying feet, toe lifts, stepping, bouncing, shadow, trails or new objects. Return exactly to the initial pose.",
+    "status": "completed",
+    "response": "id: 39fe2f28-e9e1-49df-a3cb-c199d10720d6\njob_id: 39fe2f28-e9e1-49df-a3cb-c199d10720d6\naction: Subtle idle loop. Both entire feet and greaves are pinned motionless to exactly the same pixels as the first frame. Legs and pelvis stay completely still. Only a very small shoulder and arm settling movement, hatchet held firmly. Skull is rigid bone with permanently open empty dark sockets: absolutely no blinking, eyelids, eye highlights, eyebrows, pupils, expression, mouth opening or face deformation. Same helmet and armor shape, scale, outline, camera and baseline. No swaying feet, toe lifts, stepping, bouncing, shadow, trails or new objects. Return exactly to the initial pose.\nframes: 4\nsize: 128x128px\ntransparent: True\nlast_frame: yes (interpolating to it)\nseed: 919614\ncost: 1 generation\nstatus: processing (~30-180s)\n\nhint: get_image(job_id=\"39fe2f28-e9e1-49df-a3cb-c199d10720d6\")",
+    "frames": 5,
+    "review": "Selected as upper-body source for Idle-v3; lower legs registered from frame 00"
+  },
+  {
+    "name": "HitDown-v3",
+    "source": "PoseDown-v2/frame-00.png",
+    "seed": 919615,
+    "job_id": "fa4e6e35-1dc2-47a0-afb1-99f69e5e495a",
+    "cost": 2,
+    "prompt": "One attack and recovery facing the viewer. Lift the small hatchet above the shoulder in a clear strong wind-up, chop downward toward camera, then recover to the starting pose. The hatchet is one rigid object: SAME small single wedge-shaped head and short handle in every frame, never a double axe or oversized hammer. Both empty black eye sockets stay open, identical and expressionless. Skull rigid, no blinking or pupils. Keep armour, proportions, feet baseline and camera fixed. CLEAN CHARACTER SPRITES ONLY: no slash arcs, white trails, motion streaks, impact effects, sparks, particles, shadow or background. Finish exactly in initial stance.",
+    "status": "completed",
+    "response": "id: fa4e6e35-1dc2-47a0-afb1-99f69e5e495a\njob_id: fa4e6e35-1dc2-47a0-afb1-99f69e5e495a\naction: One attack and recovery facing the viewer. Lift the small hatchet above the shoulder in a clear strong wind-up, chop downward toward camera, then recover to the starting pose. The hatchet is one rigid object: SAME small single wedge-shaped head and short handle in every frame, never a double axe or oversized hammer. Both empty black eye sockets stay open, identical and expressionless. Skull rigid, no blinking or pupils. Keep armour, proportions, feet baseline and camera fixed. CLEAN CHARACTER SPRITES ONLY: no slash arcs, white trails, motion streaks, impact effects, sparks, particles, shadow or background. Finish exactly in initial stance.\nframes: 8\nsize: 128x128px\ntransparent: True\nlast_frame: yes (interpolating to it)\nseed: 919615\ncost: 2 generations\nstatus: processing (~30-180s)\n\nhint: get_image(job_id=\"fa4e6e35-1dc2-47a0-afb1-99f69e5e495a\")",
+    "frames": 9,
+    "review": "Rejected: weapon shape drift and/or generated effects; not selected for integration"
+  }
+]

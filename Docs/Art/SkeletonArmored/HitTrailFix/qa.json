@@ -1,0 +1,17 @@
+[
+  {
+    "file": "frame-00.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      28,
+      20,
+      102,
+      105
+    ],
+    "partialAlpha": 0,
+    "colors": 69,
+    "lowerRegionDiff": 0,
+    "edgeClipping": false
+  }
+]

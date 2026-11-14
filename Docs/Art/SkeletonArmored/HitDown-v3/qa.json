@@ -1,0 +1,146 @@
+[
+  {
+    "file": "frame-00.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      18,
+      14,
+      89,
+      112
+    ],
+    "partialAlpha": 0,
+    "colors": 54,
+    "lowerRegionDiff": 0,
+    "lowerMaskDiff": 0,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-01.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      18,
+      13,
+      90,
+      112
+    ],
+    "partialAlpha": 0,
+    "colors": 64,
+    "lowerRegionDiff": 197,
+    "lowerMaskDiff": 20,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-02.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      22,
+      13,
+      91,
+      112
+    ],
+    "partialAlpha": 0,
+    "colors": 64,
+    "lowerRegionDiff": 287,
+    "lowerMaskDiff": 81,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-03.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      43,
+      15,
+      109,
+      112
+    ],
+    "partialAlpha": 0,
+    "colors": 63,
+    "lowerRegionDiff": 640,
+    "lowerMaskDiff": 384,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-04.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      43,
+      17,
+      120,
+      112
+    ],
+    "partialAlpha": 0,
+    "colors": 64,
+    "lowerRegionDiff": 706,
+    "lowerMaskDiff": 440,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-05.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      43,
+      17,
+      108,
+      112
+    ],
+    "partialAlpha": 0,
+    "colors": 64,
+    "lowerRegionDiff": 709,
+    "lowerMaskDiff": 439,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-06.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      40,
+      17,
+      90,
+      111
+    ],
+    "partialAlpha": 0,
+    "colors": 64,
+    "lowerRegionDiff": 552,
+    "lowerMaskDiff": 247,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-07.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      32,
+      14,
+      92,
+      112
+    ],
+    "partialAlpha": 0,
+    "colors": 64,
+    "lowerRegionDiff": 171,
+    "lowerMaskDiff": 38,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-08.png",
+    "width": 128,
+    "height": 128,
+    "box": [
+      18,
+      14,
+      89,
+      112
+    ],
+    "partialAlpha": 0,
+    "colors": 54,
+    "lowerRegionDiff": 0,
+    "lowerMaskDiff": 0,
+    "edgeClipping": false
+  }
+]

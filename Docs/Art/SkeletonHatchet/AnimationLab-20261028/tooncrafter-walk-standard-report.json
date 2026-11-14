@@ -1,0 +1,14 @@
+{
+  "prompt": "A pixel art skeleton warrior walking in place, facing right in three quarter view, holding an axe. Static camera, fixed framing, dark solid background. Preserve the same skeleton, skull, limbs, colors and axe.",
+  "size": [
+    512,
+    320
+  ],
+  "frames": 16,
+  "steps": 30,
+  "cfg": 3,
+  "seed": 28102026,
+  "seconds": 121.70299999999952,
+  "gpu": "NVIDIA GeForce RTX 3060",
+  "max_vram_bytes": 12447904256
+}

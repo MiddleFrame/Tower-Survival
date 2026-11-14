@@ -2,4 +2,5 @@ Die Zielerfassung ist zuverlässiger und besiegte Gegner werden nicht doppelt ge
 Kämpfe bieten aktive/passive Zauber und sammelbare Kristalle; die temporäre Kampfwährung entfällt.
 Der erste Kampf erklärt Tipp-Angriffe mit einem schnellen fallenden Dolch und einmaligen Rettungszaubern.
 Der frühe Fortschritt beginnt mit Kupfererz. Automatisches Turmfeuer und Golderz bleiben gesperrt.
-Darstellung, Lebensanzeigen und Leerlaufanimation der Skelette wurden korrigiert.
+Skelettdarstellung verbessert; Skelette zerfallen beim Tod jetzt schlagartig.
+Level laden nach Bedarf.

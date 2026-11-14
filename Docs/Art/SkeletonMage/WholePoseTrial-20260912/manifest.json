@@ -1,0 +1,19 @@
+{
+  "cell": 96,
+  "columns": 3,
+  "frame_indices": [
+    0,
+    1,
+    3,
+    4,
+    5
+  ],
+  "durations_ms": [
+    200,
+    180,
+    180,
+    220,
+    200
+  ],
+  "excluded_source_frame": 2
+}

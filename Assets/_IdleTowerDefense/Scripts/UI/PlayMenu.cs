@@ -80,7 +80,6 @@ public class PlayMenu : MonoBehaviour
    public static void Play()
    {
       DataController.tier = _currentTier;
-      instance.gameObject.SetActive(false);
       instance.LoadScene();
       
    }
@@ -99,19 +98,23 @@ public class PlayMenu : MonoBehaviour
    
    private void ChangeTier(int tier)
    {
+      if (_data == null || _data.gameSettings == null || _data.gameSettings.Tiers == null ||
+          tier < 0 || tier >= _data.gameSettings.Tiers.Length)
+         return;
+
       _currentTier = tier;
+      EnemyTierContent preview = _data.gameSettings.Tiers[tier];
       LightweightLocalization.Bind(_tier, "game.tier", tier + 1);
-      //_toBattle.interactable = _records[_currentTier]>=_data.gameSettings.EnemySpawnSettings[tier].RecordToOpen;
-      _lockedTierObject.SetActive(!(_records[_currentTier]>=_data.gameSettings.EnemySpawnSettings[tier].RecordToOpen));
-      LightweightLocalization.Bind(_oreMultiplier, "game.ore_multiplier", _data.gameSettings.EnemySpawnSettings[tier].OreMultiplier);
+      _lockedTierObject.SetActive(_records[_currentTier] < preview.RecordToOpen);
+      LightweightLocalization.Bind(_oreMultiplier, "game.ore_multiplier", preview.OreMultiplier);
       LightweightLocalization.Bind(_enemyKilled, "game.high_score", _records[tier]);
-      LightweightLocalization.Bind(_damageMultiplier, "game.enemy_damage", _data.gameSettings.EnemySpawnSettings[tier].EnemyDamageMultiplier);
-      LightweightLocalization.Bind(_healthMultiplier, "game.enemy_health", _data.gameSettings.EnemySpawnSettings[tier].EnemyHealthMultiplier);
-      LightweightLocalization.Bind(_spawnMultiplier, "game.spawn_delay", _data.gameSettings.EnemySpawnSettings[tier].stages[0].enemySpawnRate);
+      LightweightLocalization.Bind(_damageMultiplier, "game.enemy_damage", preview.EnemyDamageMultiplier);
+      LightweightLocalization.Bind(_healthMultiplier, "game.enemy_health", preview.EnemyHealthMultiplier);
+      LightweightLocalization.Bind(_spawnMultiplier, "game.spawn_delay", preview.FirstStageSpawnRate);
       _enemyList.text = "";
-      foreach (var enemy in _data.gameSettings.EnemySpawnSettings[tier]._enemyList.EnemySpawns)
+      foreach (string enemyName in preview.EnemyNames)
       {
-         _enemyList.text += LightweightLocalization.FromSource(enemy.name) + '\n';
+         _enemyList.text += LightweightLocalization.FromSource(enemyName) + '\n';
       }
       LightweightLocalization.SetDisplayText(_enemyList, _enemyList.text);
    }
@@ -157,7 +160,8 @@ public class PlayMenu : MonoBehaviour
 
    public void NextTier()
    {
-      if(_records[_currentTier]>=_data.gameSettings.EnemySpawnSettings[_currentTier].RecordToOpen)
+      if (_currentTier + 1 < _data.gameSettings.Tiers.Length &&
+          _records[_currentTier] >= _data.gameSettings.Tiers[_currentTier].RecordToOpen)
          ChangeTier(_currentTier+1);
    }
 

@@ -1,0 +1,45 @@
+{
+  "source_size": [
+    1536,
+    1024
+  ],
+  "cell": 96,
+  "frames": 6,
+  "whole_frame_offsets": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      1
+    ]
+  ],
+  "no_deformation": true,
+  "palette_colors": 19,
+  "changed_rgba_positions_including_motion": [
+    1924,
+    2326,
+    2510,
+    2161,
+    2161,
+    1699
+  ],
+  "source_sha256": "ba073b5450e2a2f3b583bf010f2719133e3460c2d19ab09076b3ae10566b4c01"
+}

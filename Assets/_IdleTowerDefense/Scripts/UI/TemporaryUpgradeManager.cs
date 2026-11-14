@@ -35,7 +35,12 @@ public class TemporaryUpgradeManager : Singleton<TemporaryUpgradeManager>
 
     private IEnumerator Start()
     {
-        yield return null;
+        while (!TryResolveWorld(out _world))
+        {
+            if (_world != null && _world.InitializationFailed)
+                yield break;
+            yield return null;
+        }
         InitializeMenu();
     }
 

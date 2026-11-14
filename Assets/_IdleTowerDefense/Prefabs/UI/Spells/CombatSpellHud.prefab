@@ -382,7 +382,13 @@ MonoBehaviour:
   _detailsRoot: {fileID: 3963457601065174743}
   _detailsCanvasGroup: {fileID: 7428750490525414012}
   _detailsContainer: {fileID: 7496377788748049867}
-  _detailPrefab: {fileID: 2132300198354767702, guid: 6c19d53e57385cd4781b9ef54702bc95, type: 3}
+  _detailPrefab: {fileID: 0}
+  _detailAsset:
+    m_AssetGUID: 6c19d53e57385cd4781b9ef54702bc95
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
   _expandButton: {fileID: 166508731563348787}
   _expandLabel: {fileID: 3891583043515895525}
   _expandIndicator: {fileID: 4959261076946645213}

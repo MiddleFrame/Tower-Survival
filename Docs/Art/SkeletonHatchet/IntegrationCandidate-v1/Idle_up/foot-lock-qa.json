@@ -1,0 +1,51 @@
+{
+  "source": "TestResults/ArtTrials/Skeleton/IdleUp03",
+  "firstLockedRow": 76,
+  "leftInclusive": 24,
+  "rightExclusive": 66,
+  "referenceFrame": "frame-00.png",
+  "report": [
+    {
+      "frame": "frame-00.png",
+      "changedFootPixels": 0,
+      "remainingFootDifferences": 0,
+      "changedUpperBodyPixels": 0
+    },
+    {
+      "frame": "frame-01.png",
+      "changedFootPixels": 90,
+      "remainingFootDifferences": 0,
+      "changedUpperBodyPixels": 0
+    },
+    {
+      "frame": "frame-02.png",
+      "changedFootPixels": 101,
+      "remainingFootDifferences": 0,
+      "changedUpperBodyPixels": 0
+    },
+    {
+      "frame": "frame-03.png",
+      "changedFootPixels": 96,
+      "remainingFootDifferences": 0,
+      "changedUpperBodyPixels": 0
+    },
+    {
+      "frame": "frame-04.png",
+      "changedFootPixels": 102,
+      "remainingFootDifferences": 0,
+      "changedUpperBodyPixels": 0
+    },
+    {
+      "frame": "frame-05.png",
+      "changedFootPixels": 89,
+      "remainingFootDifferences": 0,
+      "changedUpperBodyPixels": 0
+    },
+    {
+      "frame": "frame-06.png",
+      "changedFootPixels": 0,
+      "remainingFootDifferences": 0,
+      "changedUpperBodyPixels": 0
+    }
+  ]
+}

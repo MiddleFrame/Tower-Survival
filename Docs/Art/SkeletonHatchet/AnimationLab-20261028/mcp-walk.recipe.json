@@ -1,0 +1,14 @@
+{
+  "source": "C:\\Users\\tente\\Desktop\\The-Lone-Tower-main\\Docs\\Art\\SkeletonHatchet\\AnimationLab-20261028\\mcp-parts.aseprite",
+  "output": "C:\\Users\\tente\\Desktop\\The-Lone-Tower-main\\Docs\\Art\\SkeletonHatchet\\AnimationLab-20261028\\mcp-walk.aseprite",
+  "padding": 32,
+  "animations": [
+    {
+      "name": "walk",
+      "preset": {
+        "name": "walk_front",
+        "amount": 2
+      }
+    }
+  ]
+}

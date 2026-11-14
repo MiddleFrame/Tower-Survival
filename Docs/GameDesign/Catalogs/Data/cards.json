@@ -1,0 +1,2645 @@
+{
+  "system": "cards",
+  "branches": [
+    {
+      "id": "CARD_P01",
+      "name": "Ранг: Точный удар",
+      "max_level": 9,
+      "availability": "Детерминированная первая копия P01; BLD06. Ранг 2 не требует гачи для базовой работоспособности.",
+      "purpose": "Длительная необязательная специализация уже полученной способности.",
+      "effect_description": "Покупка 1 повышает ранг 1→2; покупка 9 ранг 9→10. +8 п.п. базового урона за ранг; rank10+72 п.п.",
+      "effect_unit": "аддитивная доля базового урона",
+      "stacking": "Значение личной ветви — множитель с уже включённой единицей; cardFraction берётся прямо из CARD_ID как доля 0…0.72. labFraction = min(0.28, LAB_SPELL_POWER / 100 + selectedProtocolBonusPercent / 100): LAB_SPELL_POWER хранит 0…16 процентов, выбранный допустимый протокол даёт 0…12 процентов. LAB_INTERACTION хранит число открытых протоколов, не процент бонуса. Множитель урона = min(3, ownMultiplier + cardFraction + labFraction). Карта хранит долю напрямую:0.08 означает+8 п.п. базового урона; делить её ещё раз на 100 нельзя. Не даёт слоты или заряды.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "CARD_P01": 2,
+            "CRYSTAL": 50
+          },
+          "cost_end": {
+            "CARD_P01": 2,
+            "CRYSTAL": 50
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.08,
+          "effect_end": 0.08,
+          "requires": "Первая копия P01; Первая копия способности"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "CARD_P01": 4,
+            "CRYSTAL": 95
+          },
+          "cost_end": {
+            "CARD_P01": 4,
+            "CRYSTAL": 95
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.16,
+          "effect_end": 0.16,
+          "requires": "Первая копия P01; G02"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "CARD_P01": 8,
+            "CRYSTAL": 190
+          },
+          "cost_end": {
+            "CARD_P01": 8,
+            "CRYSTAL": 190
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.24,
+          "effect_end": 0.24,
+          "requires": "Первая копия P01; G03"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "CARD_P01": 16,
+            "CRYSTAL": 380
+          },
+          "cost_end": {
+            "CARD_P01": 16,
+            "CRYSTAL": 380
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.32,
+          "effect_end": 0.32,
+          "requires": "Первая копия P01; G04"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "cost_start": {
+            "CARD_P01": 32,
+            "CRYSTAL": 760
+          },
+          "cost_end": {
+            "CARD_P01": 32,
+            "CRYSTAL": 760
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.4,
+          "effect_end": 0.4,
+          "requires": "Первая копия P01; G05"
+        },
+        {
+          "from": 6,
+          "to": 6,
+          "cost_start": {
+            "CARD_P01": 64,
+            "CRYSTAL": 1500
+          },
+          "cost_end": {
+            "CARD_P01": 64,
+            "CRYSTAL": 1500
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.48,
+          "effect_end": 0.48,
+          "requires": "Первая копия P01; G06"
+        },
+        {
+          "from": 7,
+          "to": 7,
+          "cost_start": {
+            "CARD_P01": 128,
+            "CRYSTAL": 3000
+          },
+          "cost_end": {
+            "CARD_P01": 128,
+            "CRYSTAL": 3000
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.56,
+          "effect_end": 0.56,
+          "requires": "Первая копия P01; L03/T10"
+        },
+        {
+          "from": 8,
+          "to": 8,
+          "cost_start": {
+            "CARD_P01": 256,
+            "CRYSTAL": 6000
+          },
+          "cost_end": {
+            "CARD_P01": 256,
+            "CRYSTAL": 6000
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.64,
+          "effect_end": 0.64,
+          "requires": "Первая копия P01; L05/T20"
+        },
+        {
+          "from": 9,
+          "to": 9,
+          "cost_start": {
+            "CARD_P01": 512,
+            "CRYSTAL": 12000
+          },
+          "cost_end": {
+            "CARD_P01": 512,
+            "CRYSTAL": 12000
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.72,
+          "effect_end": 0.72,
+          "requires": "Первая копия P01; L06/T30"
+        }
+      ]
+    },
+    {
+      "id": "CARD_P02",
+      "name": "Ранг: Метка добычи",
+      "max_level": 9,
+      "availability": "Детерминированная первая копия P02; BLD06. Ранг 2 не требует гачи для базовой работоспособности.",
+      "purpose": "Длительная необязательная специализация уже полученной способности.",
+      "effect_description": "Покупка 1 повышает ранг 1→2; покупка 9 ранг 9→10. +0.25 п.п. обычного сырья/угля за ранг; rank10+2.25 п.п.; общий предел бонуса конкретного материала35%.",
+      "effect_unit": "процентные пункты к loot bonus",
+      "stacking": "CARD_P02 хранит добавочные 0…2.25 процентных пункта добычи. Сначала суммировать базу 20, личные пункты, карточные пункты и остальные допустимые бонусы конкретного ресурса до общего cap35; только затем делить сумму на 100 в множителе награды 1+bonusPercent/100. Не усиливает кристаллы/слитки/first-clear; не даёт заряды или слоты.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "CARD_P02": 2,
+            "CRYSTAL": 65
+          },
+          "cost_end": {
+            "CARD_P02": 2,
+            "CRYSTAL": 65
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.25,
+          "effect_end": 0.25,
+          "requires": "Первая копия P02; Первая копия способности"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "CARD_P02": 4,
+            "CRYSTAL": 140
+          },
+          "cost_end": {
+            "CARD_P02": 4,
+            "CRYSTAL": 140
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.5,
+          "effect_end": 0.5,
+          "requires": "Первая копия P02; G02"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "CARD_P02": 8,
+            "CRYSTAL": 300
+          },
+          "cost_end": {
+            "CARD_P02": 8,
+            "CRYSTAL": 300
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.75,
+          "effect_end": 0.75,
+          "requires": "Первая копия P02; G03"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "CARD_P02": 16,
+            "CRYSTAL": 640
+          },
+          "cost_end": {
+            "CARD_P02": 16,
+            "CRYSTAL": 640
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.0,
+          "effect_end": 1.0,
+          "requires": "Первая копия P02; G04"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "cost_start": {
+            "CARD_P02": 32,
+            "CRYSTAL": 1350
+          },
+          "cost_end": {
+            "CARD_P02": 32,
+            "CRYSTAL": 1350
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.25,
+          "effect_end": 1.25,
+          "requires": "Первая копия P02; G05"
+        },
+        {
+          "from": 6,
+          "to": 6,
+          "cost_start": {
+            "CARD_P02": 64,
+            "CRYSTAL": 2850
+          },
+          "cost_end": {
+            "CARD_P02": 64,
+            "CRYSTAL": 2850
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.5,
+          "effect_end": 1.5,
+          "requires": "Первая копия P02; G06"
+        },
+        {
+          "from": 7,
+          "to": 7,
+          "cost_start": {
+            "CARD_P02": 128,
+            "CRYSTAL": 6000
+          },
+          "cost_end": {
+            "CARD_P02": 128,
+            "CRYSTAL": 6000
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.75,
+          "effect_end": 1.75,
+          "requires": "Первая копия P02; L03/T10"
+        },
+        {
+          "from": 8,
+          "to": 8,
+          "cost_start": {
+            "CARD_P02": 256,
+            "CRYSTAL": 12600
+          },
+          "cost_end": {
+            "CARD_P02": 256,
+            "CRYSTAL": 12600
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.0,
+          "effect_end": 2.0,
+          "requires": "Первая копия P02; L05/T20"
+        },
+        {
+          "from": 9,
+          "to": 9,
+          "cost_start": {
+            "CARD_P02": 512,
+            "CRYSTAL": 26400
+          },
+          "cost_end": {
+            "CARD_P02": 512,
+            "CRYSTAL": 26400
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.25,
+          "effect_end": 2.25,
+          "requires": "Первая копия P02; L06/T30"
+        }
+      ]
+    },
+    {
+      "id": "CARD_P03",
+      "name": "Ранг: Эхо башни",
+      "max_level": 9,
+      "availability": "Детерминированная первая копия P03; BLD06. Ранг 2 не требует гачи для базовой работоспособности.",
+      "purpose": "Длительная необязательная специализация уже полученной способности.",
+      "effect_description": "Покупка 1 повышает ранг 1→2; покупка 9 ранг 9→10. +8 п.п. базового урона за ранг, без роста числа целей.",
+      "effect_unit": "аддитивная доля базового урона",
+      "stacking": "Значение личной ветви — множитель с уже включённой единицей; cardFraction берётся прямо из CARD_ID как доля 0…0.72. labFraction = min(0.28, LAB_SPELL_POWER / 100 + selectedProtocolBonusPercent / 100): LAB_SPELL_POWER хранит 0…16 процентов, выбранный допустимый протокол даёт 0…12 процентов. LAB_INTERACTION хранит число открытых протоколов, не процент бонуса. Множитель урона = min(3, ownMultiplier + cardFraction + labFraction). Карта хранит долю напрямую:0.08 означает+8 п.п. базового урона; делить её ещё раз на 100 нельзя. Не даёт слоты или заряды.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "CARD_P03": 2,
+            "CRYSTAL": 60
+          },
+          "cost_end": {
+            "CARD_P03": 2,
+            "CRYSTAL": 60
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.08,
+          "effect_end": 0.08,
+          "requires": "Первая копия P03; Первая копия способности"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "CARD_P03": 4,
+            "CRYSTAL": 120
+          },
+          "cost_end": {
+            "CARD_P03": 4,
+            "CRYSTAL": 120
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.16,
+          "effect_end": 0.16,
+          "requires": "Первая копия P03; G02"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "CARD_P03": 8,
+            "CRYSTAL": 245
+          },
+          "cost_end": {
+            "CARD_P03": 8,
+            "CRYSTAL": 245
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.24,
+          "effect_end": 0.24,
+          "requires": "Первая копия P03; G03"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "CARD_P03": 16,
+            "CRYSTAL": 500
+          },
+          "cost_end": {
+            "CARD_P03": 16,
+            "CRYSTAL": 500
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.32,
+          "effect_end": 0.32,
+          "requires": "Первая копия P03; G04"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "cost_start": {
+            "CARD_P03": 32,
+            "CRYSTAL": 1020
+          },
+          "cost_end": {
+            "CARD_P03": 32,
+            "CRYSTAL": 1020
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.4,
+          "effect_end": 0.4,
+          "requires": "Первая копия P03; G05"
+        },
+        {
+          "from": 6,
+          "to": 6,
+          "cost_start": {
+            "CARD_P03": 64,
+            "CRYSTAL": 2080
+          },
+          "cost_end": {
+            "CARD_P03": 64,
+            "CRYSTAL": 2080
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.48,
+          "effect_end": 0.48,
+          "requires": "Первая копия P03; G06"
+        },
+        {
+          "from": 7,
+          "to": 7,
+          "cost_start": {
+            "CARD_P03": 128,
+            "CRYSTAL": 4250
+          },
+          "cost_end": {
+            "CARD_P03": 128,
+            "CRYSTAL": 4250
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.56,
+          "effect_end": 0.56,
+          "requires": "Первая копия P03; L03/T10"
+        },
+        {
+          "from": 8,
+          "to": 8,
+          "cost_start": {
+            "CARD_P03": 256,
+            "CRYSTAL": 8700
+          },
+          "cost_end": {
+            "CARD_P03": 256,
+            "CRYSTAL": 8700
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.64,
+          "effect_end": 0.64,
+          "requires": "Первая копия P03; L05/T20"
+        },
+        {
+          "from": 9,
+          "to": 9,
+          "cost_start": {
+            "CARD_P03": 512,
+            "CRYSTAL": 17800
+          },
+          "cost_end": {
+            "CARD_P03": 512,
+            "CRYSTAL": 17800
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.72,
+          "effect_end": 0.72,
+          "requires": "Первая копия P03; L06/T30"
+        }
+      ]
+    },
+    {
+      "id": "CARD_P04",
+      "name": "Ранг: Рунический прокол",
+      "max_level": 9,
+      "availability": "Детерминированная первая копия P04; BLD06. Ранг 2 не требует гачи для базовой работоспособности.",
+      "purpose": "Длительная необязательная специализация уже полученной способности.",
+      "effect_description": "Покупка 1 повышает ранг 1→2; покупка 9 ранг 9→10. +8 п.п. базового урона за ранг, без роста penetration/частоты третьего удара.",
+      "effect_unit": "аддитивная доля базового урона",
+      "stacking": "Значение личной ветви — множитель с уже включённой единицей; cardFraction берётся прямо из CARD_ID как доля 0…0.72. labFraction = min(0.28, LAB_SPELL_POWER / 100 + selectedProtocolBonusPercent / 100): LAB_SPELL_POWER хранит 0…16 процентов, выбранный допустимый протокол даёт 0…12 процентов. LAB_INTERACTION хранит число открытых протоколов, не процент бонуса. Множитель урона = min(3, ownMultiplier + cardFraction + labFraction). Карта хранит долю напрямую:0.08 означает+8 п.п. базового урона; делить её ещё раз на 100 нельзя. Не даёт слоты или заряды.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "CARD_P04": 2,
+            "CRYSTAL": 75
+          },
+          "cost_end": {
+            "CARD_P04": 2,
+            "CRYSTAL": 75
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.08,
+          "effect_end": 0.08,
+          "requires": "Первая копия P04; Первая копия способности"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "CARD_P04": 4,
+            "CRYSTAL": 155
+          },
+          "cost_end": {
+            "CARD_P04": 4,
+            "CRYSTAL": 155
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.16,
+          "effect_end": 0.16,
+          "requires": "Первая копия P04; G02"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "CARD_P04": 8,
+            "CRYSTAL": 320
+          },
+          "cost_end": {
+            "CARD_P04": 8,
+            "CRYSTAL": 320
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.24,
+          "effect_end": 0.24,
+          "requires": "Первая копия P04; G03"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "CARD_P04": 16,
+            "CRYSTAL": 660
+          },
+          "cost_end": {
+            "CARD_P04": 16,
+            "CRYSTAL": 660
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.32,
+          "effect_end": 0.32,
+          "requires": "Первая копия P04; G04"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "cost_start": {
+            "CARD_P04": 32,
+            "CRYSTAL": 1360
+          },
+          "cost_end": {
+            "CARD_P04": 32,
+            "CRYSTAL": 1360
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.4,
+          "effect_end": 0.4,
+          "requires": "Первая копия P04; G05"
+        },
+        {
+          "from": 6,
+          "to": 6,
+          "cost_start": {
+            "CARD_P04": 64,
+            "CRYSTAL": 2800
+          },
+          "cost_end": {
+            "CARD_P04": 64,
+            "CRYSTAL": 2800
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.48,
+          "effect_end": 0.48,
+          "requires": "Первая копия P04; G06"
+        },
+        {
+          "from": 7,
+          "to": 7,
+          "cost_start": {
+            "CARD_P04": 128,
+            "CRYSTAL": 5800
+          },
+          "cost_end": {
+            "CARD_P04": 128,
+            "CRYSTAL": 5800
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.56,
+          "effect_end": 0.56,
+          "requires": "Первая копия P04; L03/T10"
+        },
+        {
+          "from": 8,
+          "to": 8,
+          "cost_start": {
+            "CARD_P04": 256,
+            "CRYSTAL": 12000
+          },
+          "cost_end": {
+            "CARD_P04": 256,
+            "CRYSTAL": 12000
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.64,
+          "effect_end": 0.64,
+          "requires": "Первая копия P04; L05/T20"
+        },
+        {
+          "from": 9,
+          "to": 9,
+          "cost_start": {
+            "CARD_P04": 512,
+            "CRYSTAL": 25000
+          },
+          "cost_end": {
+            "CARD_P04": 512,
+            "CRYSTAL": 25000
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.72,
+          "effect_end": 0.72,
+          "requires": "Первая копия P04; L06/T30"
+        }
+      ]
+    },
+    {
+      "id": "CARD_A01",
+      "name": "Ранг: Эгида",
+      "max_level": 9,
+      "availability": "Детерминированная первая копия A01; BLD06. Ранг 2 не требует гачи для базовой работоспособности.",
+      "purpose": "Длительная необязательная специализация уже полученной способности.",
+      "effect_description": "Покупка 1 повышает ранг 1→2; покупка 9 ранг 9→10. Суммарно+0.4 с к rank10. Личная ветвь 1.2 с+лаба 0.4 с+карта 0.4 с дают 6 с.",
+      "effect_unit": "секунды добавки к 4 с защиты",
+      "stacking": "Число CARD_A01 хранит добавочные секунды эффекта, не проценты. Прибавляется к базе и личным секундам; лабораторная добавка сначала переводится: baseDurationSeconds × LAB_DURATION / 100. Общий срок не выше 1.5 базы; карта не даёт заряды или слоты.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "CARD_A01": 2,
+            "CRYSTAL": 80
+          },
+          "cost_end": {
+            "CARD_A01": 2,
+            "CRYSTAL": 80
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.044444,
+          "effect_end": 0.044444,
+          "requires": "Первая копия A01; Первая копия способности"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "CARD_A01": 4,
+            "CRYSTAL": 170
+          },
+          "cost_end": {
+            "CARD_A01": 4,
+            "CRYSTAL": 170
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.088889,
+          "effect_end": 0.088889,
+          "requires": "Первая копия A01; G02"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "CARD_A01": 8,
+            "CRYSTAL": 360
+          },
+          "cost_end": {
+            "CARD_A01": 8,
+            "CRYSTAL": 360
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.133333,
+          "effect_end": 0.133333,
+          "requires": "Первая копия A01; G03"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "CARD_A01": 16,
+            "CRYSTAL": 760
+          },
+          "cost_end": {
+            "CARD_A01": 16,
+            "CRYSTAL": 760
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.177778,
+          "effect_end": 0.177778,
+          "requires": "Первая копия A01; G04"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "cost_start": {
+            "CARD_A01": 32,
+            "CRYSTAL": 1600
+          },
+          "cost_end": {
+            "CARD_A01": 32,
+            "CRYSTAL": 1600
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.222222,
+          "effect_end": 0.222222,
+          "requires": "Первая копия A01; G05"
+        },
+        {
+          "from": 6,
+          "to": 6,
+          "cost_start": {
+            "CARD_A01": 64,
+            "CRYSTAL": 3350
+          },
+          "cost_end": {
+            "CARD_A01": 64,
+            "CRYSTAL": 3350
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.266667,
+          "effect_end": 0.266667,
+          "requires": "Первая копия A01; G06"
+        },
+        {
+          "from": 7,
+          "to": 7,
+          "cost_start": {
+            "CARD_A01": 128,
+            "CRYSTAL": 7000
+          },
+          "cost_end": {
+            "CARD_A01": 128,
+            "CRYSTAL": 7000
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.311111,
+          "effect_end": 0.311111,
+          "requires": "Первая копия A01; L03/T10"
+        },
+        {
+          "from": 8,
+          "to": 8,
+          "cost_start": {
+            "CARD_A01": 256,
+            "CRYSTAL": 14600
+          },
+          "cost_end": {
+            "CARD_A01": 256,
+            "CRYSTAL": 14600
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.355556,
+          "effect_end": 0.355556,
+          "requires": "Первая копия A01; L05/T20"
+        },
+        {
+          "from": 9,
+          "to": 9,
+          "cost_start": {
+            "CARD_A01": 512,
+            "CRYSTAL": 30500
+          },
+          "cost_end": {
+            "CARD_A01": 512,
+            "CRYSTAL": 30500
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.4,
+          "effect_end": 0.4,
+          "requires": "Первая копия A01; L06/T30"
+        }
+      ]
+    },
+    {
+      "id": "CARD_A02",
+      "name": "Ранг: Рудный резонанс",
+      "max_level": 9,
+      "availability": "Детерминированная первая копия A02; BLD06. Ранг 2 не требует гачи для базовой работоспособности.",
+      "purpose": "Длительная необязательная специализация уже полученной способности.",
+      "effect_description": "Покупка 1 повышает ранг 1→2; покупка 9 ранг 9→10. Суммарно+1.2 с к rank10; личная ветвь 3.6 с+лаба 1.2 с+карта 1.2 с дают 18 с. Количество loot не растёт.",
+      "effect_unit": "секунды добавки к 12 с окна",
+      "stacking": "Число CARD_A02 хранит добавочные секунды эффекта, не проценты. Прибавляется к базе и личным секундам; лабораторная добавка сначала переводится: baseDurationSeconds × LAB_DURATION / 100. Общий срок не выше 1.5 базы; карта не даёт заряды или слоты.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "CARD_A02": 2,
+            "CRYSTAL": 70
+          },
+          "cost_end": {
+            "CARD_A02": 2,
+            "CRYSTAL": 70
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.133333,
+          "effect_end": 0.133333,
+          "requires": "Первая копия A02; Первая копия способности"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "CARD_A02": 4,
+            "CRYSTAL": 150
+          },
+          "cost_end": {
+            "CARD_A02": 4,
+            "CRYSTAL": 150
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.266667,
+          "effect_end": 0.266667,
+          "requires": "Первая копия A02; G02"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "CARD_A02": 8,
+            "CRYSTAL": 320
+          },
+          "cost_end": {
+            "CARD_A02": 8,
+            "CRYSTAL": 320
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.4,
+          "effect_end": 0.4,
+          "requires": "Первая копия A02; G03"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "CARD_A02": 16,
+            "CRYSTAL": 680
+          },
+          "cost_end": {
+            "CARD_A02": 16,
+            "CRYSTAL": 680
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.533333,
+          "effect_end": 0.533333,
+          "requires": "Первая копия A02; G04"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "cost_start": {
+            "CARD_A02": 32,
+            "CRYSTAL": 1450
+          },
+          "cost_end": {
+            "CARD_A02": 32,
+            "CRYSTAL": 1450
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.666667,
+          "effect_end": 0.666667,
+          "requires": "Первая копия A02; G05"
+        },
+        {
+          "from": 6,
+          "to": 6,
+          "cost_start": {
+            "CARD_A02": 64,
+            "CRYSTAL": 3050
+          },
+          "cost_end": {
+            "CARD_A02": 64,
+            "CRYSTAL": 3050
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.8,
+          "effect_end": 0.8,
+          "requires": "Первая копия A02; G06"
+        },
+        {
+          "from": 7,
+          "to": 7,
+          "cost_start": {
+            "CARD_A02": 128,
+            "CRYSTAL": 6450
+          },
+          "cost_end": {
+            "CARD_A02": 128,
+            "CRYSTAL": 6450
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.933333,
+          "effect_end": 0.933333,
+          "requires": "Первая копия A02; L03/T10"
+        },
+        {
+          "from": 8,
+          "to": 8,
+          "cost_start": {
+            "CARD_A02": 256,
+            "CRYSTAL": 13600
+          },
+          "cost_end": {
+            "CARD_A02": 256,
+            "CRYSTAL": 13600
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.066667,
+          "effect_end": 1.066667,
+          "requires": "Первая копия A02; L05/T20"
+        },
+        {
+          "from": 9,
+          "to": 9,
+          "cost_start": {
+            "CARD_A02": 512,
+            "CRYSTAL": 28600
+          },
+          "cost_end": {
+            "CARD_A02": 512,
+            "CRYSTAL": 28600
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.2,
+          "effect_end": 1.2,
+          "requires": "Первая копия A02; L06/T30"
+        }
+      ]
+    },
+    {
+      "id": "CARD_A03",
+      "name": "Ранг: Небесный удар",
+      "max_level": 9,
+      "availability": "Детерминированная первая копия A03; BLD06. Ранг 2 не требует гачи для базовой работоспособности.",
+      "purpose": "Длительная необязательная специализация уже полученной способности.",
+      "effect_description": "Покупка 1 повышает ранг 1→2; покупка 9 ранг 9→10. +8 п.п. базового урона за ранг к 6D/2D, без увеличения целей/зарядов.",
+      "effect_unit": "аддитивная доля базового урона",
+      "stacking": "Значение личной ветви — множитель с уже включённой единицей; cardFraction берётся прямо из CARD_ID как доля 0…0.72. labFraction = min(0.28, LAB_SPELL_POWER / 100 + selectedProtocolBonusPercent / 100): LAB_SPELL_POWER хранит 0…16 процентов, выбранный допустимый протокол даёт 0…12 процентов. LAB_INTERACTION хранит число открытых протоколов, не процент бонуса. Множитель урона = min(3, ownMultiplier + cardFraction + labFraction). Карта хранит долю напрямую:0.08 означает+8 п.п. базового урона; делить её ещё раз на 100 нельзя. Не даёт слоты или заряды.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "CARD_A03": 2,
+            "CRYSTAL": 95
+          },
+          "cost_end": {
+            "CARD_A03": 2,
+            "CRYSTAL": 95
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.08,
+          "effect_end": 0.08,
+          "requires": "Первая копия A03; Первая копия способности"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "CARD_A03": 4,
+            "CRYSTAL": 210
+          },
+          "cost_end": {
+            "CARD_A03": 4,
+            "CRYSTAL": 210
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.16,
+          "effect_end": 0.16,
+          "requires": "Первая копия A03; G02"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "CARD_A03": 8,
+            "CRYSTAL": 450
+          },
+          "cost_end": {
+            "CARD_A03": 8,
+            "CRYSTAL": 450
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.24,
+          "effect_end": 0.24,
+          "requires": "Первая копия A03; G03"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "CARD_A03": 16,
+            "CRYSTAL": 950
+          },
+          "cost_end": {
+            "CARD_A03": 16,
+            "CRYSTAL": 950
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.32,
+          "effect_end": 0.32,
+          "requires": "Первая копия A03; G04"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "cost_start": {
+            "CARD_A03": 32,
+            "CRYSTAL": 2000
+          },
+          "cost_end": {
+            "CARD_A03": 32,
+            "CRYSTAL": 2000
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.4,
+          "effect_end": 0.4,
+          "requires": "Первая копия A03; G05"
+        },
+        {
+          "from": 6,
+          "to": 6,
+          "cost_start": {
+            "CARD_A03": 64,
+            "CRYSTAL": 4200
+          },
+          "cost_end": {
+            "CARD_A03": 64,
+            "CRYSTAL": 4200
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.48,
+          "effect_end": 0.48,
+          "requires": "Первая копия A03; G06"
+        },
+        {
+          "from": 7,
+          "to": 7,
+          "cost_start": {
+            "CARD_A03": 128,
+            "CRYSTAL": 8700
+          },
+          "cost_end": {
+            "CARD_A03": 128,
+            "CRYSTAL": 8700
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.56,
+          "effect_end": 0.56,
+          "requires": "Первая копия A03; L03/T10"
+        },
+        {
+          "from": 8,
+          "to": 8,
+          "cost_start": {
+            "CARD_A03": 256,
+            "CRYSTAL": 18000
+          },
+          "cost_end": {
+            "CARD_A03": 256,
+            "CRYSTAL": 18000
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.64,
+          "effect_end": 0.64,
+          "requires": "Первая копия A03; L05/T20"
+        },
+        {
+          "from": 9,
+          "to": 9,
+          "cost_start": {
+            "CARD_A03": 512,
+            "CRYSTAL": 37000
+          },
+          "cost_end": {
+            "CARD_A03": 512,
+            "CRYSTAL": 37000
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.72,
+          "effect_end": 0.72,
+          "requires": "Первая копия A03; L06/T30"
+        }
+      ]
+    },
+    {
+      "id": "CARD_A04",
+      "name": "Ранг: Рассеивание",
+      "max_level": 9,
+      "availability": "Детерминированная первая копия A04; BLD06. Ранг 2 не требует гачи для базовой работоспособности.",
+      "purpose": "Длительная необязательная специализация уже полученной способности.",
+      "effect_description": "Покупка 1 повышает ранг 1→2; покупка 9 ранг 9→10. Суммарно+0.6 с к rank10; личные 1.8 с+лаба 0.6 с+карта 0.6 с дают 9 с. Не снимает дополнительный тип buff.",
+      "effect_unit": "секунды добавки к 6 с запрета buff",
+      "stacking": "Число CARD_A04 хранит добавочные секунды эффекта, не проценты. Прибавляется к базе и личным секундам; лабораторная добавка сначала переводится: baseDurationSeconds × LAB_DURATION / 100. Общий срок не выше 1.5 базы; карта не даёт заряды или слоты.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "CARD_A04": 2,
+            "CRYSTAL": 60
+          },
+          "cost_end": {
+            "CARD_A04": 2,
+            "CRYSTAL": 60
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.066667,
+          "effect_end": 0.066667,
+          "requires": "Первая копия A04; Первая копия способности"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "CARD_A04": 4,
+            "CRYSTAL": 115
+          },
+          "cost_end": {
+            "CARD_A04": 4,
+            "CRYSTAL": 115
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.133333,
+          "effect_end": 0.133333,
+          "requires": "Первая копия A04; G02"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "CARD_A04": 8,
+            "CRYSTAL": 225
+          },
+          "cost_end": {
+            "CARD_A04": 8,
+            "CRYSTAL": 225
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.2,
+          "effect_end": 0.2,
+          "requires": "Первая копия A04; G03"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "CARD_A04": 16,
+            "CRYSTAL": 440
+          },
+          "cost_end": {
+            "CARD_A04": 16,
+            "CRYSTAL": 440
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.266667,
+          "effect_end": 0.266667,
+          "requires": "Первая копия A04; G04"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "cost_start": {
+            "CARD_A04": 32,
+            "CRYSTAL": 870
+          },
+          "cost_end": {
+            "CARD_A04": 32,
+            "CRYSTAL": 870
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.333333,
+          "effect_end": 0.333333,
+          "requires": "Первая копия A04; G05"
+        },
+        {
+          "from": 6,
+          "to": 6,
+          "cost_start": {
+            "CARD_A04": 64,
+            "CRYSTAL": 1720
+          },
+          "cost_end": {
+            "CARD_A04": 64,
+            "CRYSTAL": 1720
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.4,
+          "effect_end": 0.4,
+          "requires": "Первая копия A04; G06"
+        },
+        {
+          "from": 7,
+          "to": 7,
+          "cost_start": {
+            "CARD_A04": 128,
+            "CRYSTAL": 3400
+          },
+          "cost_end": {
+            "CARD_A04": 128,
+            "CRYSTAL": 3400
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.466667,
+          "effect_end": 0.466667,
+          "requires": "Первая копия A04; L03/T10"
+        },
+        {
+          "from": 8,
+          "to": 8,
+          "cost_start": {
+            "CARD_A04": 256,
+            "CRYSTAL": 6750
+          },
+          "cost_end": {
+            "CARD_A04": 256,
+            "CRYSTAL": 6750
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.533333,
+          "effect_end": 0.533333,
+          "requires": "Первая копия A04; L05/T20"
+        },
+        {
+          "from": 9,
+          "to": 9,
+          "cost_start": {
+            "CARD_A04": 512,
+            "CRYSTAL": 13400
+          },
+          "cost_end": {
+            "CARD_A04": 512,
+            "CRYSTAL": 13400
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.6,
+          "effect_end": 0.6,
+          "requires": "Первая копия A04; L06/T30"
+        }
+      ]
+    },
+    {
+      "id": "CARD_A05",
+      "name": "Ранг: Кольцо стужи",
+      "max_level": 9,
+      "availability": "Детерминированная первая копия A05; BLD06. Ранг 2 не требует гачи для базовой работоспособности.",
+      "purpose": "Длительная необязательная специализация уже полученной способности.",
+      "effect_description": "Покупка 1 повышает ранг 1→2; покупка 9 ранг 9→10. Суммарно+0.6 с к rank10; личные 1.8 с+лаба 0.6 с+карта 0.6 с дают 9 с. Не усиливает процент slow.",
+      "effect_unit": "секунды добавки к 6 с slow",
+      "stacking": "Число CARD_A05 хранит добавочные секунды эффекта, не проценты. Прибавляется к базе и личным секундам; лабораторная добавка сначала переводится: baseDurationSeconds × LAB_DURATION / 100. Общий срок не выше 1.5 базы; карта не даёт заряды или слоты.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "CARD_A05": 2,
+            "CRYSTAL": 65
+          },
+          "cost_end": {
+            "CARD_A05": 2,
+            "CRYSTAL": 65
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.066667,
+          "effect_end": 0.066667,
+          "requires": "Первая копия A05; Первая копия способности"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "CARD_A05": 4,
+            "CRYSTAL": 125
+          },
+          "cost_end": {
+            "CARD_A05": 4,
+            "CRYSTAL": 125
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.133333,
+          "effect_end": 0.133333,
+          "requires": "Первая копия A05; G02"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "CARD_A05": 8,
+            "CRYSTAL": 245
+          },
+          "cost_end": {
+            "CARD_A05": 8,
+            "CRYSTAL": 245
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.2,
+          "effect_end": 0.2,
+          "requires": "Первая копия A05; G03"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "CARD_A05": 16,
+            "CRYSTAL": 485
+          },
+          "cost_end": {
+            "CARD_A05": 16,
+            "CRYSTAL": 485
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.266667,
+          "effect_end": 0.266667,
+          "requires": "Первая копия A05; G04"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "cost_start": {
+            "CARD_A05": 32,
+            "CRYSTAL": 960
+          },
+          "cost_end": {
+            "CARD_A05": 32,
+            "CRYSTAL": 960
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.333333,
+          "effect_end": 0.333333,
+          "requires": "Первая копия A05; G05"
+        },
+        {
+          "from": 6,
+          "to": 6,
+          "cost_start": {
+            "CARD_A05": 64,
+            "CRYSTAL": 1900
+          },
+          "cost_end": {
+            "CARD_A05": 64,
+            "CRYSTAL": 1900
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.4,
+          "effect_end": 0.4,
+          "requires": "Первая копия A05; G06"
+        },
+        {
+          "from": 7,
+          "to": 7,
+          "cost_start": {
+            "CARD_A05": 128,
+            "CRYSTAL": 3800
+          },
+          "cost_end": {
+            "CARD_A05": 128,
+            "CRYSTAL": 3800
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.466667,
+          "effect_end": 0.466667,
+          "requires": "Первая копия A05; L03/T10"
+        },
+        {
+          "from": 8,
+          "to": 8,
+          "cost_start": {
+            "CARD_A05": 256,
+            "CRYSTAL": 7550
+          },
+          "cost_end": {
+            "CARD_A05": 256,
+            "CRYSTAL": 7550
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.533333,
+          "effect_end": 0.533333,
+          "requires": "Первая копия A05; L05/T20"
+        },
+        {
+          "from": 9,
+          "to": 9,
+          "cost_start": {
+            "CARD_A05": 512,
+            "CRYSTAL": 15000
+          },
+          "cost_end": {
+            "CARD_A05": 512,
+            "CRYSTAL": 15000
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.6,
+          "effect_end": 0.6,
+          "requires": "Первая копия A05; L06/T30"
+        }
+      ]
+    },
+    {
+      "id": "CARD_A06",
+      "name": "Ранг: Разлом брони",
+      "max_level": 9,
+      "availability": "Детерминированная первая копия A06; BLD06. Ранг 2 не требует гачи для базовой работоспособности.",
+      "purpose": "Длительная необязательная специализация уже полученной способности.",
+      "effect_description": "Покупка 1 повышает ранг 1→2; покупка 9 ранг 9→10. +8 п.п. базового 1D за ранг; не усиливает снятие брони/срок окна.",
+      "effect_unit": "аддитивная доля базового прямого урона",
+      "stacking": "Значение личной ветви — множитель с уже включённой единицей; cardFraction берётся прямо из CARD_ID как доля 0…0.72. labFraction = min(0.28, LAB_SPELL_POWER / 100 + selectedProtocolBonusPercent / 100): LAB_SPELL_POWER хранит 0…16 процентов, выбранный допустимый протокол даёт 0…12 процентов. LAB_INTERACTION хранит число открытых протоколов, не процент бонуса. Множитель урона = min(3, ownMultiplier + cardFraction + labFraction). Карта хранит долю напрямую:0.08 означает+8 п.п. базового урона; делить её ещё раз на 100 нельзя. Не даёт слоты или заряды.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "CARD_A06": 2,
+            "CRYSTAL": 55
+          },
+          "cost_end": {
+            "CARD_A06": 2,
+            "CRYSTAL": 55
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.08,
+          "effect_end": 0.08,
+          "requires": "Первая копия A06; Первая копия способности"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "CARD_A06": 4,
+            "CRYSTAL": 105
+          },
+          "cost_end": {
+            "CARD_A06": 4,
+            "CRYSTAL": 105
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.16,
+          "effect_end": 0.16,
+          "requires": "Первая копия A06; G02"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "CARD_A06": 8,
+            "CRYSTAL": 205
+          },
+          "cost_end": {
+            "CARD_A06": 8,
+            "CRYSTAL": 205
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.24,
+          "effect_end": 0.24,
+          "requires": "Первая копия A06; G03"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "CARD_A06": 16,
+            "CRYSTAL": 400
+          },
+          "cost_end": {
+            "CARD_A06": 16,
+            "CRYSTAL": 400
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.32,
+          "effect_end": 0.32,
+          "requires": "Первая копия A06; G04"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "cost_start": {
+            "CARD_A06": 32,
+            "CRYSTAL": 790
+          },
+          "cost_end": {
+            "CARD_A06": 32,
+            "CRYSTAL": 790
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.4,
+          "effect_end": 0.4,
+          "requires": "Первая копия A06; G05"
+        },
+        {
+          "from": 6,
+          "to": 6,
+          "cost_start": {
+            "CARD_A06": 64,
+            "CRYSTAL": 1560
+          },
+          "cost_end": {
+            "CARD_A06": 64,
+            "CRYSTAL": 1560
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.48,
+          "effect_end": 0.48,
+          "requires": "Первая копия A06; G06"
+        },
+        {
+          "from": 7,
+          "to": 7,
+          "cost_start": {
+            "CARD_A06": 128,
+            "CRYSTAL": 3090
+          },
+          "cost_end": {
+            "CARD_A06": 128,
+            "CRYSTAL": 3090
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.56,
+          "effect_end": 0.56,
+          "requires": "Первая копия A06; L03/T10"
+        },
+        {
+          "from": 8,
+          "to": 8,
+          "cost_start": {
+            "CARD_A06": 256,
+            "CRYSTAL": 6120
+          },
+          "cost_end": {
+            "CARD_A06": 256,
+            "CRYSTAL": 6120
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.64,
+          "effect_end": 0.64,
+          "requires": "Первая копия A06; L05/T20"
+        },
+        {
+          "from": 9,
+          "to": 9,
+          "cost_start": {
+            "CARD_A06": 512,
+            "CRYSTAL": 12100
+          },
+          "cost_end": {
+            "CARD_A06": 512,
+            "CRYSTAL": 12100
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.72,
+          "effect_end": 0.72,
+          "requires": "Первая копия A06; L06/T30"
+        }
+      ]
+    },
+    {
+      "id": "CARD_A07",
+      "name": "Ранг: Цепная молния",
+      "max_level": 9,
+      "availability": "Детерминированная первая копия A07; BLD06. Ранг 2 не требует гачи для базовой работоспособности.",
+      "purpose": "Длительная необязательная специализация уже полученной способности.",
+      "effect_description": "Покупка 1 повышает ранг 1→2; покупка 9 ранг 9→10. +8 п.п. базового 1.5D/0.75D за ранг, не дополнительные отскоки.",
+      "effect_unit": "аддитивная доля базового урона",
+      "stacking": "Значение личной ветви — множитель с уже включённой единицей; cardFraction берётся прямо из CARD_ID как доля 0…0.72. labFraction = min(0.28, LAB_SPELL_POWER / 100 + selectedProtocolBonusPercent / 100): LAB_SPELL_POWER хранит 0…16 процентов, выбранный допустимый протокол даёт 0…12 процентов. LAB_INTERACTION хранит число открытых протоколов, не процент бонуса. Множитель урона = min(3, ownMultiplier + cardFraction + labFraction). Карта хранит долю напрямую:0.08 означает+8 п.п. базового урона; делить её ещё раз на 100 нельзя. Не даёт слоты или заряды.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "CARD_A07": 2,
+            "CRYSTAL": 85
+          },
+          "cost_end": {
+            "CARD_A07": 2,
+            "CRYSTAL": 85
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.08,
+          "effect_end": 0.08,
+          "requires": "Первая копия A07; Первая копия способности"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "CARD_A07": 4,
+            "CRYSTAL": 175
+          },
+          "cost_end": {
+            "CARD_A07": 4,
+            "CRYSTAL": 175
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.16,
+          "effect_end": 0.16,
+          "requires": "Первая копия A07; G02"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "CARD_A07": 8,
+            "CRYSTAL": 360
+          },
+          "cost_end": {
+            "CARD_A07": 8,
+            "CRYSTAL": 360
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.24,
+          "effect_end": 0.24,
+          "requires": "Первая копия A07; G03"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "CARD_A07": 16,
+            "CRYSTAL": 740
+          },
+          "cost_end": {
+            "CARD_A07": 16,
+            "CRYSTAL": 740
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.32,
+          "effect_end": 0.32,
+          "requires": "Первая копия A07; G04"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "cost_start": {
+            "CARD_A07": 32,
+            "CRYSTAL": 1530
+          },
+          "cost_end": {
+            "CARD_A07": 32,
+            "CRYSTAL": 1530
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.4,
+          "effect_end": 0.4,
+          "requires": "Первая копия A07; G05"
+        },
+        {
+          "from": 6,
+          "to": 6,
+          "cost_start": {
+            "CARD_A07": 64,
+            "CRYSTAL": 3160
+          },
+          "cost_end": {
+            "CARD_A07": 64,
+            "CRYSTAL": 3160
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.48,
+          "effect_end": 0.48,
+          "requires": "Первая копия A07; G06"
+        },
+        {
+          "from": 7,
+          "to": 7,
+          "cost_start": {
+            "CARD_A07": 128,
+            "CRYSTAL": 6540
+          },
+          "cost_end": {
+            "CARD_A07": 128,
+            "CRYSTAL": 6540
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.56,
+          "effect_end": 0.56,
+          "requires": "Первая копия A07; L03/T10"
+        },
+        {
+          "from": 8,
+          "to": 8,
+          "cost_start": {
+            "CARD_A07": 256,
+            "CRYSTAL": 13500
+          },
+          "cost_end": {
+            "CARD_A07": 256,
+            "CRYSTAL": 13500
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.64,
+          "effect_end": 0.64,
+          "requires": "Первая копия A07; L05/T20"
+        },
+        {
+          "from": 9,
+          "to": 9,
+          "cost_start": {
+            "CARD_A07": 512,
+            "CRYSTAL": 27900
+          },
+          "cost_end": {
+            "CARD_A07": 512,
+            "CRYSTAL": 27900
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.72,
+          "effect_end": 0.72,
+          "requires": "Первая копия A07; L06/T30"
+        }
+      ]
+    },
+    {
+      "id": "CARD_A08",
+      "name": "Ранг: Перегрузка башни",
+      "max_level": 9,
+      "availability": "Детерминированная первая копия A08; BLD06. Ранг 2 не требует гачи для базовой работоспособности.",
+      "purpose": "Длительная необязательная специализация уже полученной способности.",
+      "effect_description": "Покупка 1 повышает ранг 1→2; покупка 9 ранг 9→10. +1 п.п. за ранг, максимум 9 п.п.; база 35+личные 10+карта 9=54%, до глобального cap.",
+      "effect_unit": "процентные пункты временной скорости атаки",
+      "stacking": "CARD_A08 хранит добавочные 0…9 процентных пунктов скорости. temporaryHasteFraction = (35 + A08_HASTE + CARD_A08) / 100; эта доля входит один раз в общий бонус скорости. Интервал атаки≥0.15 с; заряды и слоты не меняются.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "CARD_A08": 2,
+            "CRYSTAL": 85
+          },
+          "cost_end": {
+            "CARD_A08": 2,
+            "CRYSTAL": 85
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.0,
+          "effect_end": 1.0,
+          "requires": "Первая копия A08; Первая копия способности"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "CARD_A08": 4,
+            "CRYSTAL": 180
+          },
+          "cost_end": {
+            "CARD_A08": 4,
+            "CRYSTAL": 180
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.0,
+          "effect_end": 2.0,
+          "requires": "Первая копия A08; G02"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "CARD_A08": 8,
+            "CRYSTAL": 380
+          },
+          "cost_end": {
+            "CARD_A08": 8,
+            "CRYSTAL": 380
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3.0,
+          "effect_end": 3.0,
+          "requires": "Первая копия A08; G03"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "CARD_A08": 16,
+            "CRYSTAL": 800
+          },
+          "cost_end": {
+            "CARD_A08": 16,
+            "CRYSTAL": 800
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 4.0,
+          "effect_end": 4.0,
+          "requires": "Первая копия A08; G04"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "cost_start": {
+            "CARD_A08": 32,
+            "CRYSTAL": 1690
+          },
+          "cost_end": {
+            "CARD_A08": 32,
+            "CRYSTAL": 1690
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 5.0,
+          "effect_end": 5.0,
+          "requires": "Первая копия A08; G05"
+        },
+        {
+          "from": 6,
+          "to": 6,
+          "cost_start": {
+            "CARD_A08": 64,
+            "CRYSTAL": 3570
+          },
+          "cost_end": {
+            "CARD_A08": 64,
+            "CRYSTAL": 3570
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 6.0,
+          "effect_end": 6.0,
+          "requires": "Первая копия A08; G06"
+        },
+        {
+          "from": 7,
+          "to": 7,
+          "cost_start": {
+            "CARD_A08": 128,
+            "CRYSTAL": 7520
+          },
+          "cost_end": {
+            "CARD_A08": 128,
+            "CRYSTAL": 7520
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 7.0,
+          "effect_end": 7.0,
+          "requires": "Первая копия A08; L03/T10"
+        },
+        {
+          "from": 8,
+          "to": 8,
+          "cost_start": {
+            "CARD_A08": 256,
+            "CRYSTAL": 15850
+          },
+          "cost_end": {
+            "CARD_A08": 256,
+            "CRYSTAL": 15850
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 8.0,
+          "effect_end": 8.0,
+          "requires": "Первая копия A08; L05/T20"
+        },
+        {
+          "from": 9,
+          "to": 9,
+          "cost_start": {
+            "CARD_A08": 512,
+            "CRYSTAL": 33400
+          },
+          "cost_end": {
+            "CARD_A08": 512,
+            "CRYSTAL": 33400
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 9.0,
+          "effect_end": 9.0,
+          "requires": "Первая копия A08; L06/T30"
+        }
+      ]
+    },
+    {
+      "id": "CARD_A09",
+      "name": "Ранг: Восстановление",
+      "max_level": 9,
+      "availability": "Детерминированная первая копия A09; BLD06. Ранг 2 не требует гачи для базовой работоспособности.",
+      "purpose": "Длительная необязательная специализация уже полученной способности.",
+      "effect_description": "Покупка 1 повышает ранг 1→2; покупка 9 ранг 9→10. +0.5 п.п.H за ранг: половина мгновенно, половина HoT; максимум 4.5 п.п. Generic damage/duration не усиливают лечение.",
+      "effect_unit": "процентные пункты максимального H за cast",
+      "stacking": "CARD_A09 хранит добавочные 0…4.5 процентных пункта H. totalHeal = H × (24 + A09_HEAL + CARD_A09) / 100, половина сразу и половина за 6 с. Это один бюджет лечения; не умножать повторно на лабораторный урон или длительность.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "CARD_A09": 2,
+            "CRYSTAL": 75
+          },
+          "cost_end": {
+            "CARD_A09": 2,
+            "CRYSTAL": 75
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.5,
+          "effect_end": 0.5,
+          "requires": "Первая копия A09; Первая копия способности"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "CARD_A09": 4,
+            "CRYSTAL": 155
+          },
+          "cost_end": {
+            "CARD_A09": 4,
+            "CRYSTAL": 155
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.0,
+          "effect_end": 1.0,
+          "requires": "Первая копия A09; G02"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "CARD_A09": 8,
+            "CRYSTAL": 320
+          },
+          "cost_end": {
+            "CARD_A09": 8,
+            "CRYSTAL": 320
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.5,
+          "effect_end": 1.5,
+          "requires": "Первая копия A09; G03"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "CARD_A09": 16,
+            "CRYSTAL": 660
+          },
+          "cost_end": {
+            "CARD_A09": 16,
+            "CRYSTAL": 660
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.0,
+          "effect_end": 2.0,
+          "requires": "Первая копия A09; G04"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "cost_start": {
+            "CARD_A09": 32,
+            "CRYSTAL": 1370
+          },
+          "cost_end": {
+            "CARD_A09": 32,
+            "CRYSTAL": 1370
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.5,
+          "effect_end": 2.5,
+          "requires": "Первая копия A09; G05"
+        },
+        {
+          "from": 6,
+          "to": 6,
+          "cost_start": {
+            "CARD_A09": 64,
+            "CRYSTAL": 2840
+          },
+          "cost_end": {
+            "CARD_A09": 64,
+            "CRYSTAL": 2840
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3.0,
+          "effect_end": 3.0,
+          "requires": "Первая копия A09; G06"
+        },
+        {
+          "from": 7,
+          "to": 7,
+          "cost_start": {
+            "CARD_A09": 128,
+            "CRYSTAL": 5890
+          },
+          "cost_end": {
+            "CARD_A09": 128,
+            "CRYSTAL": 5890
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3.5,
+          "effect_end": 3.5,
+          "requires": "Первая копия A09; L03/T10"
+        },
+        {
+          "from": 8,
+          "to": 8,
+          "cost_start": {
+            "CARD_A09": 256,
+            "CRYSTAL": 12200
+          },
+          "cost_end": {
+            "CARD_A09": 256,
+            "CRYSTAL": 12200
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 4.0,
+          "effect_end": 4.0,
+          "requires": "Первая копия A09; L05/T20"
+        },
+        {
+          "from": 9,
+          "to": 9,
+          "cost_start": {
+            "CARD_A09": 512,
+            "CRYSTAL": 25300
+          },
+          "cost_end": {
+            "CARD_A09": 512,
+            "CRYSTAL": 25300
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 4.5,
+          "effect_end": 4.5,
+          "requires": "Первая копия A09; L06/T30"
+        }
+      ]
+    },
+    {
+      "id": "CARD_A10",
+      "name": "Ранг: Ветровая завеса",
+      "max_level": 9,
+      "availability": "Детерминированная первая копия A10; BLD06. Ранг 2 не требует гачи для базовой работоспособности.",
+      "purpose": "Длительная необязательная специализация уже полученной способности.",
+      "effect_description": "Покупка 1 повышает ранг 1→2; покупка 9 ранг 9→10. +1 п.п. за ранг; база 40+личные 10+карта 9=59%, специальный cap60%.",
+      "effect_unit": "процентные пункты снижения тяжёлого снаряда",
+      "stacking": "CARD_A10 хранит добавочные 0…9 процентных пунктов снижения тяжёлого снаряда. reductionFraction = min(60, 40 + A10_MITIGATION + CARD_A10) / 100; после этой защиты остаётся входящийУрон × (1 - reductionFraction). Не даёт неуязвимость, заряды или слоты.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "CARD_A10": 2,
+            "CRYSTAL": 80
+          },
+          "cost_end": {
+            "CARD_A10": 2,
+            "CRYSTAL": 80
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 1.0,
+          "effect_end": 1.0,
+          "requires": "Первая копия A10; Первая копия способности"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "CARD_A10": 4,
+            "CRYSTAL": 165
+          },
+          "cost_end": {
+            "CARD_A10": 4,
+            "CRYSTAL": 165
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 2.0,
+          "effect_end": 2.0,
+          "requires": "Первая копия A10; G02"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "CARD_A10": 8,
+            "CRYSTAL": 340
+          },
+          "cost_end": {
+            "CARD_A10": 8,
+            "CRYSTAL": 340
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 3.0,
+          "effect_end": 3.0,
+          "requires": "Первая копия A10; G03"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "CARD_A10": 16,
+            "CRYSTAL": 710
+          },
+          "cost_end": {
+            "CARD_A10": 16,
+            "CRYSTAL": 710
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 4.0,
+          "effect_end": 4.0,
+          "requires": "Первая копия A10; G04"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "cost_start": {
+            "CARD_A10": 32,
+            "CRYSTAL": 1480
+          },
+          "cost_end": {
+            "CARD_A10": 32,
+            "CRYSTAL": 1480
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 5.0,
+          "effect_end": 5.0,
+          "requires": "Первая копия A10; G05"
+        },
+        {
+          "from": 6,
+          "to": 6,
+          "cost_start": {
+            "CARD_A10": 64,
+            "CRYSTAL": 3090
+          },
+          "cost_end": {
+            "CARD_A10": 64,
+            "CRYSTAL": 3090
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 6.0,
+          "effect_end": 6.0,
+          "requires": "Первая копия A10; G06"
+        },
+        {
+          "from": 7,
+          "to": 7,
+          "cost_start": {
+            "CARD_A10": 128,
+            "CRYSTAL": 6440
+          },
+          "cost_end": {
+            "CARD_A10": 128,
+            "CRYSTAL": 6440
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 7.0,
+          "effect_end": 7.0,
+          "requires": "Первая копия A10; L03/T10"
+        },
+        {
+          "from": 8,
+          "to": 8,
+          "cost_start": {
+            "CARD_A10": 256,
+            "CRYSTAL": 13450
+          },
+          "cost_end": {
+            "CARD_A10": 256,
+            "CRYSTAL": 13450
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 8.0,
+          "effect_end": 8.0,
+          "requires": "Первая копия A10; L05/T20"
+        },
+        {
+          "from": 9,
+          "to": 9,
+          "cost_start": {
+            "CARD_A10": 512,
+            "CRYSTAL": 28100
+          },
+          "cost_end": {
+            "CARD_A10": 512,
+            "CRYSTAL": 28100
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 9.0,
+          "effect_end": 9.0,
+          "requires": "Первая копия A10; L06/T30"
+        }
+      ]
+    },
+    {
+      "id": "CARD_A11",
+      "name": "Ранг: Приговор",
+      "max_level": 9,
+      "availability": "Детерминированная первая копия A11; BLD06. Ранг 2 не требует гачи для базовой работоспособности.",
+      "purpose": "Длительная необязательная специализация уже полученной способности.",
+      "effect_description": "Покупка 1 повышает ранг 1→2; покупка 9 ранг 9→10. +8 п.п. базового 4D/7D за ранг; boss cap5% исходногоHP после всех бонусов.",
+      "effect_unit": "аддитивная доля базового урона",
+      "stacking": "Значение личной ветви — множитель с уже включённой единицей; cardFraction берётся прямо из CARD_ID как доля 0…0.72. labFraction = min(0.28, LAB_SPELL_POWER / 100 + selectedProtocolBonusPercent / 100): LAB_SPELL_POWER хранит 0…16 процентов, выбранный допустимый протокол даёт 0…12 процентов. LAB_INTERACTION хранит число открытых протоколов, не процент бонуса. Множитель урона = min(3, ownMultiplier + cardFraction + labFraction). Карта хранит долю напрямую:0.08 означает+8 п.п. базового урона; делить её ещё раз на 100 нельзя. Не даёт слоты или заряды.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "CARD_A11": 2,
+            "CRYSTAL": 100
+          },
+          "cost_end": {
+            "CARD_A11": 2,
+            "CRYSTAL": 100
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.08,
+          "effect_end": 0.08,
+          "requires": "Первая копия A11; Первая копия способности"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "CARD_A11": 4,
+            "CRYSTAL": 220
+          },
+          "cost_end": {
+            "CARD_A11": 4,
+            "CRYSTAL": 220
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.16,
+          "effect_end": 0.16,
+          "requires": "Первая копия A11; G02"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "CARD_A11": 8,
+            "CRYSTAL": 480
+          },
+          "cost_end": {
+            "CARD_A11": 8,
+            "CRYSTAL": 480
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.24,
+          "effect_end": 0.24,
+          "requires": "Первая копия A11; G03"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "CARD_A11": 16,
+            "CRYSTAL": 1040
+          },
+          "cost_end": {
+            "CARD_A11": 16,
+            "CRYSTAL": 1040
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.32,
+          "effect_end": 0.32,
+          "requires": "Первая копия A11; G04"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "cost_start": {
+            "CARD_A11": 32,
+            "CRYSTAL": 2250
+          },
+          "cost_end": {
+            "CARD_A11": 32,
+            "CRYSTAL": 2250
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.4,
+          "effect_end": 0.4,
+          "requires": "Первая копия A11; G05"
+        },
+        {
+          "from": 6,
+          "to": 6,
+          "cost_start": {
+            "CARD_A11": 64,
+            "CRYSTAL": 4850
+          },
+          "cost_end": {
+            "CARD_A11": 64,
+            "CRYSTAL": 4850
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.48,
+          "effect_end": 0.48,
+          "requires": "Первая копия A11; G06"
+        },
+        {
+          "from": 7,
+          "to": 7,
+          "cost_start": {
+            "CARD_A11": 128,
+            "CRYSTAL": 10500
+          },
+          "cost_end": {
+            "CARD_A11": 128,
+            "CRYSTAL": 10500
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.56,
+          "effect_end": 0.56,
+          "requires": "Первая копия A11; L03/T10"
+        },
+        {
+          "from": 8,
+          "to": 8,
+          "cost_start": {
+            "CARD_A11": 256,
+            "CRYSTAL": 22700
+          },
+          "cost_end": {
+            "CARD_A11": 256,
+            "CRYSTAL": 22700
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.64,
+          "effect_end": 0.64,
+          "requires": "Первая копия A11; L05/T20"
+        },
+        {
+          "from": 9,
+          "to": 9,
+          "cost_start": {
+            "CARD_A11": 512,
+            "CRYSTAL": 49000
+          },
+          "cost_end": {
+            "CARD_A11": 512,
+            "CRYSTAL": 49000
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.72,
+          "effect_end": 0.72,
+          "requires": "Первая копия A11; L06/T30"
+        }
+      ]
+    },
+    {
+      "id": "CARD_A12",
+      "name": "Ранг: Якорь",
+      "max_level": 9,
+      "availability": "Детерминированная первая копия A12; BLD06. Ранг 2 не требует гачи для базовой работоспособности.",
+      "purpose": "Длительная необязательная специализация уже полученной способности.",
+      "effect_description": "Покупка 1 повышает ранг 1→2; покупка 9 ранг 9→10. Суммарно+0.5 с к rank10, для босса+0.125 с. Личный+карточный пределroot3 с/0.75 с; generic LAB_DURATION исключена.",
+      "effect_unit": "секунды root обычной цели; для босса четверть",
+      "stacking": "CARD_A12 хранит добавочные 0…0.5 секунды root обычной цели. normalRootSeconds = min(3, 2 + A12_ROOT + CARD_A12); боссу normalRootSeconds/4. Лабораторная длительность исключена; interrupt immunity8 с, заряды и слоты не меняются.",
+      "segments": [
+        {
+          "from": 1,
+          "to": 1,
+          "cost_start": {
+            "CARD_A12": 2,
+            "CRYSTAL": 90
+          },
+          "cost_end": {
+            "CARD_A12": 2,
+            "CRYSTAL": 90
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.055556,
+          "effect_end": 0.055556,
+          "requires": "Первая копия A12; Первая копия способности"
+        },
+        {
+          "from": 2,
+          "to": 2,
+          "cost_start": {
+            "CARD_A12": 4,
+            "CRYSTAL": 180
+          },
+          "cost_end": {
+            "CARD_A12": 4,
+            "CRYSTAL": 180
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.111111,
+          "effect_end": 0.111111,
+          "requires": "Первая копия A12; G02"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "cost_start": {
+            "CARD_A12": 8,
+            "CRYSTAL": 365
+          },
+          "cost_end": {
+            "CARD_A12": 8,
+            "CRYSTAL": 365
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.166667,
+          "effect_end": 0.166667,
+          "requires": "Первая копия A12; G03"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "cost_start": {
+            "CARD_A12": 16,
+            "CRYSTAL": 745
+          },
+          "cost_end": {
+            "CARD_A12": 16,
+            "CRYSTAL": 745
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.222222,
+          "effect_end": 0.222222,
+          "requires": "Первая копия A12; G04"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "cost_start": {
+            "CARD_A12": 32,
+            "CRYSTAL": 1520
+          },
+          "cost_end": {
+            "CARD_A12": 32,
+            "CRYSTAL": 1520
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.277778,
+          "effect_end": 0.277778,
+          "requires": "Первая копия A12; G05"
+        },
+        {
+          "from": 6,
+          "to": 6,
+          "cost_start": {
+            "CARD_A12": 64,
+            "CRYSTAL": 3110
+          },
+          "cost_end": {
+            "CARD_A12": 64,
+            "CRYSTAL": 3110
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.333333,
+          "effect_end": 0.333333,
+          "requires": "Первая копия A12; G06"
+        },
+        {
+          "from": 7,
+          "to": 7,
+          "cost_start": {
+            "CARD_A12": 128,
+            "CRYSTAL": 6360
+          },
+          "cost_end": {
+            "CARD_A12": 128,
+            "CRYSTAL": 6360
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.388889,
+          "effect_end": 0.388889,
+          "requires": "Первая копия A12; L03/T10"
+        },
+        {
+          "from": 8,
+          "to": 8,
+          "cost_start": {
+            "CARD_A12": 256,
+            "CRYSTAL": 13000
+          },
+          "cost_end": {
+            "CARD_A12": 256,
+            "CRYSTAL": 13000
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.444444,
+          "effect_end": 0.444444,
+          "requires": "Первая копия A12; L05/T20"
+        },
+        {
+          "from": 9,
+          "to": 9,
+          "cost_start": {
+            "CARD_A12": 512,
+            "CRYSTAL": 26600
+          },
+          "cost_end": {
+            "CARD_A12": 512,
+            "CRYSTAL": 26600
+          },
+          "minutes_start": 0,
+          "minutes_end": 0,
+          "effect_start": 0.5,
+          "effect_end": 0.5,
+          "requires": "Первая копия A12; L06/T30"
+        }
+      ]
+    }
+  ]
+}

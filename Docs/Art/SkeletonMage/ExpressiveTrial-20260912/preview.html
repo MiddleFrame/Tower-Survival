@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Скелет-маг — движение и удержание каста</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#161a22;color:#e9e5dc;font:16px/1.5 system-ui,sans-serif}main{max-width:1340px;margin:auto;padding:28px}h1{font-size:26px;margin:0 0 8px}p{color:#b4becb;margin:6px 0 20px}.toolbar{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:16px 0}select,button,input{font:inherit;accent-color:#bb9de5}select,button{border:1px solid #505968;border-radius:7px;padding:7px 12px;background:#262d39;color:inherit}button{cursor:pointer}input[type=number]{width:75px;background:#262d39;color:inherit;border:1px solid #505968;border-radius:5px;padding:6px}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}article{background:#222936;border:1px solid #364150;border-radius:10px;overflow:hidden}article h2{font-size:18px;padding:16px 18px 0;margin:0}canvas{display:block;width:100%;aspect-ratio:1;image-rendering:pixelated;background:#303947}.status{min-height:65px;padding:12px 18px;color:#cab6e4;font-variant-numeric:tabular-nums}.detail{margin-top:22px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}.detail canvas{width:384px;max-width:100%}small{color:#aeb8c6}.pill{display:inline-block;background:#2c3645;padding:4px 9px;border-radius:5px;font-size:13px;color:#b8d7ce}#error{color:#ffc7aa}@media(max-width:850px){.cards{grid-template-columns:1fr}.cards canvas{max-width:512px;margin:auto}}
+</style>
+<main>
+<span class="pill">Проба движения · прозрачные атласы 128 × 128</span>
+<h1>Скелет-маг</h1>
+<p>Движение корпуса, руки и ткани. Для каста — отдельный цикл удержания и выпуск по таймеру.</p>
+<div class="toolbar">
+<label>Удержание <input id="hold" type="number" value="3" min="0.1" max="30" step="0.1"> с</label>
+<button id="cast">Начать каст</button><button id="pause">Пауза</button>
+<label>Скорость <select id="speed"><option value="0.5">½</option><option value="1" selected>1×</option><option value="1.5">1½×</option></select></label>
+<label>Фон <select id="background"><option value="#303947">Серый</option><option value="#12151d">Тёмный</option><option value="#ddd8cc">Светлый</option><option value="#506949">Зелёный</option></select></label>
+</div>
+<div class="cards">
+<article><h2>Ожидание</h2><canvas id="idle" width="128" height="128"></canvas><div class="status" id="idle-status"></div></article>
+<article><h2>Ходьба</h2><canvas id="walk" width="128" height="128"></canvas><div class="status" id="walk-status"></div></article>
+<article><h2>Полный каст</h2><canvas id="spell" width="128" height="128"></canvas><div class="status" id="spell-status"></div></article>
+</div>
+<div class="detail">
+<canvas id="single" width="128" height="128"></canvas>
+<div><label>Отдельная анимация <select id="clip"></select></label><p id="single-status"></p><label>Кадр <input id="frame" type="range" min="0" max="11" value="0"></label><p><small>Ползунок останавливает просмотр для проверки стыков.<br>«Начать каст» применяет новое время удержания.<br>Снаряд и свечение в рисунок не включены.</small></p></div>
+</div>
+<p><small>Новая поза каста получена через ImageGen: посох расположен позади корпуса. Переход из обычного ожидания в эту новую стойку ещё не сделан. Это просмотр файлов, без импорта и проверки в Unity.</small></p>
+<p id="error"></p>
+</main>
+<script src="viewer-data.js"></script>
+<script src="viewer.js"></script>
+</html>

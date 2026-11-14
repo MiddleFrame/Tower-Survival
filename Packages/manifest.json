@@ -17,6 +17,7 @@
     }
   ],
   "dependencies": {
+    "com.unity.addressables": "2.7.6",
     "com.leopotam.ecslite": "https://github.com/Leopotam/ecslite.git",
     "com.coplaydev.unity-mcp": "https://github.com/CoplayDev/unity-mcp.git?path=/MCPForUnity#v10.1.2",
     "com.unity.2d.sprite": "1.0.0",

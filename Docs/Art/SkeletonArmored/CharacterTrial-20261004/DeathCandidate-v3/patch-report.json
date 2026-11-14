@@ -1,0 +1,20 @@
+{
+  "source": "Death-v2/frame-05.png",
+  "generatedRepair": "DeathFrameRepair-v1/frame-00.png",
+  "rectangle": {
+    "left": 54,
+    "top": 94,
+    "width": 24,
+    "height": 24
+  },
+  "changedInside": 439,
+  "changedOutside": 0,
+  "unchangedFrames": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    6
+  ]
+}

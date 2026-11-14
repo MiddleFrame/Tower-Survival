@@ -1,0 +1,153 @@
+{
+  "kind": "attack",
+  "frameWidth": 128,
+  "frameHeight": 128,
+  "frameCount": 9,
+  "firstAndLastMatch": true,
+  "report": [
+    {
+      "name": "frame-00.png",
+      "bounds": [
+        38,
+        28,
+        104,
+        113
+      ],
+      "colors": 63,
+      "partialAlpha": 0,
+      "borderPixels": 0,
+      "changedVisiblePixels": 107,
+      "changedAlphaPixels": 1,
+      "maxVisibleChannelDelta": 255,
+      "matchesApproved": false
+    },
+    {
+      "name": "frame-01.png",
+      "bounds": [
+        38,
+        28,
+        99,
+        113
+      ],
+      "colors": 64,
+      "partialAlpha": 0,
+      "borderPixels": 0,
+      "changedVisiblePixels": 2224,
+      "changedAlphaPixels": 733,
+      "maxVisibleChannelDelta": 255,
+      "matchesApproved": false
+    },
+    {
+      "name": "frame-02.png",
+      "bounds": [
+        37,
+        17,
+        89,
+        113
+      ],
+      "colors": 62,
+      "partialAlpha": 0,
+      "borderPixels": 0,
+      "changedVisiblePixels": 2583,
+      "changedAlphaPixels": 981,
+      "maxVisibleChannelDelta": 255,
+      "matchesApproved": false
+    },
+    {
+      "name": "frame-03.png",
+      "bounds": [
+        31,
+        17,
+        85,
+        113
+      ],
+      "colors": 63,
+      "partialAlpha": 0,
+      "borderPixels": 0,
+      "changedVisiblePixels": 2954,
+      "changedAlphaPixels": 1434,
+      "maxVisibleChannelDelta": 255,
+      "matchesApproved": false
+    },
+    {
+      "name": "frame-04.png",
+      "bounds": [
+        16,
+        25,
+        81,
+        113
+      ],
+      "colors": 62,
+      "partialAlpha": 0,
+      "borderPixels": 0,
+      "changedVisiblePixels": 2962,
+      "changedAlphaPixels": 1548,
+      "maxVisibleChannelDelta": 255,
+      "matchesApproved": false
+    },
+    {
+      "name": "frame-05.png",
+      "bounds": [
+        32,
+        30,
+        110,
+        113
+      ],
+      "colors": 63,
+      "partialAlpha": 0,
+      "borderPixels": 0,
+      "changedVisiblePixels": 3381,
+      "changedAlphaPixels": 1735,
+      "maxVisibleChannelDelta": 255,
+      "matchesApproved": false
+    },
+    {
+      "name": "frame-06.png",
+      "bounds": [
+        33,
+        30,
+        101,
+        113
+      ],
+      "colors": 63,
+      "partialAlpha": 0,
+      "borderPixels": 0,
+      "changedVisiblePixels": 2911,
+      "changedAlphaPixels": 1275,
+      "maxVisibleChannelDelta": 255,
+      "matchesApproved": false
+    },
+    {
+      "name": "frame-07.png",
+      "bounds": [
+        35,
+        29,
+        108,
+        113
+      ],
+      "colors": 64,
+      "partialAlpha": 0,
+      "borderPixels": 0,
+      "changedVisiblePixels": 2775,
+      "changedAlphaPixels": 1002,
+      "maxVisibleChannelDelta": 255,
+      "matchesApproved": false
+    },
+    {
+      "name": "frame-08.png",
+      "bounds": [
+        38,
+        28,
+        104,
+        113
+      ],
+      "colors": 63,
+      "partialAlpha": 0,
+      "borderPixels": 0,
+      "changedVisiblePixels": 107,
+      "changedAlphaPixels": 1,
+      "maxVisibleChannelDelta": 255,
+      "matchesApproved": false
+    }
+  ]
+}

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 
 public sealed class CombatSpellHudView : MonoBehaviour
@@ -18,6 +19,7 @@ public sealed class CombatSpellHudView : MonoBehaviour
     [SerializeField] private CanvasGroup _detailsCanvasGroup;
     [SerializeField] private RectTransform _detailsContainer;
     [SerializeField] private CombatSpellDetailView _detailPrefab;
+    [SerializeField] private AssetReferenceGameObject _detailAsset;
     [SerializeField] private Button _expandButton;
     [SerializeField] private TMP_Text _expandLabel;
     [SerializeField] private Image _expandIndicator;
@@ -32,9 +34,14 @@ public sealed class CombatSpellHudView : MonoBehaviour
     private CombatSpellController _controller;
     private Coroutine _expandRoutine;
     private bool _isExpanded;
+    private readonly IAssetsLoader _assetsLoader = new AddressableAssetsLoader();
+    private AssetLease<GameObject> _detailLease;
 
     public void Bind(CombatSpellController controller)
     {
+        if (_expandRoutine != null)
+            StopCoroutine(_expandRoutine);
+        _expandRoutine = null;
         _controller = controller;
         LightweightLocalization.Bind(_heading, "game.spells");
 
@@ -44,12 +51,7 @@ public sealed class CombatSpellHudView : MonoBehaviour
                 Destroy(button.gameObject);
         }
         _activeButtons.Clear();
-        foreach (CombatSpellDetailView detail in _detailViews)
-        {
-            if (detail != null)
-                Destroy(detail.gameObject);
-        }
-        _detailViews.Clear();
+        ClearDetails();
 
         CombatSpellDefinition[] definitions = controller.ActiveSpells;
         for (int i = 0; i < definitions.Length; i++)
@@ -60,10 +62,6 @@ public sealed class CombatSpellHudView : MonoBehaviour
             CombatSpellButtonView button = Instantiate(_activeButtonPrefab, _activeContainer);
             button.Bind(controller, i, definitions[i]);
             _activeButtons.Add(button);
-
-            CombatSpellDetailView detail = Instantiate(_detailPrefab, _detailsContainer);
-            detail.Bind(controller, definitions[i], i, false);
-            _detailViews.Add(detail);
         }
 
         _passivePopup.Bind(controller, controller.PassiveSpell);
@@ -90,6 +88,17 @@ public sealed class CombatSpellHudView : MonoBehaviour
         if (_expandRoutine != null)
             StopCoroutine(_expandRoutine);
         _expandRoutine = StartCoroutine(AnimateExpanded(_isExpanded));
+    }
+
+    private void OnDisable()
+    {
+        if (_expandRoutine != null)
+            StopCoroutine(_expandRoutine);
+        _expandRoutine = null;
+        _isExpanded = false;
+        ClearDetails();
+        if (_expandButton != null)
+            _expandButton.onClick.RemoveListener(ToggleExpanded);
     }
 
     public void SetTutorialActiveSlot(int visibleSlot)
@@ -129,6 +138,17 @@ public sealed class CombatSpellHudView : MonoBehaviour
 
     private IEnumerator AnimateExpanded(bool expanded)
     {
+        if (expanded)
+        {
+            yield return LoadDetails();
+            if (_detailViews.Count == 0)
+            {
+                _isExpanded = false;
+                _expandRoutine = null;
+                yield break;
+            }
+        }
+
         _detailsRoot.SetActive(true);
         _detailsCanvasGroup.alpha = 1f;
         _detailsCanvasGroup.blocksRaycasts = false;
@@ -157,7 +177,73 @@ public sealed class CombatSpellHudView : MonoBehaviour
         _detailsCanvasGroup.blocksRaycasts = expanded;
         _detailsCanvasGroup.interactable = expanded;
         _detailsRoot.SetActive(expanded);
+        if (!expanded)
+        {
+            foreach (CombatSpellDetailView detail in _detailViews)
+            {
+                if (detail != null)
+                    Destroy(detail.gameObject);
+            }
+            _detailViews.Clear();
+            // Destroy is deferred until the end of the frame; keep the bundle until then.
+            yield return null;
+            ReleaseDetailsAsset();
+        }
         _expandRoutine = null;
+    }
+
+    private IEnumerator LoadDetails()
+    {
+        if (_detailViews.Count > 0)
+            yield break;
+
+        CombatSpellDetailView prefab = _detailPrefab;
+        if (_detailAsset != null && _detailAsset.RuntimeKeyIsValid())
+        {
+            _detailLease ??= _assetsLoader.Acquire<GameObject>(_detailAsset);
+            yield return _detailLease.Wait();
+            if (!_detailLease.Succeeded)
+            {
+                Debug.LogError($"Spell details could not load: {_detailLease.Error}", this);
+                ReleaseDetailsAsset();
+                yield break;
+            }
+            prefab = _detailLease.Asset.GetComponent<CombatSpellDetailView>();
+        }
+
+        if (prefab == null)
+        {
+            Debug.LogError("Spell detail prefab is missing.", this);
+            ReleaseDetailsAsset();
+            yield break;
+        }
+
+        CombatSpellDefinition[] definitions = _controller.ActiveSpells;
+        for (int i = 0; i < definitions.Length; i++)
+        {
+            if (definitions[i] == null)
+                continue;
+            CombatSpellDetailView detail = Instantiate(prefab, _detailsContainer);
+            detail.Bind(_controller, definitions[i], i, false);
+            _detailViews.Add(detail);
+        }
+    }
+
+    private void ClearDetails()
+    {
+        foreach (CombatSpellDetailView detail in _detailViews)
+        {
+            if (detail != null)
+                Destroy(detail.gameObject);
+        }
+        _detailViews.Clear();
+        ReleaseDetailsAsset();
+    }
+
+    private void ReleaseDetailsAsset()
+    {
+        _detailLease?.Dispose();
+        _detailLease = null;
     }
 
     private void SetExpandedImmediate(bool expanded)

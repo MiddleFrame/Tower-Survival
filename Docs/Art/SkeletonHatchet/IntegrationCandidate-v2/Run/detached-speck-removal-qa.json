@@ -1,0 +1,51 @@
+{
+  "source": "TestResults/ArtTrials/Skeleton/RemainingRun04Final03",
+  "maximumComponentSize": 12,
+  "report": [
+    {
+      "frame": "frame-00.png",
+      "removedComponents": 0,
+      "removedPixels": 0
+    },
+    {
+      "frame": "frame-01.png",
+      "removedComponents": 0,
+      "removedPixels": 0
+    },
+    {
+      "frame": "frame-02.png",
+      "removedComponents": 0,
+      "removedPixels": 0
+    },
+    {
+      "frame": "frame-03.png",
+      "removedComponents": 0,
+      "removedPixels": 0
+    },
+    {
+      "frame": "frame-04.png",
+      "removedComponents": 0,
+      "removedPixels": 0
+    },
+    {
+      "frame": "frame-05.png",
+      "removedComponents": 0,
+      "removedPixels": 0
+    },
+    {
+      "frame": "frame-06.png",
+      "removedComponents": 0,
+      "removedPixels": 0
+    },
+    {
+      "frame": "frame-07.png",
+      "removedComponents": 0,
+      "removedPixels": 0
+    },
+    {
+      "frame": "frame-08.png",
+      "removedComponents": 0,
+      "removedPixels": 0
+    }
+  ]
+}

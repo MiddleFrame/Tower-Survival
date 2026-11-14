@@ -1,0 +1,100 @@
+{
+  "date_local": "2026-09-26/27",
+  "service": "PixelLab MCP",
+  "character_id": "9783f3cb-edbb-4a90-b3ca-658a8ec5eb2c",
+  "generations_used_before": 161,
+  "generations_used_after": 176,
+  "credits_after_usd": 0,
+  "jobs": [
+    {
+      "name": "DeathPile-v1",
+      "tool": "edit_image_pixen",
+      "job_id": "1241f303-a862-4aeb-8ab9-0b8d43592f68",
+      "source": "../DeathBurstV2/frame-00.png",
+      "seed": 926001,
+      "cost": 1,
+      "status": "rejected",
+      "reason": "Reassembled into a seated torso",
+      "prompt": "Move these already-separated pieces into a compact low pile on the ground, x48..132, y103..140 of this 168px canvas. Keep the SAME open steel helmet around the skull, slate-teal breastplate, shoulder plates and greaves among disconnected ivory bones. Lay the SAME small single-bladed axe beside them. Preserve piece sizes, low 3/4 view, palette, navy outline and hard pixel grid. No intact lying body, missing armor, extra bones, oversized weapon, shadow, dust or background."
+    },
+    {
+      "name": "DeathPile-v2",
+      "tool": "edit_image_pixen",
+      "job_id": "99534c8b-f869-4ec0-828e-256056eac945",
+      "source": "DeathPile-v1/frame-00.png",
+      "seed": 926002,
+      "cost": 1,
+      "status": "candidate",
+      "reason": "Parts detached but some appear to hover",
+      "prompt": "Break the seated torso APART. Detach the helmeted skull and lay it sideways on the ground at left. Lay the EMPTY steel breastplate flat at center, separate from skull, arms, pelvis and legs. Scatter detached ivory ribs, arms, greaves loosely around it. Keep the small single-bladed axe on the right. Every item low, below y105 on 168px canvas; no upright head, connected spine, sitting or intact lying skeleton. Preserve muted slate-teal pixel art, sizes and dark outline."
+    },
+    {
+      "name": "DeathBurstAnimation-v1",
+      "tool": "animate_image",
+      "job_id": "12520edc-22e1-47ee-9292-d71f195af57a",
+      "start": "DeathStart/frame-00.png",
+      "end": "../DeathBurstV2/frame-00.png",
+      "frame_count": 4,
+      "cost": 2,
+      "status": "rejected",
+      "reason": "White explosion and vanishing legs",
+      "prompt": "A lethal impact destroys the armored skeleton instantly. The skull, ribcage, arms, leg bones, shoulder plates, greaves and single-bladed axe break their joints and separate abruptly, flinging apart in one sharp burst toward the provided disassembled final pose. No voluntary crouch or lying down, no intact body, no white arc, flash, blood, dust, shadows or extra props. Rigid skull with hollow dark eye sockets; preserve the low three-quarter view and pixel-art scale."
+    },
+    {
+      "name": "DeathSettleAnimation-v1",
+      "tool": "animate_image",
+      "job_id": "d5d81183-a952-4a64-adba-d14fa2a5199e",
+      "start": "../DeathBurstV2/frame-00.png",
+      "end": "DeathPile-v2/frame-00.png",
+      "frame_count": 4,
+      "cost": 2,
+      "status": "rejected",
+      "reason": "Gray ring and unnatural settling",
+      "prompt": "Gravity pulls the already DETACHED armored skeleton pieces down from the midair burst. The helmeted skull, empty breastplate, separate arms, ribs, leg bones and greaves fall independently and settle into the provided scattered final pose with the single-bladed axe beside them. Nothing reconnects into a body, sits, stands or crawls. Keep the original armor and bone colors, scale, dark pixel outline and transparent background; no new bones, blood, dust, shadow, flash or slash trails."
+    },
+    {
+      "name": "FrontAttack-v1",
+      "tool": "animate_character/v3",
+      "group_id": "1fd039ef-1288-45fd-997b-48f676288fa8",
+      "direction": "south-west",
+      "frame_count": 8,
+      "cost": 3,
+      "status": "rejected",
+      "reason": "White arc and hatchet position jump; skull remains comparatively stable",
+      "prompt": "From the exact front-facing starting pose, perform one strong hatchet attack: a visible shoulder-and-elbow wind-up with the ORIGINAL small single-bladed axe, then a quick forceful downward chop toward the viewer, followed by controlled recovery to the exact original stance. Feet stay planted, skull and helmet move naturally with torso but hollow eye sockets never blink or change shape. The axe stays gripped and one-bladed at the same scale in every frame. Preserve armor, outline, pixel grid and camera. No white arcs, flashes, particles, second weapon or extra props."
+    },
+    {
+      "name": "FrontIdle-v1",
+      "tool": "animate_character/v3",
+      "group_id": "af887c56-07bf-462e-b43b-0b3f098b64b1",
+      "direction": "south-west",
+      "frame_count": 4,
+      "cost": 2,
+      "status": "candidate",
+      "reason": "Axe and feet stable; mouth dark region changes in middle frame",
+      "prompt": "Subtle calm breathing while facing directly toward camera. Chest and helmet shift only a few pixels naturally; BOTH boots remain planted in the same places. The right hand continuously grips the SAME small single-bladed axe upright in EVERY frame. Keep the rigid skull and hollow dark eye sockets unchanged in shape; no blinking, pupils or eyebrows. Exactly the same open steel helmet, slate-teal armor, navy pixel outline and front-facing view. Return seamlessly to identical starting pose. No effects, shadows or props."
+    },
+    {
+      "name": "BackIdle-v1",
+      "tool": "animate_character/v3",
+      "group_id": "99975591-de7f-4910-a3c9-e4c6e1cea4ab",
+      "direction": "north",
+      "frame_count": 4,
+      "cost": 2,
+      "status": "candidate",
+      "reason": "Axe and feet stable; motion subtle",
+      "prompt": "Subtle calm standing idle viewed exactly from behind. Gentle shoulder and chest breathing with a tiny natural helmet sway; BOTH boots remain planted at the same coordinates. Continuously hold the SAME small single-bladed axe in the same hand in EVERY frame. Preserve rear-view helmet, back breastplate, muted slate-teal armor, proportions and navy pixel outline. Return seamlessly to identical starting pose. No turning toward camera, no weapon loss, no effects, shadows or props."
+    },
+    {
+      "name": "BackAttack-v1",
+      "tool": "animate_character/v3",
+      "group_id": "94ba943b-be96-485c-9d09-10eeba0d20eb",
+      "direction": "north",
+      "frame_count": 4,
+      "cost": 2,
+      "status": "rejected",
+      "reason": "Weak/no attack, leg portion disappears in frame 1",
+      "prompt": "Keep the armored skeleton strictly facing AWAY from camera. From the rear-view starting pose, pull the SAME small SINGLE-bladed hatchet up above its shoulder, make one strong downward chop away from camera, then recover to the identical starting stance. Both boots stay planted. Preserve steel helmet, back breastplate, hand grip, proportions, muted slate-teal palette and dark pixel outline. Pure character motion: no white slash arc, glow, sparks, blood, particles, shadow, extra weapon or turning toward viewer."
+    }
+  ]
+}

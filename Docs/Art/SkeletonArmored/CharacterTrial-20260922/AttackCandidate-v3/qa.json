@@ -1,0 +1,210 @@
+[
+  {
+    "file": "frame-00.png",
+    "width": 144,
+    "height": 132,
+    "box": [
+      45,
+      19,
+      112,
+      107
+    ],
+    "partialAlpha": 0,
+    "colors": 63,
+    "lowerRegionDiff": 0,
+    "lowerMaskDiff": 0,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-01.png",
+    "width": 144,
+    "height": 132,
+    "box": [
+      44,
+      20,
+      108,
+      107
+    ],
+    "partialAlpha": 0,
+    "colors": 64,
+    "lowerRegionDiff": 128,
+    "lowerMaskDiff": 6,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-02.png",
+    "width": 144,
+    "height": 132,
+    "box": [
+      41,
+      21,
+      105,
+      107
+    ],
+    "partialAlpha": 0,
+    "colors": 63,
+    "lowerRegionDiff": 129,
+    "lowerMaskDiff": 6,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-03.png",
+    "width": 144,
+    "height": 132,
+    "box": [
+      39,
+      21,
+      104,
+      107
+    ],
+    "partialAlpha": 0,
+    "colors": 64,
+    "lowerRegionDiff": 128,
+    "lowerMaskDiff": 6,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-04.png",
+    "width": 144,
+    "height": 132,
+    "box": [
+      38,
+      21,
+      106,
+      107
+    ],
+    "partialAlpha": 0,
+    "colors": 63,
+    "lowerRegionDiff": 130,
+    "lowerMaskDiff": 7,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-05.png",
+    "width": 144,
+    "height": 132,
+    "box": [
+      34,
+      24,
+      111,
+      107
+    ],
+    "partialAlpha": 0,
+    "colors": 64,
+    "lowerRegionDiff": 280,
+    "lowerMaskDiff": 144,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-06.png",
+    "width": 144,
+    "height": 132,
+    "box": [
+      32,
+      25,
+      113,
+      108
+    ],
+    "partialAlpha": 0,
+    "colors": 64,
+    "lowerRegionDiff": 307,
+    "lowerMaskDiff": 180,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-07.png",
+    "width": 144,
+    "height": 132,
+    "box": [
+      33,
+      23,
+      115,
+      111
+    ],
+    "partialAlpha": 0,
+    "colors": 64,
+    "lowerRegionDiff": 249,
+    "lowerMaskDiff": 112,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-08.png",
+    "width": 144,
+    "height": 132,
+    "box": [
+      40,
+      21,
+      119,
+      107
+    ],
+    "partialAlpha": 0,
+    "colors": 63,
+    "lowerRegionDiff": 132,
+    "lowerMaskDiff": 7,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-09.png",
+    "width": 144,
+    "height": 132,
+    "box": [
+      38,
+      22,
+      122,
+      107
+    ],
+    "partialAlpha": 0,
+    "colors": 64,
+    "lowerRegionDiff": 159,
+    "lowerMaskDiff": 5,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-10.png",
+    "width": 144,
+    "height": 132,
+    "box": [
+      39,
+      20,
+      119,
+      107
+    ],
+    "partialAlpha": 0,
+    "colors": 63,
+    "lowerRegionDiff": 152,
+    "lowerMaskDiff": 3,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-11.png",
+    "width": 144,
+    "height": 132,
+    "box": [
+      42,
+      19,
+      115,
+      107
+    ],
+    "partialAlpha": 0,
+    "colors": 63,
+    "lowerRegionDiff": 129,
+    "lowerMaskDiff": 1,
+    "edgeClipping": false
+  },
+  {
+    "file": "frame-12.png",
+    "width": 144,
+    "height": 132,
+    "box": [
+      45,
+      19,
+      112,
+      107
+    ],
+    "partialAlpha": 0,
+    "colors": 63,
+    "lowerRegionDiff": 0,
+    "lowerMaskDiff": 0,
+    "edgeClipping": false
+  }
+]

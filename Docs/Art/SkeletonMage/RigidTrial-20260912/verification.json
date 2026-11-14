@@ -1,0 +1,37 @@
+{
+  "frames": 140,
+  "binary_alpha": true,
+  "original_palette_only": true,
+  "no_canvas_edge_clipping": true,
+  "resting_lower_leg_pixel_changes": {
+    "cast-ready": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "cast-hold": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "master_sha256": "e96cbf79b24eb270f3dbccb1688ca7e598dedc21c3fc358081aef32ddde247b3"
+}
