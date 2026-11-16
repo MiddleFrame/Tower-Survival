@@ -17,7 +17,7 @@ Restart the `aseprite` MCP connection after changing its configuration. If this 
 
 ## Work boundary
 
-Keep editable working documents under the existing feature directory, for example `Docs/Art/SkeletonArmored/AsepriteTrials/<descriptive-version>/`. Do not overwrite an approved PNG, `.meta`, runtime sprite or rejected historical trial. Use a new `.aseprite` document and explicit absolute paths. Do not auto-crop or scale a character to equalize padding: preserve its pixel grid, visible size and foot position.
+Keep editable working documents under the existing feature directory, for example `Docs/Art/SkeletonArmored/AsepriteTrials/<descriptive-version>/`. Do not overwrite an approved PNG, `.meta` or runtime sprite. Use a new `.aseprite` document and explicit absolute paths. Remove rejected trials, temporary previews and one-off helpers when the task is complete and they are no longer needed; retain approved editable sources and required provenance. Do not auto-crop or scale a character to equalize padding: preserve its pixel grid, visible size and foot position.
 
 The upstream server validates paths but is not a filesystem sandbox. Follow this boundary deliberately; do not use its tools to write unrelated files. Unity imports, texture pivots, prefabs and clips remain owned by Unity MCP.
 

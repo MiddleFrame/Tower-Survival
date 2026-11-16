@@ -92,6 +92,7 @@ This is a Unity mobile game project. Preserve player data, serialized references
 - Avoid banner comments, commented-out code, changelog comments, ownerless TODOs, and clever one-liners written merely to shorten code.
 - Make the smallest coherent edit. Avoid whole-file rewrites, unrelated formatting, member reordering, and line-ending churn.
 - Inspect the exact target before position-sensitive edits.
+- Clean up task-created temporary files, one-off helper scripts, intermediate exports and rejected experiments when they are no longer needed. Do not retain them in the project merely as task history. Preserve used deliverables, approved source assets, required provenance, reusable tools and unrelated user files; verify references and ownership before deleting.
 
 ## Validation loop
 
